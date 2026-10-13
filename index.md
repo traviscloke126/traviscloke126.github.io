@@ -26,3 +26,4 @@ We do not treat sUAS units like consumer electronics. Our fleet operations are m
 1. **Pre-Flight Site Control:** Deployment of an active site safety zone including an inner 15ft critical exclusion safety barrier and an outer 25ft security boundary before any rotor arms.
 2. **Component Lifecycle Tracking:** Every propeller, airframe fastener, and LiPo power cell undergoes strict pre- and post-flight inspections modeled directly on Army aviation maintenance regimes.
 3. **SOP-Driven Execution:** Zero non-operational communication during critical takeoff, automated grid mapping initialization, and landing phases ensures uncompromised situational awareness.
+

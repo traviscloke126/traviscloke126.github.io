@@ -4,7 +4,7 @@ title: Mission Brief
 ---
 
 <div class="hero-section">
-    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Apex Vector LLC Logo" class="site-logo">
+    <img src="{{ '/assets/images/logo2.png' | relative_url }}" alt="Apex Vector LLC Logo" class="site-logo">
     <div class="hero-headline">Military Aviation Discipline.<br>Industrial-Grade Aerial Intelligence.</div>
     <div class="hero-subheadline">Based in Reno County, Apex Vector LLC applies uncompromised aviation maintenance and flight safety protocols to crop scouting, asset mapping, and infrastructure inspection across Kansas.</div>
     <div class="cta-group">

@@ -1,18 +1,9 @@
 # Apex Vector LLC Global Configuration
 title: "Apex Vector LLC"
 description: "Commercial sUAS Flight Operations | High-Resolution Industrial Tracking, 2D/3D Mapping, & Infrastructure Inspection"
-remote_theme: jekyll/jekyll-theme-minimal
 
-# Navigation Setup
-navigation:
-  - title: "Mission Brief"
-    url: /
-  - title: "Flight Operations"
-    url: /operations/
-  - title: "Airworthiness & Safety"
-    url: /safety/
-  - title: "Request Operations"
-    url: /contact/
+# Native Theme Choice
+theme: jekyll-theme-minimal
 
 # Operational Footnote
 footer: "Apex Vector LLC • Reno County, Kansas • Operating under 14 C.F.R. Part 107 Protocols"

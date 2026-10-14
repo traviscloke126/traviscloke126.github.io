@@ -173,7 +173,7 @@
         <br>
         Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 Protocols &bull; Document Control: Public Release
     </footer>
-           <!-- GLOBAL INTAKE INPUT MODAL -->
+         <!-- GLOBAL INTAKE INPUT MODAL -->
     <div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
       
       <!-- Modal Box Container -->
@@ -188,7 +188,7 @@
           <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
           
           <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
-            Evaluate your parameters below. Submitting this form securely packages your inputs and logs them directly to our flight crew dashboard box.
+            Evaluate your parameters below. Submitting this briefing structures your inputs directly into a clean aviation dispatch sheet and triggers your secure email client handler.
           </p>
 
           <div style="display: flex; flex-direction: column; gap: 1.25rem;">
@@ -273,47 +273,63 @@
     document.getElementById('closeSuccessBtn').addEventListener('click', hideModalWindow);
     window.addEventListener('click', function(e) { if (e.target === globalModal) { hideModalWindow(); } });
 
-    // TEMPORARY FORCE-ACTIVATION TRIPPED LINK (Sends standard form to force the FormSubmit validation check email)
+    // THE SECURE COMBINED COMPILER METHOD
     document.getElementById('submitIntakeForm').addEventListener('click', function(e) {
       e.preventDefault();
       
       const clientName = document.getElementById('intake-name').value;
       const clientEmail = document.getElementById('intake-email').value;
       const targetLoc = document.getElementById('intake-location').value;
+      const assetScale = document.getElementById('intake-scale').value || "Not Provided";
+      const dataType = document.getElementById('intake-data').value;
+      const flightNotes = document.getElementById('intake-notes').value || "None Specified";
       
       if (!clientName || !clientEmail || !targetLoc) {
         alert("Aviation Log Notice: Operational blocks marked with an asterisk (*) are strictly required to map local airspace layout safety constraints.");
         return;
       }
 
-      const tempForm = document.createElement('form');
-      tempForm.method = 'POST';
-      tempForm.action = 'https://formsubmit.co';
+      const recipient = "apexvectoruas@gmail.com";
+      const subject = encodeURIComponent("UAS Mission Intake - " + clientName);
       
-      // Package data parameters neatly for FormSubmit validation layout
-      const fields = {
-        "Name / Organization": clientName,
-        "Contact Email": clientEmail,
-        "Flight Location": targetLoc,
-        "Asset Scale": document.getElementById('intake-scale').value || "Not Provided",
-        "Requested Deliverable": document.getElementById('intake-data').value,
-        "Mission Notes": document.getElementById('intake-notes').value || "None"
-      };
-
-      for (const [key, value] of Object.entries(fields)) {
-        const tempInput = document.createElement('input');
-        tempInput.type = 'hidden';
-        tempInput.name = key;
-        tempInput.value = value;
-        tempForm.appendChild(tempInput);
-      }
-      
-      document.body.appendChild(tempForm);
-      tempForm.submit();
-    });
-    </script>
+      const bodyText = [
+        "=====================================================",
+        "         APEX VECTOR LLC - UAS INTAKE PARAMETER GRID  ",
+        "=====================================================",
+        "",
+        "1. CONTACT NAME / COMPANY:",
+        "   " + clientName,
+        "",
+        "2. CONTACT EMAIL OUTLET:",
+        "   " + clientEmail,
+        "",
+        "3. TARGET LOCATION / AIRSPACE REGION:",
+        "   " + targetLoc,
+        "",
+        "4. ESTIMATED ASSET SCOPE:",
+        "   " + assetScale,
+        "",
+        "5. DESIRED DELIVERABLE DATA TYPE:",
+        "   [X] " + dataType,
+        "",
+        "6. SPECIAL SITE CONDITIONS / FLIGHT NOTES:",
+        "   " + flightNotes,
+        "",
+        "=====================================================",
+Form compiled live via secure dashboard engine. All operations executed under 14 CFR Part 107 guidelines."
+].join("\n");
+// Step 1: Fire open the local mail device handler with the pre-assembled data text block
+window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
+// Step 2: Clear layout fields out instantly
+document.getElementById('intake-name').value = '';
+document.getElementById('intake-email').value = '';
+document.getElementById('intake-location').value = '';
+document.getElementById('intake-scale').value = '';
+document.getElementById('intake-notes').value = '';
+// Step 3: Instantly toggle window state over to show the "Mission Logged" Thank You screen!
+formContentBlock.style.display = 'none';
+thankYouBlock.style.display = 'block';
+});
+ </script>
   </body>
 </html>
-
-
-

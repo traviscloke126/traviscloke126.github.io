@@ -73,12 +73,9 @@ Missions are itemized across four distinct operational phases on your invoice:
     <strong>Operational Notice:</strong> This phased structure guarantees that field mobilization, system risk mitigation, and flight line execution are fairly compensated at every tier of deployment. If a mission is terminated in the field due to client request or un-forecasted localized micro-climates, invoicing is strictly prorated to the last successfully completed phase.
 </div>
 
-<div style="text-align: center; margin-top: 40px;">
-    <a href="{{ '/contact.html' | relative_url }}" style="background-color: #FFB300; color: #111416; padding: 12px 28px; text-decoration: none; font-weight: 700; border-radius: 4px; display: inline-block;">Request a Mission Profile Quote</a>
-</div>
+
 
 
     
-    <!-- Lower Action Control: Extracted Automatically by Default Layout -->
-</div>
+    
 

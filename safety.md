@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Aviation Safety & Regulatory Boundaries
 
 ---

@@ -39,21 +39,21 @@ To prevent unauthorized field interventions and maintain strict data integrity d
   <!-- Asset 1: Command Signage -->
   <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); padding: 15px; border-radius: 6px; text-align: center;">
     <h3 style="margin-top: 0; font-size: 1.1em; color: #fff;">Command Signage</h3>
-    <img src="/assets/images/Apex_Vector_Landing_Warning.png" alt="Apex Vector LLC Field Sign" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
+    <img src="/assets/images/Apex_Vector_Landing_Warning.jpg" alt="Apex Vector LLC Field Sign" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
     <p style="font-size: 0.85em; color: #888; text-align: left;">High-visibility A-frame perimeters are actively deployed at all pedestrian access paths to mark active flight vectors and enforce the 25ft boundary line.</p>
   </div>
 
   <!-- Asset 2: Mobile Command Sign -->
   <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); padding: 15px; border-radius: 6px; text-align: center;">
     <h3 style="margin-top: 0; font-size: 1.1em; color: #fff;">Vehicle Operational Notice</h3>
-    <img src="/assets/images/Apex_Vector_Vehicle_Warning.png" alt="Apex Vector LLC Vehicle Perimeter Sign" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
+    <img src="/assets/images/Apex_Vector_Vehicle_Warning.jpg" alt="Apex Vector LLC Vehicle Perimeter Sign" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
     <p style="font-size: 0.85em; color: #888; text-align: left;">Static regulatory signage is mounted directly to mobile operation units and support vehicles to establish a secondary visual awareness layer on-site.</p>
   </div>
 
   <!-- Asset 3: Tactical Vest -->
   <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); padding: 15px; border-radius: 6px; text-align: center;">
     <h3 style="margin-top: 0; font-size: 1.1em; color: #fff;">Operational PPE</h3>
-    <img src="/assets/images/Apex_Vector_Safety_Vest.png" alt="Apex Vector LLC Flight Crew Vest" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
+    <img src="/assets/images/Apex_Vector_Safety_Vest.jpg" alt="Apex Vector LLC Flight Crew Vest" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
     <p style="font-size: 0.85em; color: #888; text-align: left;">Flight crews remain outfitted in specialized contractor blue identification vests containing clearly visible, accessible FAA Remote PIC credentials.</p>
   </div>
 

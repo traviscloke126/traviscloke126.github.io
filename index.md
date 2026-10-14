@@ -54,6 +54,8 @@ In Army Aviation, compliance and preventative maintenance aren't optional—they
     <div class="founder-bio">
         <h3>Travis Cloke</h3>
         <span class="founder-title">Founder & Remote PIC</span>
-        <p>10-year US Army Veteran and CH-47 Chinook Helicopter Mechanic. Dedicated to bringing structured, high-tier aerial operations to the communities and businesses of Reno County.</p>
+              <p>10-year US Army Veteran and CH-47 Chinook Helicopter Mechanic. Dedicated to bringing structured, high-tier aerial operations to the communities and businesses of Reno County.</p>
+              <a href="#" class="btn-primary trigger-quote-modal" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Request Mission Profile Quote</a>
     </div>
+
 </div>

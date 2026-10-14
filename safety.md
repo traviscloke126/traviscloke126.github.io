@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Airworthiness & Safety
+permalink: /safety.html
 ---
 
 # Airworthiness Standards & Risk Mitigation Protocols
@@ -11,6 +12,15 @@ We don't treat commercial drones like consumer electronics. We treat them like l
 
 ---
 
+## Command & Leadership
+* **Remote Pilot in Command (PIC):** Travis Cloke, Founder & Chief of Maintenance.
+* **Credentials:** 10-Year US Army Veteran & CH-47 Chinook Helicopter Mechanic. Military-grade airworthiness practices are applied to every commercial UAS deployment.
+
+## Fleet Airworthiness
+Our primary mapping asset is the **DJI Mavic 3 Enterprise (M3E)**. Maintenance is logged continuously via AirData UAV to guarantee structural, mechanical, and firmware integrity before entering any regional airspace, specifically within the **KHUT proximity**.
+
+---
+
 ## Proprietary SOP Site Safety Control Profiles
 
 Before any aircraft rotor arms are initialized or flight lines commence, our flight crew enforces a mandatory physical and behavioral security environment that exceeds standard civilian minimums:
@@ -18,6 +28,37 @@ Before any aircraft rotor arms are initialized or flight lines commence, our fli
 * **Inner Critical Exclusion Zone (15-Foot Radius):** A strict physical flight barrier centered entirely around the launch, recovery, and maintenance pad. Absolute zero-tolerance zone—no non-participating personnel, client assets, or unanchored gear may enter this perimeter.
 * **Outer Security Boundary (25-Foot Radius):** A clearly demarcated operational zone locked down using high-visibility neon flight-line barriers and heavy-duty, wind-anchored tactical signage alerting ground crews and bystanders of active sUAS operations.
 * **Sterile Flight Environment Protocol:** Absolute enforcement of a "sterile cockpit" mandate. To maintain total situational awareness and protect client assets, no non-operational communication or bystander interaction is permitted during critical takeoff, automated grid mapping initialization, and final touchdown phases.
+
+---
+
+## On-Site Deployment & Visibility Assets
+To prevent unauthorized field interventions and maintain strict data integrity during active mapping vectors, our flight crews utilize specialized physical controls.
+
+<!-- Safety Assets Visual Grid -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; margin-bottom: 30px;">
+  
+  <!-- Asset 1: Command Signage -->
+  <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); padding: 15px; border-radius: 6px; text-align: center;">
+    <h3 style="margin-top: 0; font-size: 1.1em;">Command Signage</h3>
+    <img src="assets/images/Apex_Vector_Landing_Warning.png" alt="Apex Vector LLC Field Sign" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
+    <p style="font-size: 0.85em; color: #555; text-align: left;">High-visibility A-frame perimeters are actively deployed at all pedestrian access paths to mark active flight vectors and enforce the 25ft boundary line.</p>
+  </div>
+
+  <!-- Asset 2: Mobile Command Sign -->
+  <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); padding: 15px; border-radius: 6px; text-align: center;">
+    <h3 style="margin-top: 0; font-size: 1.1em;">Vehicle Operational Notice</h3>
+    <img src="assets/images/Apex_Vector_Vehicle_Warning.png" alt="Apex Vector LLC Vehicle Perimeter Sign" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
+    <p style="font-size: 0.85em; color: #555; text-align: left;">Static regulatory signage is mounted directly to mobile operation units and support vehicles to establish a secondary visual awareness layer on-site.</p>
+  </div>
+
+  <!-- Asset 3: Tactical Vest -->
+  <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); padding: 15px; border-radius: 6px; text-align: center;">
+    <h3 style="margin-top: 0; font-size: 1.1em;">Operational PPE</h3>
+    <img src="assets/images/Apex_Vector_Safety_Vest.png" alt="Apex Vector LLC Flight Crew Vest" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 10px;">
+    <p style="font-size: 0.85em; color: #555; text-align: left;">Flight crews remain outfitted in specialized contractor blue identification vests containing clearly visible, accessible FAA Remote PIC credentials.</p>
+  </div>
+
+</div>
 
 ---
 

@@ -174,61 +174,79 @@
         Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 Protocols &bull; Document Control: Public Release
     </footer>
         <!-- GLOBAL INTAKE INPUT MODAL -->
+       <!-- GLOBAL INTAKE INPUT MODAL -->
     <div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
       
       <!-- Modal Box Container -->
-      <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
+      <div id="modalBox" style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
         
         <!-- Close Window Button -->
         <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold; z-index: 10000;">&times;</button>
         
-        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
-        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
-        
-        <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
-          Evaluate your parameters below. Submitting this briefing structures your inputs directly into a clean aviation dispatch sheet and routes it to our crews.
-        </p>
+        <!-- THE INTERACTIVE INPUT FIELDS CONTAINER -->
+        <div id="formContentBlock">
+          <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
+          <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
+          
+          <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
+            Evaluate your parameters below. Submitting this form securely packages your inputs and logs them directly to our flight crew dashboard box.
+          </p>
 
-        <!-- LIVE FILLABLE INTERACTIVE INTERFACE -->
-        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-          <div>
-            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
-            <input type="text" id="intake-name" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
-            <input type="email" id="intake-email" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">02. Target Airspace / Location Parameters *</label>
-            <input type="text" id="intake-location" placeholder="Addresses, parcel numbers, or GPS tags" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-          </div>
-
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 200px;">
-              <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">03. Scope Scale (Acres / Height)</label>
-              <input type="text" id="intake-scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+              <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
+              <input type="text" id="intake-name" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
             </div>
-            <div style="flex: 1; min-width: 200px;">
-              <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">04. Data Profile Requirement *</label>
-              <select id="intake-data" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
-                <option value="2D High-Res Orthomosaic Map">2D High-Res Orthomosaic Map</option>
-                <option value="3D Photogrammetry / Volumetric">3D Photogrammetry / Volumetric</option>
-                <option value="Thermal Signature Tracking">Thermal Signature Tracking</option>
-                <option value="Cinematic 4K Marketing Media">Cinematic 4K Marketing Media</option>
-              </select>
+
+            <div>
+              <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
+              <input type="email" id="intake-email" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
             </div>
-          </div>
 
-          <div>
-            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">05. Operational Timeline & Notes</label>
-            <textarea id="intake-notes" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
-          </div>
+            <div>
+              <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">02. Target Airspace / Location Parameters *</label>
+              <input type="text" id="intake-location" placeholder="Addresses, parcel numbers, or GPS tags" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+            </div>
 
-          <button id="submitIntakeForm" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
-            Transmit Secure Intake Request
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 200px;">
+                <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">03. Scope Scale (Acres / Height)</label>
+                <input type="text" id="intake-scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+              </div>
+              <div style="flex: 1; min-width: 200px;">
+                <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">04. Data Profile Requirement *</label>
+                <select id="intake-data" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
+                  <option value="2D High-Res Orthomosaic Map">2D High-Res Orthomosaic Map</option>
+                  <option value="3D Photogrammetry / Volumetric">3D Photogrammetry / Volumetric</option>
+                  <option value="Thermal Signature Tracking">Thermal Signature Tracking</option>
+                  <option value="Cinematic 4K Marketing Media">Cinematic 4K Marketing Media</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">05. Operational Timeline & Notes</label>
+              <textarea id="intake-notes" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
+            </div>
+
+            <button id="submitIntakeForm" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
+              Transmit Secure Intake Request
+            </button>
+          </div>
+        </div>
+
+        <!-- NEW INLINE THANK YOU LOG SCREEN (Hidden by default) -->
+        <div id="thankYouBlock" style="display: none; text-align: center; padding: 2rem 1rem;">
+          <div style="background: rgba(37, 99, 235, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #2563eb;">
+            <span style="color: #2563eb; font-size: 1.75rem; font-weight: bold;">✓</span>
+          </div>
+          <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.5rem; font-size: 1.75rem; font-weight: bold;">Mission Logged</h2>
+          <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Intake Profile Transmission Complete</h4>
+          <p style="color: #E0E4E6; font-size: 0.95rem; line-height: 1.5; max-width: 400px; margin: 0 auto 2rem;">
+            Your operational grid parameters have been securely compiled and transmitted to the flight center block. A command coordinator will review airspace restrictions and establish contact within 24 operational hours.
+          </p>
+          <button id="closeSuccessBtn" style="background: #1a1d29; border: 1px solid #4a5568; color: #ffffff; padding: 10px 24px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; tracking-letter: 0.05em;">
+            Dismiss Window
           </button>
         </div>
 
@@ -239,62 +257,85 @@
     // WINDOW OPERATIONS HANDLING LOGIC
     const globalModal = document.getElementById('missionModal');
     const modalCloseX = document.getElementById('closeModalBtn');
+    const formContentBlock = document.getElementById('formContentBlock');
+    const thankYouBlock = document.getElementById('thankYouBlock');
 
-    // Master Event Interceptor captures global button clicks cleanly across layout frames
     document.addEventListener('click', function(event) {
       if (event.target && event.target.closest('.trigger-quote-modal')) {
         event.preventDefault();
+        formContentBlock.style.display = 'block';
+        thankYouBlock.style.display = 'none';
         globalModal.style.display = 'flex';
       }
     });
 
-    modalCloseX.addEventListener('click', function() { globalModal.style.display = 'none'; });
-    window.addEventListener('click', function(e) { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
+    function hideModalWindow() { globalModal.style.display = 'none'; }
+    modalCloseX.addEventListener('click', hideModalWindow);
+    document.getElementById('closeSuccessBtn').addEventListener('click', hideModalWindow);
+    window.addEventListener('click', function(e) { if (e.target === globalModal) { hideModalWindow(); } });
 
-    // Client Field Compiler To Mail System
+    // BACKGROUND AJAX NETWORK SUBMISSION ENGINE
     document.getElementById('submitIntakeForm').addEventListener('click', function(e) {
       e.preventDefault();
       
-      const clientName = document.getElementById('intake-name').value || "[Not Provided]";
-      const clientEmail = document.getElementById('intake-email').value || "[Not Provided]";
-      const targetLoc = document.getElementById('intake-location').value || "[Not Provided]";
-      const assetScale = document.getElementById('intake-scale').value || "[Not Provided]";
+      const clientName = document.getElementById('intake-name').value;
+      const clientEmail = document.getElementById('intake-email').value;
+      const targetLoc = document.getElementById('intake-location').value;
+      const assetScale = document.getElementById('intake-scale').value || "Not Provided";
       const dataType = document.getElementById('intake-data').value;
-      const flightNotes = document.getElementById('intake-notes').value || "[None Specified]";
+      const flightNotes = document.getElementById('intake-notes').value || "None Specified";
       
-      const recipient = "apexvectoruas@gmail.com";
-      const subject = encodeURIComponent("UAS Mission Intake - " + clientName);
-      
-      const bodyText = [
-        "=====================================================",
-        "         APEX VECTOR LLC - UAS INTAKE PARAMETER GRID  ",
-        "=====================================================",
-        "",
-        "1. CONTACT NAME / COMPANY:",
-        "   " + clientName,
-        "",
-        "2. CONTACT EMAIL OUTLET:",
-        "   " + clientEmail,
-        "",
-        "3. TARGET LOCATION / AIRSPACE REGION:",
-        "   " + targetLoc,
-        "",
-        "4. ESTIMATED ASSET SCOPE:",
-        "   " + assetScale,
-        "",
-        "5. DESIRED DELIVERABLE DATA TYPE:",
-        "   [X] " + dataType,
-        "",
-        "6. SPECIAL SITE CONDITIONS / FLIGHT NOTES:",
-        "   " + flightNotes,
-        "",
-        "=====================================================",
-        "Form compiled live via secure dashboard engine. All operations executed under 14 CFR Part 107 guidelines."
-      ].join("\n");
+      if (!clientName || !clientEmail || !targetLoc) {
+        alert("Aviation Log Notice: Operational blocks marked with an asterisk (*) are strictly required to map local airspace layout safety constraints.");
+        return;
+      }
 
-      window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
-      globalModal.style.display = 'none';
+      const submitBtn = document.getElementById('submitIntakeForm');
+      submitBtn.innerText = "COMPILING DISPATCH MATRIX...";
+      submitBtn.style.background = "#4b5563";
+      submitBtn.disabled = true;
+
+      // Fires JSON payload data to FormSubmit API channel
+      fetch("https://formsubmit.co", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          "Name / Organization": clientName,
+          "Contact Email": clientEmail,
+          "Flight Location / Coordinates": targetLoc,
+          "Target Asset Scale": assetScale,
+          "Requested Data Product": dataType,
+          "Flight Crew Constraints & Notes": flightNotes
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Clear fields out completely
+        document.getElementById('intake-name').value = '';
+        document.getElementById('intake-email').value = '';
+        document.getElementById('intake-location').value = '';
+        document.getElementById('intake-scale').value = '';
+        document.getElementById('intake-notes').value = '';
+        
+        submitBtn.innerText = "Transmit Secure Intake Request";
+        submitBtn.style.background = "#2563eb";
+        submitBtn.disabled = false;
+        
+        formContentBlock.style.display = 'none';
+        thankYouBlock.style.display = 'block';
+      })
+      .catch(error => {
+        console.error("Transmission Error:", error);
+        alert("Aviation Communication Outage: Encrypted uplink encountered a server routing delay. Please verify internet connectivity.");
+        submitBtn.innerText = "Transmit Secure Intake Request";
+        submitBtn.style.background = "#2563eb";
+        submitBtn.disabled = false;
+      });
     });
     </script>
   </body>
 </html>
+

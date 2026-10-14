@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Rates & Options
-permalink: /pricing/
+permalink: /pricing
 ---
 
 # Commercial Drone Operations & Rates

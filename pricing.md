@@ -25,103 +25,143 @@ To secure flight windows, maintain crew readiness, and protect high-value operat
 Select your mission profile and enter your estimated project size below to calculate a real-time financial estimate down to the penny.
 
 <!-- INTERACTIVE WIDGET START -->
-<div style="max-width: 600px; background: #1a1e24; border: 1px solid #30363d; border-radius: 8px; padding: 25px; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 25px 0;">
+<div style="max-width: 600px; background: #1a1e24; border: 1px solid #30363d; border-radius: 8px; padding: 25px; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-shadow: rgba(0,0,0,0.15) 0px 4px 12px; margin: 25px auto;">
 
   <!-- Profile Selector -->
   <div style="margin-bottom: 20px;">
     <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">1. Select Mission Profile:</label>
-    <select id="profileSelect" oninput="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1em;">
-      <option value="5.50">AG Grid Base Profile ($5.50 / Acre)</option>
-      <option value="12.50">CONST Earthwork Profile ($12.50 / Acre)</option>
+    <select id="profileselect" onchange="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1rem;">
+      <option value="ag">AG Grid Profile (Crop Health / NDVI Flat Per-Acre)</option>
+      <option value="earthwork">Earthwork Profile (Construction / Volumetrics Flat Tier)</option>
+      <option value="media">Commercial Media Profile (Marketing / Real Estate Hourly)</option>
     </select>
   </div>
 
-  <!-- Acreage Input -->
+  <!-- Dynamic Dimension Input Container -->
   <div style="margin-bottom: 25px;">
-    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">2. Enter Estimated Acreage:</label>
-    <input type="number" id="acreageInput" value="160" min="1" oninput="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1em; box-sizing: border-box;">
+    <label id="inputLabel" style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">2. Enter Estimated Acreage:</label>
+    <input type="number" id="acreageInput" value="160" min="1" oninput="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1rem;">
   </div>
 
   <!-- Output Matrix Ledger -->
-  <div style="border-top: 1px solid #30363d; padding-top: 20px; margin-bottom: 20px;">
-    <h4 style="margin: 0 0 15px 0; color: #58a6ff;">📊 Estimated Line Item Ledger</h4>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95em;">
-      <span>Mobilization Base Fee:</span>
-      <span style="font-weight: 600; color: #f0f6fc;">$250.00</span>
-    </div>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95em;">
-      <span>In-Field Data Acquisition:</span>
-      <span id="ledgerAcquisition" style="font-weight: 600; color: #f0f6fc;">$880.00</span>
-    </div>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95em;">
-      <span>Photogrammetry Processing ($3/ac):</span>
-      <span id="ledgerProcessing" style="font-weight: 600; color: #f0f6fc;">$480.00</span>
-    </div>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.95em;">
-      <span>Secure Lifecycle Archival:</span>
-      <span style="font-weight: 600; color: #f0f6fc;">$100.00</span>
+  <div style="border-top: 1px solid #30363d; padding-top: 20px; margin-bottom: 25px;">
+    <h4 style="margin: 0 0 15px 0; color: #58a6ff;">📊 Estimated Operations Ledger</h4>
+    
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem;">
+      <span>Primary Capture Operations:</span>
+      <span id="ledgerAcquisition" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
     
-    <!-- Gross Total -->
-    <div style="display: flex; justify-content: space-between; background: #21262d; padding: 12px; border-radius: 6px; border: 1px solid #388bfd; font-size: 1.1em; font-weight: 700;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.95rem;">
+      <span>Base Operations / Adjustments:</span>
+      <span id="ledgerProcessing" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
+    </div>
+
+    <!-- Gross Total Display Box -->
+    <div style="display: flex; justify-content: space-between; background: #21262d; padding: 12px; border-radius: 6px; border: 1px solid #388bfd; font-size: 1.1rem; font-weight: 700;">
       <span style="color: #58a6ff;">Total Gross Contract Value:</span>
-      <span id="ledgerTotal" style="color: #58a6ff;">$1,710.00</span>
+      <span id="ledgerTotal" style="color: #58a6ff;">$0.00</span>
     </div>
   </div>
 
   <!-- Milestone Split Display -->
   <div style="background: #161b22; border: 1px solid #30363d; padding: 15px; border-radius: 6px;">
-    <h5 style="margin: 0 0 10px 0; color: #f0f6fc; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.5px;">📋 SOP Milestone Payment Schedule Breakdown</h5>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9em;">
+    <h5 style="margin: 0 0 10px 0; color: #f0f6fc; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">📋 SOP Milestone Payment Schedule Breakdown</h5>
+    
+    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
       <span>Phase 1 Due (Mobilization - 30%):</span>
-      <span id="splitPhase1" style="font-weight: 600;">$513.00</span>
+      <span id="splitPhase1" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9em;">
+    
+    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
       <span>Phase 2 Due (Touchdown - 40%):</span>
-      <span id="splitPhase2" style="font-weight: 600;">$684.00</span>
+      <span id="splitPhase2" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
-    <div style="display: flex; justify-content: space-between; font-size: 0.9em;">
+    
+    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
       <span>Phase 3 Due (Data Release - 30%):</span>
-      <span id="splitPhase3" style="font-weight: 600;">$513.00</span>
+      <span id="splitPhase3" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
   </div>
 
-</div>
-
-<!-- Disclaimer Box -->
-<div style="max-width: 600px; background: rgba(210,153,34,0.15); border: 1px solid rgba(210,153,34,0.4); border-left: 5px solid #d29922; padding: 15px; border-radius: 6px; font-size: 0.9em; line-height: 1.5; color: #e3b341; margin-bottom: 30px;">
-  <b>⚠️ Formal Mission Review Clause:</b> Estimates generated by this calculator are for initial budgeting and scheduling purposes only. The Remote PIC will conduct a rigorous structural airspace assessment, digital terrain check, and exact GIS boundary calculation prior to operations. Final adjusted size parameters, asset mobilization details, and contract pricing will be explicitly locked on your formal billing statement and legally binding contract signature sheets.
+  <p style="margin-top: 15px; font-size: 0.8rem; color: #8b949e; line-height: 1.4;">
+    <b>⚠️ Formal Mission Review Clause:</b> Estimates generated by this calculator are for initial budgeting and scheduling purposes only. The Remote PIC will conduct airspace boundary calculation prior to operations.
+  </p>
 </div>
 
 <script>
 function calculateEstimate() {
-  const rate = parseFloat(document.getElementById('profileSelect').value);
-  const acres = parseFloat(document.getElementById('acreageInput').value) || 0;
+  const profile = document.getElementById('profileselect').value;
+  const rawInput = parseFloat(document.getElementById('acreageInput').value) || 0;
   
-  // Calculate Line Items
-  const baseMob = 250.00;
-  const baseArch = 100.00;
-  const acquisition = acres * rate;
-  const processing = acres * 3.00;
-  
-  const total = baseMob + baseArch + acquisition + processing;
-  
-  // Milestone splits
-  const phase1 = total * 0.30;
-  const phase2 = total * 0.40;
-  const phase3 = total * 0.30;
-  
-  // Format numbers to USD text
-  document.getElementById('ledgerAcquisition').innerText = '$' + acquisition.toFixed(2);
-  document.getElementById('ledgerProcessing').innerText = '$' + processing.toFixed(2);
-  document.getElementById('ledgerTotal').innerText = '$' + total.toFixed(2);
-  
-  document.getElementById('splitPhase1').innerText = '$' + phase1.toFixed(2);
-  document.getElementById('splitPhase2').innerText = '$' + phase2.toFixed(2);
-  document.getElementById('splitPhase3').innerText = '$' + phase3.toFixed(2);
+  const inputLabel = document.getElementById('inputLabel');
+  let fieldCaptureCost = 0;
+  let layoutAdjustmentCost = 0;
+  let absoluteTotalValue = 0;
+
+  if (profile === 'ag') {
+    inputLabel.innerText = "2. Enter Estimated Acreage:";
+    
+    // Scale rate dynamically based on acreage size to stay ultra-competitive
+    let ratePerAcre = 3.50; 
+    if (rawInput > 160) ratePerAcre = 2.75;
+    if (rawInput > 640) ratePerAcre = 2.25;
+
+    fieldCaptureCost = rawInput * ratePerAcre;
+    layoutAdjustmentCost = 0; // Completely flat and transparent
+    absoluteTotalValue = fieldCaptureCost;
+
+  } else if (profile === 'earthwork') {
+    inputLabel.innerText = "2. Enter Estimated Acreage:";
+    
+    // Enforce the $750 site minimum if under 25 acres
+    if (rawInput <= 25) {
+      absoluteTotalValue = 750.00;
+      fieldCaptureCost = 750.00;
+      layoutAdjustmentCost = 0;
+    } else {
+      // Scale clean per acre cost for vast construction grids
+      const dynamicRate = rawInput > 100 ? 18.00 : 25.00;
+      fieldCaptureCost = rawInput * dynamicRate;
+      layoutAdjustmentCost = 0;
+      absoluteTotalValue = fieldCaptureCost;
+    }
+
+  } else if (profile === 'media') {
+    inputLabel.innerText = "2. Enter Estimated Project Hours:";
+    
+    // Enforce 2-hour minimum block floor rate ($400 minimum)
+    const activeHours = rawInput < 2 ? 2 : rawInput;
+    fieldCaptureCost = activeHours * 200.00;
+    
+    if (rawInput < 2 && rawInput > 0) {
+      layoutAdjustmentCost = (2 - rawInput) * 200.00; // Track missing hours as setup variance
+    } else {
+      layoutAdjustmentCost = 0;
+    }
+    absoluteTotalValue = fieldCaptureCost;
+  }
+
+  // Calculate standard corporate milestone schedule splits
+  const phase1Val = absoluteTotalValue * 0.30;
+  const phase2Val = absoluteTotalValue * 0.40;
+  const phase3Val = absoluteTotalValue * 0.30;
+
+  // Format outputs and push text variables straight out into view
+  document.getElementById('ledgerAcquisition').innerText = '$' + fieldCaptureCost.toFixed(2);
+  document.getElementById('ledgerProcessing').innerText = '$' + layoutAdjustmentCost.toFixed(2);
+  document.getElementById('ledgerTotal').innerText = '$' + absoluteTotalValue.toFixed(2);
+
+  document.getElementById('splitPhase1').innerText = '$' + phase1Val.toFixed(2);
+  document.getElementById('splitPhase2').innerText = '$' + phase2Val.toFixed(2);
+  document.getElementById('splitPhase3').innerText = '$' + phase3Val.toFixed(2);
 }
+
+// Fire the logic script instantly on layout initial mount
+calculateEstimate();
 </script>
 <!-- INTERACTIVE WIDGET END -->
+
 
 ---
 

@@ -8,7 +8,7 @@ title: Mission Brief
     <div class="hero-headline">Military Aviation Discipline.<br>Industrial-Grade Aerial Intelligence.</div>
     <div class="hero-subheadline">Based in Reno County, Apex Vector LLC applies uncompromised aviation maintenance and flight safety protocols to crop scouting, asset mapping, and infrastructure inspection across Kansas.</div>
     <div class="cta-group">
-        <a href="{{ '/contact.html' | relative_url }}" class="btn-primary">Request Operations / Get a Quote</a>
+        <a href="#" class="btn-primary trigger-quote-modal">Request Operations / Get a Quote</a>
         <a href="{{ '/operations.html' | relative_url }}" class="btn-secondary">View Our Capabilities</a>
     </div>
 </div>

@@ -1,63 +1,24 @@
 ---
 layout: default
-title: Flight Operations
+title: SOP-001 Rev. 1.0 Fleet Framework
 ---
 
-# sUAS Fleet Standard Operating Procedures
-**Document Number:** SOP-001 Rev. 1.0  
-**Effective Date:** 1 January 2027 &bull; **Reviewed & Approved By:** Travis Cloke (Chief of Maintenance / Remote PIC)
+# Standard Operating Manual
+## Document Code: SOP-001 | Revision: 1.0 Fleet Framework
 
----
+This operational framework governs all small Unmanned Aircraft Systems (sUAS) flight lines executed by Apex Vector LLC field crew elements across South-Central Kansas.
 
-## 1. Purpose & Scope
+### 01. Pre-Flight Systems & Intake Configuration
+*   **Aviation Intake Synchronization:** All incoming project logistics from our secure intake portal are ingested directly into our central flight planning system.
+*   **Airspace Validation:** Crew elements execute historical NOTAM reviews, local flight restriction checks, and LAANC launch authorizations prior to any power cycle on remote elements.
+*   **Master Contract Integration:** Every mission utilizes our standardized **DocuSign Integrated Contract Pack (SOP-AGREE-003)**, seamlessly bundling our Services Agreement, Property Access Waiver, and Data Governance Policies into a single secure envelope for the client.
 
-Apex Vector LLC operates under a strict, dual-layer safety architecture. This Standard Operating Procedure (SOP) document establishes mandatory aviation safety protocols, regulatory compliance guidelines, and operational standards for all small Unmanned Aircraft Systems (sUAS) flights executed within the National Airspace System (NAS). Adherence to these checklists is mandatory for all industrial tracking, 2D/3D orthomosaic mapping, infrastructure inspections, and data acquisition missions across Kansas.
+### 02. Enforced Flight Line Boundaries
+To protect non-participating personnel and maintain complete site control, Apex Vector LLC establishes and enforces physical security perimeters on the ground during all takeoffs, automated grid mapping sequences, and structural scans:
+*   **15-Foot Inner Critical Exclusion Zone:** Centered strictly around the landing pad module. Purely critical flight crew elements only; zero unauthorized access permitted while rotors are armed.
+*   **25-Foot Outer Security Boundary:** Demarcated by high-visibility flight-line barriers and safety signage for crowd control and spectator mitigation.
 
----
-
-## 2. Personnel Qualifications & Manned Aviation Hierarchy
-
-*   **Remote Pilot in Command (RPIC):** Holds final, absolute authority to abort or postpone any flight operation for safety reasons with no exception. Responsible for all safe conduct, LAANC airspace validations, and real-time risk mitigation profiles.
-*   **Visual Observer (VO):** Mandated at RPIC discretion to maintain continuous visual line-of-sight (VLOS), providing real-time tracking callouts for non-participating vectors or ground personnel breaching flagged perimeters.
-
----
-
-## 3. Pre-Flight Execution Checklists
-
-Industrial and agricultural operations require perfect zero-error preparation. Our crews execute a meticulous multi-tier check before any rotor arms engage:
-
-### 📋 Day-Before Planning Checklist (24 Hours Out)
-*   **Airspace Validation:** Review and confirm 14 C.F.R. § 107.41 airspace compliance and real-time LAANC profiles.
-*   **NOTAM & TFR Verification:** Check active FAA NOTAMs and verify no Temporary Flight Restrictions (TFRs) exist via official aviation briefings.
-*   **Environmental Reconnaissance:** Audit local weather forecasts (wind shear metrics, extremes, visibility limits) and conduct physical site map reconnaissance to plot hazards and escape routes.
-*   **Safety Kit Inventory:** Verify readiness of physical site equipment: heavy-duty 36"x36" signage, neon survey flags, mechanical ground stakes, and deployment mallets.
-
-### 📋 Day-of Pre-Flight Checklist (On-Site Deployment)
-*   **Real-Time Weather Check:** Verify local real-time visibility exceeds 3 Statute Miles (SM) per 14 C.F.R. § 107.51 limits.
-*   **Tactical Site Security:** Erect dual 36"x36" signs anchored by angled ground stakes to establish an outer **25-foot security boundary** and an inner **15-foot critical exclusion safety barrier** centered completely around the landing pad.
-*   **Aviation Hardware Audit:** Inspect all propellers for microscopic cracks, trailing-edge delamination, or chips. Verify airframe fasteners, motor mounts, secure camera payloads, and confirm active Remote ID transmission.
-*   **Navigation Lock:** Verify complete GPS satellite constellation tracking (minimum 6 satellites locked / HDOP < 2.0).
-
----
-
-## 4. In-Flight Safety Controls
-
-*   **Right of Way:** Absolute yielding to all manned aircraft vectors. Flight crew will descend immediately if an agricultural or emergency vector approaches the operational area.
-*   **Power Management:** Continuous monitoring of Lithium-Polymer (LiPo) power levels, with automated Return-to-Home (RTH) protocols initialized immediately at 20% capacity thresholds.
-*   **Sterile Flight Environment Command:** **Absolutely no non-operational communication or bystander interaction is permitted during aircraft takeoff, automated grid mapping initialization, close-proximity structural scanning, or final approach and touchdown phases.**
-
----
-
-## 5. Post-Flight Accountability & Site Recovery
-
-*   **System Power-Down:** Execute precise manufacturer shutdown sequences and store LiPo batteries per temperature regulations while inspecting for cell swelling.
-*   **Data Integrity Protection:** Immediate on-site backup and download of all telemetry flight logs, 2D orthomosaic grids, and high-fidelity structural sensor data payloads.
-*   **Complete Site Recovery:** Account for and recover all deployed site safety gear—extracting ground stakes, pulling neon survey flags, and packing signage arrays to return the client's parcel to pristine condition.
-
----
-
-## 6. Maintenance Logs & Records Retention
-
-Apex Vector LLC maintains an ironclad technical logging system to track airworthiness down to the minute:
-*   **Component Lifecycles:** Continuous logging of system flight hours, structural cycles, and internal battery resistance controls. Propellers are grounded instantly upon microscopic wear patterns.
-*   **Records Retention:** Complete maintenance logs, FAA aircraft registrations, and Remote Pilot certifications are held for an absolute minimum of 3 years, with incident records preserved for 5 years.
+### 03. Dynamic Weather & Compensable Operations Rule
+Aviation data tracking demands perfect environmental conditions to maintain sensor integrity. In strict alignment with our master agreement terms:
+*   **Weather Ceilings:** The Remote Pilot in Command (RPIC) maintains ultimate authority to postpone operations due to localized micro-climate disruptions, extreme wind gusts, or visibility drops.
+*   **Milestone Protection:** Completed flight phases remain fully billable in accordance with our 3-Phase Operational Valuation Schedule (30% Mobilization / 40% In-Field Capture / 30% Analytical Release) to account for dedicated hardware deployment and tactical mission labor.

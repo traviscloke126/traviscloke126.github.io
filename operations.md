@@ -21,9 +21,12 @@ Apex Vector LLC executes precise data acquisition missions within the United Sta
 
 ---
 
-## The Operational Environment
+## The Operational Environment & Safety Standards
 
-All flight operations are conducted strictly inside the operational boundaries established by 14 C.F.R. § Part 107. 
+All flight operations executed by Apex Vector LLC are strictly governed under a dual-layer safety architecture, matching federal mandates with rigorous internal aviation discipline:
 
-* **Maximum Altitude Profiles:** Missions are locked at or below 400 feet AGL unless executing structural scans with valid regulatory clearances.
+1. **Federal Regulatory Compliance:** 100% adherence to all operational boundaries established by 14 C.F.R. § Part 107 inside the National Airspace System (NAS).
+2. **Apex Vector Standard Operating Procedures (SOP):** Our proprietary fleet manual imposes strict, manned-aviation style restrictions that exceed federal minimums. This includes mandatory deployment of our physical site safety zones (15ft critical exclusion radius and 25ft marked security boundary) and absolute "sterile cockpit" communication rules during all critical takeoff, grid initialization, and landing phases.
+
+* **Maximum Altitude Profiles:** Missions are locked at or below 400 feet AGL unless executing specialized structural tracking scans with valid regulatory clearances.
 * **Automated Flight Execution:** Grid tracking utilizes advanced waypoint flight lines for repeatable, millimeter-precise data compilation over time.

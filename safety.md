@@ -1,4 +1,5 @@
 ---
+layout: default
 title: Aviation Safety & Regulatory Boundaries
 ---
 
@@ -18,7 +19,6 @@ This decade of real-world experience maintaining and managing complex, multi-mil
 
 During active data acquisition, Apex Vector LLC strictly establishes and defends two concentric safety boundaries on the ground. No unauthorized personnel are permitted inside these zones while assets are armed.
 
-
 1.  **Perimeter 1: The 15ft Inner Exclusion Zone**  
     *This core zone isolates the UAS Launch/Recovery Pad and the Ground Control Station (GCS). It is restricted strictly to essential flight crew members actively assisting with telemetry and visual observation.*
 2.  **Perimeter 2: The 25ft Site Safety Boundary**  
@@ -33,19 +33,19 @@ To enforce these structural boundaries on active industrial and commercial job s
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; margin-top: 20px;">
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
     <h4 style="margin-top: 0; color: #24292e;">🚧 Site Boundary Enforcement</h4>
-    <img src="Apex_Vector_Landing_Warning.jpg" alt="Apex Vector Field Operations Safety Sign" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
+    <img src="/Apex_Vector_Landing_Warning.jpg" alt="Apex Vector Field Operations Safety Sign" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
     <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">Heavy-duty, high-visibility structural rigid A-frame deployment warning signs positioned explicitly at the outer 25ft Site Safety perimeter boundaries.</p>
   </div>
 
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
     <h4 style="margin-top: 0; color: #24292e;">🦺 Flight Crew Identification</h4>
-    <img src="Apex_Vector_Safety_Vests.jpg" alt="Apex Vector Certified Drone Pilot Vest" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
+    <img src="/Apex_Vector_Safety_Vest.jpg" alt="Apex Vector Certified Drone Pilot Vest" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
     <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">ANSI/ISEA compliant high-visibility Class 3 flight deck apparel worn continuously by the Remote PIC to defend the Ground Control Station from distractions.</p>
   </div>
 
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
     <h4 style="margin-top: 0; color: #24292e;">🛩️ Command Station Security</h4>
-    <img src="Apex_Vector_Vehicle_Warning.jpg" alt="Apex Vector Command Station Safety Sign" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
+    <img src="/Apex_Vector_Vehicle_Warning.jpg" alt="Apex Vector Command Station Safety Sign" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
     <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">Octagonal perimeter marker configurations deployed to completely isolate real-time telemetry screens and ground control systems from unauthorized personnel.</p>
   </div>
 </div>
@@ -59,4 +59,4 @@ Our operations within the **Hutchinson, Reno County, Kansas** region run in clos
 *   **Ground Incursion Protocol:** The Remote PIC retains **absolute, unappealable aviation authority** to instantly pause, hover, or command emergency return-to-home flight patterns the moment an unauthorized ground boundary breach is identified.
 *   **Airspace & Weather Postponement:** Flights are subject to immediate suspension or rescheduling if real-time micro-weather (high wind shear, dropping visibility) or military/civilian manned air traffic inside the KHUT terminal radar area compromises absolute safety.
 
-Our commitment to safety ensures that your project data is gathered efficiently,
+Our commitment to safety ensures that your project data is gathered efficiently, legally, and without exposing your site or organization to operational liability.

@@ -29,7 +29,7 @@ During active data acquisition, Apex Vector LLC strictly establishes and defends
 ## 🦺 Field Operational Visual Controls
 
 To enforce these structural boundaries on active industrial and commercial job sites, we employ highly visible, high-contrast field marking controls. This gear ensures clear communication and operational isolation in seconds.
-
+<!-- FIELD OPERATIONAL VISUAL CONTROLS BLOCK -->
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; margin-top: 20px;">
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
     <h4 style="margin-top: 0; color: #24292e;">🚧 Site Boundary Enforcement</h4>

@@ -224,20 +224,6 @@ const globalModal = document.getElementById('missionModal');
 const modalCloseX = document.getElementById('closeModalBtn');
 
 // ACTIVE INTERCEPTOR LOOP: Listens to the entire page document dynamically.
-// This captures your buttons even if they are loaded from a separate single layout asset!
-document.addEventListener('click', function(event) {
-  // Find the closest element that looks like a primary action button or link
-  const targetButton = event.target.closest('.btn-primary, .trigger-quote-modal, a[href*="contact"]');
-  
-  if (targetButton) {
-    // Intercept click instantly if it mentions requesting a quote or operation brief
-    if (targetButton.textContent.includes('Request') || targetButton.classList.contains('trigger-quote-modal')) {
-      event.preventDefault();
-      globalModal.style.display = 'flex';
-    }
-  }
-});
-
 <!-- GLOBAL MODAL OVERLAY WRAPPER -->
 <div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
   
@@ -325,7 +311,3 @@ document.addEventListener('click', function(event) {
 modalCloseX.addEventListener('click', function() { globalModal.style.display = 'none'; });
 window.addEventListener('click', function(e) { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
 </script>
-
-
-</body>
-</html>

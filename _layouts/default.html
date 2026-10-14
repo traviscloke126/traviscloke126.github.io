@@ -128,7 +128,8 @@
         {{ content }}
     </main>
         <!-- Centralized Persistent Flight Deck Action Controls -->
-    <div style="max-width: 900px; margin: 50px auto 20px auto; border-top: 1px dashed #2C3740; padding-top: 40px; px; padding-left: 20px; padding-right: 20px;">
+    {% unless page.title == "Flight Operations" %}
+    <div style="max-width: 900px; margin: 50px auto 20px auto; border-top: 1px dashed #2C3740; padding-top: 40px; padding-left: 20px; padding-right: 20px;">
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center;">
             
             <!-- Control A: Flight Operations Redirect -->
@@ -139,7 +140,7 @@
         
         </div>
     </div>
-    
+    {% endunless %}
 
     <footer>
         <div class="trust-badges">

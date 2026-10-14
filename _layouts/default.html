@@ -172,7 +172,108 @@
         <br>
         Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 Protocols &bull; Document Control: Public Release
     </footer>
+<!-- GLOBAL DARK MODAL OVERLAY (Hidden by Default) -->
+<div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+  
+  <!-- Modal Container Box -->
+  <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
+    
+    <!-- Close X Button -->
+    <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold;">&times;</button>
+    
+    <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
+    <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
+    
+    <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
+      Evaluate your parameters below. Clicking the link compiles your inputs into our standardized plain-text aviation routing format to open in your secure local mail terminal.
+    </p>
 
+    <!-- Intake Grid Blocks -->
+    <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+      <div style="background: #1a1d29; padding: 12px; border-radius: 4px; border-left: 3px solid #FFB300;">
+        <strong style="color: #ffffff; font-size: 0.85rem; display: block; margin-bottom: 2px;">01. Target Airspace / Location</strong>
+        <span style="font-size: 0.8rem; color: #a0aec0;">Provide addresses, parcel numbers, county boundaries, or GPS tags.</span>
+      </div>
+      <div style="background: #1a1d29; padding: 12px; border-radius: 4px; border-left: 3px solid #FFB300;">
+        <strong style="color: #ffffff; font-size: 0.85rem; display: block; margin-bottom: 2px;">02. Asset Scope & Dimensions</strong>
+        <span style="font-size: 0.8rem; color: #a0aec0;">Specify total acreage, structure heights, or infrastructure pathway tracking lengths.</span>
+      </div>
+      <div style="background: #1a1d29; padding: 12px; border-radius: 4px; border-left: 3px solid #FFB300;">
+        <strong style="color: #ffffff; font-size: 0.85rem; display: block; margin-bottom: 2px;">03. Requested Recon Data Type</strong>
+        <span style="font-size: 0.8rem; color: #a0aec0;">2D High-Res Orthomosaics, 3D Volumetric Photogrammetry, Thermal Tracking, or raw 4K video.</span>
+      </div>
+      <div style="background: #1a1d29; padding: 12px; border-radius: 4px; border-left: 3px solid #FFB300;">
+        <strong style="color: #ffffff; font-size: 0.85rem; display: block; margin-bottom: 2px;">04. Operational Timeline</strong>
+        <span style="font-size: 0.8rem; color: #a0aec0;">Preferred flight windows, delivery targets, or recurring interval schedules.</span>
+      </div>
+    </div>
+
+    <!-- Activation Action -->
+    <div style="text-align: center; border-top: 1px solid #2d3748; padding-top: 1.5rem;">
+      <a id="generate-brief-modal" href="#" style="display: block; width: 100%; text-align: center; background: #2563eb; color: #ffffff; padding: 14px; border-radius: 4px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; box-sizing: border-box;">
+        ⚡ Structure and Send Intake Request
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Master Global Modal Script
+const globalModal = document.getElementById('missionModal');
+const modalCloseX = document.getElementById('closeModalBtn');
+
+// 1. Scan the active page DOM for ANY button/link element assigned the class "trigger-quote-modal"
+document.addEventListener('click', function(event) {
+  if (event.target && event.target.classList.contains('trigger-quote-modal')) {
+    event.preventDefault();
+    globalModal.style.display = 'flex';
+  }
+});
+
+// 2. Standard Window Visibility Operations
+modalCloseX.addEventListener('click', () => { globalModal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
+
+// 3. Structural Plain-Text Mail Matrix Generator
+document.getElementById('generate-brief-modal').addEventListener('click', function(e) {
+  e.preventDefault();
+  const recipient = "apexvectoruas@gmail.com";
+  const subject = encodeURIComponent("UAS Mission Request - Apex Vector LLC");
+  const bodyText = [
+    "=====================================================",
+    "         APEX VECTOR LLC - UAS INTAKE PARAMETER GRID  ",
+    "=====================================================",
+    "",
+    "1. CONTACT NAME / COMPANY:",
+    "   [Enter Name / Company Name]",
+    "",
+    "2. TARGET LOCATION (Address, Coordinates, or Reno County Parcel):",
+    "   [Enter Location Details]",
+    "",
+    "3. ESTIMATED ASSET SCOPE (Acreage, Height, or Path Length):",
+    "   [e.g., 40 Acres / 150-ft Communication Tower / etc.]",
+    "",
+    "4. DESIRED DELIVERABLE DATA TYPE:",
+    "   [ ] 2D High-Res Orthomosaic Map",
+    "   [ ] 3D Photogrammetry / Modeling",
+    "   [ ] Infrastructure Inspection Imagery",
+    "   [ ] Thermal Signature Tracking",
+    "   [ ] Cinematic 4K Marketing Media",
+    "",
+    "5. REQUESTED TIMELINE / SCHEDULE CONSTRAINT:",
+    "   [Enter preferred flight date or delivery deadlines]",
+    "",
+    "6. SPECIAL SITE CONDITIONS OR AIRSPACE HAZARDS (If known):",
+    "   [e.g., Active powerlines, heavy public crowds, trees, proximity to local airport]",
+    "",
+    "=====================================================",
+    "Form structured via interactive global brief launcher. All flights executed under 14 CFR Part 107 regulations."
+  ].join("\n");
+
+  window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
+});
+</script>
 
 </body>
 </html>

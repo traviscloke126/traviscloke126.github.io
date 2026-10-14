@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Airworthiness & Safety
-permalink: /safety.html
+
 ---
 
 # Airworthiness Standards & Risk Mitigation Protocols

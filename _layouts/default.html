@@ -275,67 +275,47 @@
     window.addEventListener('click', function(e) { if (e.target === globalModal) { hideModalWindow(); } });
 
     // BACKGROUND AJAX NETWORK SUBMISSION ENGINE
+        <script>
+    // WINDOW OPERATIONS HANDLING LOGIC
+    const globalModal = document.getElementById('missionModal');
+    const modalCloseX = document.getElementById('closeModalBtn');
+    const formContentBlock = document.getElementById('formContentBlock');
+    const thankYouBlock = document.getElementById('thankYouBlock');
+
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.closest('.trigger-quote-modal')) {
+        event.preventDefault();
+        formContentBlock.style.display = 'block';
+        thankYouBlock.style.display = 'none';
+        globalModal.style.display = 'flex';
+      }
+    });
+
+    function hideModalWindow() { globalModal.style.display = 'none'; }
+    modalCloseX.addEventListener('click', hideModalWindow);
+    document.getElementById('closeSuccessBtn').addEventListener('click', hideModalWindow);
+    window.addEventListener('click', function(e) { if (e.target === globalModal) { hideModalWindow(); } });
+
+    // TEMPORARY FORCE-ACTIVATION TRIPPED LINK
     document.getElementById('submitIntakeForm').addEventListener('click', function(e) {
       e.preventDefault();
       
-      const clientName = document.getElementById('intake-name').value;
-      const clientEmail = document.getElementById('intake-email').value;
-      const targetLoc = document.getElementById('intake-location').value;
-      const assetScale = document.getElementById('intake-scale').value || "Not Provided";
-      const dataType = document.getElementById('intake-data').value;
-      const flightNotes = document.getElementById('intake-notes').value || "None Specified";
+      // Builds a traditional hidden HTML form on the fly to force the FormSubmit activation screen
+      const tempForm = document.createElement('form');
+      tempForm.method = 'POST';
+      tempForm.action = 'https://formsubmit.co';
       
-      if (!clientName || !clientEmail || !targetLoc) {
-        alert("Aviation Log Notice: Operational blocks marked with an asterisk (*) are strictly required to map local airspace layout safety constraints.");
-        return;
-      }
-
-      const submitBtn = document.getElementById('submitIntakeForm');
-      submitBtn.innerText = "COMPILING DISPATCH MATRIX...";
-      submitBtn.style.background = "#4b5563";
-      submitBtn.disabled = true;
-
-      // Fires JSON payload data to FormSubmit API channel
-      fetch("https://formsubmit.co", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          "Name / Organization": clientName,
-          "Contact Email": clientEmail,
-          "Flight Location / Coordinates": targetLoc,
-          "Target Asset Scale": assetScale,
-          "Requested Data Product": dataType,
-          "Flight Crew Constraints & Notes": flightNotes
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Clear fields out completely
-        document.getElementById('intake-name').value = '';
-        document.getElementById('intake-email').value = '';
-        document.getElementById('intake-location').value = '';
-        document.getElementById('intake-scale').value = '';
-        document.getElementById('intake-notes').value = '';
-        
-        submitBtn.innerText = "Transmit Secure Intake Request";
-        submitBtn.style.background = "#2563eb";
-        submitBtn.disabled = false;
-        
-        formContentBlock.style.display = 'none';
-        thankYouBlock.style.display = 'block';
-      })
-      .catch(error => {
-        console.error("Transmission Error:", error);
-        alert("Aviation Communication Outage: Encrypted uplink encountered a server routing delay. Please verify internet connectivity.");
-        submitBtn.innerText = "Transmit Secure Intake Request";
-        submitBtn.style.background = "#2563eb";
-        submitBtn.disabled = false;
-      });
+      const tempInput = document.createElement('input');
+      tempInput.type = 'hidden';
+      tempInput.name = 'Activation Code Check';
+      tempInput.value = 'Apex Vector LLC Live Operational Pipeline Link Test Run';
+      
+      tempForm.appendChild(tempInput);
+      document.body.appendChild(tempForm);
+      tempForm.submit(); // Fires a standard browser frame redirect to drop the email link!
     });
     </script>
   </body>
 </html>
+
 

@@ -15,6 +15,19 @@ This decade of real-world experience maintaining and managing complex, multi-mil
 
 ---
 
+### 📜 Regulatory Compliance & Industrial Safety Credentials
+To ensure uncompromised integration with industrial, commercial, and agricultural worksite regulations, our risk management framework is backed by formal federal safety training. 
+
+![Travis W Cloke OSHA 511 General Industry Certificate](Apex_Vector_OSHA_511.jpg)
+
+*   **Credential:** **OSHA #511 Standards for General Industry**
+*   **Issuing Authority:** Midwest OSHA Education Centers / National Safety Council / Barton Community College
+*   **Continuing Education:** 2.6 Continuing Education Units (CEUs) certified in comprehensive compliance, hazard identification, and site risk mitigation.
+
+This formal safety training ensures that Apex Vector LLC interfaces seamlessly with your on-site safety directors, project managers, and corporate compliance officers without introducing operational liability.
+
+---
+
 ## 🛑 Rigid On-Site Safety Perimeters
 
 During active data acquisition, Apex Vector LLC strictly establishes and defends two concentric safety boundaries on the ground. No unauthorized personnel are permitted inside these zones while assets are armed.

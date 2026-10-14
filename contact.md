@@ -38,7 +38,7 @@ To initiate a comprehensive airspace validation and safety review under 14 C.F.R
 * **Operations Management:** Travis Cloke (Chief of Maintenance / Remote PIC)
 * **Regional Service Hub:** Reno County, KS Area Operations
 * **Primary Operational Radius:** Reno, Rice, McPherson, Harvey, Sedgwick, Kingman, Pratt, and Stafford Counties.
-* **Direct Correspondence:** *[Insert Your Business Email Here]*
+* **Direct Correspondence:** <a href="mailto:apexvectoruas@://gmail.com" style="color: #FFB300; text-decoration: none; font-weight: 700;">apexvectoruas@gmail.com</a>
 
 <div style="background-color: #14191D; border: 1px dashed #2C3740; padding: 15px; border-radius: 6px; margin-top: 30px; font-size: 0.9rem; color: #627280; font-style: italic;">
     Notice: As standard aviation procedure, all regional mission boundaries undergo immediate regulatory validation to verify strict NAS compliance before aircraft deployment.

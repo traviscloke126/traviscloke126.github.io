@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Aviation Safety & Regulatory Boundaries
-permalink: /safety/
+
 ---
 
 # Aviation Safety, Risk Mitigation & Command Authority

@@ -1,45 +1,83 @@
 ---
 layout: default
-title: Request Operations
+title: Aviation Intake Parameter Grid
 ---
 
-# Request sUAS Flight Operations
+# Project Initiation Intake
+## Secure UAS Mission Request Pipeline
 
-Apex Vector LLC coordinates commercial drone data acquisition missions throughout **Reno County, Kansas, and surrounding regional territories**. 
+To request aerial intelligence or data operations in Hutchinson, Reno County, and surrounding regional corridors, please evaluate your operational parameters below. Clicking the initiation link automatically structures an official aviation intake parameter grid to send directly to our flight crew.
 
-To initiate a comprehensive airspace validation and safety review under 14 C.F.R. Part 107 guidelines, please prepare the following parameters for our flight crew:
-
----
-
-## 📋 Flight Intake Parameters
-
-<div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px;">
-    <div style="background-color: #1B2126; border: 1px solid #2C3740; padding: 20px; border-radius: 6px;">
-        <span style="color: #FFB300; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px;">Parameter 01</span>
-        <strong style="color: #FFFFFF; font-size: 1.15rem; display: block; margin-bottom: 8px;">Target Location & Airspace</strong>
-        <p style="margin: 0; color: #9EB1C2; font-size: 0.95rem;">Provide the geographic coordinates, physical parcel addresses, or proximity markers relative to Kansas infrastructure. Our team handles all immediate automated LAANC checks and historical NOTAM verifications upon intake.</p>
-    </div>
-    <div style="background-color: #1B2126; border: 1px solid #2C3740; padding: 20px; border-radius: 6px;">
-        <span style="color: #FFB300; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px;">Parameter 02</span>
-        <strong style="color: #FFFFFF; font-size: 1.15rem; display: block; margin-bottom: 8px;">Asset Profile</strong>
-        <p style="margin: 0; color: #9EB1C2; font-size: 0.95rem;">Identify the type of structural target (e.g., concrete silo complexes, industrial line grids, commercial roofs, fields, or truss tracking configurations).</p>
-    </div>
-    <div style="background-color: #1B2126; border: 1px solid #2C3740; padding: 20px; border-radius: 6px;">
-        <span style="color: #FFB300; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px;">Parameter 03</span>
-        <strong style="color: #FFFFFF; font-size: 1.15rem; display: block; margin-bottom: 8px;">Deliverable Requirements</strong>
-        <p style="margin: 0; color: #9EB1C2; font-size: 0.95rem;">Specify your required asset intelligence format: High-resolution inspection imagery grids, 2D orthomosaic basemaps, or full 3D structural models.</p>
-    </div>
+<div class="intake-grid" style="margin-bottom: 2.5rem;">
+  <div class="card" style="margin-top:0;">
+    <h3 style="color:#FFB300; font-size:1.1rem; margin-bottom:0.5rem;">01. Target Airspace / Location</h3>
+    <p style="font-size:0.9rem; color:#E0E4E6;">Provide specific street addresses, parcel numbers, county designations, or exact GPS coordinates of the target area.</p>
+  </div>
+  
+  <div class="card" style="margin-top:0;">
+    <h3 style="color:#FFB300; font-size:1.1rem; margin-bottom:0.5rem;">02. Asset Scope & Dimensions</h3>
+    <p style="font-size:0.9rem; color:#E0E4E6;">Specify approximate land acreage, vertical structure heights, or the total length of infrastructure pathways to be tracked.</p>
+  </div>
+  
+  <div class="card" style="margin-top:0;">
+    <h3 style="color:#FFB300; font-size:1.1rem; margin-bottom:0.5rem;">03. Requested Recon Data Type</h3>
+    <p style="font-size:0.9rem; color:#E0E4E6;">Select from 2D high-resolution orthomosaic mapping, 3D volumetric photogrammetry, thermal tracking, or raw 4K inspection video.</p>
+  </div>
+  
+  <div class="card" style="margin-top:0;">
+    <h3 style="color:#FFB300; font-size:1.1rem; margin-bottom:0.5rem;">04. Operational Timeline</h3>
+    <p style="font-size:0.9rem; color:#E0E4E6;">Define your target window for flight execution, data processing delivery dates, or recurring flight patterns (weekly/monthly).</p>
+  </div>
 </div>
 
----
-
-## 📬 Contact Logistics
-
-* **Operations Management:** Travis Cloke (Chief of Maintenance / Remote PIC)
-* **Regional Service Hub:** Reno County, KS Area Operations
-* **Primary Operational Radius:** Reno, Rice, McPherson, Harvey, Sedgwick, Kingman, Pratt, and Stafford Counties.
-* **Direct Correspondence:** <a href="mailto:apexvectoruas@://gmail.com" style="color: #FFB300; text-decoration: none; font-weight: 700;">apexvectoruas@gmail.com</a>
-
-<div style="background-color: #14191D; border: 1px dashed #2C3740; padding: 15px; border-radius: 6px; margin-top: 30px; font-size: 0.9rem; color: #627280; font-style: italic;">
-    Notice: As standard aviation procedure, all regional mission boundaries undergo immediate regulatory validation to verify strict NAS compliance before aircraft deployment.
+<div class="alert-box" style="text-align: center;">
+  <h3>Ready to Initialize Pre-Flight Briefing?</h3>
+  <p style="margin-bottom: 1.5rem;">Click the link below to compile your answers into our standardized aviation routing format. This safely bypasses unsecured web forms and sends your data directly to the Chief of Maintenance.</p>
+  
+  <a class="btn-intake" id="generate-email-brief" href="#">
+    ⚡ Structure and Send Intake Request
+  </a>
 </div>
+
+<script>
+document.getElementById('generate-email-brief').addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  const recipient = "{{ site.email | default: 'apexvectoruas@gmail.com' }}";
+  const subject = encodeURIComponent("UAS Mission Request - Apex Vector LLC");
+  
+  // Structured plain-text template mirroring heavy-lift military intakes
+  const bodyText = [
+    "=====================================================",
+    "         APEX VECTOR LLC - UAS INTAKE PARAMETER GRID  ",
+    "=====================================================",
+    "",
+    "1. CONTACT NAME / COMPANY:",
+    "   [Enter Name / Company Name]",
+    "",
+    "2. TARGET LOCATION (Address, Coordinates, or Reno County Parcel):",
+    "   [Enter Location Details]",
+    "",
+    "3. ESTIMATED ASSET SCOPE (Acreage, Height, or Path Length):",
+    "   [e.g., 40 Acres / 150-ft Communication Tower / etc.]",
+    "",
+    "4. DESIRED DELIVERABLE DATA TYPE:",
+    "   [ ] 2D High-Res Orthomosaic Map",
+    "   [ ] 3D Photogrammetry / Modeling",
+    "   [ ] Infrastructure Inspection Imagery",
+    "   [ ] Thermal Signature Tracking",
+    "   [ ] Cinematic 4K Marketing Media",
+    "",
+    "5. REQUESTED TIMELINE / SCHEDULE CONSTRAINT:",
+    "   [Enter preferred flight date or delivery deadlines]",
+    "",
+    "6. SPECIAL SITE CONDITIONS OR AIRSPACE HAZARDS (If known):",
+    "   [e.g., Active powerlines, heavy public crowds, trees, proximity to local airport]",
+    "",
+    "=====================================================",
+    "Form automatically structured via active test environment. All flights executed under 14 CFR Part 107 regulations."
+  ].join("\n");
+
+  window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
+});
+</script>

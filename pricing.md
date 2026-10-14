@@ -152,8 +152,184 @@ function calculateEstimate() {
 }
 
 // Fire the logic script instantly on layout initial mount
+<script>
+// ==========================================
+// 🛸 1. ADDED: MISSING ANIMATION GRAPHICS LOOP ENGINE
+// ==========================================
+const canvas = document.getElementById('droneSimCanvas');
+const ctx = canvas?.getContext('2d');
+
+let time = 0;
+let dronePos = { x: 100, y: 80 };
+let activeProfile = 'ag';
+
+function runGraphicsEngine() {
+  if (!canvas || !ctx) return;
+  time += 0.04;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Render Ground Layer
+  ctx.fillStyle = '#0e1115';
+  ctx.fillRect(0, 140, canvas.width, 80);
+  
+  ctx.strokeStyle = '#21262d';
+  ctx.lineWidth = 1;
+  for(let i = 0; i < canvas.width; i += 40) {
+    ctx.beginPath();
+    ctx.moveTo(i, 140);
+    ctx.lineTo(i + (i - canvas.width/2) * 0.5, canvas.height);
+    ctx.stroke();
+  }
+
+  // Set Profile Flight Characteristics
+  let droneColor = '#ffb300'; // AG Yellow
+  let beamColor = 'rgba(57, 211, 83, 0.25)';
+  
+  if (activeProfile === 'ag') {
+    document.getElementById('telemetryMode').innerText = 'AG_NDVI';
+    document.getElementById('telemetryAlt').innerText = Math.round(150 + Math.sin(time)*3);
+    dronePos.x = canvas.width / 2 + Math.sin(time * 0.8) * 120;
+    dronePos.y = 80 + Math.cos(time * 1.5) * 8;
+    droneColor = '#ffb300';
+    beamColor = 'rgba(57, 211, 83, 0.25)';
+    
+    ctx.fillStyle = 'rgba(57, 211, 83, 0.08)';
+    ctx.fillRect(canvas.width/2 - 130, 145, 260, 40);
+  } 
+  else if (activeProfile === 'earthwork') {
+    document.getElementById('telemetryMode').innerText = '3D_VOL';
+    document.getElementById('telemetryAlt').innerText = Math.round(120 + Math.sin(time * 2)*2);
+    dronePos.x = canvas.width / 2 + Math.cos(time * 1.2) * 100;
+    dronePos.y = 95 + Math.sin(time * 0.5) * 5;
+    droneColor = '#ff5a00'; // Hazard Orange
+    beamColor = 'rgba(56, 139, 253, 0.3)';
+
+    ctx.fillStyle = '#2c221a';
+    ctx.beginPath();
+    ctx.moveTo(canvas.width/2 - 60, 170);
+    ctx.quadraticCurveTo(canvas.width/2, 125, canvas.width/2 + 60, 170);
+    ctx.fill();
+  } 
+  else if (activeProfile === 'media') {
+    document.getElementById('telemetryMode').innerText = '4K_ORBIT';
+    document.getElementById('telemetryAlt').innerText = Math.round(85 + Math.sin(time)*4);
+    dronePos.x = canvas.width / 2 + Math.sin(time * 0.5) * 140;
+    dronePos.y = 60 + Math.sin(time * 1.1) * 12;
+    droneColor = '#58a6ff'; // Cinematic Blue
+    beamColor = 'rgba(255, 179, 0, 0.15)';
+
+    ctx.strokeStyle = '#30363d';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(canvas.width/2, 70);
+    ctx.lineTo(canvas.width/2, 170);
+    ctx.stroke();
+  }
+
+  // Draw Sensor Raycast Projection
+  ctx.fillStyle = beamColor;
+  ctx.beginPath();
+  ctx.moveTo(dronePos.x, dronePos.y + 4);
+  ctx.lineTo(dronePos.x - 35, 155);
+  ctx.lineTo(dronePos.x + 35, 155);
+  ctx.closePath();
+  ctx.fill();
+
+  // Draw Mavic 3 Enterprise Chassis
+  ctx.fillStyle = '#1f242c';
+  ctx.fillRect(dronePos.x - 16, dronePos.y - 4, 32, 8);
+  ctx.fillStyle = droneColor;
+  ctx.fillRect(dronePos.x - 8, dronePos.y - 6, 16, 4);
+
+  // Spinning Propellers
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  let propOffset = Math.sin(time * 15) * 14;
+  ctx.beginPath();
+  ctx.moveTo(dronePos.x - 22, dronePos.y - 4);
+  ctx.lineTo(dronePos.x - 22 + propOffset, dronePos.y - 4);
+  ctx.moveTo(dronePos.x + 22, dronePos.y - 4);
+  ctx.lineTo(dronePos.x + 22 - propOffset, dronePos.y - 4);
+  ctx.stroke();
+
+  // Landing Skids
+  ctx.strokeStyle = '#1f242c';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(dronePos.x - 10, dronePos.y + 4);
+  ctx.lineTo(dronePos.x - 12, dronePos.y + 10);
+  ctx.moveTo(dronePos.x + 10, dronePos.y + 4);
+  ctx.lineTo(dronePos.x + 12, dronePos.y + 10);
+  ctx.stroke();
+
+  requestAnimationFrame(runGraphicsEngine);
+}
+
+// ==========================================
+// 📊 2. YOUR EXISTING PRICING ENGINE CALCULATION MATRIX
+// ==========================================
+function calculateEstimate() {
+  const profile = document.getElementById('profileselect').value;
+  activeProfile = profile; // Links active calculator option to the flight loop
+  const rawInput = parseFloat(document.getElementById('acreageInput').value) || 0;
+  
+  const inputLabel = document.getElementById('inputLabel');
+  let fieldCaptureCost = 0;
+  let layoutAdjustmentCost = 0;
+  let absoluteTotalValue = 0;
+
+  if (profile === 'ag') {
+    inputLabel.innerText = "2. Enter Estimated Acreage:";
+    let ratePerAcre = 3.50; 
+    if (rawInput > 160) ratePerAcre = 2.75;
+    if (rawInput > 640) ratePerAcre = 2.25;
+
+    fieldCaptureCost = rawInput * ratePerAcre;
+    layoutAdjustmentCost = 0;
+    absoluteTotalValue = fieldCaptureCost;
+  } else if (profile === 'earthwork') {
+    inputLabel.innerText = "2. Enter Estimated Acreage:";
+    if (rawInput <= 25) {
+      absoluteTotalValue = 750.00;
+      fieldCaptureCost = 750.00;
+      layoutAdjustmentCost = 0;
+    } else {
+      const dynamicRate = rawInput > 100 ? 18.00 : 25.00;
+      fieldCaptureCost = rawInput * dynamicRate;
+      layoutAdjustmentCost = 0;
+      absoluteTotalValue = fieldCaptureCost;
+    }
+  } else if (profile === 'media') {
+    inputLabel.innerText = "2. Enter Estimated Project Hours:";
+    const activeHours = rawInput < 2 ? 2 : rawInput;
+    fieldCaptureCost = activeHours * 200.00;
+    
+    if (rawInput < 2 && rawInput > 0) {
+      layoutAdjustmentCost = (2 - rawInput) * 200.00;
+    } else {
+      layoutAdjustmentCost = 0;
+    }
+    absoluteTotalValue = fieldCaptureCost;
+  }
+
+  const phase1Val = absoluteTotalValue * 0.30;
+  const phase2Val = absoluteTotalValue * 0.40;
+  const phase3Val = absoluteTotalValue * 0.30;
+
+  document.getElementById('ledgerAcquisition').innerText = '$' + fieldCaptureCost.toFixed(2);
+  document.getElementById('ledgerProcessing').innerText = '$' + layoutAdjustmentCost.toFixed(2);
+  document.getElementById('ledgerTotal').innerText = '$' + absoluteTotalValue.toFixed(2);
+
+  document.getElementById('splitPhase1').innerText = '$' + phase1Val.toFixed(2);
+  document.getElementById('splitPhase2').innerText = '$' + phase2Val.toFixed(2);
+  document.getElementById('splitPhase3').innerText = '$' + phase3Val.toFixed(2);
+}
+
+// Boot up both matrices instantly on load
 calculateEstimate();
+runGraphicsEngine();
 </script>
+
 <!-- INTERACTIVE WIDGET END -->
 
 

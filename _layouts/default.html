@@ -24,35 +24,54 @@
             margin: 0;
             padding: 0;
         }
-
-        /* Flight Navigation Bar */
+       
+        /* Flight Navigation Bar - Fully Responsive */
         .flight-nav {
             background-color: #161B1F;
             border-bottom: 1px solid var(--accent-border);
-            padding: 15px 30px;
+            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 15px;
             align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .flight-nav {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 15px 30px;
+            }
         }
 
         .nav-brand {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             letter-spacing: 1.5px;
             color: var(--text-primary);
             text-decoration: none;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            justify-content: center;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.95rem;
-            margin-left: 20px;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap; /* Prevents text like "& Safety" from breaking into two lines */
             transition: color 0.2s ease;
         }
 
         .nav-links a:hover { color: var(--text-primary); }
+
 
         .mission-container {
             max-width: 960px;

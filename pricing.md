@@ -77,9 +77,7 @@ Missions are itemized across four distinct operational phases on your invoice:
     <a href="{{ '/contact.html' | relative_url }}" style="background-color: #FFB300; color: #111416; padding: 12px 28px; text-decoration: none; font-weight: 700; border-radius: 4px; display: inline-block;">Request a Mission Profile Quote</a>
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 15px; align-items: center; justify-content: center; margin-top: 40px;">
-    <!-- Top Action Control: Redirect to Capabilities Matrix -->
-    <a href="{{ '/operations.html' | relative_url }}" style="background-color: #FFB300; color: #111416; padding: 12px 28px; text-decoration: none; font-weight: 700; border-radius: 4px; display: inline-block; width: 260px; text-align: center; box-sizing: border-box;">Review Flight Operations SOP</a>
+
     
     <!-- Lower Action Control: Extracted Automatically by Default Layout -->
 </div>

@@ -18,7 +18,8 @@ This decade of real-world experience maintaining and managing complex, multi-mil
 ### 📜 Regulatory Compliance & Industrial Safety Credentials
 To ensure uncompromised integration with industrial, commercial, and agricultural worksite regulations, our risk management framework is backed by formal federal safety training. 
 
-![Travis W Cloke OSHA 511 General Industry Certificate](/assets/images/Apex_Vector_OSHA_511.jpg)
+<img src="/assets/images/Apex_Vector_OSHA_511.jpg" alt="Travis W Cloke OSHA 511 General Industry Certificate" style="max-width: 300px; width: 100%; height: auto; border-radius: 4px; border: 1px solid #d0d7de; margin: 15px 0; display: block;">
+
 
 
 *   **Credential:** **OSHA #511 Standards for General Industry**

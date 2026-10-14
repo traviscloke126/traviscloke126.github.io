@@ -243,43 +243,73 @@ modalCloseX.addEventListener('click', () => { globalModal.style.display = 'none'
 window.addEventListener('click', (e) => { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
 
 // Structural Plain-Text Mail Matrix Generator
-document.getElementById('generate-brief-modal').addEventListener('click', function(e) {
-  e.preventDefault();
-  const recipient = "apexvectoruas@gmail.com";
-  const subject = encodeURIComponent("UAS Mission Request - Apex Vector LLC");
-  const bodyText = [
-    "=====================================================",
-    "         APEX VECTOR LLC - UAS INTAKE PARAMETER GRID  ",
-    "=====================================================",
-    "",
-    "1. CONTACT NAME / COMPANY:",
-    "   [Enter Name / Company Name]",
-    "",
-    "2. TARGET LOCATION (Address, Coordinates, or Reno County Parcel):",
-    "   [Enter Location Details]",
-    "",
-    "3. ESTIMATED ASSET SCOPE (Acreage, Height, or Path Length):",
-    "   [e.g., 40 Acres / 150-ft Communication Tower / etc.]",
-    "",
-    "4. DESIRED DELIVERABLE DATA TYPE:",
-    "   [ ] 2D High-Res Orthomosaic Map",
-    "   [ ] 3D Photogrammetry / Modeling",
-    "   [ ] Infrastructure Inspection Imagery",
-    "   [ ] Thermal Signature Tracking",
-    "   [ ] Cinematic 4K Marketing Media",
-    "",
-    "5. REQUESTED TIMELINE / SCHEDULE CONSTRAINT:",
-    "   [Enter preferred flight date or delivery deadlines]",
-    "",
-    "6. SPECIAL SITE CONDITIONS OR AIRSPACE HAZARDS (If known):",
-    "   [e.g., Active powerlines, heavy public crowds, trees, proximity to local airport]",
-    "",
-    "=====================================================",
-    "Form structured via interactive global brief launcher. All flights executed under 14 CFR Part 107 regulations."
-  ].join("\n");
+<!-- UPGRADED FILLABLE FORM CONTAINER (Replaces the old info blocks and blue button inside the modal) -->
+<form action="https://formsubmit.co" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+  
+  <!-- Anti-Spam Security Filter -->
+  <input type="text" name="_honey" style="display:none">
+  
+  <!-- Configures Your Email Inbox Subject & Dynamic Redirect Back to Homepage -->
+  <input type="hidden" name="_subject" value="⚠️ NEW UAS MISSION INTAKE REQUEST">
+  <input type="hidden" name="_next" value="https://github.io">
 
-  window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
+  <div>
+    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
+    
+  </div>
+
+  <div>
+    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
+    <input type="email" name="Client Email" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+  </div>
+
+  <div>
+    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">02. Target Airspace / Location Parameters *</label>
+    <input type="text" name="Mission Site/Coordinates" placeholder="Addresses, parcel numbers, or GPS tags" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+  </div>
+
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 200px;">
+      <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">03. Scope Scale (Acres / Height)</label>
+      <input type="text" name="Target Asset Scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+    </div>
+    <div style="flex: 1; min-width: 200px;">
+      <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">04. Data Profile Requirement *</label>
+      <select name="Requested Deliverable Data" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
+        <option value="2D_Orthomosaic">2D High-Res Orthomosaic Map</option>
+        <option value="3D_Photogrammetry">3D Photogrammetry / Volumetric</option>
+        <option value="Thermal_Tracking">Thermal Signature Tracking</option>
+        <option value="Cinematic_Media">Cinematic 4K Marketing Media</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">05. Operational Timeline & Notes</label>
+    <textarea name="Mission Constraints/Briefing" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
+  </div>
+
+  <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
+    Transmit Secure Intake Request
+  </button>
+</form>
+
+<script>
+// Keep only your core button trigger open/close mechanics active below the form
+const globalModal = document.getElementById('missionModal');
+const modalCloseX = document.getElementById('closeModalBtn');
+
+document.addEventListener('click', function(event) {
+  if (event.target && event.target.classList.contains('trigger-quote-modal')) {
+    event.preventDefault();
+    globalModal.style.display = 'flex';
+  }
 });
+
+modalCloseX.addEventListener('click', () => { globalModal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
+</script>
+
 </script>
 
 

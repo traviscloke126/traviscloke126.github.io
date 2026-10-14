@@ -199,9 +199,7 @@
       <input type="hidden" name="_subject" value="NEW UAS MISSION INTAKE REQUEST">
       <input type="hidden" name="_next" value="https://github.io">
       <input type="hidden" name="_url" value="https://github.io">
-
-
-
+            
           <div>
             <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
             <input type="text" name="Client Name" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
@@ -212,56 +210,127 @@
             <input type="email" name="Client Email" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
           </div>
 
+       <!-- GLOBAL INTAKE INPUT MODAL -->
+    <div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+      
+      <!-- Modal Box Outer Container -->
+      <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
+        
+        <!-- Close Window Button -->
+        <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold;">&times;</button>
+        
+        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
+        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
+        
+        <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
+          Evaluate your parameters below. Submitting this briefing structures your inputs directly into a clean aviation dispatch sheet and routes it to our crews.
+        </p>
+
+        <!-- LIVE FILLABLE INTERACTIVE INTERFACE -->
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
+            <input type="text" id="intake-name" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
+            <input type="email" id="intake-email" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
           <div>
             <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">02. Target Airspace / Location Parameters *</label>
-            <input type="text" name="Mission Site Coordinates" placeholder="Addresses, parcel numbers, or GPS tags" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+            <input type="text" id="intake-location" placeholder="Addresses, parcel numbers, or GPS tags" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
           </div>
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
             <div style="flex: 1; min-width: 200px;">
               <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">03. Scope Scale (Acres / Height)</label>
-              <input type="text" name="Target Asset Scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+              <input type="text" id="intake-scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
             </div>
             <div style="flex: 1; min-width: 200px;">
               <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">04. Data Profile Requirement *</label>
-              <select name="Requested Deliverable Data" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
-                <option value="2D_Orthomosaic">2D High-Res Orthomosaic Map</option>
-                <option value="3D_Photogrammetry">3D Photogrammetry / Volumetric</option>
-                <option value="Thermal_Tracking">Thermal Signature Tracking</option>
-                <option value="Cinematic_Media">Cinematic 4K Marketing Media</option>
+              <select id="intake-data" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
+                <option value="2D High-Res Orthomosaic Map">2D High-Res Orthomosaic Map</option>
+                <option value="3D Photogrammetry / Volumetric">3D Photogrammetry / Volumetric</option>
+                <option value="Thermal Signature Tracking">Thermal Signature Tracking</option>
+                <option value="Cinematic 4K Marketing Media">Cinematic 4K Marketing Media</option>
               </select>
             </div>
           </div>
 
           <div>
             <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">05. Operational Timeline & Notes</label>
-            <textarea name="Mission Constraints Briefing" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
+            <textarea id="intake-notes" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
           </div>
 
-          <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
+          <button id="submitIntakeForm" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
             Transmit Secure Intake Request
           </button>
-        </form>
+        </div>
 
       </div>
     </div>
 
     <script>
-    // CLEANED UP INDEPENDENT WINDOW OPERATIONS SCRIPT
+    // WINDOW OPERATIONS NAVIGATION CONTROL
     const globalModal = document.getElementById('missionModal');
     const modalCloseX = document.getElementById('closeModalBtn');
 
-    // Dynamic global listener captures your customized navigation anchors safely
     document.addEventListener('click', function(event) {
-      if (event.target && event.target.classList.contains('trigger-quote-modal')) {
+      if (event.target && event.target.closest('.trigger-quote-modal')) {
         event.preventDefault();
         globalModal.style.display = 'flex';
       }
     });
 
-    // Closure Interface Handlers
     modalCloseX.addEventListener('click', function() { globalModal.style.display = 'none'; });
     window.addEventListener('click', function(e) { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
+
+    // Extraction function captures text inputs live and compiles standard data sheet
+    document.getElementById('submitIntakeForm').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const clientName = document.getElementById('intake-name').value || "[Not Provided]";
+      const clientEmail = document.getElementById('intake-email').value || "[Not Provided]";
+      const targetLoc = document.getElementById('intake-location').value || "[Not Provided]";
+      const assetScale = document.getElementById('intake-scale').value || "[Not Provided]";
+      const dataType = document.getElementById('intake-data').value;
+      const flightNotes = document.getElementById('intake-notes').value || "[None Specified]";
+      
+      const recipient = "apexvectoruas@gmail.com";
+      const subject = encodeURIComponent("UAS Mission Intake - " + clientName);
+      
+      const bodyText = [
+        "=====================================================",
+        "         APEX VECTOR LLC - UAS INTAKE PARAMETER GRID  ",
+        "=====================================================",
+        "",
+        "1. CONTACT NAME / COMPANY:",
+        "   " + clientName,
+        "",
+        "2. CONTACT EMAIL OUTLET:",
+        "   " + clientEmail,
+        "",
+        "3. TARGET LOCATION / AIRSPACE REGION:",
+        "   " + targetLoc,
+        "",
+        "4. ESTIMATED ASSET SCOPE:",
+        "   " + assetScale,
+        "",
+        "5. DESIRED DELIVERABLE DATA TYPE:",
+        "   [X] " + dataType,
+        "",
+        "6. SPECIAL SITE CONDITIONS / FLIGHT NOTES:",
+        "   " + flightNotes,
+        "",
+        "=====================================================",
+        "Form compiled live via secure dashboard engine. All operations executed under 14 CFR Part 107 guidelines."
+      ].join("\n");
+
+      window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
+      globalModal.style.display = 'none';
+    });
     </script>
   </body>
 </html>

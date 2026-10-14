@@ -238,67 +238,82 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// Standard Window Visibility Closure Operations
-modalCloseX.addEventListener('click', () => { globalModal.style.display = 'none'; });
-window.addEventListener('click', (e) => { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
-
-// Structural Plain-Text Mail Matrix Generator
-<!-- UPGRADED FILLABLE FORM CONTAINER (Replaces the old info blocks and blue button inside the modal) -->
-<form action="https://formsubmit.co" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+<!-- GLOBAL MODAL OVERLAY WRAPPER -->
+<div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
   
-  <!-- Anti-Spam Security Filter -->
-  <input type="text" name="_honey" style="display:none">
-  
-  <!-- Configures Your Email Inbox Subject & Dynamic Redirect Back to Homepage -->
-  <input type="hidden" name="_subject" value="⚠️ NEW UAS MISSION INTAKE REQUEST">
-  <input type="hidden" name="_next" value="https://github.io">
-
-  <div>
-    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
+  <!-- Modal Box Outer Container -->
+  <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
     
-  </div>
+    <!-- Close Window Button -->
+    <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold;">&times;</button>
+    
+    <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
+    <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
+    
+    <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
+      Evaluate your parameters below. Submitting this form securely packages your inputs and routes them directly to our flight operations desk via FormSubmit.
+    </p>
 
-  <div>
-    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
-    <input type="email" name="Client Email" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-  </div>
+    <!-- LIVE FILLABLE INTERACTIVE INTERFACE -->
+    <form action="https://formsubmit.co" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem;">
+      
+      <!-- Anti-Spam Honey Filter -->
+      <input type="text" name="_honey" style="display:none">
+      
+      <!-- Control Elements -->
+      <input type="hidden" name="_subject" value="⚠️ NEW UAS MISSION INTAKE REQUEST">
+      <input type="hidden" name="_next" value="https://github.io">
 
-  <div>
-    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">02. Target Airspace / Location Parameters *</label>
-    <input type="text" name="Mission Site/Coordinates" placeholder="Addresses, parcel numbers, or GPS tags" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-  </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
+        <input type="text" name="Client Name" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+      </div>
 
-  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 200px;">
-      <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">03. Scope Scale (Acres / Height)</label>
-      <input type="text" name="Target Asset Scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-    </div>
-    <div style="flex: 1; min-width: 200px;">
-      <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">04. Data Profile Requirement *</label>
-      <select name="Requested Deliverable Data" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
-        <option value="2D_Orthomosaic">2D High-Res Orthomosaic Map</option>
-        <option value="3D_Photogrammetry">3D Photogrammetry / Volumetric</option>
-        <option value="Thermal_Tracking">Thermal Signature Tracking</option>
-        <option value="Cinematic_Media">Cinematic 4K Marketing Media</option>
-      </select>
-    </div>
-  </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
+        <input type="email" name="Client Email" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+      </div>
 
-  <div>
-    <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">05. Operational Timeline & Notes</label>
-    <textarea name="Mission Constraints/Briefing" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
-  </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">02. Target Airspace / Location Parameters *</label>
+        <input type="text" name="Mission Site Coordinates" placeholder="Addresses, parcel numbers, or GPS tags" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+      </div>
 
-  <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
-    Transmit Secure Intake Request
-  </button>
-</form>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">03. Scope Scale (Acres / Height)</label>
+          <input type="text" name="Target Asset Scale" placeholder="e.g., 160 Acres / 150-ft Tower" style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">04. Data Profile Requirement *</label>
+          <select name="Requested Deliverable Data" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; height: 44px; font-size: 1rem;">
+            <option value="2D_Orthomosaic">2D High-Res Orthomosaic Map</option>
+            <option value="3D_Photogrammetry">3D Photogrammetry / Volumetric</option>
+            <option value="Thermal_Tracking">Thermal Signature Tracking</option>
+            <option value="Cinematic_Media">Cinematic 4K Marketing Media</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">05. Operational Timeline & Notes</label>
+        <textarea name="Mission Constraints Briefing" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..." style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; font-family: sans-serif; box-sizing: border-box; resize: vertical; font-size: 1rem;"></textarea>
+      </div>
+
+      <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; font-size: 1rem; letter-spacing: 0.05em;">
+        Transmit Secure Intake Request
+      </button>
+    </form>
+
+  </div>
+</div>
 
 <script>
-// Keep only your core button trigger open/close mechanics active below the form
+// CLEAN SINGLE-INSTANCE WINDOW OPERATIONAL SCRIPT
 const globalModal = document.getElementById('missionModal');
 const modalCloseX = document.getElementById('closeModalBtn');
 
+// Dynamic Event Listener intercepts the clicks cleanly
 document.addEventListener('click', function(event) {
   if (event.target && event.target.classList.contains('trigger-quote-modal')) {
     event.preventDefault();
@@ -306,10 +321,9 @@ document.addEventListener('click', function(event) {
   }
 });
 
-modalCloseX.addEventListener('click', () => { globalModal.style.display = 'none'; });
-window.addEventListener('click', (e) => { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
-</script>
-
+// Window Exit Triggers
+modalCloseX.addEventListener('click', function() { globalModal.style.display = 'none'; });
+window.addEventListener('click', function(e) { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
 </script>
 
 

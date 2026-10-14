@@ -85,33 +85,47 @@
     p, li { color: var(--text-secondary); font-size: 1.05rem; }
     strong { color: var(--text-primary); }
 
+    /* The Hero Framework */
+    .hero-section { text-align: center; padding: 40px 0 20px; }
+    .hero-headline { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 15px; }
+    .hero-subheadline { font-size: 1.2rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 30px; }
+
+    .cta-group { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; }
+    .btn-primary { background-color: var(--accent-amber); color: #111416; padding: 12px 28px; text-decoration: none; font-weight: 700; border-radius: 4px; transition: background 0.2s; }
+    .btn-primary:hover { background-color: var(--accent-hover); }
+    .btn-secondary { border: 1px solid var(--accent-border); color: var(--text-primary); padding: 12px 28px; text-decoration: none; font-weight: 600; border-radius: 4px; transition: background 0.2s; }
+    .btn-secondary:hover { background-color: rgba(255,255,255,0.05); }
+
+    /* Precision Graphic Crop & Optimization */
+    .site-logo { max-width: 260px; height: auto; display: block; margin: 0 auto 30px; background: transparent; }
+
+    /* Three Pillars Visual Cards Grid */
+    .pillar-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 30px; }
+    @media (min-width: 768px) { .pillar-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+    .pillar-card { background-color: var(--card-bg); border: 1px solid var(--accent-border); padding: 25px; border-radius: 6px; }
+    .pillar-card h3 { margin-top: 0; color: var(--accent-amber); font-size: 1.25rem; border-bottom: 1px solid var(--accent-border); padding-bottom: 8px; }
+    .pillar-meta { font-size: 0.85rem; color: #627280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: block; }
+    .pillar-standard { font-size: 0.9rem; border-left: 2px solid var(--accent-amber); padding-left: 10px; margin-top: 15px; font-style: italic; }
+
+    /* Maintenance Checklist Layout */
+    .advantage-box { background-color: #14191D; border: 1px dashed var(--accent-border); padding: 25px; border-radius: 6px; margin-top: 20px; }
+    .advantage-box ol { padding-left: 20px; margin-bottom: 0; }
+    .advantage-box li { margin-bottom: 12px; }
+
+    /* The Founder Handshake Block */
+    .founder-section { display: flex; flex-direction: column; gap: 20px; background-color: var(--card-bg); border: 1px solid var(--accent-border); padding: 30px; border-radius: 6px; margin-top: 40px; }
+    @media (min-width: 768px) { .founder-section { flex-direction: row; align-items: center; } }
+    .founder-img { width: 120px; height: 120px; background-color: var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; text-align: center; }
+    .founder-bio h3 { margin-top: 0; margin-bottom: 5px; }
+    .founder-title { font-size: 0.9rem; color: var(--accent-amber); display: block; margin-bottom: 10px; font-weight: 600; }
+
     /* Trust Badges Footer */
-    .trust-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 40px;
-    }
-    .badge {
-      background-color: #161B1F;
-      border: 1px solid var(--accent-border);
-      color: var(--text-primary);
-      padding: 6px 14px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-radius: 4px;
-    }
+    .trust-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 40px; }
+    .badge { background-color: #161B1F; border: 1px solid var(--accent-border); color: var(--text-primary); padding: 6px 14px; font-size: 0.85rem; font-weight: 600; border-radius: 4px; }
     .badge.gold { border-color: var(--accent-amber); color: var(--accent-amber); }
 
-    footer {
-      text-align: center;
-      padding: 40px 20px 60px;
-      color: #627280;
-      font-size: 0.85rem;
-      border-top: 1px solid var(--accent-border);
-      margin-top: 40px;
-    }
+    footer { text-align: center; padding: 40px 20px 60px; color: #627280; font-size: 0.85rem; border-top: 1px solid var(--accent-border); margin-top: 40px; }
 
     /* SYSTEM GLOBAL INTAKE MODAL STYLES */
     #missionModal {
@@ -153,78 +167,17 @@
       z-index: 10;
     }
 
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-family: inherit; }
+    .form-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .form-row .form-group { flex: 1; min-width: 200px; }
 
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: #a0aec0;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
+    #submitIntakeForm { width: 100%; background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    #submitIntakeForm:disabled { background: #4b5563; cursor: not-allowed; }
 
-    .form-group input, 
-    .form-group select, 
-    .form-group textarea {
-      width: 100%;
-      background: #1a1d29;
-      border: 1px solid #4a5568;
-      border-radius: 4px;
-      padding: 10px;
-      color: #fff;
-      box-sizing: border-box;
-      font-family: inherit;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .form-row .form-group {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    #submitIntakeForm {
-      width: 100%;
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 14px;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    #submitIntakeForm:disabled {
-      background: #4b5563;
-      cursor: not-allowed;
-    }
-
-    #thankYouBlock {
-      display: none;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    .success-icon-wrap {
-      background: rgba(37, 99, 235, 0.1);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      border: 2px solid #2563eb;
-    }
+    #thankYouBlock { display: none; text-align: center; padding: 2rem 1rem; }
+    .success-icon-wrap { background: rgba(37, 99, 235, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #2563eb; }
   </style>
 </head>
 <body>
@@ -244,6 +197,18 @@
     {{ content }}
   </main>
 
+  <!-- Centralized Persistent Flight Action Controls -->
+  {% unless page.title == "Flight Operations" %}
+  <div style="max-width: 900px; margin: 50px auto 20px auto; border-top: 1px dashed #2C3740; padding-top: 40px; padding-left: 20px; padding-right: 20px;">
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center;">
+      <!-- Control A: Flight Operations Redirect -->
+      <a href="{{ '/operations.html' | relative_url }}" style="background-color: transparent; border: 2px solid #FFB300; color: #FFB300; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">Review Flight Specifications</a>
+      <!-- Control B: Request Quote Intake Profile -->
+      <a href="#" class="trigger-quote-modal" style="background-color: #FFB300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; display: inline-block;">Initiate Project Intake</a>
+    </div>
+  </div>
+  {% endunless %}
+
   <footer>
     <div class="trust-badges">
       <div class="badge gold">U.S. Veteran-Owned Small Business</div>
@@ -260,6 +225,7 @@
     <div id="modalBox">
       <button id="closeModalBtn">&times;</button>
       
+
       <!-- THE INTERACTIVE INPUT FIELDS CONTAINER -->
       <div id="formContentBlock">
         <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem;">Project Initiation Intake</h2>

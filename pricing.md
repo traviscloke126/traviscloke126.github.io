@@ -151,8 +151,6 @@ function calculateEstimate() {
   document.getElementById('splitPhase3').innerText = '$' + phase3Val.toFixed(2);
 }
 
-// Fire the logic script instantly on layout initial mount
-<script>
 // ==========================================
 // 🛸 1. ADDED: MISSING ANIMATION GRAPHICS LOOP ENGINE
 // ==========================================

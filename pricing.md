@@ -45,11 +45,37 @@ Apex Vector LLC operates under transparent, commercial-grade pricing baselines. 
 ---
 
 ## 📋 Standard Mobilization Parameters
+---
 
-Our flat rate scheduling completely accounts for active logistics parameters. Standard mobilization profiles incorporate:
-* **Pre-Flight Deliverables:** Complete historical airspace check verification logs and automated LAANC submissions.
-* **On-Site Operational Boundaries:** Complete physical tracking deployment of a 15-foot exclusion zone boundary and a 25-foot outer flagged safety line.
-* **Post-Flight Technical Logs:** Complete component data integrity validation logs mapped down to the operational flight minute.
+## 📋 Phased Milestone & Itemized Billing Structure
+
+To ensure total transparency and protect operational resources, Apex Vector LLC utilizes an itemized, milestone-based billing framework. In accordance with our standard flight operations contracts, **all completed operational phases are billable and payable up to the point of execution, regardless of final processing completion.**
+
+Missions are itemized across four distinct operational phases on your invoice:
+
+### Phase 01: Pre-Flight Logistics & Mobilization
+* **Deliverables:** Complete historical airspace check verifications, automated LAANC filing, terrain boundary routing, and physical transport to the mission site.
+* **Billing Rule:** Billable immediately upon arrival and deployment at the target location.
+
+### Phase 02: On-Site Safety & Exclusion Setup
+* **Deliverables:** Deployment of the physical 15-foot critical exclusion zone and 25-foot outer flagged safety perimeter, ground hazard tracking, and mandatory pre-flight aircraft airframe and propeller lifecycle audits.
+* **Billing Rule:** Payable upon completion of field security initialization.
+
+### Phase 03: Precision Flight Execution
+* **Deliverables:** Launch, remote pilot-in-command (RPIC) asset tracking, waypoint grid flight line management, and raw optical, multispectral, or structural sensor data acquisition.
+* **Billing Rule:** Payable immediately upon successful aircraft recovery and completion of the physical flight log minutes.
+
+### Phase 04: Data Post-Processing & Delivery
+* **Deliverables:** Digital photogrammetry stitching, 2D orthomosaic basemap compilation, 3D structural model engineering, or high-fidelity asset analysis reports.
+* **Billing Rule:** Final phase payload delivery.
+
+<div style="background-color: #14191D; border: 1px dashed #FFB300; padding: 20px; border-radius: 6px; margin-top: 30px; font-size: 0.95rem; color: #9EB1C2;">
+    <strong>Operational Notice:</strong> This phased structure guarantees that field mobilization, system risk mitigation, and flight line execution are fairly compensated at every tier of deployment. If a mission is terminated in the field due to client request or un-forecasted localized micro-climates, invoicing is strictly prorated to the last successfully completed phase.
+</div>
+
+<div style="text-align: center; margin-top: 40px;">
+    <a href="{{ '/contact.html' | relative_url }}" style="background-color: #FFB300; color: #111416; padding: 12px 28px; text-decoration: none; font-weight: 700; border-radius: 4px; display: inline-block;">Request a Mission Profile Quote</a>
+</div>
 
 <div style="text-align: center; margin-top: 40px;">
     <a href="{{ '/contact.html' | relative_url }}" style="background-color: #FFB300; color: #111416; padding: 12px 28px; text-decoration: none; font-weight: 700; border-radius: 4px; display: inline-block;">Request a Mission Profile Quote</a>

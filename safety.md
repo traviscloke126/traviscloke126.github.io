@@ -18,7 +18,8 @@ This decade of real-world experience maintaining and managing complex, multi-mil
 ### 📜 Regulatory Compliance & Industrial Safety Credentials
 To ensure uncompromised integration with industrial, commercial, and agricultural worksite regulations, our risk management framework is backed by formal federal safety training. 
 
-![Travis W Cloke OSHA 511 General Industry Certificate](Apex_Vector_OSHA_511.jpg)
+![Travis W Cloke OSHA 511 General Industry Certificate](/assets/images/Apex_Vector_OSHA_511.jpg)
+
 
 *   **Credential:** **OSHA #511 Standards for General Industry**
 *   **Issuing Authority:** Midwest OSHA Education Centers / National Safety Council / Barton Community College

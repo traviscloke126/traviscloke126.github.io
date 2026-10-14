@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Rates & Options
-
 ---
 
 # Commercial Drone Operations & Rates
@@ -11,9 +10,9 @@ Apex Vector LLC delivers high-precision aerial data capturing utilizing industri
 ## Precision Fleet Pricing
 
 ### Aerial Mapping & Modeling
-* **Primary Asset:** DJI Mavic 3 Enterprise (M3E) featuring a 4/3 CMOS Mechanical Shutter for zero motion blur high-accuracy mapping.
-* **Rate:** *[Insert Base Rate e.g., $150/hr or Project-Based]*
-* **Best For:** Surveying, construction tracking, asset inspection, and GIS orthomosaic generation.
+*   **Primary Asset:** DJI Mavic 3 Enterprise (M3E) featuring a 4/3 CMOS Mechanical Shutter for zero motion blur high-accuracy mapping.
+*   **Rate:** Project-Based Quoting (Contact for Custom Scope)
+*   **Best For:** Surveying, construction tracking, asset inspection, and GIS orthomosaic generation.
 
 ---
 

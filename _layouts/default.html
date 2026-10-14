@@ -219,13 +219,11 @@
     &copy; 2027 Apex Vector LLC. All Rights Reserved.<br>
     Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 Protocols &bull; Document Control: Public Release
   </footer>
-
   <!-- GLOBAL INTAKE INPUT MODAL -->
   <div id="missionModal">
     <div id="modalBox">
       <button id="closeModalBtn">&times;</button>
       
-
       <!-- THE INTERACTIVE INPUT FIELDS CONTAINER -->
       <div id="formContentBlock">
         <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem;">Project Initiation Intake</h2>
@@ -285,10 +283,14 @@
         <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Intake Profile Transmission Complete</h4>
         <p style="color: #E0E4E6; font-size: 0.95rem; line-height: 1.5; max-width: 400px; margin: 0 auto 2rem;">
           Your operational grid parameters have been securely compiled and transmitted to the flight center block. A command coordinator will review airspace restrictions and establish contact within 24 hours.
-        </p> 
-        <!-- DYNAMIC WINDOW OPERATIONS & TRANSMISSION SCRIPT -->
+        </p>
+        <button id="closeSuccessBtn" style="background: #1a1d29; border: 1px solid #4a5568; color: #ffffff; padding: 10px 24px; border-radius: 4px; font-weight: bold; text-transform: uppercase; cursor: pointer;">Dismiss Window</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- DYNAMIC WINDOW OPERATIONS & TRANSMISSION SCRIPT -->
   <script>
-    // WINDOW OPERATIONS HANDLING LOGIC
     const globalModal = document.getElementById('missionModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const closeSuccessBtn = document.getElementById('closeSuccessBtn');
@@ -331,12 +333,10 @@
       const dataType = document.getElementById('intake-data').value;
       const flightNotes = document.getElementById('intake-notes').value || "None Specified";
 
-      // Visually toggle buttons to active submission processing mode
       submitBtn.innerText = "COMPILING DISPATCH MATRIX...";
       submitBtn.style.background = "#4b5563";
       submitBtn.disabled = true;
 
-      // FormSubmit AJAX Destination Address
       const endpointTarget = "https://formsubmit.co";
 
       fetch(endpointTarget, {
@@ -362,15 +362,12 @@
         return response.json();
       })
       .then(data => {
-        // Clear all fields safely
         intakeFormInstance.reset();
 
-        // Reset submit action visual elements back to pristine values
         submitBtn.innerText = "Transmit Secure Intake Request";
         submitBtn.style.background = "#2563eb";
         submitBtn.disabled = false;
 
-        // Toggle UI Panels smoothly inline
         formContentBlock.style.display = 'none';
         thankYouBlock.style.display = 'block';
       })
@@ -378,7 +375,6 @@
         console.error("Transmission Error Grid Failure:", error);
         alert("Aviation Communication Outage: Encrypted uplink encountered a server routing delay. Please verify internet connectivity.");
         
-        // Restore button state on error to allow user to retry submission
         submitBtn.innerText = "Transmit Secure Intake Request";
         submitBtn.style.background = "#2563eb";
         submitBtn.disabled = false;
@@ -386,3 +382,4 @@
     });
   </script>
 
+  

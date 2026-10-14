@@ -173,51 +173,14 @@
         <br>
         Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 Protocols &bull; Document Control: Public Release
     </footer>
-    <!-- GLOBAL FILLABLE MODAL OVERLAY (Main Container Hub) -->
+        <!-- GLOBAL INTAKE INPUT MODAL -->
     <div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
       
       <!-- Modal Box Container -->
-      <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
+      <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
         
         <!-- Close Window Button -->
-        <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold;">&times;</button>
-        
-        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
-        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
-        
-        <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
-          Evaluate your parameters below. Submitting this form securely packages your inputs and routes them directly to our flight operations desk via FormSubmit.
-        </p>
-
-        <!-- LIVE FILLABLE INTERACTIVE FORM -->
-        <form action="https://formsubmit.co" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem;">
-          
-          <!-- Anti-Spam Security Filter -->
-          <input type="text" name="_honey" style="display:none">
-          
-                <!-- Control Elements -->
-      <input type="hidden" name="_subject" value="NEW UAS MISSION INTAKE REQUEST">
-      <input type="hidden" name="_next" value="https://github.io">
-      <input type="hidden" name="_url" value="https://github.io">
-            
-          <div>
-            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">01. Full Name / Organization *</label>
-            <input type="text" name="Client Name" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; margin-bottom: 0.5rem; font-weight: bold;">Contact Email Address *</label>
-            <input type="email" name="Client Email" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff; box-sizing: border-box; font-size: 1rem;">
-          </div>
-
-       <!-- GLOBAL INTAKE INPUT MODAL -->
-    <div id="missionModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(5, 6, 8, 0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
-      
-      <!-- Modal Box Outer Container -->
-      <div style="background: #12141c; border: 1px solid #2d3748; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; box-sizing: border-box;">
-        
-        <!-- Close Window Button -->
-        <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold;">&times;</button>
+        <button id="closeModalBtn" style="position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: #a0aec0; font-size: 1.5rem; cursor: pointer; font-weight: bold; z-index: 10000;">&times;</button>
         
         <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem; font-weight: bold;">Project Initiation Intake</h2>
         <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
@@ -273,10 +236,11 @@
     </div>
 
     <script>
-    // WINDOW OPERATIONS NAVIGATION CONTROL
+    // WINDOW OPERATIONS HANDLING LOGIC
     const globalModal = document.getElementById('missionModal');
     const modalCloseX = document.getElementById('closeModalBtn');
 
+    // Master Event Interceptor captures global button clicks cleanly across layout frames
     document.addEventListener('click', function(event) {
       if (event.target && event.target.closest('.trigger-quote-modal')) {
         event.preventDefault();
@@ -287,7 +251,7 @@
     modalCloseX.addEventListener('click', function() { globalModal.style.display = 'none'; });
     window.addEventListener('click', function(e) { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
 
-    // Extraction function captures text inputs live and compiles standard data sheet
+    // Client Field Compiler To Mail System
     document.getElementById('submitIntakeForm').addEventListener('click', function(e) {
       e.preventDefault();
       
@@ -334,4 +298,3 @@
     </script>
   </body>
 </html>
-

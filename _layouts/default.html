@@ -218,25 +218,31 @@
 
   </div>
 </div>
-
 <script>
-// Master Global Modal Script
+// Master Global Modal Script (Dynamic Event Delegation)
 const globalModal = document.getElementById('missionModal');
 const modalCloseX = document.getElementById('closeModalBtn');
 
-// 1. Scan the active page DOM for ANY button/link element assigned the class "trigger-quote-modal"
+// ACTIVE INTERCEPTOR LOOP: Listens to the entire page document dynamically.
+// This captures your buttons even if they are loaded from a separate single layout asset!
 document.addEventListener('click', function(event) {
-  if (event.target && event.target.classList.contains('trigger-quote-modal')) {
-    event.preventDefault();
-    globalModal.style.display = 'flex';
+  // Find the closest element that looks like a primary action button or link
+  const targetButton = event.target.closest('.btn-primary, .trigger-quote-modal, a[href*="contact"]');
+  
+  if (targetButton) {
+    // Intercept click instantly if it mentions requesting a quote or operation brief
+    if (targetButton.textContent.includes('Request') || targetButton.classList.contains('trigger-quote-modal')) {
+      event.preventDefault();
+      globalModal.style.display = 'flex';
+    }
   }
 });
 
-// 2. Standard Window Visibility Operations
+// Standard Window Visibility Closure Operations
 modalCloseX.addEventListener('click', () => { globalModal.style.display = 'none'; });
 window.addEventListener('click', (e) => { if (e.target === globalModal) { globalModal.style.display = 'none'; } });
 
-// 3. Structural Plain-Text Mail Matrix Generator
+// Structural Plain-Text Mail Matrix Generator
 document.getElementById('generate-brief-modal').addEventListener('click', function(e) {
   e.preventDefault();
   const recipient = "apexvectoruas@gmail.com";
@@ -275,6 +281,7 @@ document.getElementById('generate-brief-modal').addEventListener('click', functi
   window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
 });
 </script>
+
 
 </body>
 </html>

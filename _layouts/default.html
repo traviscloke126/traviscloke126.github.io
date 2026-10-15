@@ -226,8 +226,73 @@
 
     #thankYouBlock { display: none; text-align: center; padding: 2rem 1rem; }
     .success-icon-wrap { background: rgba(37, 99, 235, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #2563eb; }
-  </style>
+<head>
+    <!-- ... your existing meta tags, title, and link tags ... -->
+
+    <!-- APEX VECTOR MOBILE RESPONSIVE OPTIMIZATION -->
+    <style>
+    @media screen and (max-width: 768px) {
+        body, main, section, .container {
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+        }
+        table, tbody, tr, td {
+            display: block !important;
+            width: 100% !important;
+            box-sizing: border-box;
+        }
+        thead {
+            display: none !important;
+        }
+        tr {
+            margin-bottom: 1.25rem !important;
+            border: 1px solid #2d3748 !important;
+            border-radius: 6px !important;
+            padding: 0.75rem !important;
+            background: rgba(255, 255, 255, 0.01);
+        }
+        td {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 0.5rem 0 !important;
+            border: none !important;
+            text-align: right !important;
+            font-size: 0.9rem !important;
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
+            white-space: normal !important;
+        }
+        td[data-label]::before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #627280;
+            text-align: left;
+            padding-right: 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .milestone-container, 
+        .phase-flex-wrapper,
+        div[style*="display: flex"] { 
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: 100% !important;
+            gap: 1rem !important;
+        }
+        .phase-card, 
+        div[style*="width: 30%"], 
+        div[style*="width:33%"] {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+        }
+    }
+    </style>
 </head>
+
 <body>
 
   <nav class="flight-nav">

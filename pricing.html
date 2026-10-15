@@ -328,13 +328,20 @@ function calculateEstimate() {
 
   if (profile === 'ag') {
     inputLabel.innerText = "2. Enter Estimated Acreage:";
-    let ratePerAcre = 3.50; 
+       let ratePerAcre = 3.50;
     if (rawInput > 160) ratePerAcre = 2.75;
     if (rawInput > 640) ratePerAcre = 2.25;
 
     fieldCaptureCost = rawInput * ratePerAcre;
+
+    // ENFORCE THE $250 MINIMUM FLOOR FOR AG
+    if (fieldCaptureCost < 250.00 && rawInput > 0) {
+        fieldCaptureCost = 250.00;
+    }
+
     layoutAdjustmentCost = 0;
     absoluteTotalValue = fieldCaptureCost;
+
   } else if (profile === 'earthwork') {
     inputLabel.innerText = "2. Enter Estimated Acreage:";
     if (rawInput <= 25) {

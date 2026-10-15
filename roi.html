@@ -183,34 +183,43 @@ title: ROI Calculator | Apex Vector LLC
             activeTab.style.fontWeight = 'bold';
         }
 
-        // Expanded dataset including Regional Baseline Card parameters
+               // Expanded dataset clarifying explicit engineering units of measurement
         const labels = {
             ag: {
-                acres: 'TOTAL FARM ACREAGE:', fert: 'FERTILIZER COST (\$ / ACRE):', lab: 'GRID SOIL SAMPLING (\$ / ACRE):', shield: 'SCALE HOUSE RISK PROTECTION (\$ / ACRE):',
+                acres: 'TOTAL FARM ACREAGE:<span>Total production surface area designated for active drone mapping.</span>', 
+                fert: 'FERTILIZER COST ($ / ACRE):<span>Average baseline material and application cost per acre.</span>', 
+                lab: 'GRID SOIL SAMPLING ($ / ACRE):<span>Standard cost for blind 2.5-acre grid physical lab extractions.</span>', 
+                shield: 'SCALE HOUSE RISK PROTECTION ($ / ACRE):<span>Flat baseline insurance factor to prevent test weight or moisture dockage.</span>',
                 desc1: 'Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).',
                 desc2: '65% reduction in lab fees by replacing blind grids with aerial Management Zones.',
                 desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.',
-                bl1: 'STANDARD NITROGEN FERTILIZER:', bv1: '\$90.00 / acre',
-                bl2: 'TRADITIONAL GRID SOIL LAB FEES:', bv2: '\$12.00 / acre',
-                bl3: 'AVERAGE SCALE HOUSE RISK:', bv3: '\$15.00 / acre', bd3: '(Based on a 15–20¢ quality dockage penalty per bushel)'
+                bl1: 'STANDARD NITROGEN FERTILIZER:', bv1: '$90.00 / acre',
+                bl2: 'TRADITIONAL GRID SOIL LAB FEES:', bv2: '$12.00 / acre',
+                bl3: 'AVERAGE SCALE HOUSE RISK:', bv3: '$15.00 / acre', bd3: '(Based on a 15–20¢ quality dockage penalty per bushel)'
             },
             infra: {
-                acres: 'TOTAL INFRASTRUCTURE ASSET SCALE:', fert: 'MANUAL CREW DAY-RATE (\$ / ASSET):', lab: 'TRADITIONAL EQUIPMENT OVERHEAD (\$):', shield: 'UNSCHEDULED OUTAGE BUFFER (\$ / ASSET):',
-                desc1: 'Cuts scaffolding and manual climbing equipment deployment overhead costs by 75%.',
-                desc2: 'Sub-centimeter structural analysis maps defects early to boost equipment lifecycle runtime.',
+                acres: 'TOTAL ASSET COUNT (TOWERS / BUILDINGS):<span>Total number of structural tower installations, utility configurations, or isolated layouts.</span>', 
+                fert: 'MANUAL INSPECTION OVERHEAD ($ / ASSET):<span>Average labor, climbing, and safety log overhead required for human field crews.</span>', 
+                lab: 'TRADITIONAL EQUIPMENT FEES ($ / SQ FT):<span>Baseline rental expenses for localized heavy scaffolding, cherry pickers, or bucket trucks.</span>', 
+                shield: 'UNSCHEDULED OUTAGE BUFFER ($ / ASSET):<span>Proactive risk insulation factor to safely guard critical components from catastrophic structural failure.</span>',
+                desc1: 'Cuts manual climbing team and scaffolding asset deployment overhead costs by 75%.',
+                desc2: 'Sub-centimeter structural analysis maps structural defects early to boost component lifespan.',
                 desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.',
-                bl1: 'MANUAL TEAM INSPECTION baseline:', bv1: '\$350.00 / tower',
-                bl2: 'TRADITIONAL EQUIPMENT BASELINE:', bv2: '\$1,200.00 flat',
-                bl3: 'UNSCHEDULED RUNTIME CRITICAL RISK:', bv3: '\$5,000.00 / incident', bd3: '(Based on regional emergency structural hardware outage histories)'
+                bl1: 'MANUAL CLIMB TEAM HOURLY OVERHEAD:', bv1: '$350.00 / asset',
+                bl2: 'TRADITIONAL BUCKET TRUCK RENTAL FEE:', bv2: '$1,200.00 flat',
+                bl3: 'UNSCHEDULED REPAIR DELAY RISK:', bv3: '$5,000.00 / incident', bd3: '(Based on regional emergency structural hardware outage histories)'
             },
             media: {
-                acres: 'PROJECT LAYOUT FOOTPRINT (ACRES):', fert: 'TRADITIONAL SURVEYING OVERHEAD (\$ / AC):', lab: 'ASSET MARKETING EXPENSES (\$):', shield: 'CAPITAL DRAW VERIFICATION SHIELD (\$):',
+                acres: 'PROJECT SITE FOOTPRINT (ACRES):<span>Total developmental site scale or horizontal construction grading tracking area.</span>', 
+                fert: 'TRADITIONAL SURVEYING OVERHEAD ($ / ACRE):<span>Standard cost to bring out traditional transit and manual GPS staking crews.</span>', 
+                lab: 'ASSET MARKETING EXPENSES ($ / PRODUCTION):<span>Baseline commercial media production, editing, and distribution asset overhead.</span>', 
+                shield: 'CAPITAL DRAW VERIFICATION SHIELD ($ / BLOCK):<span>Site tracking factor to validate stockpile volumes and speed up bank funding cycles.</span>',
                 desc1: '3D photogrammetry maps grading profiles and stockpile volume scans 60% more efficiently.',
                 desc2: 'Accelerated high-end media packaging tailored to clear corporate commercial listings faster.',
                 desc3: 'Site tracking updates provide quick volumetric proof to clear lender funding cycles.',
-                bl1: 'TRADITIONAL SURVEY RUN COST:', bv1: '\$45.00 / acre',
-                bl2: 'COMMERCIAL MEDIA PRODUCTION FEES:', bv2: '\$1,500.00 flat',
-                bl3: 'LENDER DRAW PROCESSING DELAY RISK:', bv3: '\$2,500.00 / cycle', bd3: '(Estimated operational overhead lost during milestone dispute windows)'
+                bl1: 'TRADITIONAL SURVEY RUN COST:', bv1: '$45.00 / acre',
+                bl2: 'COMMERCIAL MEDIA PRODUCTION FEES:', bv2: '$1,500.00 flat',
+                bl3: 'LENDER DRAW PROCESSING DELAY RISK:', bv3: '$2,500.00 / cycle', bd3: '(Estimated operational overhead lost during milestone dispute windows)'
             }
         };
 

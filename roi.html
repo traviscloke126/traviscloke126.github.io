@@ -117,24 +117,23 @@ title: ROI Calculator | Apex Vector LLC
 
     </div>
 </div>
-
 <script>
     // --- 1. Dynamic Linked Slider & Numeric Input Arrays ---
     const elementMatrix = {
-        acresNum: document.getElementById('input-acres'),
+        acresNum: document.getElementById('acres'),
         acresRange: document.getElementById('range-acres'),
-        fertNum: document.getElementById('input-fert-cost'),
+        fertNum: document.getElementById('fert'),
         fertRange: document.getElementById('range-fert-cost'),
-        soilNum: document.getElementById('input-sample-cost'),
+        soilNum: document.getElementById('lab'),
         soilRange: document.getElementById('range-sample-cost'),
         shieldNum: document.getElementById('input-penalty-risk'),
         shieldRange: document.getElementById('range-penalty-risk'),
         
         // Value Text Field Nodes
-        totalSavings: document.getElementById('display-total-savings'),
-        fertSavings: document.getElementById('display-fert-savings'),
-        soilSavings: document.getElementById('display-soil-savings'),
-        shieldSavings: document.getElementById('display-shield-savings'),
+        totalSavings: document.getElementById('total-savings'),
+        fertSavings: document.getElementById('fert-savings'),
+        soilSavings: document.getElementById('lab-savings'),
+        shieldSavings: document.getElementById('scale-savings'),
         svgChart: document.getElementById('savings-chart'),
         btnPrint: document.getElementById('btn-print'),
         
@@ -159,6 +158,7 @@ title: ROI Calculator | Apex Vector LLC
     }
 
     // --- 2. Multi-Industry Mode Switcher Logic ---
+       // --- 2. Multi-Industry Mode Switcher Logic ---
     window.currentActiveMode = 'ag';
 
     window.switchMatrixMode = function(targetMode) {
@@ -187,39 +187,46 @@ title: ROI Calculator | Apex Vector LLC
         // Dynamically update form labels and descriptions based on industry parameters
         const labels = {
             ag: {
-                acres: 'TOTAL FARM ACREAGE:<span>Total production surface area designated for active drone mapping.</span>',
-                cost1: 'FERTILIZER COST ($ / ACRE):<span>Average baseline material and application cost per acre.</span>',
-                cost2: 'GRID SOIL SAMPLING ($ / ACRE):<span>Standard cost for blind 2.5-acre grid physical lab extractions.</span>',
-                cost3: 'SCALE HOUSE RISK PROTECTION ($ / ACRE):<span>Flat baseline insurance factor to prevent test weight or moisture dockage.</span>'
+                acres: 'TOTAL FARM ACREAGE:', fert: 'FERTILIZER COST (\$ / ACRE):', lab: 'GRID SOIL SAMPLING (\$ / ACRE):', shield: 'SCALE HOUSE RISK PROTECTION (\$ / ACRE):',
+                desc1: 'Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).',
+                desc2: '65% reduction in lab fees by replacing blind grids with aerial Management Zones.',
+                desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.'
             },
             infra: {
-                acres: 'TOTAL INFRASTRUCTURE ASSET SCALE:<span>Total count of structural towers, utility configurations, or roof layouts.</span>',
-                cost1: 'MANUAL CREW DAY-RATE ($ / ASSET):<span>Average logistical and safety gear costs for manual human climbing teams.</span>',
-                cost2: 'TRADITIONAL EQUIPMENT OVERHEAD ($):<span>Baseline cost for localized scaffolding, bucket trucks, or manual logs.</span>',
-                cost3: 'UNSCHEDULED OUTAGE BUFFER ($ / ASSET):<span>Proactive risk mitigation factor to protect critical assets from structural failure.</span>'
+                acres: 'TOTAL INFRASTRUCTURE ASSET SCALE:', fert: 'MANUAL CREW DAY-RATE (\$ / ASSET):', lab: 'TRADITIONAL EQUIPMENT OVERHEAD (\$):', shield: 'UNSCHEDULED OUTAGE BUFFER (\$ / ASSET):',
+                desc1: 'Cuts scaffolding and manual climbing equipment deployment overhead costs by 75%.',
+                desc2: 'Sub-centimeter structural analysis maps defects early to boost equipment lifecycle runtime.',
+                desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.'
             },
             media: {
-                acres: 'PROJECT LAYOUT FOOTPRINT (ACRES):<span>Total developmental site scale or horizontal construction tracking area.</span>',
-                cost1: 'TRADITIONAL SURVEYING OVERHEAD ($ / AC):<span>Standard cost to bring out traditional transit and manual GPS staking crews.</span>',
-                cost2: 'ASSET MARKETING & LISTING EXPENSES ($):<span>Baseline commercial media production, editing, and distribution asset overhead.</span>',
-                cost3: 'CAPITAL DRAW VERIFICATION SHIELD ($):<span>Site tracking factor to validate stockpile volumes and speed up bank funding cycles.</span>'
+                acres: 'PROJECT LAYOUT FOOTPRINT (ACRES):', fert: 'TRADITIONAL SURVEYING OVERHEAD (\$ / AC):', lab: 'ASSET MARKETING EXPENSES (\$):', shield: 'CAPITAL DRAW VERIFICATION SHIELD (\$):',
+                desc1: '3D photogrammetry maps grading profiles and stockpile volume scans 60% more efficiently.',
+                desc2: 'Accelerated high-end media packaging tailored to clear corporate commercial listings faster.',
+                desc3: 'Site tracking updates provide quick volumetric proof to clear lender funding cycles.'
             }
         };
 
-                // Target each label directly by its linked input field property
-        const lblAcres = document.querySelector('label[for="input-acres"]');
-        const lblCost1 = document.querySelector('label[for="input-fert-cost"]');
-        const lblCost2 = document.querySelector('label[for="input-sample-cost"]');
-        const lblCost3 = document.querySelector('label[for="input-penalty-risk"]');
+        // Query input labels directly by target links
+        const lblAcres = document.querySelector('label[for="acres"]');
+        const lblFert = document.querySelector('label[for="fert"]');
+        const lblLab = document.querySelector('label[for="lab"]');
+        const lblShield = document.querySelector('label[for="input-penalty-risk"]');
 
         if (lblAcres) lblAcres.innerHTML = labels[targetMode].acres;
-        if (lblCost1) lblCost1.innerHTML = labels[targetMode].cost1;
-        if (lblCost2) lblCost2.innerHTML = labels[targetMode].cost2;
-        if (lblCost3) lblCost3.innerHTML = labels[targetMode].cost3;
+        if (lblFert) lblFert.innerHTML = labels[targetMode].fert;
+        if (lblLab) lblLab.innerHTML = labels[targetMode].lab;
+        if (lblShield) lblShield.innerHTML = labels[targetMode].shield;
+
+        // Query detailed financial summary row description spans underneath green pricing tags
+        const summarySpans = document.querySelectorAll('.main-container span[style*="color: #555555"], .main-container span[style*="color:#555555"]');
+        if (summarySpans && summarySpans.length >= 3) {
+            summarySpans[0].innerText = labels[targetMode].desc1;
+            summarySpans[1].innerText = labels[targetMode].desc2;
+            summarySpans[2].innerText = labels[targetMode].desc3;
+        }
 
         // Force layout calculations to instantly sync numbers
         window.processMatrixROI();
-
     };
 
     // --- 3. Dynamic Multi-Pillar Yield Calculations Engine ---
@@ -246,6 +253,13 @@ title: ROI Calculator | Apex Vector LLC
         }
 
         const totalCalculatedReturn = v1 + v2 + v3;
+
+        if (elementMatrix.totalSavings) elementMatrix.totalSavings.innerText = formatToUSD(totalCalculatedReturn);
+        if (elementMatrix.fertSavings) elementMatrix.fertSavings.innerText = formatToUSD(v1);
+        if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(v2);
+        if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
+    };
+
 
         if (elementMatrix.totalSavings) elementMatrix.totalSavings.innerText = formatToUSD(totalCalculatedReturn);
         if (elementMatrix.fertSavings) elementMatrix.fertSavings.innerText = formatToUSD(v1);

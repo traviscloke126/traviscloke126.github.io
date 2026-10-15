@@ -412,8 +412,42 @@ title: ROI Calculator | Apex Vector LLC
         if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(v2);
         if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
 
-        // --- FreshBooks / Stripe Proposal Value Injector Extension ---
-        const propGrossValue = 250 + (fieldAcres * param1) + (fieldAcres * param2) + 100;
+               // --- Fixed Apex Vector Commercial Billing Rate Constants ---
+        const AG_FLIGHT_RATE = 5.50;    // Standard Ag Operation Rate per Acre
+        const AG_PROCESS_RATE = 3.00;   // Photogrammetry Stitching per Acre
+        
+        const INFRA_FLIGHT_RATE = 12.50; // Infrastructure Tracking per Asset
+        const INFRA_PROCESS_RATE = 3.00;  // Diagnostic Rendering per Asset
+        
+        const MEDIA_FLIGHT_RATE = 12.50; // Commercial Grading per Acre
+        const MEDIA_PROCESS_RATE = 1500.00; // Flat Fee Commercial Editing Suite
+
+        let activeFlightRate = 0;
+        let activeProcessRate = 0;
+        let calculatedFlightSubtotal = 0;
+        let calculatedProcessSubtotal = 0;
+        let proposalGrossValue = 250 + 100; // Base Fee ($250) + Secure Archival ($100)
+
+        // Calculate explicit contract line-item subtotals independent of client overhead numbers
+        if (window.currentActiveMode === 'ag') {
+            activeFlightRate = AG_FLIGHT_RATE;
+            activeProcessRate = AG_PROCESS_RATE;
+            calculatedFlightSubtotal = fieldAcres * AG_FLIGHT_RATE;
+            calculatedProcessSubtotal = fieldAcres * AG_PROCESS_RATE;
+        } else if (window.currentActiveMode === 'infra') {
+            activeFlightRate = INFRA_FLIGHT_RATE;
+            activeProcessRate = INFRA_PROCESS_RATE;
+            calculatedFlightSubtotal = fieldAcres * INFRA_FLIGHT_RATE;
+            calculatedProcessSubtotal = fieldAcres * INFRA_PROCESS_RATE;
+        } else if (window.currentActiveMode === 'media') {
+            activeFlightRate = MEDIA_FLIGHT_RATE;
+            activeProcessRate = 0; // Handled via flat suite pricing
+            calculatedFlightSubtotal = fieldAcres * MEDIA_FLIGHT_RATE;
+            calculatedProcessSubtotal = MEDIA_PROCESS_RATE;
+        }
+
+        // Aggregate explicit final operational valuations
+        proposalGrossValue += calculatedFlightSubtotal + calculatedProcessSubtotal;
         
         // Populate Invoice Summary Text Nodes Live
         const elPropScale = document.getElementById('proposal-display-scale');
@@ -424,10 +458,10 @@ title: ROI Calculator | Apex Vector LLC
         
         const scaleLabelText = window.currentActiveMode === 'ag' ? fieldAcres + ' ACRES' : window.currentActiveMode === 'infra' ? fieldAcres + ' ASSETS' : fieldAcres + ' ACRES';
         if (elPropScale) elPropScale.innerText = scaleLabelText;
-        if (elPropGross) elPropGross.innerText = formatToUSD(propGrossValue);
-        if (elPropP1) elPropP1.innerText = formatToUSD(propGrossValue * 0.30);
-        if (elPropP2) elPropP2.innerText = formatToUSD(propGrossValue * 0.40);
-        if (elPropP3) elPropP3.innerText = formatToUSD(propGrossValue * 0.30);
+        if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
+        if (elPropP1) elPropP1.innerText = formatToUSD(proposalGrossValue * 0.30); // Phase 1: 30%
+        if (elPropP2) elPropP2.innerText = formatToUSD(proposalGrossValue * 0.40); // Phase 2: 40%
+        if (elPropP3) elPropP3.innerText = formatToUSD(proposalGrossValue * 0.30); // Phase 3: 30%
 
         // Adjust Calculation Row Details Based on Active Selection Tab Wording
         const pTitle1 = document.getElementById('proposal-calc-title-1'); const pUnit1 = document.getElementById('proposal-calc-unit-1'); const pVal1 = document.getElementById('proposal-calc-val-1');
@@ -436,16 +470,16 @@ title: ROI Calculator | Apex Vector LLC
 
         if (window.currentActiveMode === 'ag') {
             if (pSector) pSector.innerText = 'AG_INTELLIGENCE PROFILE';
-            if (pTitle1) pTitle1.innerText = 'sUAS Flight Lines & Precision Field Data Capture'; if (pUnit1) pUnit1.innerText = '$' + param1 + ' / acre'; if (pVal1) pVal1.innerText = formatToUSD(fieldAcres * param1);
-            if (pTitle2) pTitle2.innerText = 'Photogrammetry Orthomosaic Grid Engine Stitching'; if (pUnit2) pUnit2.innerText = '$' + param2 + ' / acre'; if (pVal2) pVal2.innerText = formatToUSD(fieldAcres * param2);
+            if (pTitle1) pTitle1.innerText = 'sUAS Flight Lines & Precision Field Data Capture'; if (pUnit1) pUnit1.innerText = '$' + activeFlightRate.toFixed(2) + ' / acre'; if (pVal1) pVal1.innerText = formatToUSD(calculatedFlightSubtotal);
+            if (pTitle2) pTitle2.innerText = 'Photogrammetry Orthomosaic Grid Engine Stitching'; if (pUnit2) pUnit2.innerText = '$' + activeProcessRate.toFixed(2) + ' / acre'; if (pVal2) pVal2.innerText = formatToUSD(calculatedProcessSubtotal);
         } else if (window.currentActiveMode === 'infra') {
             if (pSector) pSector.innerText = 'INFRASTRUCTURE_ASSET PROFILE';
-            if (pTitle1) pTitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery'; if (pUnit1) pUnit1.innerText = '$' + param1 + ' / asset'; if (pVal1) pVal1.innerText = formatToUSD(fieldAcres * param1);
-            if (pTitle2) pTitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering'; if (pUnit2) pUnit2.innerText = '$' + param2 + ' / sq ft'; if (pVal2) pVal2.innerText = formatToUSD(fieldAcres * param2);
+            if (pTitle1) pTitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery'; if (pUnit1) pUnit1.innerText = '$' + activeFlightRate.toFixed(2) + ' / asset'; if (pVal1) pVal1.innerText = formatToUSD(calculatedFlightSubtotal);
+            if (pTitle2) pTitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering'; if (pUnit2) pUnit2.innerText = '$' + activeProcessRate.toFixed(2) + ' / sq ft'; if (pVal2) pVal2.innerText = formatToUSD(calculatedProcessSubtotal);
         } else if (window.currentActiveMode === 'media') {
             if (pSector) pSector.innerText = 'COMMERCIAL_GROUNDWORK PROFILE';
-            if (pTitle1) pTitle1.innerText = 'High-Resolution Site Grading & Volumetric Topo Scans'; if (pUnit1) pUnit1.innerText = '$' + param1 + ' / acre'; if (pVal1) pVal1.innerText = formatToUSD(fieldAcres * param1);
-            if (pTitle2) pTitle2.innerText = 'Advanced High-End Cinematic Production & Marketing Assets'; if (pUnit2) pUnit2.innerText = 'Flat Base'; if (pVal2) pVal2.innerText = formatToUSD(param2);
+            if (pTitle1) pTitle1.innerText = 'High-Resolution Site Grading & Volumetric Topo Scans'; if (pUnit1) pUnit1.innerText = '$' + activeFlightRate.toFixed(2) + ' / acre'; if (pVal1) pVal1.innerText = formatToUSD(calculatedFlightSubtotal);
+            if (pTitle2) pTitle2.innerText = 'Advanced High-End Cinematic Production & Marketing Assets'; if (pUnit2) pUnit2.innerText = 'Flat Suite'; if (pVal2) pVal2.innerText = formatToUSD(calculatedProcessSubtotal);
         }
 
         // Live Proposal Automation Date Tag Initialization

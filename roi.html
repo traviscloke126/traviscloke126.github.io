@@ -97,24 +97,23 @@ title: ROI Calculator | Apex Vector LLC
 
             <!-- Detailed Breakdowns -->
             <div style="font-size: 0.9rem; line-height: 1.5; color: #333333;">
-                            <!-- Item 1 Wording Row -->
+                        <!-- Item 1 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
                 <strong id="breakdown-title-1" style="color: #27ac60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Fertilizer Optimization: <span id="fert-savings">$4,500</span></strong>
-                <span style="color: #555555;">Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).</span>
+                <span class="return-desc" style="color: #555555;">Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).</span>
             </div>
 
-            <!-- Item 2 Wording Row -->
+            <!-- Item 2 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
                 <strong id="breakdown-title-2" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Smart Soil Analytics: <span id="lab-savings">$3,900</span></strong>
-                <span style="color: #555555;">65% reduction in lab fees by replacing blind grids with aerial Management Zones.</span>
+                <span class="return-desc" style="color: #555555;">65% reduction in lab fees by replacing blind grids with aerial Management Zones.</span>
             </div>
 
-            <!-- Item 3 Wording Row -->
+            <!-- Item 3 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
                 <strong id="breakdown-title-3" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Dockage Risk Shield: <span id="scale-savings">$0.00</span></strong>
-                <span style="color: #555555;">Defends test weight uniformity mid-season to secure full market price at the scale house scale.</span>
+                <span class="return-desc" style="color: #555555;">Defends test weight uniformity mid-season to secure full market price at the scale house scale.</span>
             </div>
-
         </div>
 
     </div>
@@ -256,18 +255,23 @@ title: ROI Calculator | Apex Vector LLC
         if (bL2) bL2.innerText = labels[targetMode].bl2; if (bV2) bV2.innerText = labels[targetMode].bv2;
         if (bL3) bL3.innerText = labels[targetMode].bl3; if (bV3) bV3.innerText = labels[targetMode].bv3; if (bD3) bD3.innerText = labels[targetMode].bd3;
 
-        // 3. Rewrite Estimated Return Column Wording Dynamically
-        const strongHeaders = document.querySelectorAll('.main-container strong[style*="color: #27ae60"], .main-container strong[style*="color:#27ae60"]');
-        const descriptionSpans = document.querySelectorAll('.main-container span[style*="color: #555555"], .main-container span[style*="color:#555555"]');
+                // 3. Rewrite Estimated Return Column Wording Dynamically using precise direct ID tags
+        const titleEl1 = document.getElementById('breakdown-title-1');
+        const titleEl2 = document.getElementById('breakdown-title-2');
+        const titleEl3 = document.getElementById('breakdown-title-3');
+        const descriptionSpans = document.querySelectorAll('.return-desc');
 
-        if (strongHeaders && strongHeaders.length >= 3) {
+        if (titleEl1 && titleEl2 && titleEl3) {
+            // Snatch the current numeric values out of the container boxes safely before overwriting text strings
             const currentSavedV1 = document.getElementById('fert-savings')?.innerText || '\$0.00';
             const currentSavedV2 = document.getElementById('lab-savings')?.innerText || '\$0.00';
             const currentSavedV3 = document.getElementById('scale-savings')?.innerText || '\$0.00';
 
-            strongHeaders[0].innerHTML = `${labels[targetMode].h1} <span id="fert-savings" style="color: #27ae60;">${currentSavedV1}</span>`;
-            strongHeaders[1].innerHTML = `${labels[targetMode].h2} <span id="lab-savings" style="color: #27ae60;">${currentSavedV2}</span>`;
-            strongHeaders[2].innerHTML = `${labels[targetMode].h3} <span id="scale-savings" style="color: #27ae60;">${currentSavedV3}</span>`;
+            titleEl1.innerHTML = labels[targetMode].h1 + ' <span id="fert-savings" style="color: #27ac60;">' + currentSavedV1 + '</span>';
+            titleEl2.innerHTML = labels[targetMode].h2 + ' <span id="lab-savings" style="color: #27ae60;">' + currentSavedV2 + '</span>';
+            titleEl3.innerHTML = labels[targetMode].h3 + ' <span id="scale-savings" style="color: #27ae60;">' + currentSavedV3 + '</span>';
+
+
         }
 
         if (descriptionSpans && descriptionSpans.length >= 3) {
@@ -278,6 +282,7 @@ title: ROI Calculator | Apex Vector LLC
 
         // Force layout calculations to instantly sync numbers
         window.processMatrixROI();
+
     };
 
 

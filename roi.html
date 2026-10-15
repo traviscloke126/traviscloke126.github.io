@@ -622,7 +622,68 @@ title: ROI Calculator | Apex Vector LLC
 
         renderTelemetryLoop();
     }
+        // --- 5. Global Intake Route & Parameter Injection System ---
+        window.handleIntakeRouting = function() {
+            // 1. Check if the calculator data engine elements exist on the current page view
+            const fieldScaleEl = document.getElementById('acres');
+            const invoiceTotalEl = document.getElementById('proposal-final-gross');
+            const savedCapitalEl = document.getElementById('total-savings');
 
-    // Run matrix processing arrays on base launch
-    window.processMatrixROI();
+            // 2. If we are on the ROI matrix layout, capture values and compile an elite briefing text
+            if (fieldScaleEl && invoiceTotalEl && savedCapitalEl) {
+                const activeScale = fieldScaleEl.value || '500';
+                const activeFees = invoiceTotalEl.innerText || '$0.00';
+                const activeROI = savedCapitalEl.innerText || '$0.00';
+                
+                let sectorLabel = 'Agricultural Intelligence';
+                let unitLabel = 'Acres';
+
+                if (window.currentActiveMode === 'ag') {
+                    sectorLabel = 'AGRICULTURAL INTELLIGENCE FLIGHT RUN';
+                    unitLabel = 'Acres';
+                } else if (window.currentActiveMode === 'infra') {
+                    sectorLabel = 'INDUSTRIAL INFRASTRUCTURE STRUCTURAL LOG';
+                    unitLabel = 'Structures / Assets';
+                } else if (window.currentActiveMode === 'media') {
+                    sectorLabel = 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS';
+                    unitLabel = 'Acres';
+                }
+
+                const briefPayloadString = 
+                    "====================================================\n" +
+                    "       APEX VECTOR OPERATIONS DATA TRANSIT SYSTEM       \n" +
+                    "====================================================\n" +
+                    "MISSION PROFILE : " + sectorLabel + "\n" +
+                    "PROJECT SCALE   : " + activeScale + " " + unitLabel + "\n" +
+                    "ESTIMATED FEES  : " + activeFees + " (Gross Valuation Matrix)\n" +
+                    "PROJECTED ROI   : " + activeROI + " Saved Operational Overhead\n" +
+                    "====================================================\n" +
+                    "RENO COUNTY HUB CONTROL: Please secure calendar lines for this flight pattern.\n\n" +
+                    "Client Custom Notes:\n> ";
+
+                // Find your modal text box fields (targets the main textarea inside your missionModal)
+                const modalTextBox = document.querySelector('#missionModal textarea') || 
+                                     document.getElementById('message') || 
+                                     document.querySelector('textarea');
+
+                if (modalTextBox) {
+                    modalTextBox.value = briefPayloadString;
+                    // Focus and snap target cursor to the base end of string instantly
+                    setTimeout(() => {
+                        modalTextBox.focus();
+                        modalTextBox.setSelectionRange(modalTextBox.value.length, modalTextBox.value.length);
+                    }, 100);
+                }
+            }
+
+            // 3. Fire your website's pre-existing modal display container
+            const targetModalWindow = document.getElementById('missionModal');
+            if (targetModalWindow) {
+                targetModalWindow.style.display = 'block';
+                targetModalWindow.classList.add('active', 'show');
+            }
+        };
+
+        // Run matrix processing arrays on base launch
+        window.processMatrixROI();
 </script>

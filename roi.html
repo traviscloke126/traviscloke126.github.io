@@ -6,17 +6,33 @@ title: ROI Calculator | Apex Vector LLC
 <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #ffffff; background-color: transparent;">
     
     <!-- Uniform Section Header Block -->
-    <div style="text-align: center; margin-bottom: 50px; border-bottom: 1px solid #222; padding-bottom: 30px;">
+    <div style="text-align: center; margin-bottom: 40px;">
         <h1 style="font-size: 2.5rem; color: #ffffff; margin-bottom: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Agricultural ROI Calculator</h1>
         <p style="font-size: 1.15rem; color: #aaaaaa; max-width: 800px; margin: 0 auto; line-height: 1.6;">
             Don't guess what is happening in the middle of your fields. Input your operational parameters below to see exactly how much capital Apex Vector's plug-and-spray data can preserve on your acreage.
         </p>
     </div>
 
+    <!-- 🛸 UNIFORM TELEMETRY ANIMATION GRAPHICS DISPLAY CARD -->
+    <div style="width: 100%; max-width: 1200px; margin: 0 auto 40px auto; background-color: #0c0f12; border: 1px solid #21262d; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;">
+        <!-- Telemetry Data Overlay Strips -->
+        <div style="position: absolute; top: 15px; left: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; letter-spacing: 1px; z-index: 10;">
+            SYS_STATUS: <span style="color: #2ecc71; font-weight: bold;">ACTIVE_SCAN</span><br>
+            SENSOR_MODE: <span id="telemetryMode" style="color: #ffb300; font-weight: bold;">AG_NDVI</span>
+        </div>
+        <div style="position: absolute; top: 15px; right: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; text-align: right; letter-spacing: 1px; z-index: 10;">
+            ALT_AGL: <span id="telemetryAlt" style="color: #ffffff; font-weight: bold;">150</span> FT<br>
+            TARGET: <span style="color: #ffffff; font-weight: bold;">RENO_CO_KS</span>
+        </div>
+        
+        <!-- Interactive Graphics Canvas -->
+        <canvas id="droneSimCanvas" width="800" height="220" style="width: 100%; display: block; background-color: #0c0f12;"></canvas>
+    </div>
+
     <!-- Three-Column Uniform Layout Grid -->
     <div style="display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 30px; align-items: start;">
         
-        <!-- COLUMN 1: REGIONAL BASELINES (Dark Theme Baseline Anchor) -->
+        <!-- COLUMN 1: REGIONAL BASELINES -->
         <div style="background-color: #111111; color: #ffffff; border-left: 4px solid #555555; border-top: 1px solid #222; border-right: 1px solid #222; border-bottom: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
             <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Regional Baselines</h3>
             <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
@@ -98,22 +114,5 @@ title: ROI Calculator | Apex Vector LLC
     </div>
 </div>
 
-<!-- Safe Client-Side Computational Engine -->
-<script>
-function calculateSavings() {
-    const acres = parseFloat(document.getElementById('acres').value) || 0;
-    const fertCostPerAcre = parseFloat(document.getElementById('fert').value) || 0;
-    const labCostPerAcre = parseFloat(document.getElementById('lab').value) || 0;
-
-    const fertSavingsValue = (acres * fertCostPerAcre) * 0.10;
-    const labSavingsValue = (acres * labCostPerAcre) * 0.65;
-    const scaleSavingsValue = acres * 15;
-    
-    const combinedTotal = fertSavingsValue + labSavingsValue + scaleSavingsValue;
-
-    document.getElementById('fert-savings').innerText = '$' + Math.round(fertSavingsValue).toLocaleString();
-    document.getElementById('lab-savings').innerText = '$' + Math.round(labSavingsValue).toLocaleString();
-    document.getElementById('scale-savings').innerText = '$' + Math.round(scaleSavingsValue).toLocaleString();
-    document.getElementById('total-savings').innerText = '$' + Math.round(combinedTotal).toLocaleString();
-}
-</script>
+<!-- Link to the clean external engine logic to prevent generation cutoffs -->
+<script src="/assets/roi-engine.js"></script>

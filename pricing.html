@@ -61,7 +61,15 @@ title: Operations Pricing Matrix
     <label id="inputLabel" style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">2. Enter Estimated Acreage:</label>
     <input type="number" id="acreageInput" value="160" min="1" oninput="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1rem;">
   </div>
-
+<div style="margin-bottom: 25px; position: relative;">
+    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">🛸 Live UAS Telemetry & Flight Simulation:</label>
+    <div style="position: absolute; top: 35px; left: 15px; z-index: 10; background: rgba(13, 17, 23, 0.85); padding: 6px 12px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; border: 1px solid #30363d; color: #39d353;">
+      SYS STATUS: ACTIVE<br>
+      MODE: <span id="telemetryMode">AG_GRID</span><br>
+      ALT: <span id="telemetryAlt">150</span>FT
+    </div>
+    <canvas id="droneSimCanvas" width="550" height="220" style="width: 100%; background: #0b0d10; border: 1px solid #30363d; border-radius: 6px; display: block;"></canvas>
+  </div>
   <!-- Output Matrix Ledger -->
   <div style="border-top: 1px solid #30363d; padding-top: 20px; margin-bottom: 25px;">
     <h4 style="margin: 0 0 15px 0; color: #58a6ff;">📊 Estimated Operations Ledger</h4>

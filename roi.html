@@ -22,14 +22,18 @@ title: ROI Calculator | Apex Vector LLC
     <!-- 🛸 UNIFORM TELEMETRY ANIMATION GRAPHICS DISPLAY CARD -->
     <div style="width: 100%; max-width: 1200px; margin: 0 auto 40px auto; background-color: #0c0f12; border: 1px solid #21262d; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;">
         <!-- Telemetry Data Overlay Strips -->
+                <!-- Telemetry Data Overlay Strips -->
         <div style="position: absolute; top: 15px; left: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; letter-spacing: 1px; z-index: 10;">
             SYS_STATUS: <span style="color: #2ecc71; font-weight: bold;">ACTIVE_SCAN</span><br>
-            SENSOR_MODE: <span id="telemetryMode" style="color: #ffb300; font-weight: bold;">AG_NDVI</span>
+            SENSOR_MODE: <span id="telemetryMode" style="color: #ffb300; font-weight: bold;">AG_NDVI</span><br>
+            DELIVERABLE: <span style="color: #ffffff; font-weight: bold;">CAB-READY DISPLAY USB</span>
         </div>
         <div style="position: absolute; top: 15px; right: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; text-align: right; letter-spacing: 1px; z-index: 10;">
             ALT_AGL: <span id="telemetryAlt" style="color: #ffffff; font-weight: bold;">150</span> FT<br>
-            TARGET: <span style="color: #ffffff; font-weight: bold;">RENO_CO_KS</span>
+            TARGET: <span style="color: #ffffff; font-weight: bold;">RENO_CO_KS</span><br>
+            HARDCOPY: <span style="color: #ffffff; font-weight: bold;">PRINTED LOG SHEET PROVIDED</span>
         </div>
+
         
         <canvas id="droneSimCanvas" width="800" height="220" style="width: 100%; min-height: 220px; height: 220px; display: block; background-color: #0c0f12; clear: both; position: relative; z-index: 1;"></canvas>
     
@@ -649,17 +653,19 @@ title: ROI Calculator | Apex Vector LLC
                     unitLabel = 'Acres';
                 }
 
-                const briefPayloadString = 
-                    "====================================================\n" +
-                    "       APEX VECTOR OPERATIONS DATA TRANSIT SYSTEM       \n" +
-                    "====================================================\n" +
-                    "MISSION PROFILE : " + sectorLabel + "\n" +
-                    "PROJECT SCALE   : " + activeScale + " " + unitLabel + "\n" +
-                    "ESTIMATED FEES  : " + activeFees + " (Gross Valuation Matrix)\n" +
-                    "PROJECTED ROI   : " + activeROI + " Saved Operational Overhead\n" +
-                    "====================================================\n" +
-                    "RENO COUNTY HUB CONTROL: Please secure calendar lines for this flight pattern.\n\n" +
-                    "Client Custom Notes:\n> ";
+                            const briefPayloadString = 
+                "====================================================\n" +
+                "       APEX VECTOR OPERATIONS DATA TRANSIT SYSTEM       \n" +
+                "====================================================\n" +
+                "MISSION PROFILE : " + sectorLabel + "\n" +
+                "PROJECT SCALE   : " + activeScale + " " + unitLabel + "\n" +
+                "ESTIMATED FEES  : " + activeFees + " (Gross Valuation Matrix)\n" +
+                "PROJECTED ROI   : " + activeROI + " Saved Operational Overhead\n" +
+                "====================================================\n" +
+                "DELIVERABLE REQ : [ ] Pre-Configured Cab USB Drive  [ ] Printed Paper Log\n" +
+                "RENO COUNTY HUB CONTROL: Please secure calendar lines for this flight pattern.\n\n" +
+                "Client Custom Notes (Type field names or instructions below):\n> ";
+
 
                 // Find your modal text box fields (targets the main textarea inside your missionModal)
                 const modalTextBox = document.querySelector('#missionModal textarea') || 

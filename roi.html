@@ -115,4 +115,119 @@ title: ROI Calculator | Apex Vector LLC
 </div>
 
 <!-- Link to the clean external engine logic to prevent generation cutoffs -->
-<script src="assets/roi-engine.js"></script>
+<script>
+ 
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #ffffff; background-color: transparent;">
+    
+    <!-- Uniform Section Header Block -->
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: 2.5rem; color: #ffffff; margin-bottom: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Agricultural ROI Calculator</h1>
+        <p style="font-size: 1.15rem; color: #aaaaaa; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            Don't guess what is happening in the middle of your fields. Input your operational parameters below to see exactly how much capital Apex Vector's plug-and-spray data can preserve on your acreage.
+        </p>
+    </div>
+
+    <!-- 🛸 UNIFORM TELEMETRY ANIMATION GRAPHICS DISPLAY CARD -->
+    <div style="width: 100%; max-width: 1200px; margin: 0 auto 40px auto; background-color: #0c0f12; border: 1px solid #21262d; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;">
+        <!-- Telemetry Data Overlay Strips -->
+        <div style="position: absolute; top: 15px; left: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; letter-spacing: 1px; z-index: 10;">
+            SYS_STATUS: <span style="color: #2ecc71; font-weight: bold;">ACTIVE_SCAN</span><br>
+            SENSOR_MODE: <span id="telemetryMode" style="color: #ffb300; font-weight: bold;">AG_NDVI</span>
+        </div>
+        <div style="position: absolute; top: 15px; right: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; text-align: right; letter-spacing: 1px; z-index: 10;">
+            ALT_AGL: <span id="telemetryAlt" style="color: #ffffff; font-weight: bold;">150</span> FT<br>
+            TARGET: <span style="color: #ffffff; font-weight: bold;">RENO_CO_KS</span>
+        </div>
+        
+        <!-- Interactive Graphics Canvas -->
+        <canvas id="droneSimCanvas" width="800" height="220" style="width: 100%; display: block; background-color: #0c0f12;"></canvas>
+    </div>
+
+    <!-- Three-Column Uniform Layout Grid -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 30px; align-items: start;">
+        
+        <!-- COLUMN 1: REGIONAL BASELINES -->
+        <div style="background-color: #111111; color: #ffffff; border-left: 4px solid #555555; border-top: 1px solid #222; border-right: 1px solid #222; border-bottom: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+            <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Regional Baselines</h3>
+            <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
+                Standard regional operational averages for a typical 500-acre dryland tract in Kansas:
+            </p>
+            
+            <div style="margin-bottom: 15px;">
+                <strong style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">Standard Nitrogen Fertilizer:</strong>
+                <span style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">$90.00 / acre</span>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <strong style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">Traditional Grid Soil Lab Fees:</strong>
+                <span style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">$12.00 / acre</span>
+            </div>
+            
+            <div>
+                <strong style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">Average Scale House Risk:</strong>
+                <span style="font-size: 1.2rem; font-weight: 700; color: #e74c3c;">$15.00 / acre</span>
+                <small style="display: block; color: #666666; font-size: 0.8rem; margin-top: 4px;">(Based on a 15–20¢ quality dockage penalty per bushel)</small>
+            </div>
+        </div>
+
+        <!-- COLUMN 2: THE FARMER'S DATA INPUT SANDBOX -->
+        <div style="background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+            <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Your Sandbox</h3>
+            <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
+                Type your exact operational numbers right out of your ledger below to update your returns:
+            </p>
+
+            <!-- Input Box: Total Acres -->
+            <div style="margin-bottom: 20px;">
+                <label for="acres" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">Total Farm Acreage:</label>
+                <input type="number" id="acres" value="500" min="1" step="10" oninput="calculateSavings()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; font-weight: 600; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ffffff'" onblur="this.style.borderColor='#333'">
+            </div>
+
+            <!-- Input Box: Fertilizer Budget -->
+            <div style="margin-bottom: 20px;">
+                <label for="fert" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">Fertilizer Cost ($ / Acre):</label>
+                <input type="number" id="fert" value="90" min="0" step="5" oninput="calculateSavings()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; font-weight: 600; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ffffff'" onblur="this.style.borderColor='#333'">
+            </div>
+
+            <!-- Input Box: Lab Costs -->
+            <div style="margin-bottom: 10px;">
+                <label for="lab" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">Grid Soil Sampling ($ / Acre):</label>
+                <input type="number" id="lab" value="12" min="0" step="1" oninput="calculateSavings()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; font-weight: 600; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ffffff'" onblur="this.style.borderColor='#333'">
+            </div>
+        </div>
+
+        <!-- COLUMN 3: HIGH-CONTRAST INVESTMENT SUMMARY -->
+        <div style="background-color: #ffffff; color: #111111; padding: 30px; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <h3 style="margin-top: 0; color: #111111; font-size: 1.25rem; border-bottom: 2px solid #eeeeee; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 800;">Estimated Return</h3>
+            
+            <!-- Dynamic Combined Total Summary Display Card -->
+            <div style="margin: 20px 0 25px 0; text-align: center; background: #111111; padding: 20px; border-radius: 4px;">
+                <span style="display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #888888; margin-bottom: 5px;">Potential Saved Capital</span>
+                <span id="total-savings" style="font-size: 2.75rem; font-weight: 900; color: #2ecc71;">$18,000</span>
+            </div>
+
+            <!-- Detailed Breakdowns -->
+            <div style="font-size: 0.9rem; line-height: 1.5; color: #333333;">
+                <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
+                    <strong style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Fertilizer Optimization: <span id="fert-savings">$4,500</span></strong>
+                    <span style="color: #555555;">Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).</span>
+                </div>
+
+                <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
+                    <strong style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Smart Soil Analytics: <span id="lab-savings">$3,900</span></strong>
+                    <span style="color: #555555;">65% reduction in lab fees by replacing blind grids with aerial Management Zones.</span>
+                </div>
+
+                <div style="margin-bottom: 5px;">
+                    <strong style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Dockage Risk Shield: <span id="scale-savings">$7,500</span></strong>
+                    <span style="color: #555555;">Defends test weight uniformity mid-season to secure full market price at the scale house scale.</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Link to the clean external engine logic to prevent generation cutoffs -->
+<script src="/assets/roi-engine.js"></script>
+</script>

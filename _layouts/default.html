@@ -229,67 +229,52 @@
 
 /* APEX VECTOR MOBILE RESPONSIVE OPTIMIZATION */
 @media screen and (max-width: 768px) {
+    /* 1. Prevent layout boundaries from clamping content off-screen */
     body, main, section, .container {
         overflow-x: hidden !important;
-        box-sizing: border-box;
-    }
-    table, tbody, tr, td {
-        display: block !important;
         width: 100% !important;
-        box-sizing: border-box;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
-    thead {
-        display: none !important;
+
+    /* 2. Fix the Table / Pricing Grid Layouts */
+    table, tbody, tr {
+        width: 100% !important;
+        display: table !important; /* Restore normal table layout flow */
     }
-    tr {
-        margin-bottom: 1.25rem !important;
-        border: 1px solid #2d3748 !important;
-        border-radius: 6px !important;
-        padding: 0.75rem !important;
-        background: rgba(255, 255, 255, 0.01);
-    }
+
     td {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 0.5rem 0 !important;
-        border: none !important;
-        text-align: right !important;
-        font-size: 0.9rem !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        white-space: normal !important;
+        padding: 0.5rem 0.25rem !important;
+        font-size: 0.8rem !important; /* Scale text down slightly to fit the screen */
+        word-break: normal !important; 
+        overflow-wrap: normal !important;
+        white-space: normal !important; /* Allow long titles to wrap to 2 lines naturally instead of shearing */
     }
-    td[data-label]::before {
-        content: attr(data-label);
-        font-weight: bold;
-        color: #627280;
-        text-align: left;
-        padding-right: 12px;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    .milestone-container, 
-    .phase-flex-wrapper,
-    div[style*="display: flex"],
-    div[style*="display:flex"] { 
+
+    /* 3. Handle Milestone Containers & Side-by-Side Flex Items */
+    /* Target flex components that are running out of horizontal space */
+    div[style*="display: flex"], 
+    div[style*="display:flex"] {
         flex-direction: column !important;
         align-items: stretch !important;
         width: 100% !important;
         gap: 1rem !important;
     }
-    .phase-card, 
+
+    /* Force columns scaling at 30% or 33% to expand to full row width */
     div[style*="width: 30%"], 
     div[style*="width:30%"],
     div[style*="width: 33%"],
-    div[style*="width:33%"] {
+    div[style*="width:33%"],
+    .phase-card {
         width: 100% !important;
         max-width: 100% !important;
-        margin: 0 !important;
+        margin: 0 0 1rem 0 !important;
         box-sizing: border-box !important;
+        display: block !important;
     }
 }
+
 </style>
 </head>
 

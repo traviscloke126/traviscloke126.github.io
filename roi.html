@@ -36,29 +36,29 @@ title: ROI Calculator | Apex Vector LLC
     <!-- Three-Column Uniform Layout Grid -->
     <div style="display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 30px; align-items: start;">
         
-        <!-- COLUMN 1: REGIONAL BASELINES -->
-        <div style="background-color: #111111; color: #ffffff; border-left: 4px solid #555555; border-top: 1px solid #222; border-right: 1px solid #222; border-bottom: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
-            <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Regional Baselines</h3>
-            <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
-                Standard regional operational averages for a typical 500-acre dryland tract in Kansas:
-            </p>
-            
-            <div style="margin-bottom: 15px;">
-                <strong style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">Standard Nitrogen Fertilizer:</strong>
-                <span style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">$90.00 / acre</span>
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <strong style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">Traditional Grid Soil Lab Fees:</strong>
-                <span style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">$12.00 / acre</span>
-            </div>
-            
-            <div>
-                <strong style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">Average Scale House Risk:</strong>
-                <span style="font-size: 1.2rem; font-weight: 700; color: #e74c3c;">$15.00 / acre</span>
-                <small style="display: block; color: #666666; font-size: 0.8rem; margin-top: 4px;">(Based on a 15–20¢ quality dockage penalty per bushel)</small>
-            </div>
-        </div>
+      <div style="background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+    <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Regional Baselines</h3>
+    <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
+        Standard regional operational averages based on industry sector metrics:
+    </p>
+
+    <div style="margin-bottom: 15px;">
+        <strong id="base-label-1" style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">STANDARD NITROGEN FERTILIZER:</strong>
+        <span id="base-val-1" style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">$90.00 / acre</span>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <strong id="base-label-2" style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">TRADITIONAL GRID SOIL LAB FEES:</strong>
+        <span id="base-val-2" style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">$12.00 / acre</span>
+    </div>
+
+    <div>
+        <strong id="base-label-3" style="display: block; color: #aaaaaa; font-size: 0.95rem; text-transform: uppercase;">AVERAGE SCALE HOUSE RISK:</strong>
+        <span id="base-val-3" style="font-size: 1.2rem; font-weight: 700; color: #ff3333;">$15.00 / acre</span>
+        <small id="base-desc-3" style="display: block; color: #666666; font-size: 0.8rem; margin-top: 4px;">(Based on a 15–20¢ quality dockage penalty per bushel)</small>
+    </div>
+</div>
+
 
         <!-- COLUMN 2: THE FARMER'S DATA INPUT SANDBOX -->
         <div style="background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
@@ -157,8 +157,7 @@ title: ROI Calculator | Apex Vector LLC
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(numericValue);
     }
 
-    // --- 2. Multi-Industry Mode Switcher Logic ---
-       // --- 2. Multi-Industry Mode Switcher Logic ---
+        // --- 2. Multi-Industry Mode Switcher Logic ---
     window.currentActiveMode = 'ag';
 
     window.switchMatrixMode = function(targetMode) {
@@ -184,25 +183,34 @@ title: ROI Calculator | Apex Vector LLC
             activeTab.style.fontWeight = 'bold';
         }
 
-        // Dynamically update form labels and descriptions based on industry parameters
+        // Expanded dataset including Regional Baseline Card parameters
         const labels = {
             ag: {
                 acres: 'TOTAL FARM ACREAGE:', fert: 'FERTILIZER COST (\$ / ACRE):', lab: 'GRID SOIL SAMPLING (\$ / ACRE):', shield: 'SCALE HOUSE RISK PROTECTION (\$ / ACRE):',
                 desc1: 'Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).',
                 desc2: '65% reduction in lab fees by replacing blind grids with aerial Management Zones.',
-                desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.'
+                desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.',
+                bl1: 'STANDARD NITROGEN FERTILIZER:', bv1: '\$90.00 / acre',
+                bl2: 'TRADITIONAL GRID SOIL LAB FEES:', bv2: '\$12.00 / acre',
+                bl3: 'AVERAGE SCALE HOUSE RISK:', bv3: '\$15.00 / acre', bd3: '(Based on a 15–20¢ quality dockage penalty per bushel)'
             },
             infra: {
                 acres: 'TOTAL INFRASTRUCTURE ASSET SCALE:', fert: 'MANUAL CREW DAY-RATE (\$ / ASSET):', lab: 'TRADITIONAL EQUIPMENT OVERHEAD (\$):', shield: 'UNSCHEDULED OUTAGE BUFFER (\$ / ASSET):',
                 desc1: 'Cuts scaffolding and manual climbing equipment deployment overhead costs by 75%.',
                 desc2: 'Sub-centimeter structural analysis maps defects early to boost equipment lifecycle runtime.',
-                desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.'
+                desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.',
+                bl1: 'MANUAL TEAM INSPECTION baseline:', bv1: '\$350.00 / tower',
+                bl2: 'TRADITIONAL EQUIPMENT BASELINE:', bv2: '\$1,200.00 flat',
+                bl3: 'UNSCHEDULED RUNTIME CRITICAL RISK:', bv3: '\$5,000.00 / incident', bd3: '(Based on regional emergency structural hardware outage histories)'
             },
             media: {
                 acres: 'PROJECT LAYOUT FOOTPRINT (ACRES):', fert: 'TRADITIONAL SURVEYING OVERHEAD (\$ / AC):', lab: 'ASSET MARKETING EXPENSES (\$):', shield: 'CAPITAL DRAW VERIFICATION SHIELD (\$):',
                 desc1: '3D photogrammetry maps grading profiles and stockpile volume scans 60% more efficiently.',
                 desc2: 'Accelerated high-end media packaging tailored to clear corporate commercial listings faster.',
-                desc3: 'Site tracking updates provide quick volumetric proof to clear lender funding cycles.'
+                desc3: 'Site tracking updates provide quick volumetric proof to clear lender funding cycles.',
+                bl1: 'TRADITIONAL SURVEY RUN COST:', bv1: '\$45.00 / acre',
+                bl2: 'COMMERCIAL MEDIA PRODUCTION FEES:', bv2: '\$1,500.00 flat',
+                bl3: 'LENDER DRAW PROCESSING DELAY RISK:', bv3: '\$2,500.00 / cycle', bd3: '(Estimated operational overhead lost during milestone dispute windows)'
             }
         };
 
@@ -216,6 +224,15 @@ title: ROI Calculator | Apex Vector LLC
         if (lblFert) lblFert.innerHTML = labels[targetMode].fert;
         if (lblLab) lblLab.innerHTML = labels[targetMode].lab;
         if (lblShield) lblShield.innerHTML = labels[targetMode].shield;
+
+        // Update Regional Baseline Text Nodes
+        const bL1 = document.getElementById('base-label-1'); const bV1 = document.getElementById('base-val-1');
+        const bL2 = document.getElementById('base-label-2'); const bV2 = document.getElementById('base-val-2');
+        const bL3 = document.getElementById('base-label-3'); const bV3 = document.getElementById('base-val-3'); const bD3 = document.getElementById('base-desc-3');
+
+        if (bL1) bL1.innerText = labels[targetMode].bl1; if (bV1) bV1.innerText = labels[targetMode].bv1;
+        if (bL2) bL2.innerText = labels[targetMode].bl2; if (bV2) bV2.innerText = labels[targetMode].bv2;
+        if (bL3) bL3.innerText = labels[targetMode].bl3; if (bV3) bV3.innerText = labels[targetMode].bv3; if (bD3) bD3.innerText = labels[targetMode].bd3;
 
         // Query detailed financial summary row description spans underneath green pricing tags
         const summarySpans = document.querySelectorAll('.main-container span[style*="color: #555555"], .main-container span[style*="color:#555555"]');

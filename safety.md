@@ -3,6 +3,7 @@ layout: default
 title: Aviation Safety & Regulatory Boundaries
 ---
 
+
 # Aviation Safety, Risk Mitigation & Command Authority
 
 At Apex Vector LLC, safety is not a secondary checkbox—it is the foundational standard upon which every flight operation is engineered. Our on-site risk mitigation strategies transfer high-stakes military aviation discipline into commercial unmanned operations.

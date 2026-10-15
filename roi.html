@@ -67,14 +67,23 @@ title: ROI Calculator | Apex Vector LLC
                 Type your exact operational numbers right out of your ledger below to update your returns:
             </p>
 
-           <!-- Input Box: Total Acres (Line 74) -->
-<input type="number" id="acres" value="500" min="1" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem;">
+            <!-- Input Box: Total Acres -->
+            <div style="margin-bottom: 20px;">
+                <label for="acres" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">TOTAL FARM ACREAGE:</label>
+                <input type="number" id="acres" value="500" min="1" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; box-sizing: border-box;">
+            </div>
 
-<!-- Input Box: Fertilizer Budget (Line 80) -->
-<input type="number" id="fert" value="90" min="0" step="5" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem;">
+            <!-- Input Box: Fertilizer Budget -->
+            <div style="margin-bottom: 20px;">
+                <label for="fert" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">FERTILIZER COST ($ / ACRE):</label>
+                <input type="number" id="fert" value="90" min="0" step="5" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; box-sizing: border-box;">
+            </div>
 
-<!-- Input Box: Lab Costs (Line 86) -->
-<input type="number" id="lab" value="12" min="0" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem;">
+            <!-- Input Box: Lab Costs -->
+            <div style="margin-bottom: 20px;">
+                <label for="lab" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">GRID SOIL SAMPLING ($ / ACRE):</label>
+                <input type="number" id="lab" value="12" min="0" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; box-sizing: border-box;">
+            </div>
 
         <!-- COLUMN 3: HIGH-CONTRAST INVESTMENT SUMMARY -->
         <div style="background-color: #ffffff; color: #111111; padding: 30px; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">

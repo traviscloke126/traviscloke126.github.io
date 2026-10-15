@@ -206,15 +206,16 @@ title: ROI Calculator | Apex Vector LLC
             }
         };
 
-            // Query form labels dynamically by index order from the sandbox card
-        const labelsList = document.querySelectorAll('.form-group label');
-        
-        if (labelsList && labelsList.length >= 4) {
-            labelsList[0].innerHTML = labels[targetMode].acres;
-            labelsList[1].innerHTML = labels[targetMode].cost1;
-            labelsList[2].innerHTML = labels[targetMode].cost2;
-            labelsList[3].innerHTML = labels[targetMode].cost3;
-        }
+                // Target each label directly by its linked input field property
+        const lblAcres = document.querySelector('label[for="input-acres"]');
+        const lblCost1 = document.querySelector('label[for="input-fert-cost"]');
+        const lblCost2 = document.querySelector('label[for="input-sample-cost"]');
+        const lblCost3 = document.querySelector('label[for="input-penalty-risk"]');
+
+        if (lblAcres) lblAcres.innerHTML = labels[targetMode].acres;
+        if (lblCost1) lblCost1.innerHTML = labels[targetMode].cost1;
+        if (lblCost2) lblCost2.innerHTML = labels[targetMode].cost2;
+        if (lblCost3) lblCost3.innerHTML = labels[targetMode].cost3;
 
         // Force layout calculations to instantly sync numbers
         window.processMatrixROI();

@@ -123,45 +123,68 @@ function calculateEstimate() {
   if (profile === 'ag') {
     inputLabel.innerText = "2. Enter Estimated Acreage:";
     
-    // Scale rate dynamically based on acreage size to stay ultra-competitive
-    let ratePerAcre = 3.50; 
-    if (rawInput > 160) ratePerAcre = 2.75;
-    if (rawInput > 640) ratePerAcre = 2.25;
+// Scale rate dynamically based on acreage size to stay ultra-competitive
+let dynamicRate = 3.50;
 
-    fieldCaptureCost = rawInput * ratePerAcre;
-    layoutAdjustmentCost = 0; // Completely flat and transparent
-    absoluteTotalValue = fieldCaptureCost;
+if (rawInput > 160 && rawInput <= 640) {
+    dynamicRate = 2.75;
+} else if (rawInput > 640) {
+    dynamicRate = 2.25;
+}
+
+fieldCaptureCost = rawInput * dynamicRate;
+
+// Enforce a $250 operational baseline floor for small fields
+if (fieldCaptureCost < 250.00 && rawInput > 0) {
+    fieldCaptureCost = 250.00;
+}
+
+layoutAdjustmentCost = 0; // Completely flat and transparent
+absoluteTotalValue = fieldCaptureCost;
+
 
   } else if (profile === 'earthwork') {
     inputLabel.innerText = "2. Enter Estimated Acreage:";
-    
+
     // Enforce the $750 site minimum if under 25 acres
     if (rawInput <= 25) {
-      absoluteTotalValue = 750.00;
-      fieldCaptureCost = 750.00;
-      layoutAdjustmentCost = 0;
+        absoluteTotalValue = 750.00;
+        fieldCaptureCost = 750.00;
+        layoutAdjustmentCost = 0;
     } else {
-      // Scale clean per acre cost for vast construction grids
-      const dynamicRate = rawInput > 100 ? 18.00 : 25.00;
-      fieldCaptureCost = rawInput * dynamicRate;
-      layoutAdjustmentCost = 0;
-      absoluteTotalValue = fieldCaptureCost;
+        // Corrected sliding scale to bring rates DOWN as project size increases
+        let dynamicRate = 20.00; // Base rate for 26 - 50 acres
+        
+        if (rawInput > 50 && rawInput <= 100) {
+            dynamicRate = 12.00; // Tapered rate for mid-size commercial plots
+        } else if (rawInput > 100) {
+            dynamicRate = 7.50;  // Ultra-competitive tier for massive construction grids
+        }
+
+        fieldCaptureCost = rawInput * dynamicRate;
+        layoutAdjustmentCost = 0;
+        absoluteTotalValue = fieldCaptureCost;
     }
+
 
   } else if (profile === 'media') {
     inputLabel.innerText = "2. Enter Estimated Project Hours:";
-    
+
+    // Calculate actual field capture for the requested time
+    fieldCaptureCost = rawInput * 200.00;
+
     // Enforce 2-hour minimum block floor rate ($400 minimum)
-    const activeHours = rawInput < 2 ? 2 : rawInput;
-    fieldCaptureCost = activeHours * 200.00;
-    
     if (rawInput < 2 && rawInput > 0) {
-      layoutAdjustmentCost = (2 - rawInput) * 200.00; // Track missing hours as setup variance
+        // Show the difference on the ledger as a setup adjustment variance
+        layoutAdjustmentCost = (2 - rawInput) * 200.00;
     } else {
-      layoutAdjustmentCost = 0;
+        layoutAdjustmentCost = 0;
     }
-    absoluteTotalValue = fieldCaptureCost;
-  }
+
+    // Total perfectly balances out to $400 minimum, or straight hourly above 2 hours
+    absoluteTotalValue = fieldCaptureCost + layoutAdjustmentCost;
+}
+
 
   // Calculate standard corporate milestone schedule splits
   const phase1Val = absoluteTotalValue * 0.30;

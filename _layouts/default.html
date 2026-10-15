@@ -153,6 +153,54 @@
       padding: 2rem;
       position: relative;
     }
+/* DELIVERABLE CHECKBOX INTERACTIVE MODULE */
+.deliverables-group-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.deliverables-group-title {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #627280; /* Matches your footer font styling color */
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.deliverables-container {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    background: #161B1F; /* Matches your .badge background token exactly */
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #2d3748; /* Matches your #modalBox border frame layout */
+}
+
+.deliverable-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.deliverable-label:hover {
+    color: #ffffff;
+}
+
+.deliverable-checkbox-input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #2563eb; /* Active accent tracking matrix color */
+    cursor: pointer;
+    border: 1px solid #2d3748;
+    border-radius: 3px;
+}
 
     #closeModalBtn {
       position: absolute;
@@ -265,6 +313,20 @@
 </select>
             </div>
           </div>
+<!-- Insert directly above Step 05 inside your HTML file -->
+<div class="deliverables-group-wrapper">
+    <label class="deliverables-group-title">Deliverable Requirements</label>
+    <div class="deliverables-container">
+        <label class="deliverable-label">
+            <input type="checkbox" id="req-usb-drive" class="deliverable-checkbox-input">
+            Pre-Configured Cab USB Drive
+        </label>
+        <label class="deliverable-label">
+            <input type="checkbox" id="req-paper-log" class="deliverable-checkbox-input">
+            Printed Paper Log Sheet
+        </label>
+    </div>
+</div>
 
           <div class="form-group">
             <label for="intake-notes">05. Operational Timeline & Notes</label>

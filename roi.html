@@ -176,7 +176,7 @@ title: ROI Calculator | Apex Vector LLC
         elementMatrix.btnPrint.addEventListener('click', () => { window.print(); });
     }
 
-    // --- 3. HTML5 Flight Simulation Telemetry Engine ---
+    // --- 3. Hybrid Flight Path & Tactical Sensor Sweep Engine ---
     const telemetryCanvas = document.getElementById('droneSimCanvas');
     if (telemetryCanvas) {
         const renderContext = telemetryCanvas.getContext('2d');
@@ -184,17 +184,28 @@ title: ROI Calculator | Apex Vector LLC
         let canvasW = telemetryCanvas.width = 800;
         let canvasH = telemetryCanvas.height = 220;
         
-        let verticalRadarLineY = 0;
-        let vectorCoordinateX = 100;
-        let vectorCoordinateY = 110;
-        let motionAngleMultiplier = 0;
+        // Define Row-by-Row Flight Path Parameters
+        const flightPadding = 60;
+        const rowSpacing = 40;
+        const flightLines = [];
+        
+        // Generate a 4-row structured lawnmower grid route layout
+        for (let y = flightPadding; y <= canvasH - flightPadding; y += rowSpacing) {
+            flightLines.push(y);
+        }
+        
+        let currentLineIndex = 0;
+        let droneX = flightPadding;
+        let droneY = flightLines[0];
+        let movingForward = true;
+        let flightSpeed = 2.5;
 
         function renderTelemetryLoop() {
-            // Apply slight alpha overlay to trace path routes cleanly
-            renderContext.fillStyle = 'rgba(12, 15, 18, 0.3)';
+            // Dark blueprint base background fill
+            renderContext.fillStyle = '#0c0f12';
             renderContext.fillRect(0, 0, canvasW, canvasH);
 
-            // Render Precision Target Grid Alignment Map
+            // 1. Draw Technical Target Grid Lines (Option 1 Background)
             renderContext.strokeStyle = 'rgba(43, 166, 255, 0.06)';
             renderContext.lineWidth = 1;
             for (let x = 0; x < canvasW; x += 40) {
@@ -204,48 +215,102 @@ title: ROI Calculator | Apex Vector LLC
                 renderContext.beginPath(); renderContext.moveTo(0, y); renderContext.lineTo(canvasW, y); renderContext.stroke();
             }
 
-            // Downward Sweeping Airspace Line
-            verticalRadarLineY += 1.2;
-            if (verticalRadarLineY > canvasH) verticalRadarLineY = 0;
+            // 2. Draw the Total Delineated Flight Path Structure (Dotted Waypoints)
             renderContext.strokeStyle = 'rgba(43, 166, 255, 0.15)';
+            renderContext.lineWidth = 1.5;
+            renderContext.setLineDash([4, 6]);
             renderContext.beginPath();
-            renderContext.moveTo(0, verticalRadarLineY);
-            renderContext.lineTo(canvasW, verticalRadarLineY);
+            for (let i = 0; i < flightLines.length; i++) {
+                let yVal = flightLines[i];
+                if (i % 2 === 0) {
+                    renderContext.lineTo(flightPadding, yVal);
+                    renderContext.lineTo(canvasW - flightPadding, yVal);
+                } else {
+                    renderContext.lineTo(canvasW - flightPadding, yVal);
+                    renderContext.lineTo(flightPadding, yVal);
+                }
+            }
             renderContext.stroke();
+            renderContext.setLineDash([]); // Reset dash state
 
-            // Calculate Mathematical Flight Patterns across the Canvas Area
-            motionAngleMultiplier += 0.012;
-            vectorCoordinateX = (canvasW / 2) + Math.cos(motionAngleMultiplier) * 280;
-            vectorCoordinateY = (canvasH / 2) + Math.sin(motionAngleMultiplier * 2) * 55;
+            // 3. Mathematical Drone Trajectory Calculations (Row-by-Row)
+            let targetY = flightLines[currentLineIndex];
+            
+            // If tracking to the current altitude line vertical coordinate
+            if (Math.abs(droneY - targetY) > 0.5) {
+                // Changing flight rows smoothly
+                droneY += (targetY - droneY) > 0 ? flightSpeed : -flightSpeed;
+            } else {
+                // Actively traversing horizontal tracking lane
+                if (movingForward) {
+                    droneX += flightSpeed;
+                    if (droneX >= canvasW - flightPadding) {
+                        movingForward = false;
+                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
+                    }
+                } else {
+                    droneX -= flightSpeed;
+                    if (droneX <= flightPadding) {
+                        movingForward = true;
+                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
+                    }
+                }
+            }
 
             // Introduce Real-Time Telemetry Metrics Jitter
             if (elementMatrix.telemetryAlt && Math.random() > 0.88) {
                 elementMatrix.telemetryAlt.innerText = Math.floor(152 + Math.random() * 7);
             }
 
-            // Draw Tactical Flight Tracker Target Scope Reticle
-            renderContext.strokeStyle = '#27ae60'; // High-contrast asset line green matching your text accents
+            // 4. Draw Light Blueish Cone Sensor Sweep (Option 2 Component)
+            let coneWidth = 65;
+            let coneGradient = renderContext.createLinearGradient(droneX, droneY, droneX, droneY + 90);
+            coneGradient.addColorStop(0, 'rgba(43, 166, 255, 0.4)');
+            coneGradient.addColorStop(0.3, 'rgba(43, 166, 255, 0.15)');
+            coneGradient.addColorStop(1, 'rgba(43, 166, 255, 0.0)');
+            
+            renderContext.fillStyle = coneGradient;
+            renderContext.beginPath();
+            renderContext.moveTo(droneX, droneY);
+            renderContext.lineTo(droneX - coneWidth, droneY + 90);
+            renderContext.lineTo(droneX + coneWidth, droneY + 90);
+            renderContext.closePath();
+            renderContext.fill();
+
+            // Draw scanning footprint indicator bar on target ground layer
+            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.6)';
             renderContext.lineWidth = 1.5;
             renderContext.beginPath();
-            renderContext.arc(vectorCoordinateX, vectorCoordinateY, 14, 0, Math.PI * 2);
+            renderContext.moveTo(droneX - coneWidth + 10, droneY + 90);
+            renderContext.lineTo(droneX + coneWidth - 10, droneY + 90);
             renderContext.stroke();
 
-            // Crosshair Tracking Scope Reticle Elements
+            // 5. Draw Tactical Drone Asset Chassis Crosshair
+            renderContext.strokeStyle = '#27ae60'; // Sharp tracking bright green
+            renderContext.lineWidth = 2;
+            
+            // Draw Wings/Rotors profile outline
             renderContext.beginPath();
-            renderContext.moveTo(vectorCoordinateX - 22, vectorCoordinateY); renderContext.lineTo(vectorCoordinateX + 22, vectorCoordinateY);
-            renderContext.moveTo(vectorCoordinateX, vectorCoordinateY - 22); renderContext.lineTo(vectorCoordinateX, vectorCoordinateY + 22);
+            renderContext.moveTo(droneX - 16, droneY); renderContext.lineTo(droneX + 16, droneY);
+            renderContext.moveTo(droneX, droneY - 4);  renderContext.lineTo(droneX, droneY + 4);
             renderContext.stroke();
+            
+            // Renders small sensor lens node center point
+            renderContext.fillStyle = '#ffffff';
+            renderContext.beginPath();
+            renderContext.arc(droneX, droneY, 3, 0, Math.PI * 2);
+            renderContext.fill();
 
-            // Tactical Overlay Meta-Data Labels
+            // Tactical Overlay Dynamic Metadata Labels
             renderContext.fillStyle = '#ffffff';
             renderContext.font = '9px monospace';
-            renderContext.fillText(`SYS_STATUS: ACTIVE_SCAN`, vectorCoordinateX + 26, vectorCoordinateY - 6);
-            renderContext.fillText(`POS_LAT: ${Math.floor(vectorCoordinateX)} | POS_LNG: ${Math.floor(vectorCoordinateY)}`, vectorCoordinateX + 26, vectorCoordinateY + 6);
+            renderContext.fillText(`SYS_STATUS: MAPPED_SCAN_RUN`, droneX + 22, droneY - 6);
+            renderContext.fillText(`LAT_X: ${Math.floor(droneX)} | WP_ROW: 0${currentLineIndex + 1}`, droneX + 22, droneY + 6);
 
             requestAnimationFrame(renderTelemetryLoop);
         }
 
-        // Initialize Embedded Canvas Vector Display loop
+        // Initialize Embedded Hybrid Canvas Vector Display loop
         renderTelemetryLoop();
     }
 

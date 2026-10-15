@@ -149,183 +149,20 @@ title: ROI Calculator | Apex Vector LLC
     }
 
     // Attach Listeners Across Regional Inputs
-    attachSyncListeners(elementMatrix.acresNum, elementMatrix.acresRange, processMatrixROI);
-    attachSyncListeners(elementMatrix.fertNum, elementMatrix.fertRange, processMatrixROI);
-    attachSyncListeners(elementMatrix.soilNum, elementMatrix.soilRange, processMatrixROI);
-    attachSyncListeners(elementMatrix.shieldNum, elementMatrix.shieldRange, processMatrixROI);
+    attachSyncListeners(elementMatrix.acresNum, elementMatrix.acresRange, () => window.processMatrixROI());
+    attachSyncListeners(elementMatrix.fertNum, elementMatrix.fertRange, () => window.processMatrixROI());
+    attachSyncListeners(elementMatrix.soilNum, elementMatrix.soilRange, () => window.processMatrixROI());
+    attachSyncListeners(elementMatrix.shieldNum, elementMatrix.shieldRange, () => window.processMatrixROI());
 
     function formatToUSD(numericValue) {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(numericValue);
     }
 
-    // --- 2. Conservative Agri-Business Calculation Models ---
-    function processMatrixROI() {
-        const fieldAcres = parseFloat(elementMatrix.acresNum?.value) || 500;
-        const fertBaseline = parseFloat(elementMatrix.fertNum?.value) || 90;
-        const soilBaseline = parseFloat(elementMatrix.soilNum?.value) || 10;
-        const shieldRiskValue = parseFloat(elementMatrix.shieldNum?.value) || 15;
-
-        // Farmer-Verified Loss Prevention Equations
-        const optimizedFertilizerSavings = (fieldAcres * fertBaseline) * 0.10;
-        const structuralSoilSamplingSavings = (fieldAcres * soilBaseline) * 0.65;
-        const scaleHouseShieldSavings = fieldAcres * shieldRiskValue;
-        const compiledAggregateSavings = optimizedFertilizerSavings + structuralSoilSamplingSavings + scaleHouseShieldSavings;
-
-        // Render Local Form Values
-        if (elementMatrix.totalSavings) elementMatrix.totalSavings.innerText = formatToUSD(compiledAggregateSavings);
-        if (elementMatrix.fertSavings) elementMatrix.fertSavings.innerText = formatToUSD(optimizedFertilizerSavings);
-        if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(structuralSoilSamplingSavings);
-        if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(scaleHouseShieldSavings);
-    }
-
-    if (elementMatrix.btnPrint) {
-        elementMatrix.btnPrint.addEventListener('click', () => { window.print(); });
-    }
-
-    // --- 3. Hybrid Flight Path & Tactical Sensor Sweep Engine ---
-    const telemetryCanvas = document.getElementById('droneSimCanvas');
-    if (telemetryCanvas) {
-        const renderContext = telemetryCanvas.getContext('2d');
-        
-        let canvasW = telemetryCanvas.width = 800;
-        let canvasH = telemetryCanvas.height = 220;
-        
-        // Define Row-by-Row Flight Path Parameters
-        const flightPadding = 60;
-        const rowSpacing = 40;
-        const flightLines = [];
-        
-        // Generate a 4-row structured lawnmower grid route layout
-        for (let y = flightPadding; y <= canvasH - flightPadding; y += rowSpacing) {
-            flightLines.push(y);
-        }
-        
-        let currentLineIndex = 0;
-        let droneX = flightPadding;
-        let droneY = flightLines[0];
-        let movingForward = true;
-        let flightSpeed = 2.5;
-
-        function renderTelemetryLoop() {
-            // Dark blueprint base background fill
-            renderContext.fillStyle = '#0c0f12';
-            renderContext.fillRect(0, 0, canvasW, canvasH);
-
-            // 1. Draw Technical Target Grid Lines (Option 1 Background)
-            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.06)';
-            renderContext.lineWidth = 1;
-            for (let x = 0; x < canvasW; x += 40) {
-                renderContext.beginPath(); renderContext.moveTo(x, 0); renderContext.lineTo(x, canvasH); renderContext.stroke();
-            }
-            for (let y = 0; y < canvasH; y += 40) {
-                renderContext.beginPath(); renderContext.moveTo(0, y); renderContext.lineTo(canvasW, y); renderContext.stroke();
-            }
-
-            // 2. Draw the Total Delineated Flight Path Structure (Dotted Waypoints)
-            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.15)';
-            renderContext.lineWidth = 1.5;
-            renderContext.setLineDash([4, 6]);
-            renderContext.beginPath();
-            for (let i = 0; i < flightLines.length; i++) {
-                let yVal = flightLines[i];
-                if (i % 2 === 0) {
-                    renderContext.lineTo(flightPadding, yVal);
-                    renderContext.lineTo(canvasW - flightPadding, yVal);
-                } else {
-                    renderContext.lineTo(canvasW - flightPadding, yVal);
-                    renderContext.lineTo(flightPadding, yVal);
-                }
-            }
-            renderContext.stroke();
-            renderContext.setLineDash([]); // Reset dash state
-
-            // 3. Mathematical Drone Trajectory Calculations (Row-by-Row)
-            let targetY = flightLines[currentLineIndex];
-            
-            // If tracking to the current altitude line vertical coordinate
-            if (Math.abs(droneY - targetY) > 0.5) {
-                // Changing flight rows smoothly
-                droneY += (targetY - droneY) > 0 ? flightSpeed : -flightSpeed;
-            } else {
-                // Actively traversing horizontal tracking lane
-                if (movingForward) {
-                    droneX += flightSpeed;
-                    if (droneX >= canvasW - flightPadding) {
-                        movingForward = false;
-                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
-                    }
-                } else {
-                    droneX -= flightSpeed;
-                    if (droneX <= flightPadding) {
-                        movingForward = true;
-                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
-                    }
-                }
-            }
-
-            // Introduce Real-Time Telemetry Metrics Jitter
-            if (elementMatrix.telemetryAlt && Math.random() > 0.88) {
-                elementMatrix.telemetryAlt.innerText = Math.floor(152 + Math.random() * 7);
-            }
-
-            // 4. Draw Light Blueish Cone Sensor Sweep (Option 2 Component)
-            let coneWidth = 65;
-            let coneGradient = renderContext.createLinearGradient(droneX, droneY, droneX, droneY + 90);
-            coneGradient.addColorStop(0, 'rgba(43, 166, 255, 0.4)');
-            coneGradient.addColorStop(0.3, 'rgba(43, 166, 255, 0.15)');
-            coneGradient.addColorStop(1, 'rgba(43, 166, 255, 0.0)');
-            
-            renderContext.fillStyle = coneGradient;
-            renderContext.beginPath();
-            renderContext.moveTo(droneX, droneY);
-            renderContext.lineTo(droneX - coneWidth, droneY + 90);
-            renderContext.lineTo(droneX + coneWidth, droneY + 90);
-            renderContext.closePath();
-            renderContext.fill();
-
-            // Draw scanning footprint indicator bar on target ground layer
-            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.6)';
-            renderContext.lineWidth = 1.5;
-            renderContext.beginPath();
-            renderContext.moveTo(droneX - coneWidth + 10, droneY + 90);
-            renderContext.lineTo(droneX + coneWidth - 10, droneY + 90);
-            renderContext.stroke();
-
-            // 5. Draw Tactical Drone Asset Chassis Crosshair
-            renderContext.strokeStyle = '#27ae60'; // Sharp tracking bright green
-            renderContext.lineWidth = 2;
-            
-            // Draw Wings/Rotors profile outline
-            renderContext.beginPath();
-            renderContext.moveTo(droneX - 16, droneY); renderContext.lineTo(droneX + 16, droneY);
-            renderContext.moveTo(droneX, droneY - 4);  renderContext.lineTo(droneX, droneY + 4);
-            renderContext.stroke();
-            
-            // Renders small sensor lens node center point
-            renderContext.fillStyle = '#ffffff';
-            renderContext.beginPath();
-            renderContext.arc(droneX, droneY, 3, 0, Math.PI * 2);
-            renderContext.fill();
-
-            // Tactical Overlay Dynamic Metadata Labels
-            renderContext.fillStyle = '#ffffff';
-            renderContext.font = '9px monospace';
-            // Dynamic labels that adapt to the selected industry tab
-            let sysModeLabel = currentActiveMode === 'ag' ? 'MAPPED_AG_SCAN' : currentActiveMode === 'infra' ? 'STRUCTURAL_INFRA_SCAN' : 'EARTHWORK_MEDIA_RUN';
-            renderContext.fillText(`SYS_STATUS: ${sysModeLabel}`, droneX + 22, droneY - 6);
-            renderContext.fillText(`LAT_X: ${Math.floor(droneX)} | WP_ROW: 0${currentLineIndex + 1}`, droneX + 22, droneY + 6);
-
-            requestAnimationFrame(renderTelemetryLoop);
-        }
-
-        // Initialize Embedded Hybrid Canvas Vector Display loop
-        renderTelemetryLoop();
-    }
-    // --- 4. Multi-Industry Mode Switcher Logic ---
-    let currentActiveMode = 'ag';
+    // --- 2. Multi-Industry Mode Switcher Logic ---
+    window.currentActiveMode = 'ag';
 
     window.switchMatrixMode = function(targetMode) {
-        currentActiveMode = targetMode;
+        window.currentActiveMode = targetMode;
         
         // Reset tab styles to inactive states
         ['ag', 'infra', 'media'].forEach(mode => {
@@ -350,43 +187,40 @@ title: ROI Calculator | Apex Vector LLC
         // Dynamically update form labels and descriptions based on industry parameters
         const labels = {
             ag: {
-                acres: 'Total Farm Acreage:<span>Total production surface area designated for active drone mapping.</span>',
-                cost1: 'FERTILIZER COST (\$ / ACRE):<span>Average baseline material and application cost per acre.</span>',
-                cost2: 'GRID SOIL SAMPLING (\$ / ACRE):<span>Standard cost for blind 2.5-acre grid physical lab extractions.</span>',
-                cost3: 'SCALE HOUSE RISK PROTECTION (\$ / ACRE):<span>Flat baseline insurance factor to prevent test weight or moisture dockage.</span>'
+                acres: 'TOTAL FARM ACREAGE:<span>Total production surface area designated for active drone mapping.</span>',
+                cost1: 'FERTILIZER COST ($ / ACRE):<span>Average baseline material and application cost per acre.</span>',
+                cost2: 'GRID SOIL SAMPLING ($ / ACRE):<span>Standard cost for blind 2.5-acre grid physical lab extractions.</span>',
+                cost3: 'SCALE HOUSE RISK PROTECTION ($ / ACRE):<span>Flat baseline insurance factor to prevent test weight or moisture dockage.</span>'
             },
             infra: {
-                acres: 'Total Infrastructure Asset Scale:<span>Total count of structural towers, utility configurations, or roof layouts.</span>',
-                cost1: 'MANUAL CREW DAY-RATE (\$ / ASSET):<span>Average logistical and safety gear costs for manual human climbing teams.</span>',
-                cost2: 'TRADITIONAL EQUIPMENT OVERHEAD (\$):<span>Baseline cost for localized scaffolding, bucket trucks, or manual logs.</span>',
-                cost3: 'UNSCHEDULED OUTAGE BUFFER (\$ / ASSET):<span>Proactive risk mitigation factor to protect critical assets from structural failure.</span>'
+                acres: 'TOTAL INFRASTRUCTURE ASSET SCALE:<span>Total count of structural towers, utility configurations, or roof layouts.</span>',
+                cost1: 'MANUAL CREW DAY-RATE ($ / ASSET):<span>Average logistical and safety gear costs for manual human climbing teams.</span>',
+                cost2: 'TRADITIONAL EQUIPMENT OVERHEAD ($):<span>Baseline cost for localized scaffolding, bucket trucks, or manual logs.</span>',
+                cost3: 'UNSCHEDULED OUTAGE BUFFER ($ / ASSET):<span>Proactive risk mitigation factor to protect critical assets from structural failure.</span>'
             },
             media: {
-                acres: 'Project Layout Footprint (Acres):<span>Total developmental site scale or horizontal construction tracking area.</span>',
-                cost1: 'TRADITIONAL SURVEYING OVERHEAD (\$ / AC):<span>Standard cost to bring out traditional transit and manual GPS staking crews.</span>',
-                cost2: 'ASSET MARKETING & LISTING EXPENSES (\$):<span>Baseline commercial media production, editing, and distribution asset overhead.</span>',
-                cost3: 'CAPITAL DRAW VERIFICATION SHIELD (\$):<span>Site tracking factor to validate stockpile volumes and speed up bank funding cycles.</span>'
+                acres: 'PROJECT LAYOUT FOOTPRINT (ACRES):<span>Total developmental site scale or horizontal construction tracking area.</span>',
+                cost1: 'TRADITIONAL SURVEYING OVERHEAD ($ / AC):<span>Standard cost to bring out traditional transit and manual GPS staking crews.</span>',
+                cost2: 'ASSET MARKETING & LISTING EXPENSES ($):<span>Baseline commercial media production, editing, and distribution asset overhead.</span>',
+                cost3: 'CAPITAL DRAW VERIFICATION SHIELD ($):<span>Site tracking factor to validate stockpile volumes and speed up bank funding cycles.</span>'
             }
         };
 
-        // Query labels by their respective 'for' properties
-        const lblAcres = document.querySelector('label[for="input-acres"]');
-        const lblCost1 = document.querySelector('label[for="input-fert-cost"]');
-        const lblCost2 = document.querySelector('label[for="input-sample-cost"]');
-        const lblCost3 = document.querySelector('label[for="input-penalty-risk"]');
+        // Query labels sequentially from the workspace tree
+        const labelsList = document.querySelectorAll('.form-group label');
+        if (labelsList.length >= 4) {
+            labelsList[0].innerHTML = labels[targetMode].acres;
+            labelsList[1].innerHTML = labels[targetMode].cost1;
+            labelsList[2].innerHTML = labels[targetMode].cost2;
+            labelsList[3].innerHTML = labels[targetMode].cost3;
+        }
 
-        if (lblAcres) lblAcres.innerHTML = labels[targetMode].acres;
-        if (lblCost1) lblCost1.innerHTML = labels[targetMode].cost1;
-        if (lblCost2) lblCost2.innerHTML = labels[targetMode].cost2;
-        if (lblCost3) lblCost3.innerHTML = labels[targetMode].cost3;
-
-        // Force the layout to instantly re-calculate calculations with new inputs
-        processMatrixROI();
+        // Force layout calculations to instantly sync
+        window.processMatrixROI();
     };
 
-    // Override existing calculation model to handle dynamic profiles seamlessly
-    const nativeCalcFunction = processMatrixROI;
-    processMatrixROI = function() {
+    // --- 3. Dynamic Multi-Pillar Yield Calculations Engine ---
+    window.processMatrixROI = function() {
         const fieldAcres = parseFloat(elementMatrix.acresNum?.value) || 0;
         const param1 = parseFloat(elementMatrix.fertNum?.value) || 0;
         const param2 = parseFloat(elementMatrix.soilNum?.value) || 0;
@@ -394,15 +228,15 @@ title: ROI Calculator | Apex Vector LLC
 
         let v1 = 0, v2 = 0, v3 = 0;
 
-        if (currentActiveMode === 'ag') {
+        if (window.currentActiveMode === 'ag') {
             v1 = (fieldAcres * param1) * 0.10; // 10% Fertilizer optimization
             v2 = (fieldAcres * param2) * 0.65; // 65% Soil grid cut
             v3 = fieldAcres * param3;          // Scale house shield flat baseline
-        } else if (currentActiveMode === 'infra') {
+        } else if (window.currentActiveMode === 'infra') {
             v1 = (fieldAcres * param1) * 0.75; // 75% Climber safety savings 
             v2 = (fieldAcres * param2) * 0.40; // 40% Predictive fault capture efficiency
             v3 = fieldAcres * param3 * 1.25;   // Outage interception protection factor
-        } else if (currentActiveMode === 'media') {
+        } else if (window.currentActiveMode === 'media') {
             v1 = (fieldAcres * param1) * 0.60; // 60% Stockpile volume scan efficiency
             v2 = (fieldAcres * param2) * 0.25; // 25% Faster marketing asset generation speed
             v3 = fieldAcres * param3 * 0.85;   // Faster lender draw release velocity
@@ -416,6 +250,136 @@ title: ROI Calculator | Apex Vector LLC
         if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
     };
 
-    // Process initial metrics array parsing on file load
-    processMatrixROI();
+    if (elementMatrix.btnPrint) {
+        elementMatrix.btnPrint.addEventListener('click', () => { window.print(); });
+    }
+
+    // --- 4. Hybrid Lawnmower Flight Path Simulation Engine ---
+    const telemetryCanvas = document.getElementById('droneSimCanvas');
+    if (telemetryCanvas) {
+        const renderContext = telemetryCanvas.getContext('2d');
+        
+        let canvasW = telemetryCanvas.width = 800;
+        let canvasH = telemetryCanvas.height = 220;
+        
+        const flightPadding = 60;
+        const rowSpacing = 40;
+        const flightLines = [];
+        
+        for (let y = flightPadding; y <= canvasH - flightPadding; y += rowSpacing) {
+            flightLines.push(y);
+        }
+        
+        let currentLineIndex = 0;
+        let droneX = flightPadding;
+        let droneY = flightLines[0]; // Fixed array coordinate alignment assignment
+        let movingForward = true;
+        let flightSpeed = 2.5;
+
+        function renderTelemetryLoop() {
+            renderContext.fillStyle = '#0c0f12';
+            renderContext.fillRect(0, 0, canvasW, canvasH);
+
+            // Technical Grid Background Layout Overlay
+            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.06)';
+            renderContext.lineWidth = 1;
+            for (let x = 0; x < canvasW; x += 40) {
+                renderContext.beginPath(); renderContext.moveTo(x, 0); renderContext.lineTo(x, canvasH); renderContext.stroke();
+            }
+            for (let y = 0; y < canvasH; y += 40) {
+                renderContext.beginPath(); renderContext.moveTo(0, y); renderContext.lineTo(canvasW, y); renderContext.stroke();
+            }
+
+            // Dotted Waypoint Path Lines
+            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.15)';
+            renderContext.lineWidth = 1.5;
+            renderContext.beginPath();
+            for (let i = 0; i < flightLines.length; i++) {
+                let yVal = flightLines[i];
+                if (i % 2 === 0) {
+                    renderContext.lineTo(flightPadding, yVal);
+                    renderContext.lineTo(canvasW - flightPadding, yVal);
+                } else {
+                    renderContext.lineTo(canvasW - flightPadding, yVal);
+                    renderContext.lineTo(flightPadding, yVal);
+                }
+            }
+            renderContext.stroke();
+
+                        // Row Flight Vector Control Arrays
+            let targetY = flightLines[currentLineIndex];
+            if (Math.abs(droneY - targetY) > 0.5) {
+                droneY += (targetY - droneY) > 0 ? flightSpeed : -flightSpeed;
+            } else {
+                if (movingForward) {
+                    droneX += flightSpeed;
+                    if (droneX >= canvasW - flightPadding) {
+                        movingForward = false;
+                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
+                    }
+                } else {
+                    droneX -= flightSpeed;
+                    if (droneX <= flightPadding) {
+                        movingForward = true;
+                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
+                    }
+                }
+            }
+
+            // Altitude Telemetry Value Jitter
+            if (elementMatrix.telemetryAlt && Math.random() > 0.88) {
+                elementMatrix.telemetryAlt.innerText = Math.floor(152 + Math.random() * 7);
+            }
+
+            // Luminous Sensor Blue Scan Cone
+            let coneWidth = 65;
+            let coneGradient = renderContext.createLinearGradient(droneX, droneY, droneX, droneY + 90);
+            coneGradient.addColorStop(0, 'rgba(43, 166, 255, 0.4)');
+            coneGradient.addColorStop(0.3, 'rgba(43, 166, 255, 0.15)');
+            coneGradient.addColorStop(1, 'rgba(43, 166, 255, 0.0)');
+            
+            renderContext.fillStyle = coneGradient;
+            renderContext.beginPath();
+            renderContext.moveTo(droneX, droneY);
+            renderContext.lineTo(droneX - coneWidth, droneY + 90);
+            renderContext.lineTo(droneX + coneWidth, droneY + 90);
+            renderContext.closePath();
+            renderContext.fill();
+
+            // Ground Target Footprint Tracker Bar
+            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.6)';
+            renderContext.lineWidth = 1.5;
+            renderContext.beginPath();
+            renderContext.moveTo(droneX - coneWidth + 10, droneY + 90);
+            renderContext.lineTo(droneX + coneWidth - 10, droneY + 90);
+            renderContext.stroke();
+
+            // Tactical Drone Crosshair Chassis Layout
+            renderContext.strokeStyle = '#27ae60'; 
+            renderContext.lineWidth = 2;
+            renderContext.beginPath();
+            renderContext.moveTo(droneX - 16, droneY); renderContext.lineTo(droneX + 16, droneY);
+            renderContext.moveTo(droneX, droneY - 4);  renderContext.lineTo(droneX, droneY + 4);
+            renderContext.stroke();
+            
+            renderContext.fillStyle = '#ffffff';
+            renderContext.beginPath();
+            renderContext.arc(droneX, droneY, 3, 0, Math.PI * 2);
+            renderContext.fill();
+
+            // Dynamic Context Labels
+            renderContext.fillStyle = '#ffffff';
+            renderContext.font = '9px monospace';
+            let sysModeLabel = window.currentActiveMode === 'ag' ? 'MAPPED_AG_SCAN' : window.currentActiveMode === 'infra' ? 'STRUCTURAL_INFRA_SCAN' : 'EARTHWORK_MEDIA_RUN';
+            renderContext.fillText(`SYS_STATUS: ${sysModeLabel}`, droneX + 22, droneY - 6);
+            renderContext.fillText(`LAT_X: ${Math.floor(droneX)} | WP_ROW: 0${currentLineIndex + 1}`, droneX + 22, droneY + 6);
+
+            requestAnimationFrame(renderTelemetryLoop);
+        }
+
+        renderTelemetryLoop();
+    }
+
+    // Run matrix processing arrays on base launch
+    window.processMatrixROI();
 </script>

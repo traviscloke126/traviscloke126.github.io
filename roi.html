@@ -67,24 +67,14 @@ title: ROI Calculator | Apex Vector LLC
                 Type your exact operational numbers right out of your ledger below to update your returns:
             </p>
 
-            <!-- Input Box: Total Acres -->
-            <div style="margin-bottom: 20px;">
-                <label for="acres" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">Total Farm Acreage:</label>
-                <input type="number" id="acres" value="500" min="1" step="10" oninput="calculateSavings()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; font-weight: 600; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ffffff'" onblur="this.style.borderColor='#333'">
-            </div>
+           <!-- Input Box: Total Acres (Line 74) -->
+<input type="number" id="acres" value="500" min="1" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem;">
 
-            <!-- Input Box: Fertilizer Budget -->
-            <div style="margin-bottom: 20px;">
-                <label for="fert" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">Fertilizer Cost ($ / Acre):</label>
-                <input type="number" id="fert" value="90" min="0" step="5" oninput="calculateSavings()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; font-weight: 600; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ffffff'" onblur="this.style.borderColor='#333'">
-            </div>
+<!-- Input Box: Fertilizer Budget (Line 80) -->
+<input type="number" id="fert" value="90" min="0" step="5" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem;">
 
-            <!-- Input Box: Lab Costs -->
-            <div style="margin-bottom: 10px;">
-                <label for="lab" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">Grid Soil Sampling ($ / Acre):</label>
-                <input type="number" id="lab" value="12" min="0" step="1" oninput="calculateSavings()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; font-weight: 600; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ffffff'" onblur="this.style.borderColor='#333'">
-            </div>
-        </div>
+<!-- Input Box: Lab Costs (Line 86) -->
+<input type="number" id="lab" value="12" min="0" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem;">
 
         <!-- COLUMN 3: HIGH-CONTRAST INVESTMENT SUMMARY -->
         <div style="background-color: #ffffff; color: #111111; padding: 30px; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
@@ -141,17 +131,18 @@ title: ROI Calculator | Apex Vector LLC
         telemetryAlt: document.getElementById('telemetryAlt')
     };
 
-    function attachSyncListeners(numNode, rangeNode, callback) {
+        function attachSyncListeners(numNode, rangeNode, callback) {
         if (!numNode || !rangeNode) return;
         numNode.addEventListener('input', () => { rangeNode.value = numNode.value; callback(); });
         rangeNode.addEventListener('input', () => { numNode.value = rangeNode.value; callback(); });
     }
 
-    // Attach Listeners Across Regional Inputs
+    // Explicitly target the global window calculation stream
     attachSyncListeners(elementMatrix.acresNum, elementMatrix.acresRange, () => window.processMatrixROI());
     attachSyncListeners(elementMatrix.fertNum, elementMatrix.fertRange, () => window.processMatrixROI());
     attachSyncListeners(elementMatrix.soilNum, elementMatrix.soilRange, () => window.processMatrixROI());
     attachSyncListeners(elementMatrix.shieldNum, elementMatrix.shieldRange, () => window.processMatrixROI());
+
 
     function formatToUSD(numericValue) {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(numericValue);

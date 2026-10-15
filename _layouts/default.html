@@ -205,7 +205,7 @@
       <!-- Control A: Flight Operations Redirect -->
       <a href="{{ '/operations.html' | relative_url }}" style="background-color: transparent; border: 2px solid #FFB300; color: #FFB300; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">Review Flight Specifications</a>
       <!-- Control B: Request Quote Intake Profile -->
-      <a href="#" class="trigger-quote-modal" style="background-color: #FFB300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; display: inline-block;">Initiate Project Intake</a>
+      <a href="#" class="trigger-quote-modal" onclick="event.preventDefault(); window.handleIntakeRouting();" style="background-color: #FFB300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; display: inline-block;">Initiate Project Intake</a>
     </div>
   </div>
   {% endunless %}

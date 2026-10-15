@@ -371,6 +371,34 @@
         globalModal.style.display = 'flex';
       }
     });
+    // ==========================================
+    // APEX VECTOR SYSTEM DELIVERABLE REDUNDANCY
+    // ==========================================
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            const usbCheck = document.getElementById('req-usb-drive');
+            const paperCheck = document.getElementById('req-paper-log');
+            const notesField = document.getElementById('intake-notes');
+
+            if (notesField) {
+                const usbActive = usbCheck && usbCheck.checked;
+                const paperActive = paperCheck && paperCheck.checked;
+
+                const usbStatus = usbActive ? "[X] Pre-Configured Cab USB Drive" : "[ ] Pre-Configured Cab USB Drive";
+                const paperStatus = paperActive ? "[X] Printed Paper Log Sheet" : "[ ] Printed Paper Log Sheet";
+
+                const logSeparator = "\n=====================================================\n";
+                const dataPayload = `DELIVERABLE REQ : ${usbStatus} | ${paperStatus}`;
+                
+                const originalNotes = notesField.value.trim();
+                if (originalNotes.length > 0) {
+                    notesField.value = `${originalNotes}${logSeparator}${dataPayload}${logSeparator}`;
+                } else {
+                    notesField.value = `${logSeparator}${dataPayload}${logSeparator}`;
+                }
+            }
+        });
+    }
 
     function hideModalWindow() {
       globalModal.style.display = 'none';

@@ -132,15 +132,17 @@ if (rawInput > 160 && rawInput <= 640) {
     dynamicRate = 2.25;
 }
 
+// Calculate the raw acreage multiplication
 fieldCaptureCost = rawInput * dynamicRate;
 
-// Enforce a $250 operational baseline floor for small fields
+// ENFORCE AN INDUSTRIAL MINIMUM FLOOR RATE FOR SMALL FIELDS
 if (fieldCaptureCost < 250.00 && rawInput > 0) {
     fieldCaptureCost = 250.00;
 }
 
 layoutAdjustmentCost = 0; // Completely flat and transparent
 absoluteTotalValue = fieldCaptureCost;
+
 
 
   } else if (profile === 'earthwork') {

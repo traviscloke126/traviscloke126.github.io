@@ -206,17 +206,19 @@ title: ROI Calculator | Apex Vector LLC
             }
         };
 
-        // Query labels sequentially from the workspace tree
+            // Query form labels dynamically by index order from the sandbox card
         const labelsList = document.querySelectorAll('.form-group label');
-        if (labelsList.length >= 4) {
+        
+        if (labelsList && labelsList.length >= 4) {
             labelsList[0].innerHTML = labels[targetMode].acres;
             labelsList[1].innerHTML = labels[targetMode].cost1;
             labelsList[2].innerHTML = labels[targetMode].cost2;
             labelsList[3].innerHTML = labels[targetMode].cost3;
         }
 
-        // Force layout calculations to instantly sync
+        // Force layout calculations to instantly sync numbers
         window.processMatrixROI();
+
     };
 
     // --- 3. Dynamic Multi-Pillar Yield Calculations Engine ---

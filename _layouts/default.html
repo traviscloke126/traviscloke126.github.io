@@ -230,7 +230,7 @@
 /* APEX VECTOR MOBILE RESPONSIVE OPTIMIZATION */
 @media screen and (max-width: 768px) {
     
-    /* 1. Eliminate the side-scrolling white void entirely */
+    /* 1. Global Viewport Safety Rails */
     html, body, main, section, .container, #roi-container {
         width: 100% !important;
         max-width: 100% !important;
@@ -238,42 +238,71 @@
         box-sizing: border-box !important;
     }
 
-    /* 2. FIX THE FLIGHT PATH SIMULATION CANVAS & HEADER OVERLAYS */
-    /* Targets the flight track telemetry box so text wraps instead of smashing */
+    /* 2. TELEMETRY CONTAINER OVERLAP CORRECTION */
+    /* Target the container wrapping your blue/green flight metrics */
     div[style*="font-family: monospace"], 
     div[style*="font-family:monospace"],
     .telemetry-header, 
-    #simulation-telemetry {
+    #simulation-telemetry,
+    #hud-overlay {
         display: flex !important;
-        flex-direction: column !important; /* Stack items vertically on mobile instead of side-by-side */
-        gap: 6px !important;
-        font-size: 11px !important; /* Scale font down slightly so it maps correctly */
-        padding: 8px !important;
-        white-space: normal !important;
+        flex-direction: column !important; /* Forces row entries to stack cleanly */
+        height: auto !important;           /* Wipes out the rigid height causing the text mashup */
+        min-height: unset !important;
+        max-height: unset !important;
+        gap: 12px !important;              /* Adds clear air-gap separation between values */
+        padding: 14px !important;
+        position: relative !important;     /* Prevents absolute elements from colliding */
+        top: unset !important;
+        left: unset !important;
     }
 
-    /* Force the background mesh rendering loops to clip safely inside the phone screen */
-    canvas, #simulationCanvas, .vector-mesh-wrapper {
+    /* Target the text lines themselves to make sure they wrap fluidly */
+    div[style*="font-family: monospace"] > div,
+    .telemetry-row,
+    .telemetry-line {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+        margin-bottom: 4px !important;
+    }
+
+    /* 3. INVOICE / PROPOSAL TABLE COMPRESSION (IMAGE 4 FIX) */
+    /* Forces the white invoice paper element to stay within the mobile screen bounds */
+    .invoice-box, .proposal-container, [style*="background: white"], [style*="background:#fff"] {
         width: 100% !important;
         max-width: 100% !important;
-        height: auto !important;
+        padding: 10px !important;
+        margin: 10px 0 !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Scales down the white proposal table elements cleanly */
+    table, thead, tbody, tr, th, td {
         box-sizing: border-box !important;
     }
 
-    /* 3. SCALE DOWN LARGE VALUE NUMBERS & CARDS */
+    /* Scale the table row columns text slightly so line items don't truncate */
+    th, td {
+        font-size: 11px !important;
+        padding: 4px 2px !important;
+        word-break: break-word !important;
+    }
+
+    /* 4. VALUE DISPLAY SCALING */
     h1, h2, .total-amount, [style*="font-size: 40px"], [style*="font-size:40px"], [style*="font-size: 3rem"] {
         font-size: 24px !important;
         line-height: 1.2 !important;
     }
 
-    /* 4. FLUID WHITE-SPACE WRAPPING FOR PRICING STRINGS */
-    span, p, td, th, li, .badge, div {
-        white-space: normal !important; /* Overrides rigid no-wrap constraints pushing elements off-screen */
+    /* 5. FLUID ELEMENTS & CARDS STACKING SEQUENCE */
+    span, p, li, .badge {
+        white-space: normal !important;
         word-break: normal !important;
     }
 
-    /* 5. SMOOTH STACKING SEQUENCES FOR MILITARY FLIGHT PHASES */
-    /* Finds horizontal row groupings and drops them safely into 1-column columns */
     div[style*="display: flex"], 
     div[style*="display:flex"],
     .flex-row-wrapper {
@@ -284,7 +313,6 @@
         gap: 12px !important;
     }
 
-    /* Forces specific sizing constraints (like width:30%) to expand symmetrically */
     div[style*="width: 30%"], div[style*="width:30%"],
     div[style*="width: 32%"], div[style*="width:32%"],
     div[style*="width: 33%"], div[style*="width:33%"],

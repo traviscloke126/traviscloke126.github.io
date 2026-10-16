@@ -252,28 +252,60 @@
     }
 
     /* 3. Handle Milestone Containers & Side-by-Side Flex Items */
-    /* Target flex components that are running out of horizontal space */
+   /* APEX VECTOR COMPONENT-LEVEL FLUID OPTIMIZATION */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Global Viewport Safety Rails */
+    html, body, main, section, .container {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Target the Calculator Text Elements & Values */
+    /* Shrinks the large currency figures so they stay centered and fit the panel */
+    h1, h2, .total-amount, [style*="font-size: 40px"], [style*="font-size:40px"] {
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+        word-break: break-all !important;
+    }
+
+    /* Scaling factor adjustment for checklist titles and dynamic prices */
+    span, p, td, th, div {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+    }
+
+    /* 3. Handle Internal Sheet Paddings & Alignments */
+    /* Prevents rigid panels from pushing off the right edge of small screens */
+    section, .card, .panel, .roi-container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 4. Smooth out side-by-side components using your clean flex rule */
+    /* Safely turns horizontal grids/flex rows into vertical paths */
     div[style*="display: flex"], 
-    div[style*="display:flex"] {
+    div[style*="display:flex"],
+    .flex-row-wrapper {
+        display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
         width: 100% !important;
-        gap: 1rem !important;
+        gap: 12px !important;
     }
 
-    /* Force columns scaling at 30% or 33% to expand to full row width */
-    div[style*="width: 30%"], 
-    div[style*="width:30%"],
-    div[style*="width: 33%"],
-    div[style*="width:33%"],
+    /* Forces nested columns or fixed width blocks to expand safely to full line width */
+    div[style*="width:"],
     .phase-card {
         width: 100% !important;
         max-width: 100% !important;
-        margin: 0 0 1rem 0 !important;
-        box-sizing: border-box !important;
-        display: block !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }
+
 
 </style>
 </head>

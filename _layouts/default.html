@@ -229,63 +229,51 @@
 
 /* APEX VECTOR MOBILE RESPONSIVE OPTIMIZATION */
 @media screen and (max-width: 768px) {
-    /* 1. Prevent layout boundaries from clamping content off-screen */
-    body, main, section, .container {
-        overflow-x: hidden !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 2. Fix the Table / Pricing Grid Layouts */
-    table, tbody, tr {
-        width: 100% !important;
-        display: table !important; /* Restore normal table layout flow */
-    }
-
-    td {
-        padding: 0.5rem 0.25rem !important;
-        font-size: 0.8rem !important; /* Scale text down slightly to fit the screen */
-        word-break: normal !important; 
-        overflow-wrap: normal !important;
-        white-space: normal !important; /* Allow long titles to wrap to 2 lines naturally instead of shearing */
-    }
-
-    /* 3. Handle Milestone Containers & Side-by-Side Flex Items */
-   /* APEX VECTOR COMPONENT-LEVEL FLUID OPTIMIZATION */
-@media screen and (max-width: 768px) {
     
-    /* 1. Global Viewport Safety Rails */
-    html, body, main, section, .container {
+    /* 1. Eliminate the side-scrolling white void entirely */
+    html, body, main, section, .container, #roi-container {
+        width: 100% !important;
         max-width: 100% !important;
         overflow-x: hidden !important;
         box-sizing: border-box !important;
     }
 
-    /* 2. Target the Calculator Text Elements & Values */
-    /* Shrinks the large currency figures so they stay centered and fit the panel */
-    h1, h2, .total-amount, [style*="font-size: 40px"], [style*="font-size:40px"] {
+    /* 2. FIX THE FLIGHT PATH SIMULATION CANVAS & HEADER OVERLAYS */
+    /* Targets the flight track telemetry box so text wraps instead of smashing */
+    div[style*="font-family: monospace"], 
+    div[style*="font-family:monospace"],
+    .telemetry-header, 
+    #simulation-telemetry {
+        display: flex !important;
+        flex-direction: column !important; /* Stack items vertically on mobile instead of side-by-side */
+        gap: 6px !important;
+        font-size: 11px !important; /* Scale font down slightly so it maps correctly */
+        padding: 8px !important;
+        white-space: normal !important;
+    }
+
+    /* Force the background mesh rendering loops to clip safely inside the phone screen */
+    canvas, #simulationCanvas, .vector-mesh-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 3. SCALE DOWN LARGE VALUE NUMBERS & CARDS */
+    h1, h2, .total-amount, [style*="font-size: 40px"], [style*="font-size:40px"], [style*="font-size: 3rem"] {
         font-size: 24px !important;
         line-height: 1.2 !important;
-        word-break: break-all !important;
     }
 
-    /* Scaling factor adjustment for checklist titles and dynamic prices */
-    span, p, td, th, div {
-        font-size: 14px !important;
-        line-height: 1.4 !important;
+    /* 4. FLUID WHITE-SPACE WRAPPING FOR PRICING STRINGS */
+    span, p, td, th, li, .badge, div {
+        white-space: normal !important; /* Overrides rigid no-wrap constraints pushing elements off-screen */
+        word-break: normal !important;
     }
 
-    /* 3. Handle Internal Sheet Paddings & Alignments */
-    /* Prevents rigid panels from pushing off the right edge of small screens */
-    section, .card, .panel, .roi-container {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 4. Smooth out side-by-side components using your clean flex rule */
-    /* Safely turns horizontal grids/flex rows into vertical paths */
+    /* 5. SMOOTH STACKING SEQUENCES FOR MILITARY FLIGHT PHASES */
+    /* Finds horizontal row groupings and drops them safely into 1-column columns */
     div[style*="display: flex"], 
     div[style*="display:flex"],
     .flex-row-wrapper {
@@ -296,16 +284,19 @@
         gap: 12px !important;
     }
 
-    /* Forces nested columns or fixed width blocks to expand safely to full line width */
-    div[style*="width:"],
+    /* Forces specific sizing constraints (like width:30%) to expand symmetrically */
+    div[style*="width: 30%"], div[style*="width:30%"],
+    div[style*="width: 32%"], div[style*="width:32%"],
+    div[style*="width: 33%"], div[style*="width:33%"],
     .phase-card {
         width: 100% !important;
         max-width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
+        box-sizing: border-box !important;
+        display: block !important;
     }
 }
-
 
 </style>
 </head>

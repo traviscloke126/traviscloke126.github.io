@@ -605,8 +605,12 @@
 ];
 
 
-        if (clientNameInput.trim().length > 0) { params.push(`ClientName=${encodeURIComponent(clientNameInput.trim())}`); }
-        if (clientAddressInput.trim().length > 0) { params.push(`ClientAddress=${encodeURIComponent(clientAddressInput.trim())}`); }
+               if (clientNameInput.trim().length > 0) { 
+            params.push('ClientName=' + encodeURIComponent(clientNameInput.trim())); 
+        }
+        if (clientAddressInput.trim().length > 0) { 
+            params.push('ClientAddress=' + encodeURIComponent(clientAddressInput.trim())); 
+        }
 
          // Route pre-filled payload variables to your active data label parameters
          const finalDocuSignLink = powerFormBaseUrl + '&' + params.join('&');

@@ -238,71 +238,72 @@
         box-sizing: border-box !important;
     }
 
-    /* 2. TELEMETRY CONTAINER OVERLAP CORRECTION */
-    /* Target the container wrapping your blue/green flight metrics */
+    /* 2. TELEMETRY CONTAINER HUD CLEANUP */
     div[style*="font-family: monospace"], 
     div[style*="font-family:monospace"],
     .telemetry-header, 
     #simulation-telemetry,
     #hud-overlay {
         display: flex !important;
-        flex-direction: column !important; /* Forces row entries to stack cleanly */
-        height: auto !important;           /* Wipes out the rigid height causing the text mashup */
+        flex-direction: column !important;
+        height: auto !important;
         min-height: unset !important;
         max-height: unset !important;
-        gap: 12px !important;              /* Adds clear air-gap separation between values */
+        gap: 12px !important;
         padding: 14px !important;
-        position: relative !important;     /* Prevents absolute elements from colliding */
-        top: unset !important;
-        left: unset !important;
+        position: relative !important;
     }
 
-    /* Target the text lines themselves to make sure they wrap fluidly */
-    div[style*="font-family: monospace"] > div,
-    .telemetry-row,
-    .telemetry-line {
+    /* 3. TABLE PRICE SQUISHING FIX (IMAGE 2) */
+    /* Target the white proposal table rows explicitly */
+    .invoice-box table, .proposal-container table, table {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .invoice-box thead, .proposal-container thead, thead {
+        display: none !important; /* Hide old desktop table labels */
+    }
+
+    .invoice-box tr, .proposal-container tr, tr {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
+        flex-direction: column !important; /* Turn horizontal rows into clean vertical card stacks */
         width: 100% !important;
-        margin-bottom: 4px !important;
+        padding: 10px 0 !important;
+        border-bottom: 1px solid #e2e8f0 !important; /* Clean light gray separator for the white document */
     }
 
-    /* 3. INVOICE / PROPOSAL TABLE COMPRESSION (IMAGE 4 FIX) */
-    /* Forces the white invoice paper element to stay within the mobile screen bounds */
-    .invoice-box, .proposal-container, [style*="background: white"], [style*="background:#fff"] {
+    .invoice-box td, .proposal-container td, td {
+        display: flex !important;
+        justify-content: space-between !important; /* Pushes the text description left and numbers right */
+        align-items: center !important;
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 10px !important;
-        margin: 10px 0 !important;
-        box-sizing: border-box !important;
-        overflow-x: hidden !important;
+        padding: 4px 0 !important;
+        font-size: 13px !important;
+        color: #1a202c !important; /* High contrast gray/black text */
+        text-align: right !important;
+        white-space: normal !important;
     }
 
-    /* Scales down the white proposal table elements cleanly */
-    table, thead, tbody, tr, th, td {
-        box-sizing: border-box !important;
-    }
+    /* Dynamically add mobile labels to your invoice cards so context isn't lost */
+    .invoice-box td:nth-child(1)::before, td:nth-child(1)::before { content: "Item: "; font-weight: bold; color: #718096; }
+    .invoice-box td:nth-child(2)::before, td:nth-child(2)::before { content: "Rate: "; font-weight: bold; color: #718096; }
+    .invoice-box td:nth-child(3)::before, td:nth-child(3)::before { content: "Total: "; font-weight: bold; color: #718096; font-size: 13px; }
 
-    /* Scale the table row columns text slightly so line items don't truncate */
-    th, td {
-        font-size: 11px !important;
-        padding: 4px 2px !important;
-        word-break: break-word !important;
+    /* Fix for the green Contract Value text at the bottom */
+    [style*="color: #4600.00"], [style*="color:#2563eb"], .total-amount {
+        font-size: 20px !important;
+        font-weight: bold !important;
+        white-space: nowrap !important; /* Prevents currency symbols or final zeros from snapping down */
     }
 
     /* 4. VALUE DISPLAY SCALING */
-    h1, h2, .total-amount, [style*="font-size: 40px"], [style*="font-size:40px"], [style*="font-size: 3rem"] {
+    h1, h2, [style*="font-size: 40px"], [style*="font-size:40px"], [style*="font-size: 3rem"] {
         font-size: 24px !important;
         line-height: 1.2 !important;
     }
 
-    /* 5. FLUID ELEMENTS & CARDS STACKING SEQUENCE */
-    span, p, li, .badge {
-        white-space: normal !important;
-        word-break: normal !important;
-    }
-
+    /* 5. MILESTONE STACKING FLOW */
     div[style*="display: flex"], 
     div[style*="display:flex"],
     .flex-row-wrapper {
@@ -319,12 +320,12 @@
     .phase-card {
         width: 100% !important;
         max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        margin: 0 0 12px 0 !important;
         box-sizing: border-box !important;
         display: block !important;
     }
 }
+
 
 </style>
 </head>

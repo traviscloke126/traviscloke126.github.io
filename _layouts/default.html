@@ -608,14 +608,17 @@
         if (clientNameInput.trim().length > 0) { params.push(`ClientName=${encodeURIComponent(clientNameInput.trim())}`); }
         if (clientAddressInput.trim().length > 0) { params.push(`ClientAddress=${encodeURIComponent(clientAddressInput.trim())}`); }
 
-        // Route pre-filled payload variables to your active data label parameters
-        const finalDocuSignLink = `${powerFormBaseUrl}&${params.join('&')}`;
+         // Route pre-filled payload variables to your active data label parameters
+         const finalDocuSignLink = powerFormBaseUrl + '&' + params.join('&');
 
-        // Instantly launch the completed contract template inside a secure tab
-        window.open(finalDocuSignLink, '_blank');
-      })
-      .catch(error => {
-
-  </script>
+         // Instantly launch the completed contract template inside a secure tab
+         window.open(finalDocuSignLink, '_blank');
+     })
+     .catch(error => {
+         console.error("Transmission Error Grid Failure:", error);
+        alert("Aviation Communication Outage: Encrypted uplink encountered a server routing delay.");
+     });
+ });
+ </script>
 
   

@@ -561,18 +561,61 @@
         submitBtn.style.background = "#2563eb";
         submitBtn.disabled = false;
 
-        formContentBlock.style.display = 'none';
+                formContentBlock.style.display = 'none';
         thankYouBlock.style.display = 'block';
+
+        // ========================================================
+        // DYNAMIC PRE-FILL INTEGRATION LOGIC
+        // ========================================================
+        const usbCheck = document.getElementById('req-usb-drive');
+        const paperCheck = document.getElementById('req-paper-log');
+        const notesField = document.getElementById('intake-notes');
+
+        // Extract client text details if matched inside your form layout templates
+        const clientNameInput = document.getElementById('intake-client-name') ? document.getElementById('intake-client-name').value : "";
+        const clientAddressInput = document.getElementById('intake-client-address') ? document.getElementById('intake-client-address').value : "";
+
+        const usbActive = usbCheck && usbCheck.checked;
+        const paperActive = paperCheck && paperCheck.checked;
+        const usbStatus = usbActive ? "[X] Pre-Configured Cab USB Drive" : "[ ] Pre-Configured Cab USB Drive";
+        const paperStatus = paperActive ? "[X] Printed Paper Log Sheet" : "[ ] Printed Paper Log Sheet";
+
+        const totalAcreage = document.getElementById('farm-acreage') ? document.getElementById('farm-acreage').value : "N/A";
+        const calculatedFees = document.querySelector('.total-amount') ? document.querySelector('.total-amount').textContent : "\$0.00";
+        const numericValuation = calculatedFees.replace(/[^0-9.,]/g, "");
+
+        let clientNotes = notesField ? notesField.value.trim() : "";
+        if (clientNotes.length === 0) { clientNotes = "None logged."; }
+
+        const absoluteDataLog = 
+            `=========================================\n` +
+            `PROJECT VOLUME : ${totalAcreage} Units/Acres\n` +
+            `ESTIMATED VALUE: ${calculatedFees}\n` +
+            `-----------------------------------------\n` +
+            `DELIVERABLE REQ: ${usbStatus} | ${paperStatus}\n` +
+            `CLIENT NOTES   : ${clientNotes}\n` +
+            `=========================================`;
+
+        // Paste your live PowerForm link inside this variable string once generated
+        const powerFormBaseUrl = "https://docusign.net";
+
+        const params = [
+    'DataTransitLog=' + encodeURIComponent(absoluteDataLog),
+    'ProjectValuation=' + encodeURIComponent(numericValuation)
+];
+
+
+        if (clientNameInput.trim().length > 0) { params.push(`ClientName=${encodeURIComponent(clientNameInput.trim())}`); }
+        if (clientAddressInput.trim().length > 0) { params.push(`ClientAddress=${encodeURIComponent(clientAddressInput.trim())}`); }
+
+        // Route pre-filled payload variables to your active data label parameters
+        const finalDocuSignLink = `${powerFormBaseUrl}&${params.join('&')}`;
+
+        // Instantly launch the completed contract template inside a secure tab
+        window.open(finalDocuSignLink, '_blank');
       })
       .catch(error => {
-        console.error("Transmission Error Grid Failure:", error);
-        alert("Aviation Communication Outage: Encrypted uplink encountered a server routing delay. Please verify internet connectivity.");
-        
-        submitBtn.innerText = "Transmit Secure Intake Request";
-        submitBtn.style.background = "#2563eb";
-        submitBtn.disabled = false;
-      });
-    });
+
   </script>
 
   

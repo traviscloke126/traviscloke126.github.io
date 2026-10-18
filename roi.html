@@ -443,11 +443,24 @@ title: ROI Calculator | Apex Vector LLC
             activeProcessRate = INFRA_PROCESS_RATE;
             calculatedFlightSubtotal = fieldAcres * INFRA_FLIGHT_RATE;
             calculatedProcessSubtotal = fieldAcres * INFRA_PROCESS_RATE;
-       } else if (window.currentActiveMode === 'groundworks') {
-    activeFlightRate = Groundworks_FLIGHT_RATE;
-    activeProcessRate = Groundworks_PROCESS_RATE;
-    calculatedFlightSubtotal = fieldAcres * Groundworks_FLIGHT_RATE;
-    calculatedProcessSubtotal = 0; // Wipes the old media editing flat fee artifact safely
+       } else if (window.currentActiveMode === 'infra') {
+    // 1. Core Flight Lines per Asset Unit
+    activeFlightRate = INFRA_FLIGHT_RATE; // $12.50
+    calculatedFlightSubtotal = fieldAssets * INFRA_FLIGHT_RATE; 
+
+    // 2. Structural Diagnostic Processing Tier Gates
+    let targetSqFt = parseFloat(document.getElementById('traditional-equipment-fees-field-id').value) || 0;
+    
+    if (targetSqFt <= 5000) {
+        activeProcessRate = 3.00; // Linear per sq ft for small towers
+        calculatedProcessSubtotal = targetSqFt * 3.00;
+    } else if (targetSqFt > 5000 && targetSqFt <= 50000) {
+        activeProcessRate = 1500.00; // Flat Complex Tier
+        calculatedProcessSubtotal = 1500.00;
+    } else {
+        activeProcessRate = 3500.00; // Flat Industrial Mega-Terminal Tier
+        calculatedProcessSubtotal = 3500.00;
+    }
 }
 
 

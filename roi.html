@@ -489,63 +489,49 @@ function processMatrixROI() {
     if (elPropP2) elPropP2.innerText = '$' + (proposalGrossValue * 0.40).toFixed(2);
     if (elPropP3) elPropP3.innerText = '$' + (proposalGrossValue * 0.30).toFixed(2);
 
-    // Dynamic Row Label Conversions
-    const pval1 = document.getElementById('proposal-calc-val-1');
-    const pval2 = document.getElementById('proposal-calc-val-2');
+       // === 1. Establish Your Table Target Nodes Safely ===
+    const pval1   = document.getElementById('proposal-calc-val-1') || document.getElementById('pval1');
+    const pval2   = document.getElementById('proposal-calc-val-2') || document.getElementById('pval2');
+    
+    const pTitle1 = document.getElementById('proposal-calc-title-1');
+    const pUnit1  = document.getElementById('proposal-calc-unit-1');
+    const pTitle2 = document.getElementById('proposal-calc-title-2');
+    const pUnit2  = document.getElementById('proposal-calc-unit-2');
+    
+    const pSector = document.getElementById('proposal-sector-tag');
 
-    if (window.currentActiveMode === 'groundworks') {
-        if (pval1) pval1.innerText = '$' + calculatedFlightSubtotal.toFixed(2);
-        if (pval2) pval2.innerText = '$0.00';
-    } else {
-        if (pval1) pval1.innerText = '$' + calculatedFlightSubtotal.toFixed(2);
-        if (pval2) pval2.innerText = '$' + calculatedProcessSubtotal.toFixed(2);
-    }
-}
-
-        // Populate Invoice Summary Text Nodes Live
-        const elPropScale = document.getElementById('proposal-display-scale');
-        const elPropGross = document.getElementById('proposal-final-gross');
-        const elPropP1 = document.getElementById('proposal-phase-1');
-        const elPropP2 = document.getElementById('proposal-phase-2');
-        const elPropP3 = document.getElementById('proposal-phase-3');
-       
-        const scaleLabelText = window.currentActiveMode === 'ag' ? fieldAcres + ' ACRES' : window.currentActiveMode === 'infra' ? fieldAcres + ' ASSETS' : fieldAcres + ' ACRES';
-        if (elPropScale) elPropScale.innerText = scaleLabelText;
-    if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
-    if (elPropP1) elPropP1.innerText = formatToUSD(proposalGrossValue * 0.30);
-    if (elPropP2) elPropP2.innerText = formatToUSD(proposalGrossValue * 0.40);
-    if (elPropP3) elPropP3.innerText = formatToUSD(proposalGrossValue * 0.30);
-    // Dynamic Line-Item Row Toggling Engine
-    if (window.currentActiveMode === 'groundworks') {
+    // === 2. Run Dynamic Wording and Value Shifts Based on Selected Tab ===
+    if (window.currentActiveMode === 'ag') {
+        if (pSector) pSector.innerText = 'AG_INTELLIGENCE PROFILE';
+        if (pTitle1) pTitle1.innerText = 'sUAS Flight Lines & In-Field Data Acquisition Mapping';
+        if (pUnit1)  pUnit1.innerText  = '$5.50 / acre';
+        if (pval1)   pval1.innerText   = formatToUSD(calculatedFlightSubtotal);
+        
+        if (pTitle2) pTitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
+        if (pUnit2)  pUnit2.innerText  = '$3.00 / acre';
+        if (pval2)   pval2.innerText   = formatToUSD(calculatedProcessSubtotal);
+    } 
+    else if (window.currentActiveMode === 'infra') {
+        if (pSector) pSector.innerText = 'INFRASTRUCTURE_ASSET PROFILE';
+        if (pTitle1) pTitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery';
+        if (pUnit1)  pUnit1.innerText  = '$12.50 / asset';
+        if (pval1)   pval1.innerText   = formatToUSD(calculatedFlightSubtotal);
+        
+        if (pTitle2) pTitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering';
+        if (pUnit2)  pUnit2.innerText  = 'Tiered Industrial Unit Metric';
+        if (pval2)   pval2.innerText   = formatToUSD(calculatedProcessSubtotal);
+    } 
+    else if (window.currentActiveMode === 'groundworks') {
         if (pSector) pSector.innerText = 'COMMERCIAL GROUNDWORK PROFILE';
         if (pTitle1) pTitle1.innerText = 'High-Resolution Site Grading & Volumetric Topo Scans';
-        if (pUnit1) pUnit1.innerText = '$12.50 / acre';
-        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
+        if (pUnit1)  pUnit1.innerText  = '$12.50 / acre';
+        if (pval1)   pval1.innerText   = formatToUSD(calculatedFlightSubtotal);
+        
         if (pTitle2) pTitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
-        if (pUnit2) pUnit2.innerText = 'Included Tiers';
-        if (pval2) pval2.innerText = '$0.00';
+        if (pUnit2)  pUnit2.innerText  = 'Included Tiers';
+        if (pval2)   pval2.innerText   = '$0.00';
     }
 
-        // Adjust Calculation Row Details Based on Active Selection Tab Wording
-        const pTitle1 = document.getElementById('proposal-calc-title-1'); const pUnit1 = document.getElementById('proposal-calc-unit-1'); const pVal1 = document.getElementById('proposal-calc-val-1');
-        const pTitle2 = document.getElementById('proposal-calc-title-2'); const pUnit2 = document.getElementById('proposal-calc-unit-2'); const pVal2 = document.getElementById('proposal-calc-val-2');
-        const pSector = document.getElementById('proposal-sector-tag');
-
-        if (window.currentActiveMode === 'ag') {
-            if (pSector) pSector.innerText = 'AG_INTELLIGENCE PROFILE';
-            if (pTitle1) pTitle1.innerText = 'sUAS Flight Lines & Precision Field Data Capture'; if (pUnit1) pUnit1.innerText = '$' + activeFlightRate.toFixed(2) + ' / acre'; if (pVal1) pVal1.innerText = formatToUSD(calculatedFlightSubtotal);
-            if (pTitle2) pTitle2.innerText = 'Photogrammetry Orthomosaic Grid Engine Stitching'; if (pUnit2) pUnit2.innerText = '$' + activeProcessRate.toFixed(2) + ' / acre'; if (pVal2) pVal2.innerText = formatToUSD(calculatedProcessSubtotal);
-        } else if (window.currentActiveMode === 'infra') {
-            if (pSector) pSector.innerText = 'INFRASTRUCTURE_ASSET PROFILE';
-            if (pTitle1) pTitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery'; if (pUnit1) pUnit1.innerText = '$' + activeFlightRate.toFixed(2) + ' / asset'; if (pVal1) pVal1.innerText = formatToUSD(calculatedFlightSubtotal);
-            if (pTitle2) pTitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering'; if (pUnit2) pUnit2.innerText = '$' + activeProcessRate.toFixed(2) + ' / sq ft'; if (pVal2) pVal2.innerText = formatToUSD(calculatedProcessSubtotal);
-       } else if (window.currentActiveMode === 'groundworks') {
-    if (pSector) pSector.innerText = 'COMMERCIAL GROUNDWORK PROFILE';
-    if (pTitle1) pTitle1.innerText = 'High-Resolution Site Grading & Volumetric Topo Scans';
-    if (pUnit1) pUnit1.innerText = '$' + activeFlightRate.toFixed(2) + ' / acre';
-    if (pTitle2) pTitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
-    if (pUnit2) pUnit2.innerText = 'Included Tiers';
-}
 
         // Live Proposal Automation Date Tag Initialization
         const elPropDate = document.getElementById('proposal-live-date');

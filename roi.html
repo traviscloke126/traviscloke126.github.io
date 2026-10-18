@@ -443,10 +443,13 @@ title: ROI Calculator | Apex Vector LLC
             activeProcessRate = INFRA_PROCESS_RATE;
             calculatedFlightSubtotal = fieldAcres * INFRA_FLIGHT_RATE;
             calculatedProcessSubtotal = fieldAcres * INFRA_PROCESS_RATE;
-       } else if (window.currentActiveMode === 'infra') {
-    // 1. Core Flight Lines per Asset Unit
-    activeFlightRate = INFRA_FLIGHT_RATE; // $12.50
-    calculatedFlightSubtotal = fieldAssets * INFRA_FLIGHT_RATE; 
+      } else if (window.currentActiveMode === 'groundworks') {
+    activeFlightRate = Groundworks_FLIGHT_RATE; // $12.50
+    activeProcessRate = 0; // Included free in this industrial profile
+    
+    calculatedFlightSubtotal = fieldAcres * Groundworks_FLIGHT_RATE; // 5000 * 12.50 = $62,500.00
+    calculatedProcessSubtotal = 0; 
+}
 
     // 2. Structural Diagnostic Processing Tier Gates
     let targetSqFt = parseFloat(document.getElementById('traditional-equipment-fees-field-id').value) || 0;

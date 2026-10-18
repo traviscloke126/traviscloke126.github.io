@@ -54,7 +54,7 @@ In Army Aviation, compliance and preventative maintenance aren't optional—they
     <div class="founder-bio">
         <h3>Travis Cloke</h3>
         <span class="founder-title">Founder & Remote PIC</span>
-              <p>10-year US Army Veteran and CH-47 Chinook Helicopter Repairer / Aircrew Member. Dedicated to bringing structured, high-tier aerial operations to the communities and businesses of Reno County.</p>
+              <p>10-year US Army Veteran and CH-47 Chinook Helicopter Repairer / Aircrew Member. Before drones, Travis spent more than a year working at a Kansas grain elevator in Wakefield, where he saw firsthand how moisture, test weight, and dockage at the scale affect a farm's bottom line. Dedicated to bringing structured, high-tier aerial operations to the communities and businesses of Reno County.</p>
               <a href="#" class="btn-primary trigger-quote-modal" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Request Mission Profile Quote</a>
     </div>
 

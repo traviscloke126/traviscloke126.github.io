@@ -316,21 +316,21 @@ title: ROI Calculator | Apex Vector LLC
                 bl2: 'TRADITIONAL BUCKET TRUCK RENTAL FEE:', bv2: '\$1,200.00 flat',
                 bl3: 'UNSCHEDULED REPAIR DELAY RISK:', bv3: '\$5,000.00 / incident', bd3: '(Based on regional emergency structural hardware outage histories)'
             },
-           groundworks: {
-    title: 'Commercial Groundwork',
-    acres: 'PROJECT SITE FOOTPRINT (ACREAGE):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Total horizontal construction grading and civil excavation area.</span>',
-    fert: 'DAILY SITE OVERHEAD / SITE BURN RATE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Daily operational expenses, heavy equipment rentals, and crew overhead.</span>',
-    lab: 'VOLUMETRIC MEASUREMENT ASSURANCE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Assigned internal threshold protecting against bulk material calculation mistakes.</span>',
-    shield: 'CAPITAL DRAW VERIFICATION DISPUTE VALUE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Estimated working overhead frozen during milestone auditing or lender verification delays.</span>',
-    h1: '✓ Timeline Compression Savings: ', h2: '✓ Volumetric Precision Retained: ', h3: '✓ Lender Draw Processing Shield: ',
-    desc1: 'Shaves up to 4 days off traditional topography timelines by deploying high-speed grid scans.',
-    desc2: 'Replaces blind structural estimations with millimetric 3D digital elevation models.',
-    desc3: 'Provides undeniable volume verification metrics to release phase funding allocations faster.',
-    bl1: 'TRADITIONAL TOPO SURVEY TIMELINE:', bv1: '5-7 Days',
-    bl2: 'VOLUMETRIC MEASUREMENT RISK:', bv2: '12% - 15% Error Rate',
-    bl3: 'LENDER DRAW PROCESSING DELAY:', bv3: '$2,500.00 / Cycle', bd3: '(Estimated operational overhead lost during dispute windows)'
-},
-        };
+         groundworks: {
+        title: 'Commercial Groundwork',
+        acres: 'PROJECT SITE FOOTPRINT (ACREAGE):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Total horizontal construction grading and civil excavation area.</span>',
+        fert: 'DAILY SITE OVERHEAD / SITE BURN RATE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Daily operational expenses, heavy equipment rentals, and crew overhead.</span>',
+        lab: 'VOLUMETRIC MEASUREMENT ASSURANCE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Assigned internal threshold protecting against bulk material calculation mistakes.</span>',
+        shield: 'CAPITAL DRAW VERIFICATION DISPUTE VALUE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Estimated working overhead frozen during milestone auditing or lender verification delays.</span>',
+        h1: '✓ Timeline Compression Savings: ', h2: '✓ Volumetric Precision Retained: ', h3: '✓ Lender Draw Processing Shield: ',
+        desc1: 'Shaves up to 4 days off traditional topography timelines by deploying high-speed grid scans.',
+        desc2: 'Replaces blind structural estimations with millimetric 3D digital elevation models.',
+        desc3: 'Provides undeniable volume verification metrics to release phase funding allocations faster.',
+        bl1: 'TRADITIONAL TOPO SURVEY TIMELINE:', bv1: '5-7 Days',
+        bl2: 'VOLUMETRIC MEASUREMENT RISK:', bv2: '12% - 15% Error Rate',
+        bl3: 'LENDER DRAW PROCESSING DELAY:', bv3: '$2,500.00 / Cycle', bd3: '(Estimated operational overhead lost during dispute windows)'
+    }
+};
         // 0. Update Primary Page Header Title Node Instantly
         const mainHeadlineTitle = document.getElementById('main-matrix-title');
         if (mainHeadlineTitle) mainHeadlineTitle.innerText = labels[targetMode].title;
@@ -479,10 +479,20 @@ title: ROI Calculator | Apex Vector LLC
        
         const scaleLabelText = window.currentActiveMode === 'ag' ? fieldAcres + ' ACRES' : window.currentActiveMode === 'infra' ? fieldAcres + ' ASSETS' : fieldAcres + ' ACRES';
         if (elPropScale) elPropScale.innerText = scaleLabelText;
-        if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
-        if (elPropP1) elPropP1.innerText = formatToUSD(proposalGrossValue * 0.30); // Phase 1: 30%
-        if (elPropP2) elPropP2.innerText = formatToUSD(proposalGrossValue * 0.40); // Phase 2: 40%
-        if (elPropP3) elPropP3.innerText = formatToUSD(proposalGrossValue * 0.30); // Phase 3: 30%
+    if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
+    if (elPropP1) elPropP1.innerText = formatToUSD(proposalGrossValue * 0.30);
+    if (elPropP2) elPropP2.innerText = formatToUSD(proposalGrossValue * 0.40);
+    if (elPropP3) elPropP3.innerText = formatToUSD(proposalGrossValue * 0.30);
+    // Dynamic Line-Item Row Toggling Engine
+    if (window.currentActiveMode === 'groundworks') {
+        if (pSector) pSector.innerText = 'COMMERCIAL GROUNDWORK PROFILE';
+        if (pTitle1) pTitle1.innerText = 'High-Resolution Site Grading & Volumetric Topo Scans';
+        if (pUnit1) pUnit1.innerText = '$12.50 / acre';
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
+        if (pTitle2) pTitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
+        if (pUnit2) pUnit2.innerText = 'Included Tiers';
+        if (pval2) pval2.innerText = '$0.00';
+    }
 
         // Adjust Calculation Row Details Based on Active Selection Tab Wording
         const pTitle1 = document.getElementById('proposal-calc-title-1'); const pUnit1 = document.getElementById('proposal-calc-unit-1'); const pVal1 = document.getElementById('proposal-calc-val-1');
@@ -660,16 +670,16 @@ title: ROI Calculator | Apex Vector LLC
                 let sectorLabel = 'Agricultural Intelligence';
                 let unitLabel = 'Acres';
 
-                if (window.currentActiveMode === 'ag') {
-                    sectorLabel = 'AGRICULTURAL INTELLIGENCE FLIGHT RUN';
-                    unitLabel = 'Acres';
-               } else if (window.currentActiveMode === 'groundworks') {
-                    sectorLabel = 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS';
-                    unitLabel = 'Acres';
-                }   else if (window.currentActiveMode === 'groundworks') {
-                    sectorLabel = 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS';
-                    unitLabel = 'Acres';
-                }
+               if (window.currentActiveMode === 'ag') {
+        sectorLabel = 'AGRICULTURAL INTELLIGENCE FLIGHT RUN';
+        unitLabel = 'Acres';
+    } else if (window.currentActiveMode === 'infra') {
+        sectorLabel = 'STRUCTURAL INFRASTRUCTURE SCAN';
+        unitLabel = 'Assets';
+    } else if (window.currentActiveMode === 'groundworks') {
+        sectorLabel = 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS';
+        unitLabel = 'Acres';
+    }
 
                             const briefPayloadString = 
                 "====================================================\n" +

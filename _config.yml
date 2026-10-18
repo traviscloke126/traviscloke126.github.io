@@ -5,3 +5,7 @@ description: "Commercial sUAS Flight Operations | High-Resolution Industrial Tra
 # Disable default third-party theme constraints
 theme: null
 remote_theme: null
+
+# Business phone. Leave empty to hide it; fill in (e.g. "(620) 555-0123") and it shows
+# in the hero, the quote form, and the footer automatically.
+phone: ""

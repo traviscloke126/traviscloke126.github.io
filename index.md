@@ -5,57 +5,65 @@ title: Mission Brief
 
 <div class="hero-section">
     <img src="{{ '/assets/images/logo4.png' | relative_url }}" alt="Apex Vector LLC Logo" class="site-logo">
-    <h1 class="hero-headline">Military Aviation Discipline.<br>Industrial-Grade Aerial Intelligence.</h1>
-    <div class="hero-subheadline">Based in Reno County, Apex Vector LLC applies uncompromised aviation maintenance and flight safety protocols to crop scouting, asset mapping, and infrastructure inspection across Kansas.</div>
+    <h1 class="hero-headline">Military Aviation Discipline.<br>Aerial Data You Can Trust.</h1>
+    <div class="hero-subheadline">Apex Vector is a veteran-owned drone service based in Reno County. I fly crop scouting, field mapping, structure inspections, and aerial media across central Kansas, with the same checklists and maintenance standards I worked under on Army CH-47 Chinooks.</div>
     <div class="cta-group">
-        <a href="#" class="btn-primary trigger-quote-modal">Request Operations / Get a Quote</a>
-        <a href="{{ '/operations.html' | relative_url }}" class="btn-secondary">View Our Capabilities</a>
+        <a href="#" class="btn-primary trigger-quote-modal">Get a Quote</a>
+        {% if site.phone and site.phone != "" %}
+        <a href="tel:{{ site.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}" class="btn-secondary">Call {{ site.phone }}</a>
+        {% else %}
+        <a href="{{ '/operations.html' | relative_url }}" class="btn-secondary">See What I Fly</a>
+        {% endif %}
     </div>
 </div>
 
-## The Reno County Service Pillars
+## Mission Profiles
 
 <div class="pillar-grid">
     <div class="pillar-card">
-        <span class="pillar-meta">Target: Ag Operations & Landowners</span>
+        <span class="pillar-meta">For farmers, ranchers & landowners</span>
         <h3>Agricultural Intelligence</h3>
-        <p><strong>Precision Field Mapping & Crop Health.</strong> High-resolution aerial scouting built to save input costs. We use high-resolution imaging to spot crop stress, stand problems, and drainage issues early, so you and your agronomist can act before they impact your yield.</p>
-        <div class="pillar-standard"><strong>The Apex Standard:</strong> Every flight plan is meticulously mapped to respect property boundaries, privacy, and livestock safety.</div>
+        <p><strong>Find problems before they cost you yield.</strong> Multispectral imaging shows crop stress, stand problems, and drainage issues across the whole field, so you and your agronomist can scout where it matters instead of walking every acre. Maps come on a USB drive ready for your cab, or as a download.</p>
+        <div class="pillar-standard"><strong>The Apex Standard:</strong> I respect property lines, neighbors' privacy, and livestock on every flight.</div>
     </div>
     <div class="pillar-card">
-        <span class="pillar-meta">Target: Utilities, Engineering & Const.</span>
-        <h3>Infrastructure & Asset Inspection</h3>
-        <p><strong>High-Resolution Data Acquisition.</strong> Keep your crews safely on the ground. We deliver close-range, high-detail structural imagery and 2D/3D orthomosaic maps of utility configurations, roofs, and critical infrastructure.</p>
-        <div class="pillar-standard"><strong>The Apex Standard:</strong> We operate under strict 14 C.F.R. Part 107 compliance with full situational awareness protocols built for safety-first job sites.</div>
+        <span class="pillar-meta">For contractors, engineers, co-ops & property owners</span>
+        <h3>Structure Inspection</h3>
+        <p><strong>Keep your crew on the ground.</strong> High-resolution photos, 2D maps, and 3D models of roofs, buildings, stockpiles, and tall structures. You see the problem without anyone climbing to find it.</p>
+        <div class="pillar-standard"><strong>The Apex Standard:</strong> Every job is flown under FAA Part 107, with a site safety briefing before takeoff.</div>
     </div>
     <div class="pillar-card">
-        <span class="pillar-meta">Target: Real Estate & Commercial Dev.</span>
+        <span class="pillar-meta">For real estate, commercial property & construction</span>
         <h3>Commercial Media</h3>
-        <p><strong>Premium Aerial Media & Marketing.</strong> Crisp, high-end 4K aerial imagery designed for commercial assets, construction milestones, and large-scale project updates.</p>
-        <div class="pillar-standard"><strong>The Apex Standard:</strong> High-end cinematic production value backed by commercial aviation risk mitigation.</div>
+        <p><strong>Aerial photos and 4K video that show the whole picture.</strong> Listings, commercial properties, and construction progress updates, delivered as clean, edited files on time.</p>
+        <div class="pillar-standard"><strong>The Apex Standard:</strong> Every shoot is planned and flown like a flight, not a photo op.</div>
     </div>
 </div>
 
 ## Why Military Discipline Matters on Your Job Site
 
-In Army Aviation, compliance and preventative maintenance aren't optional—they are a matter of survival. We bring that exact zero-failure framework to your commercial project.
+In Army aviation, skipping a step was never an option. I run your job the same way.
 
 <div class="advantage-box">
     <ol>
-        <li><strong>Pre-Flight Site Control:</strong> We establish active site safety zones and exclusion boundaries before the props spin.</li>
-        <li><strong>Component Lifecycle Tracking:</strong> Every drone is inspected before and after each flight and tracked in military-style maintenance logs.</li>
-        <li><strong>SOP-Driven Execution:</strong> Every flight follows written procedures and a scored risk assessment. If conditions aren't safe, we don't launch.</li>
+        <li><strong>Site control first.</strong> Before takeoff I walk the site, set safety boundaries, and confirm airspace clearance.</li>
+        <li><strong>Logged maintenance.</strong> Every aircraft and battery gets pre- and post-flight checks, and every check is written down.</li>
+        <li><strong>Same process every time.</strong> Written procedures and a risk check before every flight. If conditions aren't safe, I don't launch.</li>
     </ol>
 </div>
 
 <div class="founder-section">
-    <!-- Replace "headshot.jpg" with your actual photo down the road -->
-    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Travis Cloke" class="founder-img">
+    <div class="founder-photos">
+        <img src="{{ '/assets/images/founder-tractor.jpg' | relative_url }}" alt="Travis Cloke on a tractor" class="founder-img">
+        <figure class="founder-then">
+            <img src="{{ '/assets/images/reenlistment-2008.jpg' | relative_url }}" alt="Travis Cloke's Army re-enlistment in front of a CH-47 Chinook, 2008">
+            <figcaption>Re-enlistment, 2008</figcaption>
+        </figure>
+    </div>
     <div class="founder-bio">
         <h3>Travis Cloke</h3>
-        <span class="founder-title">Founder & Remote PIC</span>
-              <p>10-year US Army Veteran and CH-47 Chinook Helicopter Repairer / Aircrew Member. Before drones, Travis spent more than a year working at a Kansas grain elevator in Wakefield, where he saw firsthand how moisture, test weight, and dockage at the scale affect a farm's bottom line. Dedicated to bringing structured, high-tier aerial operations to the communities and businesses of Reno County.</p>
-              <a href="#" class="btn-primary trigger-quote-modal" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Request Mission Profile Quote</a>
+        <span class="founder-title">Founder & Remote Pilot in Command</span>
+        <p>10-year U.S. Army veteran. I served as a CH-47 Chinook Helicopter Repairer and aircrew member, keeping heavy-lift helicopters ready to fly. Before drones, I spent more than a year at a grain elevator in Wakefield, Kansas, where I saw firsthand how moisture, test weight, and dockage at the scale affect a farm's bottom line. Now I'm bringing that same standard home to Reno County.</p>
+        <a href="#" class="btn-primary trigger-quote-modal" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Request a Quote</a>
     </div>
-
 </div>

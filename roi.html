@@ -386,120 +386,112 @@ title: ROI Calculator | Apex Vector LLC
     };
 
 
-       // --- 3. Dynamic Multi-Pillar Yield Calculations Engine ---
-    window.processMatrixROI = function() {
-        const fieldAcres = parseFloat(elementMatrix.acresNum?.value) || 0;
-        const param1 = parseFloat(elementMatrix.fertNum?.value) || 0;
-        const param2 = parseFloat(elementMatrix.soilNum?.value) || 0;
-        const param3 = parseFloat(elementMatrix.shieldNum?.value) || 0;
+    // // --- 3. Dynamic Multi-Pillar Yield Calculations Engine ---
+window.processMatrixROI = function() {
+    const fieldAcres = parseFloat(elementMatrix.acresNum?.value) || 0;
+    const param1 = parseFloat(elementMatrix.fertNum?.value) || 0;
+    const param2 = parseFloat(elementMatrix.soilNum?.value) || 0;
+    const param3 = parseFloat(elementMatrix.shieldNum?.value) || 0;
 
-        let v1 = 0, v2 = 0, v3 = 0;
+    let v1 = 0, v2 = 0, v3 = 0;
 
-        if (window.currentActiveMode === 'ag') {
-            v1 = (fieldAcres * param1) * 0.10; // 10% Fertilizer optimization
-            v2 = (fieldAcres * param2) * 0.65; // 65% Soil grid cut
-            v3 = fieldAcres * param3;          // Scale house shield flat baseline
-        } else if (window.currentActiveMode === 'infra') {
-            v1 = (fieldAcres * param1) * 0.75; // 75% Climber safety savings 
-            v2 = (fieldAcres * param2) * 0.40; // 40% Predictive fault capture efficiency
-            v3 = fieldAcres * param3 * 1.25;   // Outage interception protection factor
-        } else if (window.currentActiveMode === 'groundworks') {
-    v1 = (fieldAcres * param1) * 0.08;  // 8% Timeline compression / data staging efficiency
-    v2 = (fieldAcres * param2) * 0.15;  // 15% Volumetric manual calculation error reduction
-    v3 = fieldAcres * param3 * 0.85;   // Prevented draw processing overhead factor
-}
-
-                const totalCalculatedReturn = v1 + v2 + v3;
-
-        if (elementMatrix.totalSavings) elementMatrix.totalSavings.innerText = formatToUSD(totalCalculatedReturn);
-        if (elementMatrix.fertSavings) elementMatrix.fertSavings.innerText = formatToUSD(v1);
-        if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(v2);
-        if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
-
-               // --- Fixed Apex Vector Commercial Billing Rate Constants ---
-        const AG_FLIGHT_RATE = 5.50;    // Standard Ag Operation Rate per Acre
-        const AG_PROCESS_RATE = 3.00;   // Photogrammetry Stitching per Acre
-        
-        const INFRA_FLIGHT_RATE = 12.50; // Infrastructure Tracking per Asset
-        const INFRA_PROCESS_RATE = 3.00;  // Diagnostic Rendering per Asset
-        
-       const Groundworks_FLIGHT_RATE = 12.50; // Commercial Grading per Acre
-        const Groundworks_PROCESS_RATE = 0;    // Handled natively via scalable unit metrics
-
-        let activeFlightRate = 0;
-        let activeProcessRate = 0;
-        let calculatedFlightSubtotal = 0;
-        let calculatedProcessSubtotal = 0;
-        let proposalGrossValue = 250 + 100; // Base Fee ($250) + Secure Archival ($100)
-
-    // Accumulate structural operational valuations safely
-    proposalGrossValue += calculatedFlightSubtotal + calculatedProcessSubtotal;
-
-    // Render calculations directly to your active Proposal Table Viewports
-    const elPropGross = document.getElementById('proposal-final-gross');
-    const elPropP1 = document.getElementById('proposal-phase-1');
-    const elPropP2 = document.getElementById('proposal-phase-2');
-    const elPropP3 = document.getElementById('proposal-phase-3');
-
-    if (elPropGross) elPropGross.innerText = '$' + proposalGrossValue.toFixed(2);
-    if (elPropP1) elPropP1.innerText = '$' + (proposalGrossValue * 0.30).toFixed(2);
-    if (elPropP2) elPropP2.innerText = '$' + (proposalGrossValue * 0.40).toFixed(2);
-    if (elPropP3) elPropP3.innerText = '$' + (proposalGrossValue * 0.30).toFixed(2);
-
-       // === 1. Establish Your Table Target Nodes Safely ===
-    const pval1   = document.getElementById('proposal-calc-val-1') || document.getElementById('pval1');
-    const pval2   = document.getElementById('proposal-calc-val-2') || document.getElementById('pval2');
-    
-    const pTitle1 = document.getElementById('proposal-calc-title-1');
-    const pUnit1  = document.getElementById('proposal-calc-unit-1');
-    const pTitle2 = document.getElementById('proposal-calc-title-2');
-    const pUnit2  = document.getElementById('proposal-calc-unit-2');
-    
-    const pSector = document.getElementById('proposal-sector-tag');
-
-    // === 2. Run Dynamic Wording and Value Shifts Based on Selected Tab ===
     if (window.currentActiveMode === 'ag') {
-        if (pSector) pSector.innerText = 'AG_INTELLIGENCE PROFILE';
-        if (pTitle1) pTitle1.innerText = 'sUAS Flight Lines & In-Field Data Acquisition Mapping';
-        if (pUnit1)  pUnit1.innerText  = '$5.50 / acre';
-        if (pval1)   pval1.innerText   = formatToUSD(calculatedFlightSubtotal);
-        
-        if (pTitle2) pTitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
-        if (pUnit2)  pUnit2.innerText  = '$3.00 / acre';
-        if (pval2)   pval2.innerText   = formatToUSD(calculatedProcessSubtotal);
-    } 
-    else if (window.currentActiveMode === 'infra') {
-        if (pSector) pSector.innerText = 'INFRASTRUCTURE_ASSET PROFILE';
-        if (pTitle1) pTitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery';
-        if (pUnit1)  pUnit1.innerText  = '$12.50 / asset';
-        if (pval1)   pval1.innerText   = formatToUSD(calculatedFlightSubtotal);
-        
-        if (pTitle2) pTitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering';
-        if (pUnit2)  pUnit2.innerText  = 'Tiered Industrial Unit Metric';
-        if (pval2)   pval2.innerText   = formatToUSD(calculatedProcessSubtotal);
-    } 
-    else if (window.currentActiveMode === 'groundworks') {
-        if (pSector) pSector.innerText = 'COMMERCIAL GROUNDWORK PROFILE';
-        if (pTitle1) pTitle1.innerText = 'High-Resolution Site Grading & Volumetric Topo Scans';
-        if (pUnit1)  pUnit1.innerText  = '$12.50 / acre';
-        if (pval1)   pval1.innerText   = formatToUSD(calculatedFlightSubtotal);
-        
-        if (pTitle2) pTitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
-        if (pUnit2)  pUnit2.innerText  = 'Included Tiers';
-        if (pval2)   pval2.innerText   = '$0.00';
+        v1 = (fieldAcres * param1) * 0.10; // 10% Fertilizer optimization
+        v2 = (fieldAcres * param2) * 0.65; // 65% Soil grid cut
+        v3 = fieldAcres * param3;           // Scale house shield flat baseline
+    } else if (window.currentActiveMode === 'infra') {
+        v1 = (fieldAcres * param1) * 0.75; // 75% Climber safety savings
+        v2 = (fieldAcres * param2) * 0.40; // 40% Predictive fault capture efficiency
+        v3 = fieldAcres * param3 * 1.25;   // Outage interception protection factor
+    } else if (window.currentActiveMode === 'groundworks') {
+        v1 = (fieldAcres * param1) * 0.08; // 8% Timeline compression / data staging efficiency
+        v2 = (fieldAcres * param2) * 0.15; // 15% Volumetric manual calculation error reduction
+        v3 = fieldAcres * param3 * 0.85;   // Prevented draw processing overhead factor
     }
 
+    const totalCalculatedReturn = v1 + v2 + v3;
 
-        // Live Proposal Automation Date Tag Initialization
-        const elPropDate = document.getElementById('proposal-live-date');
-        if (elPropDate) {
-            const today = new Date();
-            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-            elPropDate.innerText = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+    if (elementMatrix.totalsSavings) elementMatrix.totalsSavings.innerText = formatToUSD(totalCalculatedReturn);
+    if (elementMatrix.fertSavings) elementMatrix.fertSavings.innerText = formatToUSD(v1);
+    if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(v2);
+    if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
+
+      // // --- Fixed Apex Vector Commercial Billing Rate Constants ---
+    const AG_FLIGHT_RATE = 5.50;      // Standard Ag Operation Rate per Acre
+    const AG_PROCESS_RATE = 3.00;     // Photogrammetry Stitching per Acre
+
+    const INFRA_FLIGHT_RATE = 12.50;  // Infrastructure Tracking Per Asset
+    const INFRA_PROCESS_RATE = 3.00;  // Diagnostic Rendering per Asset
+
+    const GROUNDWORKS_FLIGHT_RATE = 12.50; // Commercial Grading per Acre
+    const GROUNDWORKS_PROCESS_RATE = 0;    // Handled natively via scalable unit metrics
+
+    let activeFlightRate = 0;
+    let activeProcessRate = 0;
+
+    // STEP 1: Dynamically assign rates based on the current active tab
+    if (window.currentActiveMode === 'ag') {
+        activeFlightRate = AG_FLIGHT_RATE;
+        activeProcessRate = AG_PROCESS_RATE;
+    } else if (window.currentActiveMode === 'infra') {
+        activeFlightRate = INFRA_FLIGHT_RATE;
+        activeProcessRate = INFRA_PROCESS_RATE;
+    } else if (window.currentActiveMode === 'groundworks') {
+        activeFlightRate = GROUNDWORKS_FLIGHT_RATE;
+        activeProcessRate = GROUNDWORKS_PROCESS_RATE;
+    }
+
+    // STEP 2: Execute the math using the active sandbox input acreage
+    let calculatedFlightSubtotal = fieldAcres * activeFlightRate;
+    let calculatedProcessSubtotal = fieldAcres * activeProcessRate;
+
+    // STEP 3: Handle structural tiered exceptions for Infrastructure tab sizing
+    if (window.currentActiveMode === 'infra') {
+        if (fieldAcres <= 5000) {
+            calculatedProcessSubtotal = fieldAcres * 3.00;
+        } else if (fieldAcres > 5000 && fieldAcres <= 50000) {
+            calculatedProcessSubtotal = 1500.00; // Complex Terminal Flat Fee
+        } else {
+            calculatedProcessSubtotal = 3500.00; // Industrial Mega-Elevator Flat Fee
         }
-    };
+    }
 
+    // // --- Fixed Apex Vector Commercial Billing Rate Constants ---
+    const AG_FLIGHT_RATE = 5.50;      
+    const AG_PROCESS_RATE = 3.00;     
 
+    const INFRA_FLIGHT_RATE = 12.50;  
+    const INFRA_PROCESS_RATE = 3.00;  
+
+    const GROUNDWORKS_FLIGHT_RATE = 12.50; 
+    const GROUNDWORKS_PROCESS_RATE = 0;    
+
+    let activeFlightRate = 0;
+    let activeProcessRate = 0;
+
+    if (window.currentActiveMode === 'ag') {
+        activeFlightRate = AG_FLIGHT_RATE;
+        activeProcessRate = AG_PROCESS_RATE;
+    } else if (window.currentActiveMode === 'infra') {
+        activeFlightRate = INFRA_FLIGHT_RATE;
+        activeProcessRate = INFRA_PROCESS_RATE;
+    } else if (window.currentActiveMode === 'groundworks') {
+        activeFlightRate = GROUNDWORKS_FLIGHT_RATE;
+        activeProcessRate = GROUNDWORKS_PROCESS_RATE;
+    }
+
+    let calculatedFlightSubtotal = fieldAcres * activeFlightRate;
+    let calculatedProcessSubtotal = fieldAcres * activeProcessRate;
+
+    if (window.currentActiveMode === 'infra') {
+        if (fieldAcres <= 5000) {
+            calculatedProcessSubtotal = fieldAcres * 3.00;
+        } else if (fieldAcres > 5000 && fieldAcres <= 50000) {
+            calculatedProcessSubtotal = 1500.00; 
+        } else {
+            calculatedProcessSubtotal = 3500.00; 
+        }
+    }
     if (elementMatrix.btnPrint) {
         elementMatrix.btnPrint.addEventListener('click', () => { window.print(); });
     }

@@ -432,49 +432,6 @@ title: ROI Calculator | Apex Vector LLC
         let calculatedProcessSubtotal = 0;
         let proposalGrossValue = 250 + 100; // Base Fee ($250) + Secure Archival ($100)
 
-       // === 3. Dynamic Multi-Pillar Variable Evaluation Engine ===
-function processMatrixROI() {
-    const fieldAcres = parseFloat(document.getElementById('acres')?.value) || 0;
-    const fieldAssets = parseFloat(document.getElementById('acres')?.value) || 1; // Fallback for structural unit math
-
-    let activeFlightRate = 0;
-    let activeProcessRate = 0;
-    let calculatedFlightSubtotal = 0;
-    let calculatedProcessSubtotal = 0;
-
-    // Reset base baseline parameters ($250 Mobilization + $100 Long-Term Archival)
-    let proposalGrossValue = 350.00; 
-
-    if (window.currentActiveMode === 'ag') {
-        activeFlightRate = 5.50;
-        activeProcessRate = 3.00;
-        calculatedFlightSubtotal = fieldAcres * 5.50;
-        calculatedProcessSubtotal = fieldAcres * 3.00;
-    } 
-    else if (window.currentActiveMode === 'infra') {
-        activeFlightRate = 12.50;
-        calculatedFlightSubtotal = fieldAssets * 12.50; 
-
-        // Core Tiered Threshold Processing Logic for Large Concrete Terminals
-        let targetSqFt = parseFloat(document.getElementById('traditional-equipment-fees-field-id')?.value) || 0;
-        if (targetSqFt <= 5000) {
-            activeProcessRate = 3.00;
-            calculatedProcessSubtotal = targetSqFt * 3.00;
-        } else if (targetSqFt > 5000 && targetSqFt <= 50000) {
-            activeProcessRate = 1500.00;
-            calculatedProcessSubtotal = 1500.00;
-        } else {
-            activeProcessRate = 3500.00;
-            calculatedProcessSubtotal = 3500.00;
-        }
-    } 
-    else if (window.currentActiveMode === 'groundworks') {
-        activeFlightRate = 12.50;
-        activeProcessRate = 0;
-        calculatedFlightSubtotal = fieldAcres * 12.50;
-        calculatedProcessSubtotal = 0;
-    }
-
     // Accumulate structural operational valuations safely
     proposalGrossValue += calculatedFlightSubtotal + calculatedProcessSubtotal;
 

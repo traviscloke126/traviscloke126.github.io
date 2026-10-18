@@ -10,9 +10,9 @@ At Apex Vector LLC, safety is not a secondary checkbox—it is the foundational 
 
 ## 🎖️ Enterprise Maintenance & Operational DNA
 
-Our Remote Pilot in Command (PIC), **Travis Cloke**, brings a distinguished **10-Year U.S. Army Veteran** background serving as a **CH-47 Chinook Crew Chief**. 
+Our Remote Pilot in Command (PIC), **Travis Cloke**, brings a distinguished **10-Year U.S. Army Veteran** background serving as a **CH-47 Chinook Helicopter Repairer / Aircrew Member**. 
 
-This decade of real-world experience maintaining and managing complex, multi-million-dollar heavy-lift rotorcraft directly shapes our commercial drone fleet protocols. Every asset—including our primary **DJI Mavic 3 Enterprise (M3E)** with its precision 4/3 CMOS mechanical shutter—undergoes exhaustive, logbook-audited pre-flight, structural, and avionics inspections mirroring military airworthiness standards.
+This decade of real-world experience maintaining and managing complex, multi-million-dollar heavy-lift rotorcraft directly shapes our commercial drone fleet protocols. Every aircraft in our fleet undergoes exhaustive, logbook-audited pre-flight, structural, and avionics inspections mirroring military airworthiness standards.
 
 ---
 

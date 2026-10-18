@@ -34,7 +34,7 @@ To request aerial intelligence or data operations in Hutchinson, Reno County, an
   <h3 style="margin-top:0;">Ready to Initialize Pre-Flight Briefing?</h3>
   <p style="margin-bottom: 1.5rem; color:#E0E4E6;">Click the link below to compile your answers into our standardized aviation routing format. This safely bypasses unsecured web forms and sends your data directly to the Chief of Maintenance.</p>
   
-  <a class="btn-intake" id="generate-email-brief" href="#" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: bold; uppercase;">
+  <a class="btn-intake" id="generate-email-brief" href="#" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: bold; text-transform: uppercase;">
     ⚡ Structure and Send Intake Request
   </a>
 </div>

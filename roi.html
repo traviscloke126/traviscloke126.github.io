@@ -459,16 +459,16 @@ window.processMatrixROI = function() {
     // STEP 4: Tally gross value outcome including $250 mobilization + $100 archival fees
     let proposalGrossValue = 250 + 100 + calculatedFlightSubtotal + calculatedProcessSubtotal;
 
-       // STEP 5: Render calculated gross values and 3-phase milestone payouts safely
+        // STEP 5: Render calculated gross values and 3-phase milestone payouts safely
     const elPropGross = document.getElementById('proposal-final-gross');
     const elProp1 = document.getElementById('proposal-phase-1');
     const elProp2 = document.getElementById('proposal-phase-2');
     const elProp3 = document.getElementById('proposal-phase-3');
 
-    if (elPropGross) elPropGross.innerText = formatwattousd(proposalGrossValue);
-    if (elProp1) elProp1.innerText = formatwattousd(proposalGrossValue * 0.30);
-    if (elProp2) elProp2.innerText = formatwattousd(proposalGrossValue * 0.40);
-    if (elProp3) elProp3.innerText = formatwattousd(proposalGrossValue * 0.30);
+    if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
+    if (elProp1) elProp1.innerText = formatToUSD(proposalGrossValue * 0.30);
+    if (elProp2) elProp2.innerText = formatToUSD(proposalGrossValue * 0.40);
+    if (elProp3) elProp3.innerText = formatToUSD(proposalGrossValue * 0.30);
 
     // STEP 6: Target itemized cost table nodes safely with fallback checks
     const pval1 = document.getElementById('proposal-calc-val-1');
@@ -482,16 +482,16 @@ window.processMatrixROI = function() {
     if (window.currentActiveMode === 'ag') {
         if (ptitle1) ptitle1.innerText = 'sUAS Flight Lines & In-Field Data Acquisition Mapping';
         if (punit1) punit1.innerText = '$5.50 / acre';
-        if (pval1) pval1.innerText = formatwattousd(calculatedFlightSubtotal);
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
 
         if (ptitle2) ptitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
         if (punit2) punit2.innerText = '$3.00 / acre';
-        if (pval2) pval2.innerText = formatwattousd(calculatedProcessSubtotal);
+        if (pval2) pval2.innerText = formatToUSD(calculatedProcessSubtotal);
     } 
     else if (window.currentActiveMode === 'infra') {
         if (ptitle1) ptitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery';
         if (punit1) punit1.innerText = '$12.50 / asset';
-        if (pval1) pval1.innerText = formatwattousd(calculatedFlightSubtotal);
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
 
         if (ptitle2) ptitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering';
         if (fieldAcres <= 5000) {
@@ -501,17 +501,26 @@ window.processMatrixROI = function() {
         } else {
             if (punit2) punit2.innerText = 'Industrial Mega-Elevator Flat Fee';
         }
-        if (pval2) pval2.innerText = formatwattousd(calculatedProcessSubtotal);
+        if (pval2) pval2.innerText = formatToUSD(calculatedProcessSubtotal);
     } 
     else if (window.currentActiveMode === 'groundworks') {
         if (ptitle1) ptitle1.innerText = 'sUAS Site Grading & Volumetric Topo Tracking Lines';
         if (punit1) punit1.innerText = '$12.50 / acre';
-        if (pval1) pval1.innerText = formatwattousd(calculatedFlightSubtotal);
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
 
         if (ptitle2) ptitle2.innerText = 'Photogrammetry Processing & Volumetric Rendering Analytics';
         if (punit2) punit2.innerText = 'Included in Tier';
-        if (pval2) pval2.innerText = formatwattousd(0);
+        if (pval2) pval2.innerText = formatToUSD(0);
     }
+
+    // STEP 8: Initialize proposal live date automation tag smoothly
+    const elPropDate = document.getElementById('proposal-live-date');
+    if (elPropDate) {
+        const today = new Date();
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        elPropDate.innerText = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+    }
+
 
     // STEP 8: Initialize proposal live date automation tag smoothly
     const elPropDate = document.getElementById('proposal-live-date');

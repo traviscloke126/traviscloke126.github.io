@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- PRE-LAUNCH: keeps search engines from listing the site. DELETE THIS LINE AT LAUNCH. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/images/logo4.png' | relative_url }}">
   <title>{{ page.title }} | Apex Vector LLC</title>
   <style>
     :root {
@@ -355,8 +359,8 @@
       <div class="badge">Insured on Every Mission</div>
     </div>
     <br><br>
-    &copy; 2027 Apex Vector LLC. All Rights Reserved.<br>
-    Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 Protocols &bull; Document Control: Public Release
+    &copy; {{ site.time | date: '%Y' }} Apex Vector LLC. All Rights Reserved.<br>
+    Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 &bull; <a href="{{ '/privacy.html' | relative_url }}" style="color: #9EB1C2;">Privacy Policy</a>
   </footer>
   <!-- GLOBAL INTAKE INPUT MODAL -->
   <div id="missionModal">
@@ -368,7 +372,7 @@
         <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem;">Project Initiation Intake</h2>
         <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
        <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
-  Evaluate your parameters. Submitting this briefing compiles your project inputs directly into a secure aviation dispatch matrix for immediate flight center engineering review.
+  Tell us about your site and what you need. Your request goes straight to our flight operations inbox, and we'll review airspace and scope before sending a formal quote.
 </p>
 
         <form id="intakeFormInstance">
@@ -398,7 +402,8 @@
               <select id="intake-data" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff;">
   <option value="2D High-Res Orthomosaic Map">2D High-Res Orthomosaic Map (Crop Health & Stand Counts)</option>
   <option value="3D Photogrammetry / Volumetric">3D Photogrammetry / Volumetric (Stockpiles & Grading Profiles)</option>
-  <option value="Thermal Signature Tracking">Thermal Signature Tracking (Moisture & Stress Mapping)</option>
+  <option value="Roof / Structure / Tower Inspection">Roof / Structure / Tower Inspection (Close-Range Imagery)</option>
+  <option value="Thermal Signature Tracking">Thermal Imaging (Equipped Aircraft Required)</option>
   <option value="Cinematic 4K Marketing Media">Cinematic 4K Marketing Media (Commercial Real Estate & Assets)</option>
 </select>
             </div>
@@ -424,6 +429,9 @@
           </div>
 
           <button type="submit" id="submitIntakeForm">Transmit Secure Intake Request</button>
+          <p style="font-size: 0.75rem; color: #8b98a5; margin: 0.75rem 0 0; text-align: center;">
+            We use your information only to respond to this request. See our <a href="{{ '/privacy.html' | relative_url }}" style="color: #FFB300;">Privacy Policy</a>.
+          </p>
         </form>
       </div>
 
@@ -435,7 +443,7 @@
         <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.75rem;">Mission Logged</h2>
         <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Intake Profile Transmission Complete</h4>
         <p style="color: #E0E4E6; font-size: 0.95rem; line-height: 1.5; max-width: 440px; margin: 0 auto 2rem;">
-  A command coordinator will review local airspace restrictions, process your project parameters, and reach out to your provided contact email address within 24 hours to schedule your formal mission briefing.
+  We'll review local airspace and your project details, and reply to the email you provided within one business day to schedule your mission briefing.
 </p>
         <button id="closeSuccessBtn" style="background: #1a1d29; border: 1px solid #4a5568; color: #ffffff; padding: 10px 24px; border-radius: 4px; font-weight: bold; text-transform: uppercase; cursor: pointer;">Dismiss Window</button>
       </div>
@@ -478,6 +486,12 @@
     // DOCUSIGN POWERFORM — paste the live PowerForm URL here once it exists.
     // While this is empty, the form still emails your intake, it just skips
     // opening the contract tab.
+    //
+    // NOTE (Rev. 2.0 contracts): the workflow is now quote first, then the
+    // Master Services Agreement. Leaving this EMPTY is recommended, so a client
+    // never signs a contract priced from the website estimate before you have
+    // reviewed the site. The DataTransitLog / ProjectValuation parameters below
+    // match the OLD contract pack; update the field names if you ever enable this.
     // ========================================================
     const POWERFORM_URL = "";
 

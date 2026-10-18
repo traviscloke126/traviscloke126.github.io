@@ -16,13 +16,12 @@ title: ROI Calculator | Apex Vector LLC
 <div class="industry-switcher-row" style="display: flex; gap: 12px; margin: 10px auto 30px auto; justify-content: center; max-width: 750px; padding: 0 10px;">
     <button class="matrix-tab active" id="tab-ag" onclick="switchMatrixMode('ag')" style="flex: 1; padding: 12px 15px; background: #172230; border: 1px solid #d4af37; color: #d4af37; font-family: monospace; font-size: 0.85rem; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; transition: all 0.3s;">AG_INTELLIGENCE</button>
     <button class="matrix-tab" id="tab-infra" onclick="switchMatrixMode('infra')" style="flex: 1; padding: 12px 15px; background: #0c0f12; border: 1px solid #21262d; color: #8fa0b5; font-family: monospace; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; transition: all 0.3s;">INFRASTRUCTURE</button>
-    <button class="matrix-tab" id="tab-groundworks" onclick="window.switchMatrixMode('groundworks')" style="flex: 1; padding: 12px 15px; background: #0c0f12; border: 1px solid #21262d; color: #8f90b5; font-family: monospace; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; cursor: pointer;">Groundworks</button>
+    <button class="matrix-tab" id="tab-groundworks" onclick="switchMatrixMode('groundworks')" style="flex: 1; padding: 12px 15px; background: #0c0f12; border: 1px solid #21262d; color: #8fa0b5; font-family: monospace; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; transition: all 0.3s;">GROUNDWORKS</button>
 </div>
 
     <!-- 🛸 UNIFORM TELEMETRY ANIMATION GRAPHICS DISPLAY CARD -->
     <div style="width: 100%; max-width: 1200px; margin: 0 auto 40px auto; background-color: #0c0f12; border: 1px solid #21262d; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;">
         <!-- Telemetry Data Overlay Strips -->
-                <!-- Telemetry Data Overlay Strips -->
         <div style="position: absolute; top: 15px; left: 20px; font-family: monospace; font-size: 0.85rem; color: #58a6ff; letter-spacing: 1px; z-index: 10;">
             SYS_STATUS: <span style="color: #2ecc71; font-weight: bold;">ACTIVE_SCAN</span><br>
             SENSOR_MODE: <span id="telemetryMode" style="color: #ffb300; font-weight: bold;">AG_NDVI</span><br>
@@ -36,12 +35,14 @@ title: ROI Calculator | Apex Vector LLC
 
         
         <canvas id="droneSimCanvas" width="800" height="220" style="width: 100%; min-height: 220px; height: 220px; display: block; background-color: #0c0f12; clear: both; position: relative; z-index: 1;"></canvas>
-    
+    </div>
+
 <!-- UNIFIED RESPONSIVE FLEX GRID MATRIX ROW STRUCTURE START -->
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 25px; width: 100%; max-width: 1350px; margin: 25px auto; padding: 0 15px; box-sizing: border-box;">
 
         
-      <div style="background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+        <!-- COLUMN 1: REGIONAL BASELINES -->
+        <div style="flex: 1 1 280px; min-width: 260px; box-sizing: border-box; background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
     <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Regional Baselines</h3>
     <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
         Standard regional operational averages based on industry sector metrics:
@@ -66,7 +67,7 @@ title: ROI Calculator | Apex Vector LLC
 
 
         <!-- COLUMN 2: THE FARMER'S DATA INPUT SANDBOX -->
-        <div style="background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+        <div style="flex: 1 1 280px; min-width: 260px; box-sizing: border-box; background-color: #111111; color: #ffffff; border: 1px solid #222; padding: 25px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
             <h3 style="margin-top: 0; color: #ffffff; font-size: 1.25rem; border-bottom: 2px solid #222; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Your Sandbox</h3>
             <p style="font-size: 0.95rem; color: #888888; line-height: 1.5; margin-bottom: 20px;">
                 Type your exact operational numbers right out of your ledger below to update your returns:
@@ -89,38 +90,47 @@ title: ROI Calculator | Apex Vector LLC
                 <label for="lab" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">GRID SOIL SAMPLING ($ / ACRE):</label>
                 <input type="number" id="lab" value="12" min="0" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; box-sizing: border-box;">
             </div>
+
+            <!-- Input Box: Scale House Risk -->
+            <div style="margin-bottom: 20px;">
+                <label for="input-penalty-risk" style="display: block; font-weight: 700; margin-bottom: 8px; color: #aaaaaa; font-size: 0.9rem; text-transform: uppercase;">SCALE HOUSE RISK ($ / ACRE):</label>
+                <input type="number" id="input-penalty-risk" value="15" min="0" step="1" oninput="window.processMatrixROI()" style="width: 100%; padding: 12px; background-color: #1a1a1a; border: 2px solid #333; color: #ffffff; border-radius: 4px; font-size: 1.1rem; box-sizing: border-box;">
+            </div>
         </div>
         <!-- COLUMN 3: HIGH-CONTRAST INVESTMENT SUMMARY -->
-        <div style="background-color: #ffffff; color: #111111; padding: 30px; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        <div style="flex: 1.1 1 300px; min-width: 280px; box-sizing: border-box; background-color: #ffffff; color: #111111; padding: 30px; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
             <h3 style="margin-top: 0; color: #111111; font-size: 1.25rem; border-bottom: 2px solid #eeeeee; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 800;">Estimated Return</h3>
             
             <!-- Dynamic Combined Total Summary Display Card -->
             <div style="margin: 20px 0 25px 0; text-align: center; background: #111111; padding: 20px; border-radius: 4px;">
                 <span style="display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #888888; margin-bottom: 5px;">Potential Saved Capital</span>
-                <span id="total-savings" style="font-size: 2.75rem; font-weight: 900; color: #2ecc71;">$18,000</span>
+                <span id="total-savings" style="font-size: 2.75rem; font-weight: 900; color: #2ecc71;">$15,900.00</span>
             </div>
 
             <!-- Detailed Breakdowns -->
             <div style="font-size: 0.9rem; line-height: 1.5; color: #333333;">
                         <!-- Item 1 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                <strong id="breakdown-title-1" style="color: #27ac60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Fertilizer Optimization: <span id="fert-savings">$4,500</span></strong>
+                <strong id="breakdown-title-1" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ <span id="breakdown-label-1">Fertilizer Optimization:</span> <span id="fert-savings">$4,500.00</span></strong>
                 <span class="return-desc" style="color: #555555;">Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).</span>
             </div>
 
             <!-- Item 2 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                <strong id="breakdown-title-2" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Smart Soil Analytics: <span id="lab-savings">$3,900</span></strong>
+                <strong id="breakdown-title-2" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ <span id="breakdown-label-2">Smart Soil Analytics:</span> <span id="lab-savings">$3,900.00</span></strong>
                 <span class="return-desc" style="color: #555555;">65% reduction in lab fees by replacing blind grids with aerial Management Zones.</span>
             </div>
 
             <!-- Item 3 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                <strong id="breakdown-title-3" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ Dockage Risk Shield: <span id="scale-savings">$0.00</span></strong>
-                <span class="return-desc" style="color: #555555;">Defends test weight uniformity mid-season to secure full market price at the scale house scale.</span>
+                <strong id="breakdown-title-3" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ <span id="breakdown-label-3">Dockage Risk Shield:</span> <span id="scale-savings">$7,500.00</span></strong>
+                <span class="return-desc" style="color: #555555;">Defends test weight uniformity mid-season to secure full market price at the scale house.</span>
             </div>
         </div>
     </div>
+</div>
+<!-- END FLEX ROW -->
+
         <!-- DYNAMIC INDUSTRIAL SERVICE PROPOSAL GENERATOR BOX -->
 <div id="proposal-print-area" style="background-color: #ffffff; color: #111111; padding: 40px; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); max-width: 850px; margin: 40px auto; font-family: monospace; border: 1px solid #ddd;">
     
@@ -172,13 +182,13 @@ title: ROI Calculator | Apex Vector LLC
             </tr>
             <tr style="border-bottom: 1px dashed #ccc;">
                 <td style="padding: 10px;" id="proposal-calc-title-1">sUAS Flight Lines & In-Field Data Acquisition Mapping</td>
-                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-1">$90.00 / Unit</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-1">$0.00</td>
+                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-1">$5.50 / acre</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-1">$2,750.00</td>
             </tr>
             <tr style="border-bottom: 1px dashed #ccc;">
                 <td style="padding: 10px;" id="proposal-calc-title-2">Photogrammetry Processing & Analytical Engine Stitching</td>
-                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-2">$12.00 / Unit</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-2">$0.00</td>
+                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-2">$3.00 / acre</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-2">$1,500.00</td>
             </tr>
             <tr style="border-bottom: 2px solid #111;">
                 <td style="padding: 10px;">Secure Payload Cloud Export & Long-Term Archival Lifecycle</td>
@@ -187,7 +197,7 @@ title: ROI Calculator | Apex Vector LLC
             </tr>
             <tr style="background: #f1f8f5;">
                 <td colspan="2" style="padding: 12px; font-weight: bold; text-transform: uppercase; font-size: 1rem; text-align: right; border-bottom: 2px solid #111;">Total Gross Contract Value:</td>
-                <td style="padding: 12px; font-weight: 900; text-align: right; font-size: 1.15rem; color: #27ae60; border-bottom: 2px solid #111;" id="proposal-final-gross">$0.00</td>
+                <td style="padding: 12px; font-weight: 900; text-align: right; font-size: 1.15rem; color: #27ae60; border-bottom: 2px solid #111;" id="proposal-final-gross">$4,600.00</td>
             </tr>
         </tbody>
     </table>
@@ -198,17 +208,17 @@ title: ROI Calculator | Apex Vector LLC
         <div style="border: 1px solid #ccc; padding: 12px; background: #fafafa; border-radius: 4px;">
             <strong style="display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; color: #333;">Phase 1: Mobilization (30%)</strong>
             <span style="color: #666; display: block; min-height: 32px; margin-bottom: 6px; line-height: 1.2;">LAANC Processing & Authorization Sync</span>
-            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-1">$0.00</span>
+            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-1">$1,380.00</span>
         </div>
         <div style="border: 1px solid #ccc; padding: 12px; background: #fafafa; border-radius: 4px;">
             <strong style="display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; color: #333;">Phase 2: In-Field (40%)</strong>
             <span style="color: #666; display: block; min-height: 32px; margin-bottom: 6px; line-height: 1.2;">Completion of Site Scanning Flight Lines</span>
-            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-2">$0.00</span>
+            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-2">$1,840.00</span>
         </div>
         <div style="border: 1px solid #ccc; padding: 12px; background: #fafafa; border-radius: 4px;">
             <strong style="display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; color: #333;">Phase 3: Release (30%)</strong>
             <span style="color: #666; display: block; min-height: 32px; margin-bottom: 6px; line-height: 1.2;">Deliverables Secure Cloud Transfer</span>
-            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-3">$0.00</span>
+            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-3">$1,380.00</span>
         </div>
     </div>
 
@@ -220,512 +230,375 @@ title: ROI Calculator | Apex Vector LLC
 
 </div>
 <script>
-    // --- 1. Dynamic Linked Slider & Numeric Input Arrays ---
-    const elementMatrix = {
-        acresNum: document.getElementById('acres'),
-        acresRange: document.getElementById('range-acres'),
-        fertNum: document.getElementById('fert'),
-        fertRange: document.getElementById('range-fert-cost'),
-        soilNum: document.getElementById('lab'),
-        soilRange: document.getElementById('range-sample-cost'),
-        shieldNum: document.getElementById('input-penalty-risk'),
-        shieldRange: document.getElementById('range-penalty-risk'),
-        
-        // Value Text Field Nodes
-        totalSavings: document.getElementById('total-savings'),
-        fertSavings: document.getElementById('fert-savings'),
-        soilSavings: document.getElementById('lab-savings'),
-        shieldSavings: document.getElementById('scale-savings'),
-        svgChart: document.getElementById('savings-chart'),
-        btnPrint: document.getElementById('btn-print'),
-        
-        // Active Canvas Overlay Metrics 
-        telemetryAlt: document.getElementById('telemetryAlt')
+(function () {
+    'use strict';
+
+    var $ = function (id) { return document.getElementById(id); };
+
+    function formatToUSD(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value || 0);
+    }
+
+    function readNum(id) {
+        var el = $(id);
+        var n = el ? parseFloat(el.value) : 0;
+        return isNaN(n) ? 0 : n;
+    }
+
+    function setText(id, text) {
+        var el = $(id);
+        if (el) el.innerText = text;
+    }
+
+    // ------------------------------------------------------------------
+    // 1. Per-mode configuration (labels, default inputs, math, billing rates)
+    // ------------------------------------------------------------------
+    var SUB = function (t) {
+        return '<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">' + t + '</span>';
     };
 
-        function attachSyncListeners(numNode, rangeNode, callback) {
-        if (!numNode || !rangeNode) return;
-        numNode.addEventListener('input', () => { rangeNode.value = numNode.value; callback(); });
-        rangeNode.addEventListener('input', () => { numNode.value = rangeNode.value; callback(); });
-    }
+    var MODES = {
+        ag: {
+            title: 'Agricultural ROI Calculator',
+            sensor: 'AG_NDVI',
+            scanLabel: 'MAPPED_AG_SCAN',
+            unitWord: 'Acres', unitCaps: 'ACRES',
+            sector: 'AG_INTELLIGENCE PROFILE',
+            intakeSector: 'AGRICULTURAL INTELLIGENCE FLIGHT RUN',
+            defaults: { acres: 500, fert: 90, lab: 12, risk: 15 },
+            pct1: 0.10, pct2: 0.65, mult3: 1.00,
+            flightRate: 5.50, processRate: 3.00,
+            acres: 'TOTAL FARM ACREAGE:' + SUB('Total production surface area designated for active drone mapping.'),
+            fert: 'FERTILIZER COST ($ / ACRE):' + SUB('Average baseline material and application cost per acre.'),
+            lab: 'GRID SOIL SAMPLING ($ / ACRE):' + SUB('Standard cost for blind 2.5-acre grid physical lab extractions.'),
+            shield: 'SCALE HOUSE RISK ($ / ACRE):' + SUB('Flat baseline insurance factor to prevent test weight or moisture dockage.'),
+            h1: 'Fertilizer Optimization:', h2: 'Smart Soil Analytics:', h3: 'Dockage Risk Shield:',
+            desc1: 'Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).',
+            desc2: '65% reduction in lab fees by replacing blind grids with aerial Management Zones.',
+            desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.',
+            bl1: 'STANDARD NITROGEN FERTILIZER:', bv1: '$90.00 / acre',
+            bl2: 'TRADITIONAL GRID SOIL LAB FEES:', bv2: '$12.00 / acre',
+            bl3: 'AVERAGE SCALE HOUSE RISK:', bv3: '$15.00 / acre',
+            bd3: '(Based on a 15–20¢ quality dockage penalty per bushel)',
+            row1: { title: 'sUAS Flight Lines & In-Field Data Acquisition Mapping', unit: '$5.50 / acre' },
+            row2: { title: 'Photogrammetry Processing & Analytical Engine Stitching', unit: '$3.00 / acre' }
+        },
+        infra: {
+            title: 'Infrastructure & Asset ROI Matrix',
+            sensor: 'STRUCT_INSPECT',
+            scanLabel: 'STRUCTURAL_INFRA_SCAN',
+            unitWord: 'Assets', unitCaps: 'ASSETS',
+            sector: 'INFRASTRUCTURE PROFILE',
+            intakeSector: 'STRUCTURAL INFRASTRUCTURE SCAN',
+            defaults: { acres: 10, fert: 350, lab: 1200, risk: 5000 },
+            pct1: 0.75, pct2: 0.40, mult3: 1.25,
+            flightRate: 12.50, processRate: 3.00,
+            acres: 'TOTAL ASSET COUNT (TOWERS / BUILDINGS):' + SUB('Total number of structural tower installations, utility configurations, or isolated layouts.'),
+            fert: 'MANUAL INSPECTION OVERHEAD ($ / ASSET):' + SUB('Average labor, climbing, and safety log overhead required for human field crews.'),
+            lab: 'TRADITIONAL EQUIPMENT FEES ($ / ASSET):' + SUB('Baseline rental expenses for localized heavy scaffolding, cherry pickers, or bucket trucks.'),
+            shield: 'UNSCHEDULED OUTAGE BUFFER ($ / ASSET):' + SUB('Proactive risk insulation factor to safely guard critical components from catastrophic structural failure.'),
+            h1: 'Climber Safety Optimization:', h2: 'Structural Lifecycle Diagnostics:', h3: 'Grid Outage Interception Shield:',
+            desc1: 'Cuts manual climbing team and scaffolding asset deployment overhead costs by 75%.',
+            desc2: 'Sub-centimeter structural analysis maps structural defects early to boost component lifespan.',
+            desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.',
+            bl1: 'MANUAL CLIMB TEAM HOURLY OVERHEAD:', bv1: '$350.00 / asset',
+            bl2: 'TRADITIONAL BUCKET TRUCK RENTAL FEE:', bv2: '$1,200.00 flat',
+            bl3: 'UNSCHEDULED REPAIR DELAY RISK:', bv3: '$5,000.00 / incident',
+            bd3: '(Based on regional emergency structural hardware outage histories)',
+            row1: { title: 'Close-Range Asset Imagery & Structural Data Capture', unit: '$12.50 / asset' },
+            row2: { title: 'Sub-Centimeter Structural Diagnostic Model Rendering', unit: '$3.00 / asset' }
+        },
+        groundworks: {
+            title: 'Commercial Groundwork',
+            sensor: 'TOPO_VOLUMETRIC',
+            scanLabel: 'EARTHWORK_RUN',
+            unitWord: 'Acres', unitCaps: 'ACRES',
+            sector: 'GROUNDWORKS PROFILE',
+            intakeSector: 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS',
+            defaults: { acres: 25, fert: 1500, lab: 500, risk: 2500 },
+            pct1: 0.08, pct2: 0.15, mult3: 0.85,
+            flightRate: 12.50, processRate: 0,
+            acres: 'PROJECT SITE FOOTPRINT (ACREAGE):' + SUB('Total horizontal construction grading and civil excavation area.'),
+            fert: 'DAILY SITE OVERHEAD / SITE BURN RATE ($):' + SUB('Daily operational expenses, heavy equipment rentals, and crew overhead.'),
+            lab: 'VOLUMETRIC MEASUREMENT ASSURANCE ($):' + SUB('Assigned internal threshold protecting against bulk material calculation mistakes.'),
+            shield: 'CAPITAL DRAW VERIFICATION DISPUTE VALUE ($):' + SUB('Estimated working overhead frozen during milestone auditing or lender verification delays.'),
+            h1: 'Timeline Compression Savings:', h2: 'Volumetric Precision Retained:', h3: 'Lender Draw Processing Shield:',
+            desc1: 'Shaves up to 4 days off traditional topography timelines by deploying high-speed grid scans.',
+            desc2: 'Replaces blind structural estimations with millimetric 3D digital elevation models.',
+            desc3: 'Provides undeniable volume verification metrics to release phase funding allocations faster.',
+            bl1: 'TRADITIONAL TOPO SURVEY TIMELINE:', bv1: '5-7 Days',
+            bl2: 'VOLUMETRIC MEASUREMENT RISK:', bv2: '12% - 15% Error Rate',
+            bl3: 'LENDER DRAW PROCESSING DELAY:', bv3: '$2,500.00 / Cycle',
+            bd3: '(Estimated operational overhead lost during dispute windows)',
+            row1: { title: 'sUAS Site Grading & Volumetric Topo Tracking Lines', unit: '$12.50 / acre' },
+            row2: { title: 'Photogrammetry Processing & Volumetric Rendering Analytics', unit: 'Included in Tier' }
+        }
+    };
 
-    // Explicitly target the global window calculation stream
-    attachSyncListeners(elementMatrix.acresNum, elementMatrix.acresRange, () => window.processMatrixROI());
-    attachSyncListeners(elementMatrix.fertNum, elementMatrix.fertRange, () => window.processMatrixROI());
-    attachSyncListeners(elementMatrix.soilNum, elementMatrix.soilRange, () => window.processMatrixROI());
-    attachSyncListeners(elementMatrix.shieldNum, elementMatrix.shieldRange, () => window.processMatrixROI());
-
-
-    function formatToUSD(numericValue) {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(numericValue);
-    }
-
-         // --- 2. Multi-Industry Mode Switcher Logic ---
     window.currentActiveMode = 'ag';
 
-    window.switchMatrixMode = function(targetMode) {
+    // ------------------------------------------------------------------
+    // 2. Mode switcher
+    // ------------------------------------------------------------------
+    window.switchMatrixMode = function (targetMode) {
+        var cfg = MODES[targetMode];
+        if (!cfg) return;
         window.currentActiveMode = targetMode;
-        
-        // Reset tab styles to inactive states
-        ['ag', 'infra', 'groundworks'].forEach(mode => {
-            const tab = document.getElementById(`tab-${mode}`);
-            if (tab) {
-                tab.style.background = '#0c0f12';
-                tab.style.borderColor = '#21262d';
-                tab.style.color = '#8fa0b5';
-                tab.style.fontWeight = 'normal';
-            }
+
+        ['ag', 'infra', 'groundworks'].forEach(function (mode) {
+            var tab = $('tab-' + mode);
+            if (!tab) return;
+            var active = (mode === targetMode);
+            tab.style.background = active ? '#172230' : '#0c0f12';
+            tab.style.borderColor = active ? '#d4af37' : '#21262d';
+            tab.style.color = active ? '#d4af37' : '#8fa0b5';
+            tab.style.fontWeight = active ? 'bold' : 'normal';
         });
 
-        // Set the newly selected tab to active state
-        const activeTab = document.getElementById(`tab-${targetMode}`);
-        if (activeTab) {
-            activeTab.style.background = '#172230';
-            activeTab.style.borderColor = '#d4af37';
-            activeTab.style.color = '#d4af37';
-            activeTab.style.fontWeight = 'bold';
+        setText('main-matrix-title', cfg.title);
+        setText('telemetryMode', cfg.sensor);
+        setText('proposal-sector-tag', cfg.sector);
+
+        // Sandbox labels
+        var map = { acres: cfg.acres, fert: cfg.fert, lab: cfg.lab, 'input-penalty-risk': cfg.shield };
+        Object.keys(map).forEach(function (id) {
+            var lbl = document.querySelector('label[for="' + id + '"]');
+            if (lbl) lbl.innerHTML = map[id];
+        });
+
+        // Reset the input values to something that makes sense for the new mode
+        $('acres').value = cfg.defaults.acres;
+        $('fert').value = cfg.defaults.fert;
+        $('lab').value = cfg.defaults.lab;
+        $('input-penalty-risk').value = cfg.defaults.risk;
+
+        // Baseline panel
+        setText('base-label-1', cfg.bl1); setText('base-val-1', cfg.bv1);
+        setText('base-label-2', cfg.bl2); setText('base-val-2', cfg.bv2);
+        setText('base-label-3', cfg.bl3); setText('base-val-3', cfg.bv3);
+        setText('base-desc-3', cfg.bd3);
+
+        // Estimated-return wording (only the text spans are touched, so the
+        // dollar-value spans keep their identity)
+        setText('breakdown-label-1', cfg.h1);
+        setText('breakdown-label-2', cfg.h2);
+        setText('breakdown-label-3', cfg.h3);
+        var descs = document.querySelectorAll('.return-desc');
+        if (descs.length >= 3) {
+            descs[0].innerText = cfg.desc1;
+            descs[1].innerText = cfg.desc2;
+            descs[2].innerText = cfg.desc3;
         }
 
-        // Master dynamic dictionary including master page title header transformations
-        const labels = {
-            ag: {
-                title: 'Agricultural ROI Calculator',
-                acres: 'TOTAL FARM ACREAGE:<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Total production surface area designated for active drone mapping.</span>', 
-                fert: 'FERTILIZER COST (\$ / ACRE):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Average baseline material and application cost per acre.</span>', 
-                lab: 'GRID SOIL SAMPLING (\$ / ACRE):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Standard cost for blind 2.5-acre grid physical lab extractions.</span>', 
-                shield: 'SCALE HOUSE RISK PROTECTION (\$ / ACRE):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Flat baseline insurance factor to prevent test weight or moisture dockage.</span>',
-                h1: '✓ Fertilizer Optimization: ', h2: '✓ Smart Soil Analytics: ', h3: '✓ Dockage Risk Shield: ',
-                desc1: 'Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).',
-                desc2: '65% reduction in lab fees by replacing blind grids with aerial Management Zones.',
-                desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.',
-                bl1: 'STANDARD NITROGEN FERTILIZER:', bv1: '\$90.00 / acre',
-                bl2: 'TRADITIONAL GRID SOIL LAB FEES:', bv2: '\$12.00 / acre',
-                bl3: 'AVERAGE SCALE HOUSE RISK:', bv3: '\$15.00 / acre', bd3: '(Based on a 15–20¢ quality dockage penalty per bushel)'
-            },
-            infra: {
-                title: 'Infrastructure & Asset ROI Matrix',
-                acres: 'TOTAL ASSET COUNT (TOWERS / BUILDINGS):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Total number of structural tower installations, utility configurations, or isolated layouts.</span>', 
-                fert: 'MANUAL INSPECTION OVERHEAD (\$ / ASSET):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Average labor, climbing, and safety log overhead required for human field crews.</span>', 
-                lab: 'TRADITIONAL EQUIPMENT FEES (\$ / SQ FT):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Baseline rental expenses for localized heavy scaffolding, cherry pickers, or bucket trucks.</span>', 
-                shield: 'UNSCHEDULED OUTAGE BUFFER (\$ / ASSET):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Proactive risk insulation factor to safely guard critical components from catastrophic structural failure.</span>',
-                h1: '✓ Climber Safety Optimization: ', h2: '✓ Structural Lifecycle Diagnostics: ', h3: '✓ Grid Outage Interception Shield: ',
-                desc1: 'Cuts manual climbing team and scaffolding asset deployment overhead costs by 75%.',
-                desc2: 'Sub-centimeter structural analysis maps structural defects early to boost component lifespan.',
-                desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.',
-                bl1: 'MANUAL CLIMB TEAM HOURLY OVERHEAD:', bv1: '\$350.00 / asset',
-                bl2: 'TRADITIONAL BUCKET TRUCK RENTAL FEE:', bv2: '\$1,200.00 flat',
-                bl3: 'UNSCHEDULED REPAIR DELAY RISK:', bv3: '\$5,000.00 / incident', bd3: '(Based on regional emergency structural hardware outage histories)'
-            },
-         groundworks: {
-        title: 'Commercial Groundwork',
-        acres: 'PROJECT SITE FOOTPRINT (ACREAGE):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Total horizontal construction grading and civil excavation area.</span>',
-        fert: 'DAILY SITE OVERHEAD / SITE BURN RATE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Daily operational expenses, heavy equipment rentals, and crew overhead.</span>',
-        lab: 'VOLUMETRIC MEASUREMENT ASSURANCE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Assigned internal threshold protecting against bulk material calculation mistakes.</span>',
-        shield: 'CAPITAL DRAW VERIFICATION DISPUTE VALUE ($):<br><span style="font-size: 0.85rem; font-weight: normal; color: #888888;">Estimated working overhead frozen during milestone auditing or lender verification delays.</span>',
-        h1: '✓ Timeline Compression Savings: ', h2: '✓ Volumetric Precision Retained: ', h3: '✓ Lender Draw Processing Shield: ',
-        desc1: 'Shaves up to 4 days off traditional topography timelines by deploying high-speed grid scans.',
-        desc2: 'Replaces blind structural estimations with millimetric 3D digital elevation models.',
-        desc3: 'Provides undeniable volume verification metrics to release phase funding allocations faster.',
-        bl1: 'TRADITIONAL TOPO SURVEY TIMELINE:', bv1: '5-7 Days',
-        bl2: 'VOLUMETRIC MEASUREMENT RISK:', bv2: '12% - 15% Error Rate',
-        bl3: 'LENDER DRAW PROCESSING DELAY:', bv3: '$2,500.00 / Cycle', bd3: '(Estimated operational overhead lost during dispute windows)'
-    }
-};
-        // 0. Update Primary Page Header Title Node Instantly
-        const mainHeadlineTitle = document.getElementById('main-matrix-title');
-        if (mainHeadlineTitle) mainHeadlineTitle.innerText = labels[targetMode].title;
-
-        // 1. Rewrite Sandbox Labels safely
-        const lblAcres = document.querySelector('label[for="acres"]');
-        const lblFert = document.querySelector('label[for="fert"]');
-        const lblLab = document.querySelector('label[for="lab"]');
-        const lblShield = document.querySelector('label[for="input-penalty-risk"]');
-
-        if (lblAcres) lblAcres.innerHTML = labels[targetMode].acres;
-        if (lblFert) lblFert.innerHTML = labels[targetMode].fert;
-        if (lblLab) lblLab.innerHTML = labels[targetMode].lab;
-        if (lblShield) lblShield.innerHTML = labels[targetMode].shield;
-
-        // 2. Rewrite Regional Baseline Side Panel Elements
-        const bL1 = document.getElementById('base-label-1'); const bV1 = document.getElementById('base-val-1');
-        const bL2 = document.getElementById('base-label-2'); const bV2 = document.getElementById('base-val-2');
-        const bL3 = document.getElementById('base-label-3'); const bV3 = document.getElementById('base-val-3'); const bD3 = document.getElementById('base-desc-3');
-
-        if (bL1) bL1.innerText = labels[targetMode].bl1; if (bV1) bV1.innerText = labels[targetMode].bv1;
-        if (bL2) bL2.innerText = labels[targetMode].bl2; if (bV2) bV2.innerText = labels[targetMode].bv2;
-        if (bL3) bL3.innerText = labels[targetMode].bl3; if (bV3) bV3.innerText = labels[targetMode].bv3; if (bD3) bD3.innerText = labels[targetMode].bd3;
-
-                // 3. Rewrite Estimated Return Column Wording Dynamically using precise direct ID tags
-        const titleEl1 = document.getElementById('breakdown-title-1');
-        const titleEl2 = document.getElementById('breakdown-title-2');
-        const titleEl3 = document.getElementById('breakdown-title-3');
-        const descriptionSpans = document.querySelectorAll('.return-desc');
-
-        if (titleEl1 && titleEl2 && titleEl3) {
-            // Snatch the current numeric values out of the container boxes safely before overwriting text strings
-            const currentSavedV1 = document.getElementById('fert-savings')?.innerText || '\$0.00';
-            const currentSavedV2 = document.getElementById('lab-savings')?.innerText || '\$0.00';
-            const currentSavedV3 = document.getElementById('scale-savings')?.innerText || '\$0.00';
-
-            titleEl1.innerHTML = labels[targetMode].h1 + ' <span id="fert-savings" style="color: #27ac60;">' + currentSavedV1 + '</span>';
-            titleEl2.innerHTML = labels[targetMode].h2 + ' <span id="lab-savings" style="color: #27ae60;">' + currentSavedV2 + '</span>';
-            titleEl3.innerHTML = labels[targetMode].h3 + ' <span id="scale-savings" style="color: #27ae60;">' + currentSavedV3 + '</span>';
-
-
-        }
-
-        if (descriptionSpans && descriptionSpans.length >= 3) {
-            descriptionSpans[0].innerText = labels[targetMode].desc1;
-            descriptionSpans[1].innerText = labels[targetMode].desc2;
-            descriptionSpans[2].innerText = labels[targetMode].desc3;
-        }
-
-        // Force layout calculations to instantly sync numbers
         window.processMatrixROI();
-
     };
 
+    // ------------------------------------------------------------------
+    // 3. Calculation engine
+    // ------------------------------------------------------------------
+    window.processMatrixROI = function () {
+        var mode = window.currentActiveMode;
+        var cfg = MODES[mode];
+        var units = readNum('acres');
+        var p1 = readNum('fert');
+        var p2 = readNum('lab');
+        var p3 = readNum('input-penalty-risk');
 
-    // // --- 3. Dynamic Multi-Pillar Yield Calculations Engine ---
-window.processMatrixROI = function() {
-    const fieldAcres = parseFloat(document.getElementById('acres')?.value) || 0;
-    const param1 = parseFloat(document.getElementById('fert')?.value) || 0;
-    const param2 = parseFloat(document.getElementById('lab')?.value) || 0;
-    const param3 = parseFloat(document.getElementById('input-penalty-risk')?.value) || 0;
-    let v1 = 0, v2 = 0, v3 = 0;
+        // Savings
+        var v1 = units * p1 * cfg.pct1;
+        var v2 = units * p2 * cfg.pct2;
+        var v3 = units * p3 * cfg.mult3;
 
-    if (window.currentActiveMode === 'ag') {
-        v1 = (fieldAcres * param1) * 0.10; // 10% Fertilizer optimization
-        v2 = (fieldAcres * param2) * 0.65; // 65% Soil grid cut
-        v3 = fieldAcres * param3;           // Scale house shield flat baseline
-    } else if (window.currentActiveMode === 'infra') {
-        v1 = (fieldAcres * param1) * 0.75; // 75% Climber safety savings
-        v2 = (fieldAcres * param2) * 0.40; // 40% Predictive fault capture efficiency
-        v3 = fieldAcres * param3 * 1.25;   // Outage interception protection factor
-    } else if (window.currentActiveMode === 'groundworks') {
-        v1 = (fieldAcres * param1) * 0.08; // 8% Timeline compression / data staging efficiency
-        v2 = (fieldAcres * param2) * 0.15; // 15% Volumetric manual calculation error reduction
-        v3 = fieldAcres * param3 * 0.85;   // Prevented draw processing overhead factor
-    }
+        setText('total-savings', formatToUSD(v1 + v2 + v3));
+        setText('fert-savings', formatToUSD(v1));
+        setText('lab-savings', formatToUSD(v2));
+        setText('scale-savings', formatToUSD(v3));
 
-    const totalCalculatedReturn = v1 + v2 + v3;
+        // Proposal pricing
+        var flightSubtotal = units * cfg.flightRate;
+        var processSubtotal = units * cfg.processRate;
+        var processUnitText = cfg.row2.unit;
 
-    if (elementMatrix.totalsSavings) elementMatrix.totalsSavings.innerText = formatToUSD(totalCalculatedReturn);
-    if (elementMatrix.fertSavings) elementMatrix.fertSavings.innerText = formatToUSD(v1);
-    if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(v2);
-    if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
-
-        // // --- Fixed Apex Vector Commercial Billing Rate Constants ---
-    const AG_FLIGHT_RATE = 5.50;      // Standard Ag Operation Rate per Acre
-    const AG_PROCESS_RATE = 3.00;     // Photogrammetry Stitching per Acre
-
-    const INFRA_FLIGHT_RATE = 12.50;  // Infrastructure Tracking Per Asset
-    const INFRA_PROCESS_RATE = 3.00;  // Diagnostic Rendering per Asset
-
-    const GROUNDWORKS_FLIGHT_RATE = 12.50; // Commercial Grading per Acre
-    const GROUNDWORKS_PROCESS_RATE = 0;    // Handled natively via scalable unit metrics
-
-    let activeFlightRate = 0;
-    let activeProcessRate = 0;
-
-    // STEP 1: Dynamically assign rates based on the current active tab
-    if (window.currentActiveMode === 'ag') {
-        activeFlightRate = AG_FLIGHT_RATE;
-        activeProcessRate = AG_PROCESS_RATE;
-    } else if (window.currentActiveMode === 'infra') {
-        activeFlightRate = INFRA_FLIGHT_RATE;
-        activeProcessRate = INFRA_PROCESS_RATE;
-    } else if (window.currentActiveMode === 'groundworks') {
-        activeFlightRate = GROUNDWORKS_FLIGHT_RATE;
-        activeProcessRate = GROUNDWORKS_PROCESS_RATE;
-    }
-
-    // STEP 2: Execute the math using the active sandbox input acreage
-    let calculatedFlightSubtotal = fieldAcres * activeFlightRate;
-    let calculatedProcessSubtotal = fieldAcres * activeProcessRate;
-
-    // STEP 3: Handle structural tiered exceptions for Infrastructure tab sizing
-    if (window.currentActiveMode === 'infra') {
-        if (fieldAcres <= 5000) {
-            calculatedProcessSubtotal = fieldAcres * 3.00;
-        } else if (fieldAcres > 5000 && fieldAcres <= 50000) {
-            calculatedProcessSubtotal = 1500.00; // Complex Terminal Flat Fee
-        } else {
-            calculatedProcessSubtotal = 3500.00; // Industrial Mega-Elevator Flat Fee
-        }
-    }
-
-    // STEP 4: Tally gross value outcome including $250 mobilization + $100 archival fees
-    let proposalGrossValue = 250 + 100 + calculatedFlightSubtotal + calculatedProcessSubtotal;
-
-    // STEP 5: Render calculated gross values and 3-phase milestone payouts safely
-    const elPropGross = document.getElementById('proposal-final-gross');
-    const elProp1 = document.getElementById('proposal-phase-1');
-    const elProp2 = document.getElementById('proposal-phase-2');
-    const elProp3 = document.getElementById('proposal-phase-3');
-
-    if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
-    if (elProp1) elProp1.innerText = formatToUSD(proposalGrossValue * 0.30);
-    if (elProp2) elProp2.innerText = formatToUSD(proposalGrossValue * 0.40);
-    if (elProp3) elProp3.innerText = formatToUSD(proposalGrossValue * 0.30);
-
-    // STEP 6: Target itemized cost table nodes safely using exact markup layouts
-    const pval1 = document.getElementById('proposal-calc-val-1') || document.getElementById('pval1');
-    const pval2 = document.getElementById('proposal-calc-val-2') || document.getElementById('pval2');
-    const ptitle1 = document.getElementById('proposal-calc-title-1');
-    const punit1 = document.getElementById('proposal-calc-unit-1');
-    const ptitle2 = document.getElementById('proposal-calc-title-2');
-    const punit2 = document.getElementById('proposal-calc-unit-2');
-
-    // STEP 7: Inject text and calculated values dynamically into target table rows
-    if (window.currentActiveMode === 'ag') {
-        if (ptitle1) ptitle1.innerText = 'sUAS Flight Lines & In-Field Data Acquisition Mapping';
-        if (punit1) punit1.innerText = '$5.50 / acre';
-        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
-
-        if (ptitle2) ptitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
-        if (punit2) punit2.innerText = '$3.00 / acre';
-        if (pval2) pval2.innerText = formatToUSD(calculatedProcessSubtotal);
-    } 
-    else if (window.currentActiveMode === 'infra') {
-        if (ptitle1) ptitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery';
-        if (punit1) punit1.innerText = '$12.50 / asset';
-        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
-
-        if (ptitle2) ptitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering';
-        if (fieldAcres <= 5000) {
-            if (punit2) punit2.innerText = '$3.00 / sq ft';
-        } else if (fieldAcres > 5000 && fieldAcres <= 50000) {
-            if (punit2) punit2.innerText = 'Complex Terminal Flat Fee';
-        } else {
-            if (punit2) punit2.innerText = 'Industrial Mega-Elevator Flat Fee';
-        }
-        if (pval2) pval2.innerText = formatToUSD(calculatedProcessSubtotal);
-    } 
-    else if (window.currentActiveMode === 'groundworks') {
-        if (ptitle1) ptitle1.innerText = 'sUAS Site Grading & Volumetric Topo Tracking Lines';
-        if (punit1) punit1.innerText = '$12.50 / acre';
-        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
-
-        if (ptitle2) ptitle2.innerText = 'Photogrammetry Processing & Volumetric Rendering Analytics';
-        if (punit2) punit2.innerText = 'Included in Tier';
-        if (pval2) pval2.innerText = formatToUSD(0);
-    }
-
-    // STEP 8: Initialize proposal live date automation tag smoothly
-    const elPropDate = document.getElementById('proposal-live-date');
-    if (elPropDate) {
-        const today = new Date();
-        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-        elPropDate.innerText = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
-    }
-
-    // STEP 8: Initialize proposal live date automation tag smoothly
-    const elPropDate = document.getElementById('proposal-live-date');
-    if (elPropDate) {
-        const today = new Date();
-        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-        elPropDate.innerText = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
-    }
-
-    if (elementMatrix.btnPrint) {
-        elementMatrix.btnPrint.addEventListener('click', () => { window.print(); });
-    }
-
-       // --- 4. Hybrid Lawnmower Flight Path Simulation Engine ---
-    const telemetryCanvas = document.getElementById('droneSimCanvas');
-    if (telemetryCanvas) {
-        const renderContext = telemetryCanvas.getContext('2d');
-        
-        let canvasW = telemetryCanvas.width = 800;
-        let canvasH = telemetryCanvas.height = 220;
-        
-        const flightPadding = 60;
-        const rowSpacing = 40;
-        const flightLines = [];
-        
-        for (let y = flightPadding; y <= canvasH - flightPadding; y += rowSpacing) {
-            flightLines.push(y);
-        }
-        
-        let currentLineIndex = 0;
-        let droneX = flightPadding;
-        let droneY = flightLines[0]; 
-        let movingForward = true;
-        let flightSpeed = 2.5;
-
-        function renderTelemetryLoop() {
-            renderContext.fillStyle = '#0c0f12';
-            renderContext.fillRect(0, 0, canvasW, canvasH);
-
-            // Technical Grid Background Layout Overlay
-            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.06)';
-            renderContext.lineWidth = 1;
-            for (let x = 0; x < canvasW; x += 40) {
-                renderContext.beginPath(); renderContext.moveTo(x, 0); renderContext.lineTo(x, canvasH); renderContext.stroke();
-            }
-            for (let y = 0; y < canvasH; y += 40) {
-                renderContext.beginPath(); renderContext.moveTo(0, y); renderContext.lineTo(canvasW, y); renderContext.stroke();
-            }
-
-            // Dotted Waypoint Path Lines
-            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.15)';
-            renderContext.lineWidth = 1.5;
-            renderContext.beginPath();
-            for (let i = 0; i < flightLines.length; i++) {
-                let yVal = flightLines[i];
-                if (i % 2 === 0) {
-                    renderContext.lineTo(flightPadding, yVal);
-                    renderContext.lineTo(canvasW - flightPadding, yVal);
-                } else {
-                    renderContext.lineTo(canvasW - flightPadding, yVal);
-                    renderContext.lineTo(flightPadding, yVal);
-                }
-            }
-            renderContext.stroke();
-
-            // Row Flight Vector Control Arrays
-            let targetY = flightLines[currentLineIndex];
-            if (Math.abs(droneY - targetY) > 0.5) {
-                droneY += (targetY - droneY) > 0 ? flightSpeed : -flightSpeed;
+        if (mode === 'infra') {
+            if (units <= 5000) {
+                processSubtotal = units * 3.00;
+                processUnitText = '$3.00 / asset';
+            } else if (units <= 50000) {
+                processSubtotal = 1500.00;
+                processUnitText = 'Complex Terminal Flat Fee';
             } else {
-                if (movingForward) {
-                    droneX += flightSpeed;
-                    if (droneX >= canvasW - flightPadding) {
-                        movingForward = false;
-                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
-                    }
-                } else {
-                    droneX -= flightSpeed;
-                    if (droneX <= flightPadding) {
-                        movingForward = true;
-                        currentLineIndex = (currentLineIndex + 1) % flightLines.length;
-                    }
-                }
+                processSubtotal = 3500.00;
+                processUnitText = 'Industrial Mega-Elevator Flat Fee';
             }
-
-            // Altitude Telemetry Value Jitter
-            if (elementMatrix.telemetryAlt && Math.random() > 0.88) {
-                elementMatrix.telemetryAlt.innerText = Math.floor(152 + Math.random() * 7);
-            }
-
-            // Luminous Sensor Blue Scan Cone
-            let coneWidth = 65;
-            let coneGradient = renderContext.createLinearGradient(droneX, droneY, droneX, droneY + 90);
-            coneGradient.addColorStop(0, 'rgba(43, 166, 255, 0.4)');
-            coneGradient.addColorStop(0.3, 'rgba(43, 166, 255, 0.15)');
-            coneGradient.addColorStop(1, 'rgba(43, 166, 255, 0.0)');
-            
-            renderContext.fillStyle = coneGradient;
-            renderContext.beginPath();
-            renderContext.moveTo(droneX, droneY);
-            renderContext.lineTo(droneX - coneWidth, droneY + 90);
-            renderContext.lineTo(droneX + coneWidth, droneY + 90);
-            renderContext.closePath();
-            renderContext.fill();
-
-            // Ground Target Footprint Tracker Bar
-            renderContext.strokeStyle = 'rgba(43, 166, 255, 0.6)';
-            renderContext.lineWidth = 1.5;
-            renderContext.beginPath();
-            renderContext.moveTo(droneX - coneWidth + 10, droneY + 90);
-            renderContext.lineTo(droneX + coneWidth - 10, droneY + 90);
-            renderContext.stroke();
-
-            // Tactical Drone Crosshair Chassis Layout
-            renderContext.strokeStyle = '#27ae60'; 
-            renderContext.lineWidth = 2;
-            renderContext.beginPath();
-            renderContext.moveTo(droneX - 16, droneY); renderContext.lineTo(droneX + 16, droneY);
-            renderContext.moveTo(droneX, droneY - 4);  renderContext.lineTo(droneX, droneY + 4);
-            renderContext.stroke();
-            
-            renderContext.fillStyle = '#ffffff';
-            renderContext.beginPath();
-            renderContext.arc(droneX, droneY, 3, 0, Math.PI * 2);
-            renderContext.fill();
-
-            // Dynamic Context Labels
-            renderContext.fillStyle = '#ffffff';
-            renderContext.font = '9px monospace';
-            let sysModeLabel = window.currentActiveMode === 'ag' ? 'MAPPED_AG_SCAN' : window.currentActiveMode === 'infra' ? 'STRUCTURAL_INFRA_SCAN' : 'EARTHWORK_RUN';
-            renderContext.fillText(`SYS_STATUS: ${sysModeLabel}`, droneX + 22, droneY - 6);
-            renderContext.fillText(`LAT_X: ${Math.floor(droneX)} | WP_ROW: 0${currentLineIndex + 1}`, droneX + 22, droneY + 6);
-
-            requestAnimationFrame(renderTelemetryLoop);
         }
 
-        renderTelemetryLoop();
-    }
-        // --- 5. Global Intake Route & Parameter Injection System ---
-        window.handleIntakeRouting = function() {
-            // 1. Check if the calculator data engine elements exist on the current page view
-            const fieldScaleEl = document.getElementById('acres');
-            const invoiceTotalEl = document.getElementById('proposal-final-gross');
-            const savedCapitalEl = document.getElementById('total-savings');
+        // $250 mobilization + $100 archival are fixed line items in the table
+        var gross = 250 + 100 + flightSubtotal + processSubtotal;
 
-            // 2. If we are on the ROI matrix layout, capture values and compile an elite briefing text
-            if (fieldScaleEl && invoiceTotalEl && savedCapitalEl) {
-                const activeScale = fieldScaleEl.value || '500';
-                const activeFees = invoiceTotalEl.innerText || '$0.00';
-                const activeROI = savedCapitalEl.innerText || '$0.00';
-                
-                let sectorLabel = 'Agricultural Intelligence';
-                let unitLabel = 'Acres';
+        setText('proposal-final-gross', formatToUSD(gross));
+        setText('proposal-phase-1', formatToUSD(gross * 0.30));
+        setText('proposal-phase-2', formatToUSD(gross * 0.40));
+        setText('proposal-phase-3', formatToUSD(gross * 0.30));
 
-               if (window.currentActiveMode === 'ag') {
-        sectorLabel = 'AGRICULTURAL INTELLIGENCE FLIGHT RUN';
-        unitLabel = 'Acres';
-    } else if (window.currentActiveMode === 'infra') {
-        sectorLabel = 'STRUCTURAL INFRASTRUCTURE SCAN';
-        unitLabel = 'Assets';
-    } else if (window.currentActiveMode === 'groundworks') {
-        sectorLabel = 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS';
-        unitLabel = 'Acres';
-    }
+        setText('proposal-calc-title-1', cfg.row1.title);
+        setText('proposal-calc-unit-1', cfg.row1.unit);
+        setText('proposal-calc-val-1', formatToUSD(flightSubtotal));
+        setText('proposal-calc-title-2', cfg.row2.title);
+        setText('proposal-calc-unit-2', processUnitText);
+        setText('proposal-calc-val-2', formatToUSD(processSubtotal));
 
-                            const briefPayloadString = 
+        setText('proposal-display-scale', units.toLocaleString('en-US') + ' ' + cfg.unitCaps);
+    };
+
+    // ------------------------------------------------------------------
+    // 4. Proposal date
+    // ------------------------------------------------------------------
+    (function setProposalDate() {
+        var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        var d = new Date();
+        setText('proposal-live-date', d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear());
+    })();
+
+    // ------------------------------------------------------------------
+    // 5. Flight-path canvas simulation
+    // ------------------------------------------------------------------
+    (function startFlightSim() {
+        var canvas = $('droneSimCanvas');
+        if (!canvas || !canvas.getContext) return;
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        var W = canvas.width = 800;
+        var H = canvas.height = 220;
+        var pad = 60, rowSpacing = 40;
+        var lines = [];
+        for (var y = pad; y <= H - pad; y += rowSpacing) lines.push(y);
+
+        var idx = 0, x = pad, yPos = lines[0], forward = true, speed = 2.5;
+        var altEl = $('telemetryAlt');
+
+        function frame() {
+            ctx.fillStyle = '#0c0f12';
+            ctx.fillRect(0, 0, W, H);
+
+            // background grid
+            ctx.strokeStyle = 'rgba(43, 166, 255, 0.06)';
+            ctx.lineWidth = 1;
+            var gx, gy;
+            for (gx = 0; gx < W; gx += 40) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+            for (gy = 0; gy < H; gy += 40) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+            // planned lawnmower path
+            ctx.strokeStyle = 'rgba(43, 166, 255, 0.15)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            for (var i = 0; i < lines.length; i++) {
+                if (i % 2 === 0) { ctx.lineTo(pad, lines[i]); ctx.lineTo(W - pad, lines[i]); }
+                else             { ctx.lineTo(W - pad, lines[i]); ctx.lineTo(pad, lines[i]); }
+            }
+            ctx.stroke();
+
+            // movement
+            var targetY = lines[idx];
+            if (Math.abs(yPos - targetY) > 0.5) {
+                yPos += (targetY - yPos) > 0 ? speed : -speed;
+            } else if (forward) {
+                x += speed;
+                if (x >= W - pad) { forward = false; idx = (idx + 1) % lines.length; }
+            } else {
+                x -= speed;
+                if (x <= pad) { forward = true; idx = (idx + 1) % lines.length; }
+            }
+
+            if (altEl && Math.random() > 0.88) altEl.innerText = Math.floor(152 + Math.random() * 7);
+
+            // scan cone
+            var cone = 65;
+            var grad = ctx.createLinearGradient(x, yPos, x, yPos + 90);
+            grad.addColorStop(0, 'rgba(43, 166, 255, 0.4)');
+            grad.addColorStop(0.3, 'rgba(43, 166, 255, 0.15)');
+            grad.addColorStop(1, 'rgba(43, 166, 255, 0.0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(x, yPos);
+            ctx.lineTo(x - cone, yPos + 90);
+            ctx.lineTo(x + cone, yPos + 90);
+            ctx.closePath();
+            ctx.fill();
+
+            // ground footprint bar
+            ctx.strokeStyle = 'rgba(43, 166, 255, 0.6)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(x - cone + 10, yPos + 90);
+            ctx.lineTo(x + cone - 10, yPos + 90);
+            ctx.stroke();
+
+            // crosshair + dot
+            ctx.strokeStyle = '#27ae60';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(x - 16, yPos); ctx.lineTo(x + 16, yPos);
+            ctx.moveTo(x, yPos - 4);  ctx.lineTo(x, yPos + 4);
+            ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(x, yPos, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // labels
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '9px monospace';
+            ctx.fillText('SYS_STATUS: ' + MODES[window.currentActiveMode].scanLabel, x + 22, yPos - 6);
+            ctx.fillText('LAT_X: ' + Math.floor(x) + ' | WP_ROW: 0' + (idx + 1), x + 22, yPos + 6);
+
+            requestAnimationFrame(frame);
+        }
+        frame();
+    })();
+
+    // ------------------------------------------------------------------
+    // 6. Intake routing (called from the layout's "Initiate Project Intake" link)
+    // ------------------------------------------------------------------
+    window.handleIntakeRouting = function () {
+        var scaleEl = $('acres');
+        var grossEl = $('proposal-final-gross');
+        var roiEl = $('total-savings');
+
+        if (scaleEl && grossEl && roiEl) {
+            var cfg = MODES[window.currentActiveMode];
+            var brief =
                 "====================================================\n" +
                 "       APEX VECTOR OPERATIONS DATA TRANSIT SYSTEM       \n" +
                 "====================================================\n" +
-                "MISSION PROFILE : " + sectorLabel + "\n" +
-                "PROJECT SCALE   : " + activeScale + " " + unitLabel + "\n" +
-                "ESTIMATED FEES  : " + activeFees + " (Gross Valuation Matrix)\n" +
-                "PROJECTED ROI   : " + activeROI + " Saved Operational Overhead\n" +
+                "MISSION PROFILE : " + cfg.intakeSector + "\n" +
+                "PROJECT SCALE   : " + (scaleEl.value || '0') + " " + cfg.unitWord + "\n" +
+                "ESTIMATED FEES  : " + grossEl.innerText + " (Gross Valuation Matrix)\n" +
+                "PROJECTED ROI   : " + roiEl.innerText + " Saved Operational Overhead\n" +
                 "====================================================\n" +
                 "RENO COUNTY HUB CONTROL: Please secure calendar lines for this flight pattern.\n\n" +
                 "Client Custom Notes (Type field names or instructions below):\n> ";
 
-
-                // Find your modal text box fields (targets the main textarea inside your missionModal)
-                const modalTextBox = document.querySelector('#missionModal textarea') || 
-                                     document.getElementById('message') || 
-                                     document.querySelector('textarea');
-
-                if (modalTextBox) {
-                    modalTextBox.value = briefPayloadString;
-                    // Focus and snap target cursor to the base end of string instantly
-                    setTimeout(() => {
-                        modalTextBox.focus();
-                        modalTextBox.setSelectionRange(modalTextBox.value.length, modalTextBox.value.length);
-                    }, 100);
-                }
+            var box = document.querySelector('#missionModal textarea') ||
+                      document.getElementById('message') ||
+                      document.querySelector('textarea');
+            if (box) {
+                box.value = brief;
+                setTimeout(function () {
+                    box.focus();
+                    box.setSelectionRange(box.value.length, box.value.length);
+                }, 100);
             }
+        }
 
-            // 3. Fire your website's pre-existing modal display container
-            const targetModalWindow = document.getElementById('missionModal');
-            if (targetModalWindow) {
-                targetModalWindow.style.display = 'block';
-                targetModalWindow.classList.add('active', 'show');
-            }
-        };
+        var modal = $('missionModal');
+        if (modal) {
+            modal.style.display = 'block';
+            modal.classList.add('active', 'show');
+        }
+    };
 
-        // Run matrix processing arrays on base launch
-        window.processMatrixROI();
-    function formatToUSD(value) {
-    return '$' + parseFloat(value || 0).toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
-}
+    // Run once on load (inputs call processMatrixROI via inline oninput)
+    window.processMatrixROI();
+})();
 </script>

@@ -432,44 +432,76 @@ title: ROI Calculator | Apex Vector LLC
         let calculatedProcessSubtotal = 0;
         let proposalGrossValue = 250 + 100; // Base Fee ($250) + Secure Archival ($100)
 
-        // Calculate explicit contract line-item subtotals independent of client overhead numbers
-        if (window.currentActiveMode === 'ag') {
-            activeFlightRate = AG_FLIGHT_RATE;
-            activeProcessRate = AG_PROCESS_RATE;
-            calculatedFlightSubtotal = fieldAcres * AG_FLIGHT_RATE;
-            calculatedProcessSubtotal = fieldAcres * AG_PROCESS_RATE;
-        } else if (window.currentActiveMode === 'infra') {
-            activeFlightRate = INFRA_FLIGHT_RATE;
-            activeProcessRate = INFRA_PROCESS_RATE;
-            calculatedFlightSubtotal = fieldAcres * INFRA_FLIGHT_RATE;
-            calculatedProcessSubtotal = fieldAcres * INFRA_PROCESS_RATE;
-      } else if (window.currentActiveMode === 'groundworks') {
-    activeFlightRate = Groundworks_FLIGHT_RATE; // $12.50
-    activeProcessRate = 0; // Included free in this industrial profile
-    
-    calculatedFlightSubtotal = fieldAcres * Groundworks_FLIGHT_RATE; // 5000 * 12.50 = $62,500.00
-    calculatedProcessSubtotal = 0; 
-}
+       // === 3. Dynamic Multi-Pillar Variable Evaluation Engine ===
+function processMatrixROI() {
+    const fieldAcres = parseFloat(document.getElementById('acres')?.value) || 0;
+    const fieldAssets = parseFloat(document.getElementById('acres')?.value) || 1; // Fallback for structural unit math
 
-    // 2. Structural Diagnostic Processing Tier Gates
-    let targetSqFt = parseFloat(document.getElementById('traditional-equipment-fees-field-id').value) || 0;
-    
-    if (targetSqFt <= 5000) {
-        activeProcessRate = 3.00; // Linear per sq ft for small towers
-        calculatedProcessSubtotal = targetSqFt * 3.00;
-    } else if (targetSqFt > 5000 && targetSqFt <= 50000) {
-        activeProcessRate = 1500.00; // Flat Complex Tier
-        calculatedProcessSubtotal = 1500.00;
+    let activeFlightRate = 0;
+    let activeProcessRate = 0;
+    let calculatedFlightSubtotal = 0;
+    let calculatedProcessSubtotal = 0;
+
+    // Reset base baseline parameters ($250 Mobilization + $100 Long-Term Archival)
+    let proposalGrossValue = 350.00; 
+
+    if (window.currentActiveMode === 'ag') {
+        activeFlightRate = 5.50;
+        activeProcessRate = 3.00;
+        calculatedFlightSubtotal = fieldAcres * 5.50;
+        calculatedProcessSubtotal = fieldAcres * 3.00;
+    } 
+    else if (window.currentActiveMode === 'infra') {
+        activeFlightRate = 12.50;
+        calculatedFlightSubtotal = fieldAssets * 12.50; 
+
+        // Core Tiered Threshold Processing Logic for Large Concrete Terminals
+        let targetSqFt = parseFloat(document.getElementById('traditional-equipment-fees-field-id')?.value) || 0;
+        if (targetSqFt <= 5000) {
+            activeProcessRate = 3.00;
+            calculatedProcessSubtotal = targetSqFt * 3.00;
+        } else if (targetSqFt > 5000 && targetSqFt <= 50000) {
+            activeProcessRate = 1500.00;
+            calculatedProcessSubtotal = 1500.00;
+        } else {
+            activeProcessRate = 3500.00;
+            calculatedProcessSubtotal = 3500.00;
+        }
+    } 
+    else if (window.currentActiveMode === 'groundworks') {
+        activeFlightRate = 12.50;
+        activeProcessRate = 0;
+        calculatedFlightSubtotal = fieldAcres * 12.50;
+        calculatedProcessSubtotal = 0;
+    }
+
+    // Accumulate structural operational valuations safely
+    proposalGrossValue += calculatedFlightSubtotal + calculatedProcessSubtotal;
+
+    // Render calculations directly to your active Proposal Table Viewports
+    const elPropGross = document.getElementById('proposal-final-gross');
+    const elPropP1 = document.getElementById('proposal-phase-1');
+    const elPropP2 = document.getElementById('proposal-phase-2');
+    const elPropP3 = document.getElementById('proposal-phase-3');
+
+    if (elPropGross) elPropGross.innerText = '$' + proposalGrossValue.toFixed(2);
+    if (elPropP1) elPropP1.innerText = '$' + (proposalGrossValue * 0.30).toFixed(2);
+    if (elPropP2) elPropP2.innerText = '$' + (proposalGrossValue * 0.40).toFixed(2);
+    if (elPropP3) elPropP3.innerText = '$' + (proposalGrossValue * 0.30).toFixed(2);
+
+    // Dynamic Row Label Conversions
+    const pval1 = document.getElementById('proposal-calc-val-1');
+    const pval2 = document.getElementById('proposal-calc-val-2');
+
+    if (window.currentActiveMode === 'groundworks') {
+        if (pval1) pval1.innerText = '$' + calculatedFlightSubtotal.toFixed(2);
+        if (pval2) pval2.innerText = '$0.00';
     } else {
-        activeProcessRate = 3500.00; // Flat Industrial Mega-Terminal Tier
-        calculatedProcessSubtotal = 3500.00;
+        if (pval1) pval1.innerText = '$' + calculatedFlightSubtotal.toFixed(2);
+        if (pval2) pval2.innerText = '$' + calculatedProcessSubtotal.toFixed(2);
     }
 }
 
-
-        // Aggregate explicit final operational valuations
-        proposalGrossValue += calculatedFlightSubtotal + calculatedProcessSubtotal;
-        
         // Populate Invoice Summary Text Nodes Live
         const elPropScale = document.getElementById('proposal-display-scale');
         const elPropGross = document.getElementById('proposal-final-gross');

@@ -694,4 +694,10 @@ title: ROI Calculator | Apex Vector LLC
 
         // Run matrix processing arrays on base launch
         window.processMatrixROI();
+    function formatToUSD(value) {
+    return '$' + parseFloat(value || 0).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
 </script>

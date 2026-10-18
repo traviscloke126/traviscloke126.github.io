@@ -43,7 +43,7 @@ In Army Aviation, compliance and preventative maintenance aren't optional—they
 <div class="advantage-box">
     <ol>
         <li><strong>Pre-Flight Site Control:</strong> We establish active site safety zones and exclusion boundaries before the props spin.</li>
-        <li><strong>Component Lifecycle Tracking:</strong> Every drone undergoes strict pre- and post-flight military-grade maintenance logs.</li>
+        <li><strong>Component Lifecycle Tracking:</strong> Every drone is inspected before and after each flight and tracked in military-style maintenance logs.</li>
         <li><strong>SOP-Driven Execution:</strong> Predictable, repeatable, and completely safe flights under any authorized condition.</li>
     </ol>
 </div>

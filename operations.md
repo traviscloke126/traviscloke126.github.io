@@ -10,7 +10,7 @@ This operational framework governs all small Unmanned Aircraft Systems (sUAS) fl
 
 ### 01. Pre-Flight Systems & Intake Configuration
 *   **Aviation Intake Synchronization:** All incoming project logistics from our secure intake portal are ingested directly into our central flight planning system.
-*   **Airspace Validation:** Crew elements execute historical NOTAM reviews, local flight restriction checks, and LAANC launch authorizations prior to any power cycle on remote elements.
+*   **Airspace Validation:** Crew elements execute current NOTAM and TFR reviews, local flight restriction checks, and LAANC launch authorizations prior to any power cycle on remote elements.
 *   **Master Contract Integration:** Every mission utilizes our standardized **DocuSign Integrated Contract Pack (SOP-AGREE-003)**, seamlessly bundling our Services Agreement, Property Access Waiver, and Data Governance Policies into a single secure envelope for the client.
 
 ### 02. Enforced Flight Line Boundaries

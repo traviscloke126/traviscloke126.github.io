@@ -73,6 +73,6 @@ To enforce these structural boundaries on active industrial and commercial job s
 Our operations within the **Hutchinson, Reno County, Kansas** region run in close proximity to **KHUT (Hutchinson Regional Airport)** airspace. Maintaining flawless situational awareness is non-negotiable.
 
 *   **Ground Incursion Protocol:** The Remote PIC retains **absolute, unappealable aviation authority** to instantly pause, hover, or command emergency return-to-home flight patterns the moment an unauthorized ground boundary breach is identified.
-*   **Airspace & Weather Postponement:** Flights are subject to immediate suspension or rescheduling if real-time micro-weather (high wind shear, dropping visibility) or military/civilian manned air traffic inside the KHUT terminal radar area compromises absolute safety.
+*   **Airspace & Weather Postponement:** Flights are subject to immediate suspension or rescheduling if real-time micro-weather (high wind shear, dropping visibility) or military/civilian manned air traffic inside KHUT Class D airspace compromises absolute safety.
 
 Our commitment to safety ensures that your project data is gathered efficiently, legally, and without exposing your site or organization to operational liability.

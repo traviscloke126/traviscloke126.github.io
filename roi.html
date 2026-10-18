@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ROI Calculator | Apex Vector LLC
+title: ROI Calculator
 ---
 
 <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #ffffff; background-color: transparent;">
@@ -104,7 +104,7 @@ title: ROI Calculator | Apex Vector LLC
             <!-- Dynamic Combined Total Summary Display Card -->
             <div style="margin: 20px 0 25px 0; text-align: center; background: #111111; padding: 20px; border-radius: 4px;">
                 <span style="display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #888888; margin-bottom: 5px;">Potential Saved Capital</span>
-                <span id="total-savings" style="font-size: 2.75rem; font-weight: 900; color: #2ecc71;">$15,900.00</span>
+                <span id="total-savings" style="font-size: 2.75rem; font-weight: 900; color: #2ecc71;">$12,150.00</span>
             </div>
 
             <!-- Detailed Breakdowns -->
@@ -123,8 +123,8 @@ title: ROI Calculator | Apex Vector LLC
 
             <!-- Item 3 wording Row -->
             <div style="margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                <strong id="breakdown-title-3" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ <span id="breakdown-label-3">Dockage Risk Shield:</span> <span id="scale-savings">$7,500.00</span></strong>
-                <span class="return-desc" style="color: #555555;">Defends test weight uniformity mid-season to secure full market price at the scale house.</span>
+                <strong id="breakdown-title-3" style="color: #27ae60; display: block; margin-bottom: 2px; font-size: 1rem; font-weight: 700;">✓ <span id="breakdown-label-3">Dockage Risk Shield:</span> <span id="scale-savings">$3,750.00</span></strong>
+                <span class="return-desc" style="color: #555555;">Assumes early in-season detection cuts half of typical scale house dockage exposure.</span>
             </div>
         </div>
     </div>
@@ -154,13 +154,13 @@ title: ROI Calculator | Apex Vector LLC
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9rem; margin-bottom: 25px; background: #f8f9fa; padding: 15px; border-radius: 4px; border: 1px solid #eee;">
         <div>
             <strong>DOCUMENT CONTROL:</strong> SYSTEM PROPOSAL GENERATOR<br>
-            <strong>OPERATIONAL JURISDICTION:</strong> 14 C.F.R. PART 107 // FAA APPROVED<br>
+            <strong>OPERATIONAL JURISDICTION:</strong> 14 C.F.R. PART 107<br>
             <strong>FLIGHT BOUNDARY CONTROLS:</strong> 25FT SAFETY RADIUS ENFORCED
         </div>
         <div style="text-align: right;">
             <strong>GENERATION DATE:</strong> <span id="proposal-live-date">15 OCT 2026</span><br>
             <strong>MISSION PARCEL SCALE:</strong> <span id="proposal-display-scale">500 UNITS</span><br>
-            <strong>STATUS MATRIX:</strong> VALUATION VERIFIED ✓
+            <strong>STATUS MATRIX:</strong> ESTIMATE — SUBJECT TO SITE REVIEW
         </div>
     </div>
 
@@ -176,28 +176,28 @@ title: ROI Calculator | Apex Vector LLC
         </thead>
         <tbody>
             <tr style="border-bottom: 1px dashed #ccc;">
-                <td style="padding: 10px;">Airspace Logistics, NOTAM Validation & Mobilization Fee</td>
-                <td style="padding: 10px; text-align: center;">Fixed Baseline</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;">$250.00</td>
+                <td style="padding: 10px;">Airspace Logistics, NOTAM Validation & Mobilization (Reno County)</td>
+                <td style="padding: 10px; text-align: center;">Included</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;">$0.00</td>
             </tr>
             <tr style="border-bottom: 1px dashed #ccc;">
-                <td style="padding: 10px;" id="proposal-calc-title-1">sUAS Flight Lines & In-Field Data Acquisition Mapping</td>
-                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-1">$5.50 / acre</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-1">$2,750.00</td>
+                <td style="padding: 10px;" id="proposal-calc-title-1">sUAS Crop Health Mapping, Processing & Plant-Health Index Map</td>
+                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-1">$5.00 → $3.25 / acre (tiered)</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-1">$2,160.00</td>
             </tr>
             <tr style="border-bottom: 1px dashed #ccc;">
-                <td style="padding: 10px;" id="proposal-calc-title-2">Photogrammetry Processing & Analytical Engine Stitching</td>
-                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-2">$3.00 / acre</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-2">$1,500.00</td>
+                <td style="padding: 10px;" id="proposal-calc-title-2">Minimum Job Adjustment</td>
+                <td style="padding: 10px; text-align: center;" id="proposal-calc-unit-2">Not Required</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;" id="proposal-calc-val-2">$0.00</td>
             </tr>
             <tr style="border-bottom: 2px solid #111;">
                 <td style="padding: 10px;">Secure Payload Cloud Export & Long-Term Archival Lifecycle</td>
-                <td style="padding: 10px; text-align: center;">Fixed Base</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;">$100.00</td>
+                <td style="padding: 10px; text-align: center;">Included</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;">$0.00</td>
             </tr>
             <tr style="background: #f1f8f5;">
                 <td colspan="2" style="padding: 12px; font-weight: bold; text-transform: uppercase; font-size: 1rem; text-align: right; border-bottom: 2px solid #111;">Total Gross Contract Value:</td>
-                <td style="padding: 12px; font-weight: 900; text-align: right; font-size: 1.15rem; color: #27ae60; border-bottom: 2px solid #111;" id="proposal-final-gross">$4,600.00</td>
+                <td style="padding: 12px; font-weight: 900; text-align: right; font-size: 1.15rem; color: #27ae60; border-bottom: 2px solid #111;" id="proposal-final-gross">$2,160.00</td>
             </tr>
         </tbody>
     </table>
@@ -208,27 +208,28 @@ title: ROI Calculator | Apex Vector LLC
         <div style="border: 1px solid #ccc; padding: 12px; background: #fafafa; border-radius: 4px;">
             <strong style="display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; color: #333;">Phase 1: Mobilization (30%)</strong>
             <span style="color: #666; display: block; min-height: 32px; margin-bottom: 6px; line-height: 1.2;">LAANC Processing & Authorization Sync</span>
-            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-1">$1,380.00</span>
+            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-1">$648.00</span>
         </div>
         <div style="border: 1px solid #ccc; padding: 12px; background: #fafafa; border-radius: 4px;">
             <strong style="display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; color: #333;">Phase 2: In-Field (40%)</strong>
             <span style="color: #666; display: block; min-height: 32px; margin-bottom: 6px; line-height: 1.2;">Completion of Site Scanning Flight Lines</span>
-            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-2">$1,840.00</span>
+            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-2">$864.00</span>
         </div>
         <div style="border: 1px solid #ccc; padding: 12px; background: #fafafa; border-radius: 4px;">
             <strong style="display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; color: #333;">Phase 3: Release (30%)</strong>
             <span style="color: #666; display: block; min-height: 32px; margin-bottom: 6px; line-height: 1.2;">Deliverables Secure Cloud Transfer</span>
-            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-3">$1,380.00</span>
+            <span style="font-size: 1.1rem; font-weight: 800; color: #111;" id="proposal-phase-3">$648.00</span>
         </div>
     </div>
 
     <!-- Operating Directives Ground Rules Footer -->
     <div style="font-size: 0.75rem; color: #555; border-top: 1px solid #111; padding-top: 10px; line-height: 1.4;">
-        <strong>COMPENSABLE OPERATIONS CONTRACT NOTATION:</strong> All drone flight paths are fully compensable up to the point of field execution. Missions interrupted or terminated due to weather deviations or immediate local micro-climates remain fully billable in according tiers to completed operational labor phases. Final processed payload datasets are explicitly restricted from deployment storage release until all structural gateway payments clear milestone stages.
+        <strong>COMPENSABLE OPERATIONS CONTRACT NOTATION:</strong> All drone flight paths are fully compensable up to the point of field execution. Missions interrupted or terminated due to weather deviations or immediate local micro-climates remain billable according to the operational phases completed. Final processed payload datasets are explicitly restricted from deployment storage release until all structural gateway payments clear milestone stages.
     </div>
 </div>
 
 </div>
+<script src="{{ '/assets/apex-pricing.js' | relative_url }}"></script>
 <script>
 (function () {
     'use strict';
@@ -266,8 +267,8 @@ title: ROI Calculator | Apex Vector LLC
             sector: 'AG_INTELLIGENCE PROFILE',
             intakeSector: 'AGRICULTURAL INTELLIGENCE FLIGHT RUN',
             defaults: { acres: 500, fert: 90, lab: 12, risk: 15 },
-            pct1: 0.10, pct2: 0.65, mult3: 1.00,
-            flightRate: 5.50, processRate: 3.00,
+            pct1: 0.10, pct2: 0.65, mult3: 0.50,
+            pricingProfile: 'ag',
             acres: 'TOTAL FARM ACREAGE:' + SUB('Total production surface area designated for active drone mapping.'),
             fert: 'FERTILIZER COST ($ / ACRE):' + SUB('Average baseline material and application cost per acre.'),
             lab: 'GRID SOIL SAMPLING ($ / ACRE):' + SUB('Standard cost for blind 2.5-acre grid physical lab extractions.'),
@@ -275,13 +276,12 @@ title: ROI Calculator | Apex Vector LLC
             h1: 'Fertilizer Optimization:', h2: 'Smart Soil Analytics:', h3: 'Dockage Risk Shield:',
             desc1: 'Conservative 10% waste reduction utilizing tractor-ready variable-rate prescription profiles (.SHP).',
             desc2: '65% reduction in lab fees by replacing blind grids with aerial Management Zones.',
-            desc3: 'Defends test weight uniformity mid-season to secure full market price at the scale house.',
+            desc3: 'Assumes early in-season detection cuts half of typical scale house dockage exposure.',
             bl1: 'STANDARD NITROGEN FERTILIZER:', bv1: '$90.00 / acre',
             bl2: 'TRADITIONAL GRID SOIL LAB FEES:', bv2: '$12.00 / acre',
             bl3: 'AVERAGE SCALE HOUSE RISK:', bv3: '$15.00 / acre',
             bd3: '(Based on a 15–20¢ quality dockage penalty per bushel)',
-            row1: { title: 'sUAS Flight Lines & In-Field Data Acquisition Mapping', unit: '$5.50 / acre' },
-            row2: { title: 'Photogrammetry Processing & Analytical Engine Stitching', unit: '$3.00 / acre' }
+            row1: { title: 'sUAS Crop Health Mapping, Processing & Plant-Health Index Map' }
         },
         infra: {
             title: 'Infrastructure & Asset ROI Matrix',
@@ -291,8 +291,8 @@ title: ROI Calculator | Apex Vector LLC
             sector: 'INFRASTRUCTURE PROFILE',
             intakeSector: 'STRUCTURAL INFRASTRUCTURE SCAN',
             defaults: { acres: 10, fert: 350, lab: 1200, risk: 5000 },
-            pct1: 0.75, pct2: 0.40, mult3: 1.25,
-            flightRate: 12.50, processRate: 3.00,
+            pct1: 0.75, pct2: 0.40, mult3: 0.20,
+            pricingProfile: 'inspection',
             acres: 'TOTAL ASSET COUNT (TOWERS / BUILDINGS):' + SUB('Total number of structural tower installations, utility configurations, or isolated layouts.'),
             fert: 'MANUAL INSPECTION OVERHEAD ($ / ASSET):' + SUB('Average labor, climbing, and safety log overhead required for human field crews.'),
             lab: 'TRADITIONAL EQUIPMENT FEES ($ / ASSET):' + SUB('Baseline rental expenses for localized heavy scaffolding, cherry pickers, or bucket trucks.'),
@@ -300,13 +300,12 @@ title: ROI Calculator | Apex Vector LLC
             h1: 'Climber Safety Optimization:', h2: 'Structural Lifecycle Diagnostics:', h3: 'Grid Outage Interception Shield:',
             desc1: 'Cuts manual climbing team and scaffolding asset deployment overhead costs by 75%.',
             desc2: 'Sub-centimeter structural analysis maps structural defects early to boost component lifespan.',
-            desc3: 'Proactive inspection insulation buffer intercepts grid downtime before an asset failure occurs.',
+            desc3: 'Assumes regular inspection catches 20% of unscheduled repair incidents before they cause downtime.',
             bl1: 'MANUAL CLIMB TEAM HOURLY OVERHEAD:', bv1: '$350.00 / asset',
-            bl2: 'TRADITIONAL BUCKET TRUCK RENTAL FEE:', bv2: '$1,200.00 flat',
+            bl2: 'TRADITIONAL BUCKET TRUCK RENTAL FEE:', bv2: '$1,200.00 / asset',
             bl3: 'UNSCHEDULED REPAIR DELAY RISK:', bv3: '$5,000.00 / incident',
             bd3: '(Based on regional emergency structural hardware outage histories)',
-            row1: { title: 'Close-Range Asset Imagery & Structural Data Capture', unit: '$12.50 / asset' },
-            row2: { title: 'Sub-Centimeter Structural Diagnostic Model Rendering', unit: '$3.00 / asset' }
+            row1: { title: 'Close-Range Structural Inspection Imagery & Annotated Report' }
         },
         groundworks: {
             title: 'Commercial Groundwork',
@@ -316,22 +315,22 @@ title: ROI Calculator | Apex Vector LLC
             sector: 'GROUNDWORKS PROFILE',
             intakeSector: 'COMMERCIAL GROUNDWORK VOLUMETRIC SCANS',
             defaults: { acres: 25, fert: 1500, lab: 500, risk: 2500 },
-            pct1: 0.08, pct2: 0.15, mult3: 0.85,
-            flightRate: 12.50, processRate: 0,
+            // Groundworks inputs are flat dollar amounts, not per-acre values
+            daysSaved: 2, pct2: 0.15, mult3: 0.50,
+            pricingProfile: 'earthwork',
             acres: 'PROJECT SITE FOOTPRINT (ACREAGE):' + SUB('Total horizontal construction grading and civil excavation area.'),
-            fert: 'DAILY SITE OVERHEAD / SITE BURN RATE ($):' + SUB('Daily operational expenses, heavy equipment rentals, and crew overhead.'),
+            fert: 'DAILY SITE OVERHEAD / SITE BURN RATE ($ / DAY):' + SUB('Daily operational expenses, heavy equipment rentals, and crew overhead.'),
             lab: 'VOLUMETRIC MEASUREMENT ASSURANCE ($):' + SUB('Assigned internal threshold protecting against bulk material calculation mistakes.'),
             shield: 'CAPITAL DRAW VERIFICATION DISPUTE VALUE ($):' + SUB('Estimated working overhead frozen during milestone auditing or lender verification delays.'),
             h1: 'Timeline Compression Savings:', h2: 'Volumetric Precision Retained:', h3: 'Lender Draw Processing Shield:',
-            desc1: 'Shaves up to 4 days off traditional topography timelines by deploying high-speed grid scans.',
-            desc2: 'Replaces blind structural estimations with millimetric 3D digital elevation models.',
-            desc3: 'Provides undeniable volume verification metrics to release phase funding allocations faster.',
+            desc1: 'Conservatively assumes 2 days of site overhead saved versus a traditional topo survey (5–7 days).',
+            desc2: 'Assumes 15% of your measurement-assurance exposure is avoided with centimeter-level 3D surface models.',
+            desc3: 'Assumes half of the draw-dispute holding cost is avoided with documented volume verification.',
             bl1: 'TRADITIONAL TOPO SURVEY TIMELINE:', bv1: '5-7 Days',
             bl2: 'VOLUMETRIC MEASUREMENT RISK:', bv2: '12% - 15% Error Rate',
             bl3: 'LENDER DRAW PROCESSING DELAY:', bv3: '$2,500.00 / Cycle',
             bd3: '(Estimated operational overhead lost during dispute windows)',
-            row1: { title: 'sUAS Site Grading & Volumetric Topo Tracking Lines', unit: '$12.50 / acre' },
-            row2: { title: 'Photogrammetry Processing & Volumetric Rendering Analytics', unit: 'Included in Tier' }
+            row1: { title: 'sUAS Site Mapping, 3D Surface Model & Volumetric Report' }
         }
     };
 
@@ -405,47 +404,38 @@ title: ROI Calculator | Apex Vector LLC
         var p3 = readNum('input-penalty-risk');
 
         // Savings
-        var v1 = units * p1 * cfg.pct1;
-        var v2 = units * p2 * cfg.pct2;
-        var v3 = units * p3 * cfg.mult3;
+        var v1, v2, v3;
+        if (mode === 'groundworks') {
+            // Flat-dollar inputs: daily overhead × days saved, plus share of flat risk values
+            v1 = p1 * cfg.daysSaved;
+            v2 = p2 * cfg.pct2;
+            v3 = p3 * cfg.mult3;
+        } else {
+            v1 = units * p1 * cfg.pct1;
+            v2 = units * p2 * cfg.pct2;
+            v3 = units * p3 * cfg.mult3;
+        }
 
         setText('total-savings', formatToUSD(v1 + v2 + v3));
         setText('fert-savings', formatToUSD(v1));
         setText('lab-savings', formatToUSD(v2));
         setText('scale-savings', formatToUSD(v3));
 
-        // Proposal pricing
-        var flightSubtotal = units * cfg.flightRate;
-        var processSubtotal = units * cfg.processRate;
-        var processUnitText = cfg.row2.unit;
+        // Proposal pricing — same engine and rates as the Rates & Options page
+        var q = window.ApexPricing.quote(cfg.pricingProfile, units);
+        var p1Amt = Math.round(q.total * 30) / 100;
+        var p2Amt = Math.round(q.total * 40) / 100;
 
-        if (mode === 'infra') {
-            if (units <= 5000) {
-                processSubtotal = units * 3.00;
-                processUnitText = '$3.00 / asset';
-            } else if (units <= 50000) {
-                processSubtotal = 1500.00;
-                processUnitText = 'Complex Terminal Flat Fee';
-            } else {
-                processSubtotal = 3500.00;
-                processUnitText = 'Industrial Mega-Elevator Flat Fee';
-            }
-        }
-
-        // $250 mobilization + $100 archival are fixed line items in the table
-        var gross = 250 + 100 + flightSubtotal + processSubtotal;
-
-        setText('proposal-final-gross', formatToUSD(gross));
-        setText('proposal-phase-1', formatToUSD(gross * 0.30));
-        setText('proposal-phase-2', formatToUSD(gross * 0.40));
-        setText('proposal-phase-3', formatToUSD(gross * 0.30));
+        setText('proposal-final-gross', formatToUSD(q.total));
+        setText('proposal-phase-1', formatToUSD(p1Amt));
+        setText('proposal-phase-2', formatToUSD(p2Amt));
+        setText('proposal-phase-3', formatToUSD(q.total - p1Amt - p2Amt));
 
         setText('proposal-calc-title-1', cfg.row1.title);
-        setText('proposal-calc-unit-1', cfg.row1.unit);
-        setText('proposal-calc-val-1', formatToUSD(flightSubtotal));
-        setText('proposal-calc-title-2', cfg.row2.title);
-        setText('proposal-calc-unit-2', processUnitText);
-        setText('proposal-calc-val-2', formatToUSD(processSubtotal));
+        setText('proposal-calc-unit-1', q.unitText);
+        setText('proposal-calc-val-1', formatToUSD(q.capture));
+        setText('proposal-calc-unit-2', q.adjustment > 0 ? 'Job Minimum Applied' : 'Not Required');
+        setText('proposal-calc-val-2', formatToUSD(q.adjustment));
 
         setText('proposal-display-scale', units.toLocaleString('en-US') + ' ' + cfg.unitCaps);
     };
@@ -593,7 +583,7 @@ title: ROI Calculator | Apex Vector LLC
 
         var modal = $('missionModal');
         if (modal) {
-            modal.style.display = 'block';
+            modal.style.display = 'flex';
             modal.classList.add('active', 'show');
         }
     };

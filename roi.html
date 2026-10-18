@@ -416,7 +416,7 @@ window.processMatrixROI = function() {
     if (elementMatrix.soilSavings) elementMatrix.soilSavings.innerText = formatToUSD(v2);
     if (elementMatrix.shieldSavings) elementMatrix.shieldSavings.innerText = formatToUSD(v3);
 
-      // // --- Fixed Apex Vector Commercial Billing Rate Constants ---
+        // // --- Fixed Apex Vector Commercial Billing Rate Constants ---
     const AG_FLIGHT_RATE = 5.50;      // Standard Ag Operation Rate per Acre
     const AG_PROCESS_RATE = 3.00;     // Photogrammetry Stitching per Acre
 
@@ -456,42 +456,75 @@ window.processMatrixROI = function() {
         }
     }
 
-    // // --- Fixed Apex Vector Commercial Billing Rate Constants ---
-    const AG_FLIGHT_RATE = 5.50;      
-    const AG_PROCESS_RATE = 3.00;     
+    // STEP 4: Tally gross value outcome including $250 mobilization + $100 archival fees
+    let proposalGrossValue = 250 + 100 + calculatedFlightSubtotal + calculatedProcessSubtotal;
 
-    const INFRA_FLIGHT_RATE = 12.50;  
-    const INFRA_PROCESS_RATE = 3.00;  
+    // STEP 5: Render calculated gross values and 3-phase milestone payouts (SOP-AGREE-003)
+    const elPropGross = document.getElementById('proposal-final-gross');
+    const elProp1 = document.getElementById('proposal-phase-1');
+    const elProp2 = document.getElementById('proposal-phase-2');
+    const elProp3 = document.getElementById('proposal-phase-3');
 
-    const GROUNDWORKS_FLIGHT_RATE = 12.50; 
-    const GROUNDWORKS_PROCESS_RATE = 0;    
+    if (elPropGross) elPropGross.innerText = formatToUSD(proposalGrossValue);
+    if (elProp1) elProp1.innerText = formatToUSD(proposalGrossValue * 0.30);
+    if (elProp2) elProp2.innerText = formatToUSD(proposalGrossValue * 0.40);
+    if (elProp3) elProp3.innerText = formatToUSD(proposalGrossValue * 0.30);
 
-    let activeFlightRate = 0;
-    let activeProcessRate = 0;
+    // STEP 6: Target itemized cost table nodes safely
+    const pval1 = document.getElementById('proposal-calc-val-1') || document.getElementById('pval1');
+    const pval2 = document.getElementById('proposal-calc-val-2') || document.getElementById('pval2');
+    const ptitle1 = document.getElementById('proposal-calc-title-1');
+    const punit1 = document.getElementById('proposal-calc-unit-1');
+    const ptitle2 = document.getElementById('proposal-calc-title-2');
+    const punit2 = document.getElementById('proposal-calc-unit-2');
+    const psector = document.getElementById('proposal-sector-tag');
 
+    // STEP 7: Inject text and calculated values dynamically into target table rows
     if (window.currentActiveMode === 'ag') {
-        activeFlightRate = AG_FLIGHT_RATE;
-        activeProcessRate = AG_PROCESS_RATE;
-    } else if (window.currentActiveMode === 'infra') {
-        activeFlightRate = INFRA_FLIGHT_RATE;
-        activeProcessRate = INFRA_PROCESS_RATE;
-    } else if (window.currentActiveMode === 'groundworks') {
-        activeFlightRate = GROUNDWORKS_FLIGHT_RATE;
-        activeProcessRate = GROUNDWORKS_PROCESS_RATE;
-    }
+        if (psector) psector.innerText = 'AG_INTELLIGENCE PROFILE';
+        if (ptitle1) ptitle1.innerText = 'sUAS Flight Lines & In-Field Data Acquisition Mapping';
+        if (punit1) punit1.innerText = '$5.50 / acre';
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
 
-    let calculatedFlightSubtotal = fieldAcres * activeFlightRate;
-    let calculatedProcessSubtotal = fieldAcres * activeProcessRate;
+        if (ptitle2) ptitle2.innerText = 'Photogrammetry Processing & Analytical Engine Stitching';
+        if (punit2) punit2.innerText = '$3.00 / acre';
+        if (pval2) pval2.innerText = formatToUSD(calculatedProcessSubtotal);
+    } 
+    else if (window.currentActiveMode === 'infra') {
+        if (psector) psector.innerText = 'INFRASTRUCTURE_ASSET PROFILE';
+        if (ptitle1) ptitle1.innerText = 'Close-Proximity Close-Range Asset Close-Up Imagery';
+        if (punit1) punit1.innerText = '$12.50 / asset';
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
 
-    if (window.currentActiveMode === 'infra') {
+        if (ptitle2) ptitle2.innerText = 'Sub-Centimeter Structural Diagnostic Model Rendering';
         if (fieldAcres <= 5000) {
-            calculatedProcessSubtotal = fieldAcres * 3.00;
+            if (punit2) punit2.innerText = '$3.00 / sq ft';
         } else if (fieldAcres > 5000 && fieldAcres <= 50000) {
-            calculatedProcessSubtotal = 1500.00; 
+            if (punit2) punit2.innerText = 'Complex Terminal Flat Fee';
         } else {
-            calculatedProcessSubtotal = 3500.00; 
+            if (punit2) punit2.innerText = 'Industrial Mega-Elevator Flat Fee';
         }
+        if (pval2) pval2.innerText = formatToUSD(calculatedProcessSubtotal);
+    } 
+    else if (window.currentActiveMode === 'groundworks') {
+        if (psector) psector.innerText = 'COMMERCIAL GROUNDWORKS PROFILE';
+        if (ptitle1) ptitle1.innerText = 'sUAS Site Grading & Volumetric Topo Tracking Lines';
+        if (punit1) punit1.innerText = '$12.50 / acre';
+        if (pval1) pval1.innerText = formatToUSD(calculatedFlightSubtotal);
+
+        if (ptitle2) ptitle2.innerText = 'Photogrammetry Processing & Volumetric Rendering Analytics';
+        if (punit2) punit2.innerText = 'Included in Tier';
+        if (pval2) pval2.innerText = formatToUSD(0);
     }
+
+    // STEP 8: Initialize proposal live date automation tag smoothly
+    const elPropDate = document.getElementById('proposal-live-date');
+    if (elPropDate) {
+        const today = new Date();
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        elPropDate.innerText = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+    }
+
     if (elementMatrix.btnPrint) {
         elementMatrix.btnPrint.addEventListener('click', () => { window.print(); });
     }

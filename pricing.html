@@ -21,23 +21,23 @@ title: Operations Pricing Matrix
     <tr style="border-bottom: 1px solid #30363d;">
       <td style="padding: 10px; font-weight: bold;">Phase 1: Mobilization</td>
       <td style="padding: 10px; color: #ffb300;">30%</td>
-      <td style="padding: 10px; color: #8b949e;">Required to activate LAANC airspace authorizations, conduct pre-flight risk mitigation assessments, and secure the flight calendar lock.</td>
+      <td style="padding: 10px; color: #8b949e;">Due at signing of the Master Services Agreement. Reserves your flight date and covers mission planning, airspace authorization, and the on-site pre-flight survey.</td>
     </tr>
     <tr style="border-bottom: 1px solid #30363d;">
       <td style="padding: 10px; font-weight: bold;">Phase 2: In-Field Capture</td>
       <td style="padding: 10px; color: #ffb300;">40%</td>
-      <td style="padding: 10px; color: #8b949e;">Due on-site immediately upon successful structural touchdown of the fleet asset and satisfactory completion of post-flight system diagnostics.</td>
+      <td style="padding: 10px; color: #8b949e;">Due when in-field data capture is complete (final landing and post-flight checks at your site).</td>
     </tr>
     <tr>
       <td style="padding: 10px; font-weight: bold;">Phase 3: Output Release</td>
       <td style="padding: 10px; color: #ffb300;">30%</td>
-      <td style="padding: 10px; color: #8b949e;">Due prior to data transfer or clearance of any processed deliverables from local staging environments to client-accessible repositories.</td>
+      <td style="padding: 10px; color: #8b949e;">Due when your processed deliverables are ready. Files are released once payment clears.</td>
     </tr>
   </tbody>
 </table>
 
 <p style="background: rgba(240, 56, 56, 0.1); border-left: 4px solid #f03838; padding: 12px; color: #ff7b72; font-size: 0.9rem;">
-  <strong>⚠️ Compensable Operations Rule:</strong> In strict accordance with company SOPs, no raw imagery or compiled high-density orthomosaic assets will be released or transmitted prior to complete Phase 3 payment clearance.
+  <strong>⚠️ Data Release &amp; Rescheduling:</strong> Raw imagery and processed deliverables are released after Phase 3 payment clears. If weather or safety requires an additional site visit, a remobilization fee applies as stated in your agreement, and completed phases remain billable.
 </p>
 
 <h2>Interactive Project Cost Estimator</h2>
@@ -98,7 +98,7 @@ title: Operations Pricing Matrix
     </div>
     
    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
-      <span>Phase 2 Due (Touchdown - 40%):</span>
+      <span>Phase 2 Due (In-Field Capture - 40%):</span>
       <span id="splitPhase2" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
     <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
@@ -146,7 +146,7 @@ function runGraphicsEngine() {
   let beamColor = 'rgba(57, 211, 83, 0.25)';
   
   if (activeProfile === 'ag') {
-    document.getElementById('telemetryMode').innerText = 'AG_NDVI';
+    document.getElementById('telemetryMode').innerText = 'AG_HEALTH';
     document.getElementById('telemetryAlt').innerText = Math.round(150 + Math.sin(time)*3);
     dronePos.x = canvas.width / 2 + Math.sin(time * 0.8) * 120;
     dronePos.y = 80 + Math.cos(time * 1.5) * 8;
@@ -270,7 +270,8 @@ runGraphicsEngine();
 
 <h3>1. Agricultural Crop Health Mapping</h3>
 <p><strong>$5.00 / acre</strong> for the first 160 acres &bull; <strong>$4.00 / acre</strong> for acres 161&ndash;640 &bull; <strong>$3.25 / acre</strong> beyond 640<br>
-Includes the flight, a processed high-resolution orthomosaic, and a plant-health index map. <strong>$350 job minimum.</strong></p>
+Includes the flight, a processed high-resolution orthomosaic, and a plant-health index map. <strong>$350 job minimum.</strong><br>
+<small style="color: #8b949e;">Plant-health maps are produced from visible-light (RGB) imagery. True NDVI and thermal imaging require a specially equipped aircraft and are quoted separately.</small></p>
 
 <h3>2. Earthwork, Volumetrics &amp; Site Mapping</h3>
 <p><strong>$750 base</strong> covers sites up to 20 acres &bull; <strong>$30 / acre</strong> for acres 21&ndash;100 &bull; <strong>$15 / acre</strong> beyond 100<br>
@@ -286,7 +287,7 @@ Includes edited 4K stills and video clips delivered by download link.</p>
 
 <h3>Included With Every Mission</h3>
 <p><strong>Mobilization &amp; airspace authorization:</strong> LAANC/airspace checks, mission planning, and travel anywhere in Reno County are built into the rates above.<br>
-<strong>Data archival:</strong> raw imagery and processed outputs are retained on our backup system at no extra charge.<br>
+<strong>Data archival:</strong> raw imagery and processed outputs are retained on our secure backup system for 3 years after delivery at no extra charge. Extended archival is available on request.<br>
 <strong>Outside Reno County:</strong> travel is quoted separately at the time of booking.</p>
 
 <hr style="border: 0; border-top: 1px dashed #2c3740; margin: 40px 0;">

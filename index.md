@@ -19,14 +19,14 @@ title: Mission Brief
     <div class="pillar-card">
         <span class="pillar-meta">Target: Ag Operations & Landowners</span>
         <h3>Agricultural Intelligence</h3>
-        <p><strong>Precision Field Mapping & Crop Health.</strong> High-resolution aerial scouting built to save input costs. We deploy advanced imaging to pinpoint crop stress, nitrogen deficiencies, and drainage issues before they impact your yield.</p>
+        <p><strong>Precision Field Mapping & Crop Health.</strong> High-resolution aerial scouting built to save input costs. We use high-resolution imaging to spot crop stress, stand problems, and drainage issues early, so you and your agronomist can act before they impact your yield.</p>
         <div class="pillar-standard"><strong>The Apex Standard:</strong> Every flight plan is meticulously mapped to respect property boundaries, privacy, and livestock safety.</div>
     </div>
     <div class="pillar-card">
         <span class="pillar-meta">Target: Utilities, Engineering & Const.</span>
         <h3>Infrastructure & Asset Inspection</h3>
-        <p><strong>High-Resolution Data Acquisition.</strong> Keep your crews safely on the ground. We deliver sub-centimeter structural scanning and detailed 2D/3D orthomosaic maps of utility configurations, roofs, and critical infrastructure.</p>
-        <div class="pillar-standard"><strong>The Apex Standard:</strong> We operate under strict 14 C.F.R. Part 107 compliance with full situational awareness protocols for zero-incident job sites.</div>
+        <p><strong>High-Resolution Data Acquisition.</strong> Keep your crews safely on the ground. We deliver close-range, high-detail structural imagery and 2D/3D orthomosaic maps of utility configurations, roofs, and critical infrastructure.</p>
+        <div class="pillar-standard"><strong>The Apex Standard:</strong> We operate under strict 14 C.F.R. Part 107 compliance with full situational awareness protocols built for safety-first job sites.</div>
     </div>
     <div class="pillar-card">
         <span class="pillar-meta">Target: Real Estate & Commercial Dev.</span>
@@ -44,7 +44,7 @@ In Army Aviation, compliance and preventative maintenance aren't optional—they
     <ol>
         <li><strong>Pre-Flight Site Control:</strong> We establish active site safety zones and exclusion boundaries before the props spin.</li>
         <li><strong>Component Lifecycle Tracking:</strong> Every drone is inspected before and after each flight and tracked in military-style maintenance logs.</li>
-        <li><strong>SOP-Driven Execution:</strong> Predictable, repeatable, and completely safe flights under any authorized condition.</li>
+        <li><strong>SOP-Driven Execution:</strong> Every flight follows written procedures and a scored risk assessment. If conditions aren't safe, we don't launch.</li>
     </ol>
 </div>
 

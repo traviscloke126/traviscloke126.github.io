@@ -27,7 +27,7 @@ To ensure uncompromised integration with industrial, commercial, and agricultura
 *   **Issuing Authority:** Midwest OSHA Education Centers / National Safety Council / Barton Community College
 *   **Continuing Education:** 2.6 Continuing Education Units (CEUs) certified in comprehensive compliance, hazard identification, and site risk mitigation.
 
-This formal safety training ensures that Apex Vector LLC interfaces seamlessly with your on-site safety directors, project managers, and corporate compliance officers without introducing operational liability.
+This formal safety training helps Apex Vector LLC work smoothly within your existing site safety program alongside your safety directors, project managers, and compliance officers.
 
 ---
 
@@ -72,7 +72,13 @@ To enforce these structural boundaries on active industrial and commercial job s
 
 Our operations within the **Hutchinson, Reno County, Kansas** region run in close proximity to **KHUT (Hutchinson Regional Airport)** airspace. Maintaining flawless situational awareness is non-negotiable.
 
-*   **Ground Incursion Protocol:** The Remote PIC retains **absolute, unappealable aviation authority** to instantly pause, hover, or command emergency return-to-home flight patterns the moment an unauthorized ground boundary breach is identified.
-*   **Airspace & Weather Postponement:** Flights are subject to immediate suspension or rescheduling if real-time micro-weather (high wind shear, dropping visibility) or military/civilian manned air traffic inside KHUT Class D airspace compromises absolute safety.
+*   **Ground Incursion Protocol:** As Remote Pilot in Command, Travis holds **final authority over every flight** under 14 C.F.R. &sect; 107.19, and will immediately pause, hover, or return the aircraft the moment an unauthorized person enters a safety perimeter.
+*   **Airspace & Weather Postponement:** Flights are subject to immediate suspension or rescheduling if real-time micro-weather (high wind shear, dropping visibility) or military/civilian manned air traffic inside KHUT Class D airspace compromises safety.
 
-Our commitment to safety ensures that your project data is gathered efficiently, legally, and without exposing your site or organization to operational liability.
+---
+
+## 📋 Scored Flight-Day Risk Assessment
+
+Before every launch, the Remote PIC scores the mission across 11 risk factors, including pilot readiness, aircraft condition, airspace, wind, visibility, and people or livestock near the site. Any single critical factor grounds the aircraft, no matter how good everything else looks, and it cannot be overridden on site.
+
+Our commitment to safety means your project data is gathered efficiently, legally, and with your site's safety as the first priority.

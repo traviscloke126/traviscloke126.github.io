@@ -120,7 +120,11 @@
     /* The Founder Handshake Block */
     .founder-section { display: flex; flex-direction: column; gap: 20px; background-color: var(--card-bg); border: 1px solid var(--accent-border); padding: 30px; border-radius: 6px; margin-top: 40px; }
     @media (min-width: 768px) { .founder-section { flex-direction: row; align-items: center; } }
-    .founder-img { width: 120px; height: 120px; background-color: var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; text-align: center; }
+    .founder-photos { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; }
+    .founder-img { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 2px solid var(--accent-amber); }
+    .founder-then { margin: 0; text-align: center; }
+    .founder-then img { width: 170px; height: auto; border-radius: 4px; border: 1px solid var(--accent-border); display: block; }
+    .founder-then figcaption { font-size: 0.75rem; color: #627280; margin-top: 4px; }
     .founder-bio h3 { margin-top: 0; margin-bottom: 5px; }
     .founder-title { font-size: 0.9rem; color: var(--accent-amber); display: block; margin-bottom: 10px; font-weight: 600; }
 
@@ -332,7 +336,7 @@
       <a href="{{ '/safety.html' | relative_url }}">Airworthiness & Safety</a>
       <a href="{{ '/pricing.html' | relative_url }}">Rates & Options</a>
       <a href="{{ '/roi.html' | relative_url }}">ROI Calculator</a>
-      <a href="#" class="trigger-quote-modal">Request Operations</a>
+      <a href="#" class="trigger-quote-modal">Get a Quote</a>
     </div>
   </nav>
 
@@ -345,9 +349,9 @@
   <div style="max-width: 900px; margin: 50px auto 20px auto; border-top: 1px dashed #2C3740; padding-top: 40px; padding-left: 20px; padding-right: 20px;">
     <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center;">
       <!-- Control A: Flight Operations Redirect -->
-      <a href="{{ '/operations.html' | relative_url }}" style="background-color: transparent; border: 2px solid #FFB300; color: #FFB300; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">Review Flight Specifications</a>
+      <a href="{{ '/operations.html' | relative_url }}" style="background-color: transparent; border: 2px solid #FFB300; color: #FFB300; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">See Flight Operations</a>
       <!-- Control B: Request Quote Intake Profile -->
-      <a href="#" class="trigger-quote-modal" onclick="event.preventDefault(); if (window.handleIntakeRouting) window.handleIntakeRouting();" style="background-color: #FFB300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; display: inline-block;">Initiate Project Intake</a>
+      <a href="#" class="trigger-quote-modal" onclick="event.preventDefault(); if (window.handleIntakeRouting) window.handleIntakeRouting();" style="background-color: #FFB300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; display: inline-block;">Get a Quote</a>
     </div>
   </div>
   {% endunless %}
@@ -356,11 +360,11 @@
     <div class="trust-badges">
       <div class="badge gold">U.S. Veteran-Owned Small Business</div>
       <div class="badge">FAA Part 107 Certified</div>
-      <div class="badge">Insured on Every Mission</div>
+      <div class="badge">Insured on Every Flight</div>
     </div>
     <br><br>
     &copy; {{ site.time | date: '%Y' }} Apex Vector LLC. All Rights Reserved.<br>
-    Reno County, Kansas &bull; Operating under 14 C.F.R. Part 107 &bull; <a href="{{ '/privacy.html' | relative_url }}" style="color: #9EB1C2;">Privacy Policy</a>
+    Reno County, Kansas{% if site.phone and site.phone != "" %} &bull; <a href="tel:{{ site.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}" style="color: #9EB1C2;">{{ site.phone }}</a>{% endif %} &bull; Certificate of insurance available on request &bull; <a href="{{ '/privacy.html' | relative_url }}" style="color: #9EB1C2;">Privacy Policy</a>
   </footer>
   <!-- GLOBAL INTAKE INPUT MODAL -->
   <div id="missionModal">
@@ -369,66 +373,71 @@
       
       <!-- THE INTERACTIVE INPUT FIELDS CONTAINER -->
       <div id="formContentBlock">
-        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem;">Project Initiation Intake</h2>
-        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure UAS Mission Request Pipeline</h4>
+        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.5rem;">Request a Mission Brief</h2>
+        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Quote Request</h4>
        <p style="font-size: 0.85rem; color: #E0E4E6; margin-bottom: 1.5rem; line-height: 1.4;">
-  Tell us about your site and what you need. Your request goes straight to our flight operations inbox, and we'll review airspace and scope before sending a formal quote.
+  Tell me about your job. I'll check the airspace for your location and get back to you within one business day.{% if site.phone and site.phone != "" %} If you'd rather talk now, call {{ site.phone }}.{% endif %}
 </p>
 
         <form id="intakeFormInstance">
           <div class="form-group">
-            <label for="intake-name">01. Full Name / Organization *</label>
+            <label for="intake-name">Name / Business *</label>
             <input type="text" id="intake-name" required>
           </div>
 
           <div class="form-group">
-            <label for="intake-email">Contact Email Address *</label>
+            <label for="intake-email">Email *</label>
             <input type="email" id="intake-email" required>
           </div>
 
           <div class="form-group">
-            <label for="intake-location">02. Target Airspace / Location Parameters *</label>
-            <input type="text" id="intake-location" placeholder="Addresses, parcel numbers, or GPS tags" required>
+            <label for="intake-phone">Phone</label>
+            <input type="tel" id="intake-phone" placeholder="Best number to reach you">
+          </div>
+
+          <div class="form-group">
+            <label for="intake-location">Location *</label>
+            <input type="text" id="intake-location" placeholder="Address, nearest town, or section/township" required>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="intake-scale">03. Scope Scale (Acres / Height)</label>
-              <input type="text" id="intake-scale" placeholder="e.g., 160 Acres / 150-ft Tower">
+              <label for="intake-scale">Size (Acres / Height)</label>
+              <input type="text" id="intake-scale" placeholder="e.g., 160 acres, or a 120-ft elevator">
             </div>
 
             <div class="form-group">
-              <label for="intake-data">04. Data Profile Requirement *</label>
+              <label for="intake-data">What do you need? *</label>
               <select id="intake-data" required style="width: 100%; background: #1a1d29; border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: #fff;">
-  <option value="2D High-Res Orthomosaic Map">2D High-Res Orthomosaic Map (Crop Health & Stand Counts)</option>
-  <option value="3D Photogrammetry / Volumetric">3D Photogrammetry / Volumetric (Stockpiles & Grading Profiles)</option>
-  <option value="Roof / Structure / Tower Inspection">Roof / Structure / Tower Inspection (Close-Range Imagery)</option>
-  <option value="Thermal Signature Tracking">Thermal Imaging (Equipped Aircraft Required)</option>
-  <option value="Cinematic 4K Marketing Media">Cinematic 4K Marketing Media (Commercial Real Estate & Assets)</option>
+  <option value="2D High-Res Orthomosaic Map">Field map / crop health</option>
+  <option value="3D Photogrammetry / Volumetric">3D model or stockpile measurement</option>
+  <option value="Roof / Structure / Tower Inspection">Roof or structure inspection</option>
+  <option value="Thermal Signature Tracking">Thermal imaging (equipped aircraft required)</option>
+  <option value="Cinematic 4K Marketing Media">Aerial photos / 4K video</option>
 </select>
             </div>
           </div>
 <!-- Insert directly above Step 05 inside your HTML file -->
 <div class="deliverables-group-wrapper">
-    <label class="deliverables-group-title">Deliverable Requirements</label>
+    <label class="deliverables-group-title">How do you want your files?</label>
     <div class="deliverables-container">
         <label class="deliverable-label">
             <input type="checkbox" id="req-usb-drive" class="deliverable-checkbox-input">
-            Pre-Configured Cab USB Drive
+            USB drive for the cab
         </label>
         <label class="deliverable-label">
             <input type="checkbox" id="req-paper-log" class="deliverable-checkbox-input">
-            Printed Paper Log Sheet
+            Printed flight log
         </label>
     </div>
 </div>
 
           <div class="form-group">
-            <label for="intake-notes">05. Operational Timeline & Notes</label>
-            <textarea id="intake-notes" rows="3" placeholder="Define preferred flight dates, delivery deadlines, or site hazards..."></textarea>
+            <label for="intake-notes">Timeline & notes</label>
+            <textarea id="intake-notes" rows="3" placeholder="Preferred dates, deadlines, gates, livestock, power lines..."></textarea>
           </div>
 
-          <button type="submit" id="submitIntakeForm">Transmit Secure Intake Request</button>
+          <button type="submit" id="submitIntakeForm">Send Request</button>
           <p style="font-size: 0.75rem; color: #8b98a5; margin: 0.75rem 0 0; text-align: center;">
             We use your information only to respond to this request. See our <a href="{{ '/privacy.html' | relative_url }}" style="color: #FFB300;">Privacy Policy</a>.
           </p>
@@ -440,12 +449,12 @@
         <div class="success-icon-wrap">
           <span style="color: #2563eb; font-size: 1.75rem; font-weight: bold;">&check;</span>
         </div>
-        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.75rem;">Mission Logged</h2>
-        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Intake Profile Transmission Complete</h4>
+        <h2 style="color: #ffffff; margin-top: 0; margin-bottom: 0.25rem; font-size: 1.75rem;">Request Received</h2>
+        <h4 style="color: #FFB300; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Mission Brief Logged</h4>
         <p style="color: #E0E4E6; font-size: 0.95rem; line-height: 1.5; max-width: 440px; margin: 0 auto 2rem;">
-  We'll review local airspace and your project details, and reply to the email you provided within one business day to schedule your mission briefing.
+  I'll review the airspace for your location and reach out within one business day to set up a quick call.
 </p>
-        <button id="closeSuccessBtn" style="background: #1a1d29; border: 1px solid #4a5568; color: #ffffff; padding: 10px 24px; border-radius: 4px; font-weight: bold; text-transform: uppercase; cursor: pointer;">Dismiss Window</button>
+        <button id="closeSuccessBtn" style="background: #1a1d29; border: 1px solid #4a5568; color: #ffffff; padding: 10px 24px; border-radius: 4px; font-weight: bold; text-transform: uppercase; cursor: pointer;">Close</button>
       </div>
 
     </div>
@@ -502,6 +511,7 @@
       // Read EVERYTHING before the form is reset
       const clientName = document.getElementById('intake-name').value.trim();
       const clientEmail = document.getElementById('intake-email').value.trim();
+      const clientPhone = document.getElementById('intake-phone').value.trim() || "Not Provided";
       const targetLoc = document.getElementById('intake-location').value.trim();
       const assetScale = document.getElementById('intake-scale').value.trim() || "Not Provided";
       const dataType = document.getElementById('intake-data').value;
@@ -509,8 +519,8 @@
       const usbActive = document.getElementById('req-usb-drive').checked;
       const paperActive = document.getElementById('req-paper-log').checked;
 
-      const usbStatus = usbActive ? "[X] Pre-Configured Cab USB Drive" : "[ ] Pre-Configured Cab USB Drive";
-      const paperStatus = paperActive ? "[X] Printed Paper Log Sheet" : "[ ] Printed Paper Log Sheet";
+      const usbStatus = usbActive ? "[X] USB drive for the cab" : "[ ] USB drive for the cab";
+      const paperStatus = paperActive ? "[X] Printed flight log" : "[ ] Printed flight log";
       const deliverables = usbStatus + " | " + paperStatus;
       const flightNotes = rawNotes || "None Specified";
 
@@ -518,12 +528,12 @@
       const grossEl = document.getElementById('proposal-final-gross');
       const estimatedValue = grossEl ? grossEl.textContent.trim() : "Not calculated";
 
-      submitBtn.innerText = "COMPILING DISPATCH MATRIX...";
+      submitBtn.innerText = "SENDING...";
       submitBtn.style.background = "#4b5563";
       submitBtn.disabled = true;
 
       function resetButton() {
-        submitBtn.innerText = "Transmit Secure Intake Request";
+        submitBtn.innerText = "Send Request";
         submitBtn.style.background = "#2563eb";
         submitBtn.disabled = false;
       }
@@ -541,6 +551,7 @@
           "System ID Source": "APEX VECTOR SYSTEM RE-ROUTE ENGINE",
           "Name / Organization": clientName,
           "Contact Email": clientEmail,
+          "Contact Phone": clientPhone,
           "Target Location / Coordinates": targetLoc,
           "Target Asset Scale": assetScale,
           "Requested Data Product": dataType,

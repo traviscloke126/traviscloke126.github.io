@@ -55,7 +55,7 @@ To enforce these structural boundaries on active industrial and commercial job s
 
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
     <h4 style="margin-top: 0; color: #24292e;">🦺 Flight Crew Identification</h4>
-    <img src="/assets/images/Apex_Vector_Safety_Vest.jpg" alt="Apex Vector Certified Drone Pilot Vest" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
+    <img src="/assets/images/Apex_Vector_Safety_Vest.jpg" alt="Apex Vector pilot safety vest" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
     <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">ANSI/ISEA compliant high-visibility Class 3 flight deck apparel worn continuously by the Remote PIC to defend the Ground Control Station from distractions.</p>
   </div>
 

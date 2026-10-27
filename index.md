@@ -56,8 +56,8 @@ In Army aviation, skipping a step was never an option. I run your job the same w
     <div class="founder-photos">
         <img src="{{ '/assets/images/founder-tractor.jpg' | relative_url }}" alt="Travis Cloke on a tractor" class="founder-img">
         <figure class="founder-then">
-            <img src="{{ '/assets/images/army-chinook.jpg' | relative_url }}" alt="Travis Cloke in Army uniform in front of a CH-47 Chinook">
-            <figcaption>U.S. Army, CH-47 hangar</figcaption>
+            <img src="{{ '/assets/images/army-chinook.jpg' | relative_url }}" alt="Travis Cloke in Army uniform in front of a CH-47 Chinook at Camp Taji, Iraq, 2010">
+            <figcaption>Camp Taji, Iraq, 2010</figcaption>
         </figure>
     </div>
     <div class="founder-bio">

@@ -23,7 +23,7 @@ title: Mission Brief
     <div class="pillar-card">
         <span class="pillar-meta">For farmers, ranchers & landowners</span>
         <h3>Agricultural Intelligence</h3>
-        <p><strong>Find problems before they cost you yield.</strong> Multispectral imaging shows crop stress, stand problems, and drainage issues across the whole field, so you and your agronomist can scout where it matters instead of walking every acre. Maps come on a USB drive ready for your cab, or as a download.</p>
+        <p><strong>Find problems before they cost you yield.</strong> Multispectral imaging shows crop stress, stand problems, and drainage issues across the whole field, so you and your agronomist can scout where it matters instead of walking every acre. Maps come as a download, or on a USB drive ready for your cab (sales tax may apply to physical copies).</p>
         <div class="pillar-standard"><strong>The Apex Standard:</strong> I respect property lines, neighbors' privacy, and livestock on every flight.</div>
     </div>
     <div class="pillar-card">

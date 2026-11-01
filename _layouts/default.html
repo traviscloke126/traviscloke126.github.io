@@ -153,7 +153,8 @@
     #modalBox {
       background: #12141C;
       border: 1px solid #2d3748;
-      width: 100%;
+      box-sizing: border-box;
+      width: calc(100% - 24px);
       max-width: 600px;
       max-height: 85vh;
       overflow-y: auto;
@@ -201,6 +202,13 @@
     color: #ffffff;
 }
 
+.deliverables-tax-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: #9EB1C2;
+}
+
 .deliverable-checkbox-input {
     width: 1rem;
     height: 1rem;
@@ -237,6 +245,7 @@
 
 /* APEX VECTOR MOBILE RESPONSIVE OPTIMIZATION */
 @media screen and (max-width: 768px) {
+    #modalBox { padding: 1.25rem; }
     
     /* 1. Global Viewport Safety Rails */
     html, body, main, section, .container, #roi-container {
@@ -421,15 +430,20 @@
 <div class="deliverables-group-wrapper">
     <label class="deliverables-group-title">How do you want your files?</label>
     <div class="deliverables-container">
+        <label class="deliverable-label" style="cursor: default;">
+            <input type="checkbox" class="deliverable-checkbox-input" checked disabled>
+            Digital download (included)
+        </label>
         <label class="deliverable-label">
             <input type="checkbox" id="req-usb-drive" class="deliverable-checkbox-input">
-            USB drive for the cab
+            Optional: USB drive for the cab*
         </label>
         <label class="deliverable-label">
             <input type="checkbox" id="req-paper-log" class="deliverable-checkbox-input">
-            Printed flight log
+            Optional: Printed flight log*
         </label>
     </div>
+    <p class="deliverables-tax-note">* Every job includes a digital download. Choosing a USB drive or printed copy may make the job subject to Kansas sales tax. Any tax will be shown on your quote before you agree to anything.</p>
 </div>
 
           <div class="form-group">
@@ -521,7 +535,8 @@
 
       const usbStatus = usbActive ? "[X] USB drive for the cab" : "[ ] USB drive for the cab";
       const paperStatus = paperActive ? "[X] Printed flight log" : "[ ] Printed flight log";
-      const deliverables = usbStatus + " | " + paperStatus;
+      const deliverables = "[X] Digital download | " + usbStatus + " | " + paperStatus +
+        ((usbActive || paperActive) ? "  (physical item requested: check sales tax)" : "");
       const flightNotes = rawNotes || "None Specified";
 
       // Estimate the visitor built on the ROI calculator (saved for this browser tab,

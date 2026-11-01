@@ -441,7 +441,27 @@ title: ROI Calculator
         setText('proposal-calc-val-2', formatToUSD(q.adjustment));
 
         setText('proposal-display-scale', units.toLocaleString('en-US') + ' ' + cfg.unitCaps);
+
+        // Hand the estimate to the quote form (on any page, same tab) but only
+        // once the visitor has actually entered their own numbers.
+        if (window.__apexEstimateTouched) {
+            try {
+                sessionStorage.setItem('apexEstimate', JSON.stringify({
+                    total: formatToUSD(q.total),
+                    service: { ag: 'Ag mapping', infra: 'Inspection', groundworks: 'Earthwork' }[mode] || mode,
+                    scale: units.toLocaleString('en-US') + ' ' + cfg.unitWord.toLowerCase()
+                }));
+            } catch (err) { /* storage blocked: form just reports "Not calculated" */ }
+        }
     };
+
+    // Count the estimate as real only after the visitor edits a calculator input.
+    // Capture phase on document runs before the inputs' inline oninput handlers.
+    window.__apexEstimateTouched = false;
+    document.addEventListener('input', function (e) {
+        var ids = ['acres', 'fert', 'lab', 'input-penalty-risk'];
+        if (e.target && ids.indexOf(e.target.id) !== -1) window.__apexEstimateTouched = true;
+    }, true);
 
     // ------------------------------------------------------------------
     // 4. Proposal date

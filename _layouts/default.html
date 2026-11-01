@@ -524,9 +524,13 @@
       const deliverables = usbStatus + " | " + paperStatus;
       const flightNotes = rawNotes || "None Specified";
 
-      // Estimated value from the ROI page proposal sheet, if the visitor came from there
-      const grossEl = document.getElementById('proposal-final-gross');
-      const estimatedValue = grossEl ? grossEl.textContent.trim() : "Not calculated";
+      // Estimate the visitor built on the ROI calculator (saved for this browser tab,
+      // only after they entered their own numbers). Otherwise "Not calculated".
+      let estimatedValue = "Not calculated";
+      try {
+        const est = JSON.parse(sessionStorage.getItem('apexEstimate') || "null");
+        if (est && est.total) estimatedValue = est.total + " (ROI calculator: " + est.service + ", " + est.scale + ")";
+      } catch (err) { /* storage blocked */ }
 
       submitBtn.innerText = "SENDING...";
       submitBtn.style.background = "#4b5563";
@@ -581,7 +585,7 @@
             "=========================================";
           const params = [
             'DataTransitLog=' + encodeURIComponent(absoluteDataLog),
-            'ProjectValuation=' + encodeURIComponent(estimatedValue.replace(/[^0-9.]/g, "")),
+            'ProjectValuation=' + encodeURIComponent(estimatedValue.split(" ")[0].replace(/[^0-9.]/g, "")),
             'ClientName=' + encodeURIComponent(clientName),
             'ClientEmail=' + encodeURIComponent(clientEmail)
           ];

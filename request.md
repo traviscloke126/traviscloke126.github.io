@@ -43,7 +43,7 @@ To request aerial intelligence or data operations in Hutchinson, Reno County, an
 document.getElementById('generate-email-brief').addEventListener('click', function(e) {
   e.preventDefault();
   
-  const recipient = "apexvectoruas@gmail.com";
+  const recipient = "travis@apexvectoruas.com";
   const subject = encodeURIComponent("UAS Mission Request - Apex Vector LLC");
   
   const bodyText = [

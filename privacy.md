@@ -40,6 +40,6 @@ Client data is stored in access-controlled, encrypted storage and delivered thro
 
 ## Questions and Requests
 
-Privacy questions, data access requests, and deletion requests can be sent to **[apexvectoruas@gmail.com](mailto:apexvectoruas@gmail.com)**.
+Privacy questions, data access requests, and deletion requests can be sent to **[travis@apexvectoruas.com](mailto:travis@apexvectoruas.com)**.
 
 We may update this policy as our services change. The effective date above shows when it was last revised.

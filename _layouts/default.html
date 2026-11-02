@@ -133,6 +133,9 @@
     .badge { background-color: #161B1F; border: 1px solid var(--accent-border); color: var(--text-primary); padding: 6px 14px; font-size: 0.85rem; font-weight: 600; border-radius: 4px; }
     .badge.gold { border-color: var(--accent-amber); color: var(--accent-amber); }
 
+    .hero-motto { font-style: italic; font-weight: 700; letter-spacing: 0.04em; color: var(--accent-amber); font-size: 1.05rem; margin: 0.25rem 0 0.75rem; }
+    .footer-motto { margin-top: 18px; color: #9EB1C2; font-size: 0.85rem; }
+    .footer-motto em { color: var(--accent-amber); font-weight: 700; font-style: italic; }
     footer { text-align: center; padding: 40px 20px 60px; color: #627280; font-size: 0.85rem; border-top: 1px solid var(--accent-border); margin-top: 40px; }
 
     /* SYSTEM GLOBAL INTAKE MODAL STYLES */
@@ -371,7 +374,8 @@
       <div class="badge">CH-47 Aviation Background</div>
       <div class="badge">Local to Reno County</div>
     </div>
-    <br><br>
+    <div class="footer-motto"><em>Ad Astra, Ad Agros</em> &mdash; to the stars, to the fields. A nod to the Kansas state motto, <em>Ad Astra per Aspera</em>.</div>
+    <br>
     &copy; {{ site.time | date: '%Y' }} Apex Vector LLC. All Rights Reserved.<br>
     Reno County, Kansas{% if site.phone and site.phone != "" %} &bull; <a href="tel:{{ site.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}" style="color: #9EB1C2;">{{ site.phone }}</a>{% endif %} &bull; <a href="{{ '/privacy.html' | relative_url }}" style="color: #9EB1C2;">Privacy Policy</a>
   </footer>

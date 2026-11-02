@@ -5,6 +5,7 @@ title: Mission Brief
 
 <div class="hero-section">
     <img src="{{ '/assets/images/logo4.png' | relative_url }}" alt="Apex Vector LLC Logo" class="site-logo">
+    <div class="hero-motto">Ad Astra, Ad Agros</div>
     <h1 class="hero-headline">Military Aviation Discipline.<br>Aerial Data You Can Trust.</h1>
     <div class="hero-subheadline">Apex Vector is a veteran-owned drone service based in Reno County. I fly crop scouting, field mapping, structure inspections, and aerial media across central Kansas, with the same checklists and maintenance standards I worked under on Army CH-47 Chinooks.</div>
     <div class="cta-group">

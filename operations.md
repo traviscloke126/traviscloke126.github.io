@@ -25,4 +25,4 @@ Quality aerial data depends on good flying conditions. In line with our Master S
 *   **Milestone Billing:** Projects are billed in three phases: 30% at signing (mobilization and airspace), 40% when in-field capture is complete, and 30% when deliverables are ready. Completed phases remain billable.
 
 ### 04. Equipment & Sensors
-Standard missions are flown with high-resolution visual (RGB) cameras. Thermal and multispectral (NDVI) services are offered only when performed with a properly equipped aircraft, and are confirmed in your quote.
+Missions are flown with a DJI Mavic 3 Multispectral with RTK positioning: a high-resolution visual (RGB) camera plus four multispectral bands (green, red, red-edge and near-infrared) for true NDVI and NDRE crop-health maps. Thermal imaging is not offered at this time.

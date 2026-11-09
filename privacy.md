@@ -21,7 +21,7 @@ This website does not use advertising cookies or tracking analytics.
 ## What We Collect During Missions
 
 *   High-resolution visual (RGB) still imagery and 4K video.
-*   Thermal or multispectral data, only when an aircraft equipped with that sensor is used for your mission.
+*   Multispectral crop data (green, red, red-edge and near-infrared bands) on crop-health missions.
 *   Geospatial metadata, such as GPS coordinates, altitude, and camera settings.
 *   Point clouds, maps, and models generated during processing.
 *   Aircraft flight logs and telemetry.

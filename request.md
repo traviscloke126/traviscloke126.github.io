@@ -21,7 +21,7 @@ To request aerial intelligence or data operations in Hutchinson, Reno County, an
   
   <div class="card" style="background: #12141c; padding: 20px; border-radius: 8px; border: 1px solid #2d3748;">
     <h3 style="color:#FFB300; font-size:1.1rem; margin-top:0; margin-bottom:0.5rem;">03. Requested Recon Data Type</h3>
-    <p style="font-size:0.9rem; color:#E0E4E6; margin:0;">Select from 2D high-resolution orthomosaic mapping, 3D volumetric photogrammetry, structural inspection imagery, thermal imaging (equipped aircraft required), or 4K media.</p>
+    <p style="font-size:0.9rem; color:#E0E4E6; margin:0;">Select from 2D high-resolution orthomosaic mapping, 3D volumetric photogrammetry, structural inspection imagery, multispectral crop-health maps, or 4K media.</p>
   </div>
   
   <div class="card" style="background: #12141c; padding: 20px; border-radius: 8px; border: 1px solid #2d3748;">
@@ -64,7 +64,7 @@ document.getElementById('generate-email-brief').addEventListener('click', functi
     "   [ ] 2D High-Res Orthomosaic Map",
     "   [ ] 3D Photogrammetry / Modeling",
     "   [ ] Infrastructure Inspection Imagery",
-    "   [ ] Thermal Imaging (equipped aircraft required)",
+    "   [ ] Multispectral Crop-Health Map (NDVI / NDRE)",
     "   [ ] Cinematic 4K Marketing Media",
     "",
     "5. REQUESTED TIMELINE / SCHEDULE CONSTRAINT:",

@@ -66,6 +66,7 @@ In Army aviation, skipping a step was never an option. I run your job the same w
     <div class="founder-bio">
         <h3>Travis Cloke</h3>
         <span class="founder-title">Founder & Remote Pilot in Command</span>
+        <a href="https://vetstodrones.org" class="v2d-badge" target="_blank" rel="noopener"><img src="{{ '/assets/images/v2d-member-badge.png' | relative_url }}" alt="Vets to Drones Member" width="96" height="96"></a>
         <p>10-year U.S. Army veteran. I served as a CH-47 Chinook Helicopter Repairer and aircrew member, keeping heavy-lift helicopters ready to fly. Before drones, I spent more than a year at a grain elevator in Wakefield, Kansas, where I saw firsthand how moisture, test weight, and dockage at the scale affect a farm's bottom line. Now I'm bringing that same standard home to Reno County.</p>
         <a href="#" class="btn-primary trigger-quote-modal" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Request a Quote</a>
     </div>

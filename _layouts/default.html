@@ -126,6 +126,12 @@
     .founder-then img { width: 170px; height: auto; border-radius: 4px; border: 1px solid var(--accent-border); display: block; }
     .founder-then figcaption { font-size: 0.75rem; color: #627280; margin-top: 4px; }
     .founder-bio h3 { margin-top: 0; margin-bottom: 5px; }
+    .v2d-badge { display: inline-block; margin: 4px 0 12px; }
+    .v2d-badge img { width: 96px; height: 96px; border-radius: 10px; display: block; }
+    .faq-item { background-color: var(--card-bg); border: 1px solid var(--accent-border); border-radius: 6px; margin: 10px 0; padding: 0 18px; }
+    .faq-item summary { cursor: pointer; font-weight: 600; color: var(--text-primary); padding: 14px 0; font-size: 1.05rem; }
+    .faq-item summary::marker { color: var(--accent-amber); }
+    .faq-item[open] summary { border-bottom: 1px solid var(--accent-border); margin-bottom: 8px; }
     .founder-title { font-size: 0.9rem; color: var(--accent-amber); display: block; margin-bottom: 10px; font-weight: 600; }
 
     /* Trust Badges Footer */
@@ -350,6 +356,7 @@
       <a href="{{ '/safety.html' | relative_url }}">Airworthiness & Safety</a>
       <a href="{{ '/pricing.html' | relative_url }}">Rates & Options</a>
       <a href="{{ '/roi.html' | relative_url }}">ROI Calculator</a>
+      <a href="{{ '/faq.html' | relative_url }}">FAQ</a>
       <a href="#" class="trigger-quote-modal">Get a Quote</a>
     </div>
   </nav>

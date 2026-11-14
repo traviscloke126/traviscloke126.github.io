@@ -1,35 +1,36 @@
 ---
 layout: default
-title: Operations Pricing Matrix
+title: Rates & Options
+description: "Published drone service rates for Apex Vector LLC: per-acre crop-health mapping, site mapping, structure inspections, and aerial media, with a free cost estimator."
 ---
 
-<h1>Precision Data Operations & Pricing Structure</h1>
-<p>Apex Vector LLC delivers commercial sUAS data operations governed by rigorous aviation standards and transparent, value-driven pricing structures. In strict accordance with <strong>SOP-AGREE-003</strong>, all deployment contracts utilize a structured milestone pipeline alongside clear, predictable acreage-based mapping rates.</p>
+<h1>Rates & Options</h1>
+<p>Straightforward, published prices. No surprise fees. Mapping is priced by the acre, inspections by the structure, and photo and video work by the hour. Every rate is listed below, and the estimator gives you a ballpark in seconds.</p>
 
-<h3>The 3-Phase Milestone Pipeline Matrix</h3>
-<p>To secure flight windows, maintain crew readiness, and protect high-value operational outputs, project financials are structured into an enforced <strong>30% / 40% / 30%</strong> split.</p>
+<h3>How Payment Works</h3>
+<p>Every job is billed in three steps, <strong>30% / 40% / 30%</strong>, so you only pay as the work gets done.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: #161b22; border: 1px solid #30363d;">
   <thead>
     <tr style="border-bottom: 2px solid #30363d; text-align: left;">
-      <th style="padding: 10px; color: #58a6ff;">Milestone Phase</th>
-      <th style="padding: 10px; color: #58a6ff;">Contract Payment %</th>
-      <th style="padding: 10px; color: #58a6ff;">Trigger Condition & Field Verification Clause</th>
+      <th style="padding: 10px; color: #58a6ff;">Step</th>
+      <th style="padding: 10px; color: #58a6ff;">Payment</th>
+      <th style="padding: 10px; color: #58a6ff;">When It's Due</th>
     </tr>
   </thead>
   <tbody>
     <tr style="border-bottom: 1px solid #30363d;">
-      <td style="padding: 10px; font-weight: bold;">Phase 1: Mobilization</td>
+      <td style="padding: 10px; font-weight: bold;">1. Booking</td>
       <td style="padding: 10px; color: #ffb300;">30%</td>
-      <td style="padding: 10px; color: #8b949e;">Due at signing of the Master Services Agreement. Reserves your flight date and covers mission planning, airspace authorization, and the on-site pre-flight survey.</td>
+      <td style="padding: 10px; color: #8b949e;">When you sign the service agreement. Holds your flight date and covers flight planning, airspace authorization, and the site walk.</td>
     </tr>
     <tr style="border-bottom: 1px solid #30363d;">
-      <td style="padding: 10px; font-weight: bold;">Phase 2: In-Field Capture</td>
+      <td style="padding: 10px; font-weight: bold;">2. Flying Done</td>
       <td style="padding: 10px; color: #ffb300;">40%</td>
-      <td style="padding: 10px; color: #8b949e;">Due when in-field data capture is complete (final landing and post-flight checks at your site).</td>
+      <td style="padding: 10px; color: #8b949e;">When the flying is finished and post-flight checks are done at your site.</td>
     </tr>
     <tr>
-      <td style="padding: 10px; font-weight: bold;">Phase 3: Output Release</td>
+      <td style="padding: 10px; font-weight: bold;">3. Files Ready</td>
       <td style="padding: 10px; color: #ffb300;">30%</td>
       <td style="padding: 10px; color: #8b949e;">Due when your processed deliverables are ready. Files are released once payment clears.</td>
     </tr>
@@ -37,33 +38,33 @@ title: Operations Pricing Matrix
 </table>
 
 <p style="background: rgba(240, 56, 56, 0.1); border-left: 4px solid #f03838; padding: 12px; color: #ff7b72; font-size: 0.9rem;">
-  <strong>⚠️ Data Release &amp; Rescheduling:</strong> Raw imagery and processed deliverables are released after Phase 3 payment clears. If weather or safety requires an additional site visit, a remobilization fee applies as stated in your agreement, and completed phases remain billable.
+  <strong>⚠️ Files &amp; rescheduling:</strong> Your files are released once the final payment clears. If weather or safety means an extra trip out to your site, a remobilization fee applies as stated in your agreement, and completed steps stay billable.
 </p>
 
-<h2>Interactive Project Cost Estimator</h2>
-<p>Select your mission profile and enter your estimated project size below to calculate a real-time financial estimate down to the penny.</p>
+<h2>Cost Estimator</h2>
+<p>Pick the type of job and enter the rough size to see a ballpark price and the payment schedule.</p>
 
 <!-- INTERACTIVE WIDGET START -->
 <div style="max-width: 600px; background: #1a1e24; border: 1px solid #30363d; border-radius: 8px; padding: 25px; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-shadow: rgba(0,0,0,0.15) 0px 4px 12px; margin: 25px auto;">
 
   <!-- Profile Selector -->
   <div style="margin-bottom: 20px;">
-    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">1. Select Mission Profile:</label>
+    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">1. Type of job:</label>
     <select id="profileselect" onchange="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1rem;">
-      <option value="ag">AG Grid Profile (Crop Health Mapping / Tiered Per-Acre)</option>
-      <option value="earthwork">Earthwork Profile (Construction / Volumetrics / Site Mapping)</option>
-      <option value="inspection">Inspection Profile (Roof / Structure / Tower Per-Structure)</option>
-      <option value="media">Commercial Media Profile (Marketing / Real Estate Hourly)</option>
+      <option value="ag">Crop-health mapping (per acre)</option>
+      <option value="earthwork">Construction / site mapping / stockpiles</option>
+      <option value="inspection">Roof, structure, or tower inspection</option>
+      <option value="media">Aerial photos & video (hourly)</option>
     </select>
   </div>
 
   <!-- Dynamic Dimension Input Container -->
   <div style="margin-bottom: 25px;">
-    <label id="inputLabel" style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">2. Enter Estimated Acreage:</label>
+    <label id="inputLabel" style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">2. About how many acres?</label>
     <input type="number" id="acreageInput" value="160" min="1" oninput="calculateEstimate()" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 1rem;">
   </div>
 <div style="margin-bottom: 25px; position: relative;">
-    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">🛸 Live UAS Telemetry & Flight Simulation:</label>
+    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #f0f6fc;">🛸 Flight preview:</label>
     <div style="position: absolute; top: 35px; left: 15px; z-index: 10; background: rgba(13, 17, 23, 0.85); padding: 6px 12px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; border: 1px solid #30363d; color: #39d353;">
       SYS STATUS: ACTIVE<br>
       MODE: <span id="telemetryMode">AG_GRID</span><br>
@@ -73,41 +74,41 @@ title: Operations Pricing Matrix
   </div>
   <!-- Output Matrix Ledger -->
   <div style="border-top: 1px solid #30363d; padding-top: 20px; margin-bottom: 25px;">
-    <h4 style="margin: 0 0 15px 0; color: #58a6ff;">📊 Estimated Operations Ledger</h4>
+    <h4 style="margin: 0 0 15px 0; color: #58a6ff;">📊 Your Estimate</h4>
     <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem;">
-      <span>Primary Capture Operations:</span>
+      <span>Job price:</span>
       <span id="ledgerAcquisition" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
     <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.95rem;">
-      <span>Minimum Job Adjustment:</span>
+      <span>Small-job minimum adjustment:</span>
       <span id="ledgerProcessing" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
     <!-- Gross Total Display Box -->
     <div style="display: flex; justify-content: space-between; background: #21262d; padding: 12px; border-radius: 6px; border: 1px solid #388bfd; font-size: 1.1rem; font-weight: 700;">
-      <span style="color: #58a6ff;">Total Gross Contract Value:</span>
+      <span style="color: #58a6ff;">Estimated total:</span>
       <span id="ledgerTotal" style="color: #58a6ff;">$0.00</span>
     </div>
   </div>
 
   <!-- Milestone Split Display -->
   <div style="background: #161b22; border: 1px solid #30363d; padding: 15px; border-radius: 6px;">
-    <h5 style="margin: 0 0 10px 0; color: #f0f6fc; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">📋 SOP Milestone Payment Schedule Breakdown</h5>
+    <h5 style="margin: 0 0 10px 0; color: #f0f6fc; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">📋 Payment Schedule</h5>
     <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
-      <span>Phase 1 Due (Mobilization - 30%):</span>
+      <span>At booking (30%):</span>
       <span id="splitPhase1" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
     
    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
-      <span>Phase 2 Due (In-Field Capture - 40%):</span>
+      <span>When flying is done (40%):</span>
       <span id="splitPhase2" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
     <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-      <span>Phase 3 Due (Data Release - 30%):</span>
+      <span>When files are ready (30%):</span>
       <span id="splitPhase3" style="font-weight: 600; color: #f0f6fc;">$0.00</span>
     </div>
   </div>
   <p style="margin-top: 15px; font-size: 0.8rem; color: #8b949e; line-height: 1.4;">
-    <b>⚠️ Formal Mission Review Clause:</b> Estimates generated by this calculator are for initial budgeting and scheduling purposes only. Mobilization within Reno County is included; travel outside the county is quoted separately. The Remote PIC will confirm airspace and site boundaries before a final quote is issued.
+    <b>⚠️ This is an estimate, not a final quote.</b> It's meant for budgeting. Mobilization within Reno County is included; travel outside the county is quoted separately. Your final quote comes after I check the airspace and the site.
   </p>
 </div>
 
@@ -234,9 +235,9 @@ function calculateEstimate() {
   const rawInput = parseFloat(document.getElementById('acreageInput').value) || 0;
 
   const labels = {
-    ag: "2. Enter Estimated Acreage:",
-    earthwork: "2. Enter Estimated Site Acreage:",
-    media: "2. Enter Estimated Project Hours:",
+    ag: "2. About how many acres?",
+    earthwork: "2. About how many acres is the site?",
+    media: "2. About how many hours on site?",
     inspection: "2. Enter Number of Structures:"
   };
   document.getElementById('inputLabel').innerText = labels[profile];
@@ -271,7 +272,7 @@ runGraphicsEngine();
 <h3>1. Agricultural Crop Health Mapping</h3>
 <p><strong>$5.00 / acre</strong> for the first 160 acres &bull; <strong>$4.00 / acre</strong> for acres 161&ndash;640 &bull; <strong>$3.25 / acre</strong> beyond 640<br>
 Includes the flight, a processed high-resolution orthomosaic, and a multispectral plant-health map (NDVI / NDRE). <strong>$350 job minimum.</strong><br>
-<small style="color: #8b949e;">Flown with a DJI Mavic 3 Multispectral (near-infrared and red-edge bands, RTK positioning). Management zones and prescription files for your equipment are available on request.</small></p>
+<small style="color: #8b949e;">Flown with a DJI Mavic 3 Multispectral (near-infrared and red-edge bands, RTK positioning). Spray-ready zone files, in the format your agronomist or spray operator uses, are available on request.</small></p>
 
 <h3>2. Earthwork, Volumetrics &amp; Site Mapping</h3>
 <p><strong>$750 base</strong> covers sites up to 20 acres &bull; <strong>$30 / acre</strong> for acres 21&ndash;100 &bull; <strong>$15 / acre</strong> beyond 100<br>
@@ -286,15 +287,15 @@ Includes close-range visual imagery and an annotated photo report.</p>
 Includes edited 4K stills and video clips delivered by download link.</p>
 
 <h3>Included With Every Mission</h3>
-<p><strong>Mobilization &amp; airspace authorization:</strong> LAANC/airspace checks, mission planning, and travel anywhere in Reno County are built into the rates above.<br>
-<strong>Data archival:</strong> raw imagery and processed outputs are retained on our secure backup system for 3 years after delivery at no extra charge. Extended archival is available on request.<br>
+<p><strong>Travel &amp; airspace:</strong> FAA airspace authorization, flight planning, and travel anywhere in Reno County are built into the rates above.<br>
+<strong>Backup copy:</strong> your raw images and finished maps are kept on secure backup for 3 years after delivery at no extra charge. Extended archival is available on request.<br>
 <strong>Outside Reno County:</strong> travel is quoted separately at the time of booking.</p>
 
 <hr style="border: 0; border-top: 1px dashed #2c3740; margin: 40px 0;">
 
-<h3>Request an Operational Quote Ready to Deploy</h3>
-<p>Ready to deploy industrial-grade aerial intelligence to your worksite? Click the link below to submit your project parameters and locked boundaries for formal review.</p>
+<h3>Ready for a Real Quote?</h3>
+<p>Send me the location, the size, and what you need. I'll check the airspace and get back to you within one business day.</p>
 
 <p style="text-align: center; margin-top: 25px;">
-  <a href="#" class="trigger-quote-modal" style="background-color: #ffb300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block;">Request Operations & Flight Planning →</a>
+  <a href="#" class="trigger-quote-modal" style="background-color: #ffb300; color: #111416; padding: 14px 28px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block;">Get a Quote →</a>
 </p>

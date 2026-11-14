@@ -1,28 +1,34 @@
 ---
 layout: default
-title: SOP-001 Rev. 1.0 Fleet Framework
+title: Flight Operations
+description: "How Apex Vector LLC runs every drone job: airspace checks, a site walk with you, enforced safety boundaries, weather calls, and milestone billing."
 ---
 
-# Standard Operating Manual
-## Document Code: SOP-001 | Revision: 1.0 Fleet Framework
+# How I Run Every Job
 
-This operational framework governs all small Unmanned Aircraft Systems (sUAS) flight lines executed by Apex Vector LLC field crew elements across South-Central Kansas.
+Every flight follows the same written process, start to finish. It's the same way I worked on Army aircraft: no shortcuts, no skipped steps, and everything written down.
 
-### 01. Pre-Flight Systems & Intake Configuration
-*   **Aviation Intake Review:** Every project request is reviewed for airspace, scope, and site access, then planned in our flight planning software before a formal quote is issued.
-*   **Airspace Validation:** Crew elements execute current NOTAM and TFR reviews, local flight restriction checks, and LAANC launch authorizations prior to any power cycle on remote elements.
-*   **Three-Stage Mission Documentation:** Every mission is documented in three signed stages under one Mission ID: (1) the **Master Services Agreement (SOP-AGREE-003)** with its Property Access &amp; Release and Data Addendum, signed electronically through DocuSign; (2) an on-site **Pre-Flight Site Survey** reviewed with the client or landowner; and (3) a **Flight-Day Risk Assessment** completed by the Remote PIC before launch.
+## 1. Before Anything Flies
 
-### 02. Enforced Flight Line Boundaries
-To protect non-participating personnel and maintain complete site control, Apex Vector LLC establishes and enforces physical security perimeters on the ground during all takeoffs, automated grid mapping sequences, and structural scans:
-*   **15-Foot Inner Critical Exclusion Zone:** Centered strictly around the landing pad module. Purely critical flight crew elements only; zero unauthorized access permitted while rotors are armed.
-*   **25-Foot Outer Security Boundary:** Demarcated by high-visibility flight-line barriers and safety signage for crowd control and spectator mitigation.
+* **Your request gets reviewed first.** I check the location, the airspace, and what you need, and plan the flight in mapping software before you get a final quote.
+* **Airspace is cleared every time.** I check for flight restrictions and temporary closures, and get FAA authorization (LAANC) when the site is near an airport.
+* **Three signed steps, one job number.** (1) You sign the service agreement electronically through DocuSign. (2) We walk the site together and note the launch spot, power lines, livestock, and other hazards. (3) On flight day, I complete a written risk assessment before takeoff.
 
-### 03. Weather, Rescheduling & Milestone Billing
-Quality aerial data depends on good flying conditions. In line with our Master Services Agreement:
-*   **Weather Ceilings:** The Remote Pilot in Command (RPIC) maintains ultimate authority to postpone operations due to localized micro-climate disruptions, extreme wind gusts, or visibility drops.
-*   **Rescheduling:** Weather and safety delays are rescheduled to the next available date. If an extra site visit is needed, a remobilization fee applies as stated in your agreement, and we work with you in good faith on alternatives when plans change.
-*   **Milestone Billing:** Projects are billed in three phases: 30% at signing (mobilization and airspace), 40% when in-field capture is complete, and 30% when deliverables are ready. Completed phases remain billable.
+## 2. Safety Boundaries on Site
 
-### 04. Equipment & Sensors
-Missions are flown with a DJI Mavic 3 Multispectral with RTK positioning: a high-resolution visual (RGB) camera plus four multispectral bands (green, red, red-edge and near-infrared) for true NDVI and NDRE crop-health maps. Thermal imaging is not offered at this time.
+Every takeoff and landing area is marked off with signs and flags:
+
+* **15-foot inner zone** around the landing pad. Pilot only while the props are armed.
+* **25-foot outer boundary** with high-visibility signage to keep bystanders, vehicles, and equipment at a safe distance. You're welcome to watch from outside it.
+
+## 3. Weather, Rescheduling & Billing
+
+Good data takes good flying conditions, and this is Kansas.
+
+* **The pilot makes the call.** If wind gusts, weather, or visibility make a flight unsafe or the data unreliable, the flight waits.
+* **Rescheduling.** Weather and safety delays move to the next good day. If an extra trip out to your site is needed, a remobilization fee applies as stated in your agreement, and I'll work with you on options when plans change.
+* **Billing in three steps:** 30% when you sign, 40% when the flying is done, and 30% when your files are ready. Completed steps stay billable.
+
+## 4. Equipment
+
+Jobs are flown with a DJI Mavic 3 Multispectral with RTK positioning. It carries a high-resolution color camera plus four multispectral bands (green, red, red-edge, and near-infrared) for true NDVI and NDRE crop-health maps. Not sure what those mean? Tap the FAQ button. Thermal imaging is not offered at this time.

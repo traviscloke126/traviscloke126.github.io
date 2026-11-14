@@ -1,84 +1,81 @@
 ---
 layout: default
-title: Aviation Safety & Regulatory Boundaries
+title: Airworthiness & Safety
+description: "How Apex Vector LLC keeps every drone job safe: Army aviation maintenance habits, OSHA 511 training, marked safety boundaries, airspace authorization, and a scored risk check before every flight."
 ---
 
+# Safety Comes First, Every Flight
 
-# Aviation Safety, Risk Mitigation & Command Authority
+Safety isn't a box I check at the end. It's how every job is planned, from the first phone call to the last landing.
 
-At Apex Vector LLC, safety is not a secondary checkbox—it is the foundational standard upon which every flight operation is engineered. Our on-site risk mitigation strategies transfer high-stakes military aviation discipline into commercial unmanned operations.
+## 🎖️ Built on Army Aviation Habits
 
-## 🎖️ Enterprise Maintenance & Operational DNA
-
-Our Remote Pilot in Command (PIC), **Travis Cloke**, brings a distinguished **10-Year U.S. Army Veteran** background serving as a **CH-47 Chinook Helicopter Repairer / Aircrew Member**. 
-
-This decade of real-world experience maintaining and managing complex, multi-million-dollar heavy-lift rotorcraft directly shapes our commercial drone fleet protocols. Every aircraft in our fleet undergoes exhaustive, logbook-audited pre-flight, structural, and avionics inspections mirroring military airworthiness standards.
+I spent 10 years in the U.S. Army as a **CH-47 Chinook Helicopter Repairer and aircrew member**. On a Chinook, nothing flies until the inspections are done and signed off. I run my drones the same way: every aircraft and battery gets a pre-flight and post-flight check, and every check goes in the logbook.
 
 ---
 
-### 📜 Regulatory Compliance & Industrial Safety Credentials
-To ensure uncompromised integration with industrial, commercial, and agricultural worksite regulations, our risk management framework is backed by formal federal safety training. 
+### 📜 Safety Training
+
+Drone work often happens on job sites, farms, and industrial property that run their own safety programs. My training helps me fit right in with yours.
 
 <img src="/assets/images/Apex_Vector_OSHA_511.jpg" alt="Travis W Cloke OSHA 511 General Industry Certificate" style="max-width: 300px; width: 100%; height: auto; border-radius: 4px; border: 1px solid #d0d7de; margin: 15px 0; display: block;">
 
+*   **Credential:** OSHA #511, Standards for General Industry
+*   **Issued by:** Midwest OSHA Education Centers / National Safety Council / Barton Community College
+*   **Hours:** 2.6 Continuing Education Units covering compliance, hazard identification, and site risk.
 
-
-*   **Credential:** **OSHA #511 Standards for General Industry**
-*   **Issuing Authority:** Midwest OSHA Education Centers / National Safety Council / Barton Community College
-*   **Continuing Education:** 2.6 Continuing Education Units (CEUs) certified in comprehensive compliance, hazard identification, and site risk mitigation.
-
-This formal safety training helps Apex Vector LLC work smoothly within your existing site safety program alongside your safety directors, project managers, and compliance officers.
+I'm glad to work alongside your safety director, project manager, or foreman, and follow your site rules.
 
 ---
 
-## 🛑 Rigid On-Site Safety Perimeters
+## 🛑 Marked Safety Boundaries
 
-During active data acquisition, Apex Vector LLC strictly establishes and defends two concentric safety boundaries on the ground. No unauthorized personnel are permitted inside these zones while assets are armed.
+Every takeoff and landing area gets two marked zones. Nobody who isn't part of the flight goes inside them while the aircraft is armed.
 
-1.  **Perimeter 1: The 15ft Inner Exclusion Zone**  
-    *This core zone isolates the UAS Launch/Recovery Pad and the Ground Control Station (GCS). It is restricted strictly to essential flight crew members actively assisting with telemetry and visual observation.*
-2.  **Perimeter 2: The 25ft Site Safety Boundary**  
-    *This outer perimeter serves as the public and bystander isolation zone. It establishes a hard safety buffer to protect non-crew personnel, vehicles, and client property from active operations.*
+1.  **15-foot inner zone**  
+    *Around the landing pad and the pilot's controller. Pilot only.*
+2.  **25-foot outer boundary**  
+    *Keeps bystanders, vehicles, and equipment at a safe distance. Anyone is welcome to watch from outside it.*
 
 ---
 
-## 🦺 Field Operational Visual Controls
+## 🦺 Gear You'll See on Site
 
-To enforce these structural boundaries on active industrial and commercial job sites, we employ highly visible, high-contrast field marking controls. This gear ensures clear communication and operational isolation in seconds.
+Clear signs and gear make the boundaries obvious to everyone, from your crew to a neighbor who stops by.
 <!-- FIELD OPERATIONAL VISUAL CONTROLS BLOCK -->
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; margin-top: 20px;">
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
-    <h4 style="margin-top: 0; color: #24292e;">🚧 Site Boundary Enforcement</h4>
+    <h4 style="margin-top: 0; color: #24292e;">🚧 Boundary Signs</h4>
     <img src="/assets/images/Apex_Vector_Landing_Warning.jpg" alt="Apex Vector Field Operations Safety Sign" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
-    <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">Heavy-duty, high-visibility structural rigid A-frame deployment warning signs positioned explicitly at the outer 25ft Site Safety perimeter boundaries.</p>
+    <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">Heavy-duty, high-visibility signs set up along the 25-foot outer boundary so everyone on site knows where the line is.</p>
   </div>
 
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
-    <h4 style="margin-top: 0; color: #24292e;">🦺 Flight Crew Identification</h4>
+    <h4 style="margin-top: 0; color: #24292e;">🦺 Pilot Identification</h4>
     <img src="/assets/images/Apex_Vector_Safety_Vest.jpg" alt="Apex Vector pilot safety vest" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
-    <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">ANSI/ISEA compliant high-visibility Class 3 flight deck apparel worn continuously by the Remote PIC to defend the Ground Control Station from distractions.</p>
+    <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">An ANSI Class 3 high-visibility vest, so the pilot is easy to spot on a busy site and people know not to walk up mid-flight.</p>
   </div>
 
   <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 15px; border-radius: 6px; background-color: #f6f8fa;">
-    <h4 style="margin-top: 0; color: #24292e;">🛩️ Command Station Security</h4>
+    <h4 style="margin-top: 0; color: #24292e;">🛩️ Pilot Station Signs</h4>
     <img src="/assets/images/Apex_Vector_Vehicle_Warning.jpg" alt="Apex Vector Command Station Safety Sign" style="width: 100%; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 10px;">
-    <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">Octagonal perimeter marker configurations deployed to completely isolate real-time telemetry screens and ground control systems from unauthorized personnel.</p>
+    <p style="font-size: 0.9em; line-height: 1.4; color: #586069; margin-bottom: 0;">"Do Not Distract Operator" signs around the pilot's position. A pilot watching the aircraft shouldn't be fielding questions at the same time.</p>
   </div>
 </div>
 
 ---
 
-## 🛩️ Airspace Integration & PIC Emergency Authority
+## 🛩️ Airspace & the Pilot's Final Say
 
-Our operations within the **Hutchinson, Reno County, Kansas** region run in close proximity to **KHUT (Hutchinson Regional Airport)** airspace. Maintaining flawless situational awareness is non-negotiable.
+Hutchinson sits right next to **Hutchinson Regional Airport (KHUT)** and its controlled airspace, so knowing the airspace is part of every job.
 
-*   **Ground Incursion Protocol:** As Remote Pilot in Command, Travis holds **final authority over every flight** under 14 C.F.R. &sect; 107.19, and will immediately pause, hover, or return the aircraft the moment an unauthorized person enters a safety perimeter.
-*   **Airspace & Weather Postponement:** Flights are subject to immediate suspension or rescheduling if real-time micro-weather (high wind shear, dropping visibility) or military/civilian manned air traffic inside KHUT Class D airspace compromises safety.
+*   **The pilot has final authority.** Under FAA rules (14 C.F.R. &sect; 107.19), the Remote Pilot in Command decides whether a flight goes. If someone walks into a safety zone, the aircraft holds position or comes back immediately.
+*   **Weather and air traffic.** Flights are paused or rescheduled if wind, visibility, or manned aircraft near KHUT make it unsafe.
 
 ---
 
-## 📋 Scored Flight-Day Risk Assessment
+## 📋 A Scored Risk Check Before Every Launch
 
-Before every launch, the Remote PIC scores the mission across 11 risk factors, including pilot readiness, aircraft condition, airspace, wind, visibility, and people or livestock near the site. Any single critical factor grounds the aircraft, no matter how good everything else looks, and it cannot be overridden on site.
+Before every takeoff I score the flight on 11 risk factors, including pilot readiness, aircraft condition, airspace, wind, visibility, and people or livestock nearby. If any single critical factor fails, the aircraft stays on the ground, no matter how good everything else looks. That rule isn't bent on site.
 
-Our commitment to safety means your project data is gathered efficiently, legally, and with your site's safety as the first priority.
+The result: your data gets collected efficiently, legally, and with your site's safety first.

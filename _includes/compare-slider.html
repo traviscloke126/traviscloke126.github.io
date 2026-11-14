@@ -3,11 +3,13 @@
      {% include compare-slider.html
         before="/assets/images/field-color-sim.jpg" before_label="Normal photo"
         after="/assets/images/field-ndvi-sim.jpg"  after_label="NDVI crop health"
-        alt="Same field shown as a normal photo and as an NDVI crop-health map" %}
+        alt="Same field shown as a normal photo and as an NDVI crop-health map"
+        after_overlay="/assets/images/field-ndvi-callouts.svg"   (optional: circled spots/labels drawn on the NDVI side) %}
      Both images must be the same size and crop (export both from the same flight). -->
 <figure class="cmp">
   <div class="cmp-frame" style="--pos: 50%;">
     <img class="cmp-img" src="{{ include.after | relative_url }}" alt="{{ include.alt }} ({{ include.after_label }})" loading="lazy">
+    {% if include.after_overlay %}<img class="cmp-img" src="{{ include.after_overlay | relative_url }}" alt="" aria-hidden="true" loading="lazy">{% endif %}
     <img class="cmp-img cmp-top" src="{{ include.before | relative_url }}" alt="{{ include.alt }} ({{ include.before_label }})" loading="lazy">
     <span class="cmp-tag cmp-tag-l">{{ include.before_label }}</span>
     <span class="cmp-tag cmp-tag-r">{{ include.after_label }}</span>

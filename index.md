@@ -45,9 +45,9 @@ description: "Reno County's ag mapping specialist. Veteran-owned drone service i
 
 ## See What the Camera Sees
 
-Drag the slider across the field. On the left is what your eye sees from above. On the right is the same flight as an <a href="#" class="open-faq" data-faq="NDVI">NDVI</a> crop-health map. A wet low spot, a weedy patch, a planter skip, and a compacted entrance that are hard to spot from the road stand out in red and yellow.
+Drag the slider across the field. On the left is what your eye sees from above. On the right is the same flight as an <a href="#" class="open-faq" data-faq="NDVI">NDVI</a> crop-health map. A wet low spot, a weedy patch, a planter skip, and a compacted entrance that are hard to spot from the road stand out in red and yellow. The map shows you <em>where</em> to look; a quick walk to the spot tells you <em>why</em>.
 
-{% include compare-slider.html before="/assets/images/field-color-sim.jpg" before_label="Normal photo" after="/assets/images/field-ndvi-sim.jpg" after_label="NDVI crop health" alt="Example field shown as a normal photo and as an NDVI crop-health map" %}
+{% include compare-slider.html before="/assets/images/field-color-sim.jpg" before_label="Normal photo" after="/assets/images/field-ndvi-sim.jpg" after_label="NDVI crop health" alt="Example field shown as a normal photo and as an NDVI crop-health map" after_overlay="/assets/images/field-ndvi-callouts.svg" %}
 
 <div class="ndvi-legend"><span>Stressed</span><span class="bar"></span><span>Healthy</span></div>
 <p class="sim-note">Simulated example for illustration. Real Reno County fields will replace it after the first season.</p>

@@ -28,7 +28,7 @@ This website does not use advertising cookies or tracking analytics.
 
 ## How We Limit Collection
 
-Flight plans are designed to focus on the authorized site and to respect adjacent property lines, privacy, and livestock safety. Cameras and sensors are not intentionally aimed at non-participating residences, vehicles, or people. When identifiable people or license plates are incidentally captured, we blur them in final deliverables unless identification is required by contract and lawful.
+Flight plans are designed to focus on the authorized site and to respect adjacent property lines, privacy, and livestock safety. Cameras and sensors are not intentionally aimed at non-participating residences, vehicles, or people. Finished maps are trimmed to the authorized boundary, so a neighbor's field, home, or vehicles caught at the edge of a flight are cropped out of the deliverables. When identifiable people or license plates are incidentally captured, we blur them in final deliverables unless identification is required by contract and lawful. Incidentally captured information about neighboring property is never shared, sold, or used for any other purpose.
 
 ## What We Do Not Do
 

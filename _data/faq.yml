@@ -67,7 +67,7 @@
     - q: "Who can see my field data?"
       a: "You. Your data is never sold or shared with marketers. It is kept in encrypted storage and shared only with your consent. Your images are used publicly, for example on this website, only if you give permission. Full details are in the <a href=\"/privacy.html\">Privacy Policy</a>."
     - q: "Will the drone bother my neighbors or livestock?"
-      a: "Flight plans stay on the authorized property and respect property lines, neighbors' privacy, and livestock. Cameras are not aimed at neighboring homes or people."
+      a: "Flight plans stay on the authorized property and respect property lines, neighbors' privacy, and livestock. Cameras are not aimed at neighboring homes or people. If a flight catches the edge of a neighbor's field, home, vehicles, or people by accident, that area is cropped out or blurred in your finished files, and it is never shared, sold, or used for anything else."
 
 - section: "About Apex Vector"
   items:

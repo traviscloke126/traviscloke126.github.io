@@ -1,11 +1,12 @@
-<!-- BEFORE/AFTER COMPARE SLIDER
-     Usage:
-     {% include compare-slider.html
-        before="/assets/images/field-color-sim.jpg" before_label="Normal photo"
-        after="/assets/images/field-ndvi-sim.jpg"  after_label="NDVI crop health"
-        alt="Same field shown as a normal photo and as an NDVI crop-health map"
-        after_overlay="/assets/images/field-ndvi-callouts.svg"   (optional: circled spots/labels drawn on the NDVI side) %}
-     Both images must be the same size and crop (export both from the same flight). -->
+{% comment %}
+  BEFORE/AFTER COMPARE SLIDER
+  Usage (in a page): include compare-slider.html with these params:
+    before / before_label   - left image and its label
+    after / after_label     - right image and its label
+    after_overlay           - optional transparent image (circles/labels) drawn on the right side
+    alt                     - description of the image
+  Both images must be the same size and crop (export both from the same flight).
+{% endcomment %}
 <figure class="cmp">
   <div class="cmp-frame" style="--pos: 50%;">
     <img class="cmp-img" src="{{ include.after | relative_url }}" alt="{{ include.alt }} ({{ include.after_label }})" loading="lazy">

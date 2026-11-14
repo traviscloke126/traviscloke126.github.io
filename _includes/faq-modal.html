@@ -1,0 +1,166 @@
+<!-- FLOATING FAQ BUTTON + POP-UP
+     Content comes from _data/faq.yml (same file as the FAQ page).
+     Any link with class="open-faq" opens the pop-up; add data-faq="word"
+     to open it already searched for that word, e.g.
+     <a href="#" class="open-faq" data-faq="NDVI">NDVI</a> -->
+<style>
+  #faqFab {
+    position: fixed; right: 18px; bottom: 18px; z-index: 9000;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--accent-amber, #FFB300); color: #111416;
+    border: none; border-radius: 999px; padding: 12px 18px;
+    font-weight: 800; font-size: 0.95rem; letter-spacing: 0.03em;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45); cursor: pointer;
+  }
+  #faqFab:hover { filter: brightness(1.08); }
+  #faqFab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+  #faqFab .faq-fab-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #111416; color: var(--accent-amber, #FFB300); font-size: 0.85rem;
+  }
+  body.faq-open #faqFab { display: none; }
+
+  #faqOverlay {
+    display: none; position: fixed; inset: 0; z-index: 9500;
+    background: rgba(5,6,8,0.6); backdrop-filter: blur(2px);
+  }
+  body.faq-open #faqOverlay { display: block; }
+
+  #faqPanel {
+    position: fixed; z-index: 9600; right: 18px; bottom: 18px;
+    width: min(420px, calc(100vw - 36px)); max-height: min(640px, calc(100vh - 36px));
+    display: none; flex-direction: column;
+    background: #12141C; border: 1px solid #2d3748; border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6); overflow: hidden;
+  }
+  body.faq-open #faqPanel { display: flex; }
+  @media (max-width: 600px) {
+    #faqPanel { right: 0; left: 0; bottom: 0; width: 100%; max-height: 85vh; border-radius: 14px 14px 0 0; }
+  }
+  .faq-panel-head { padding: 16px 18px 12px; border-bottom: 1px solid #2d3748; }
+  .faq-panel-title { display: flex; justify-content: space-between; align-items: center; }
+  .faq-panel-title h2 { margin: 0; padding: 0; border: none; font-size: 1.15rem; color: #fff; }
+  #faqClose { background: none; border: none; color: #9EB1C2; font-size: 1.8rem; line-height: 1; cursor: pointer; padding: 0 4px; }
+  #faqClose:hover { color: #fff; }
+  .faq-panel-sub { margin: 4px 0 10px; font-size: 0.85rem; color: #9EB1C2; }
+  #faqSearch {
+    width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 6px;
+    background: #1a1d29; border: 1px solid #4a5568; color: #fff; font-size: 1rem;
+  }
+  #faqSearch:focus { outline: none; border-color: var(--accent-amber, #FFB300); }
+  .faq-panel-body { overflow-y: auto; overscroll-behavior: contain; padding: 6px 18px 12px; -webkit-overflow-scrolling: touch; }
+  .faq-pop-section { margin: 14px 0 4px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-amber, #FFB300); }
+  .faq-pop-item { border-bottom: 1px solid #222a35; }
+  .faq-pop-item summary { cursor: pointer; padding: 11px 0; color: #E0E4E6; font-weight: 600; font-size: 0.95rem; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+  .faq-pop-item summary::-webkit-details-marker { display: none; }
+  .faq-pop-item summary::after { content: "+"; color: var(--accent-amber, #FFB300); font-weight: 800; }
+  .faq-pop-item[open] summary::after { content: "\2212"; }
+  .faq-pop-item p { margin: 0 0 12px; font-size: 0.9rem; line-height: 1.5; color: #B8C4CF; }
+  .faq-pop-item a, .faq-panel-foot a.faq-link { color: var(--accent-amber, #FFB300); }
+  #faqNoMatch { display: none; padding: 16px 0; font-size: 0.9rem; color: #9EB1C2; }
+  .faq-panel-foot { padding: 12px 18px; border-top: 1px solid #2d3748; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.85rem; color: #9EB1C2; }
+  .faq-panel-foot .faq-ask { background: var(--accent-amber, #FFB300); color: #111416; padding: 8px 14px; border-radius: 4px; font-weight: 700; text-decoration: none; }
+  a.open-faq { color: inherit; text-decoration: underline dotted var(--accent-amber, #FFB300); text-underline-offset: 3px; cursor: help; }
+</style>
+
+<button id="faqFab" type="button" aria-haspopup="dialog" aria-controls="faqPanel">
+  <span class="faq-fab-icon" aria-hidden="true">?</span> FAQ
+</button>
+
+<div id="faqOverlay"></div>
+
+<div id="faqPanel" role="dialog" aria-modal="true" aria-labelledby="faqPanelTitle">
+  <div class="faq-panel-head">
+    <div class="faq-panel-title">
+      <h2 id="faqPanelTitle">Quick Answers</h2>
+      <button id="faqClose" type="button" aria-label="Close FAQ">&times;</button>
+    </div>
+    <p class="faq-panel-sub">Look something up without losing your place.</p>
+    <input id="faqSearch" type="search" placeholder="Search: NDVI, wind, price, USB..." aria-label="Search questions" autocomplete="off">
+  </div>
+  <div class="faq-panel-body" id="faqPanelBody">
+    {% for group in site.data.faq %}
+    <div class="faq-pop-group">
+      <div class="faq-pop-section">{{ group.section }}</div>
+      {% for item in group.items %}
+      <details class="faq-pop-item">
+        <summary>{{ item.q }}</summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <div id="faqNoMatch">No match for that. Ask directly and you'll get an answer.</div>
+  </div>
+  <div class="faq-panel-foot">
+    <a class="faq-link" href="{{ '/faq.html' | relative_url }}">Full FAQ page</a>
+    <a href="#" class="faq-ask trigger-quote-modal">Ask a Question</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  var body = document.body;
+  var fab = document.getElementById('faqFab');
+  var panel = document.getElementById('faqPanel');
+  var overlay = document.getElementById('faqOverlay');
+  var closeBtn = document.getElementById('faqClose');
+  var search = document.getElementById('faqSearch');
+  var noMatch = document.getElementById('faqNoMatch');
+  var bodyEl = document.getElementById('faqPanelBody');
+  var groups = panel.querySelectorAll('.faq-pop-group');
+  var lastFocus = null;
+
+  function filter(term) {
+    term = (term || '').trim().toLowerCase();
+    var any = false;
+    groups.forEach(function (g) {
+      var shown = 0;
+      g.querySelectorAll('.faq-pop-item').forEach(function (d) {
+        var hit = !term || d.textContent.toLowerCase().indexOf(term) !== -1;
+        d.style.display = hit ? '' : 'none';
+        if (!term) d.open = false;
+        if (hit) shown++;
+      });
+      g.style.display = shown ? '' : 'none';
+      if (shown) any = true;
+    });
+    noMatch.style.display = any ? 'none' : 'block';
+  }
+
+  function open(term) {
+    lastFocus = document.activeElement;
+    body.classList.add('faq-open');
+    search.value = term || '';
+    filter(term);
+    bodyEl.scrollTop = 0;
+    if (term) {
+      // Open the first matching question, preferring one whose title matches.
+      var items = Array.prototype.filter.call(panel.querySelectorAll('.faq-pop-item'), function (d) { return d.style.display !== 'none'; });
+      var best = items.find(function (d) { return d.querySelector('summary').textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1; }) || items[0];
+      if (best) best.open = true;
+    }
+    closeBtn.focus({ preventScroll: true });
+  }
+
+  function close() {
+    body.classList.remove('faq-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+
+  fab.addEventListener('click', function () { open(''); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', close);
+  search.addEventListener('input', function () { filter(search.value); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && body.classList.contains('faq-open')) close();
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('.open-faq');
+    if (t) { e.preventDefault(); open(t.getAttribute('data-faq') || ''); return; }
+    // Hand off to the quote form cleanly if they click "Ask a Question".
+    if (e.target.closest && e.target.closest('.trigger-quote-modal') && body.classList.contains('faq-open')) close();
+  }, true);
+})();
+</script>

@@ -39,6 +39,8 @@
 
 - section: "Crop-Health Mapping"
   items:
+    - q: "What does a crop-health map look like?"
+      a: "See the <a href=\"/faq.html#crop-example\">side-by-side example on the FAQ page</a>. Drag the slider to compare a normal photo of a field with the same field as an NDVI crop-health map, with problem spots circled."
     - q: "What do I get from a crop-health flight?"
       a: "A high-resolution map of the whole field plus NDVI and NDRE crop-health maps from the multispectral camera. These show stress, stand gaps, and drainage problems before they're easy to see from the ground. Zone maps are delivered spray-ready, in the file format your agronomist or spray operator already uses."
     - q: "Do you spray, or set my application rates?"

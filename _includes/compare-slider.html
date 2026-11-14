@@ -1,0 +1,26 @@
+<!-- BEFORE/AFTER COMPARE SLIDER
+     Usage:
+     {% include compare-slider.html
+        before="/assets/images/field-color-sim.jpg" before_label="Normal photo"
+        after="/assets/images/field-ndvi-sim.jpg"  after_label="NDVI crop health"
+        alt="Same field shown as a normal photo and as an NDVI crop-health map" %}
+     Both images must be the same size and crop (export both from the same flight). -->
+<figure class="cmp">
+  <div class="cmp-frame" style="--pos: 50%;">
+    <img class="cmp-img" src="{{ include.after | relative_url }}" alt="{{ include.alt }} ({{ include.after_label }})" loading="lazy">
+    <img class="cmp-img cmp-top" src="{{ include.before | relative_url }}" alt="{{ include.alt }} ({{ include.before_label }})" loading="lazy">
+    <span class="cmp-tag cmp-tag-l">{{ include.before_label }}</span>
+    <span class="cmp-tag cmp-tag-r">{{ include.after_label }}</span>
+    <div class="cmp-line" aria-hidden="true"><span class="cmp-knob">&#9664;&#9654;</span></div>
+    <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare {{ include.before_label }} and {{ include.after_label }}">
+  </div>
+</figure>
+<script>
+(function () {
+  var figs = document.querySelectorAll('.cmp');
+  var f = figs[figs.length - 1];
+  var frame = f.querySelector('.cmp-frame');
+  var range = f.querySelector('.cmp-range');
+  range.addEventListener('input', function () { frame.style.setProperty('--pos', range.value + '%'); });
+})();
+</script>

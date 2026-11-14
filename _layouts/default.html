@@ -147,6 +147,22 @@
     .footer-motto em { color: var(--accent-amber); font-weight: 700; font-style: italic; }
     footer { text-align: center; padding: 40px 20px 60px; color: #627280; font-size: 0.85rem; border-top: 1px solid var(--accent-border); margin-top: 40px; }
 
+    /* Before/after compare slider */
+    .cmp { margin: 20px 0 8px; }
+    .cmp-frame { position: relative; overflow: hidden; border-radius: 6px; border: 1px solid var(--accent-border); aspect-ratio: 8 / 5; background: #0b0d10; touch-action: pan-y; }
+    .cmp-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cmp-top { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+    .cmp-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 6px rgba(0,0,0,0.6); pointer-events: none; }
+    .cmp-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: var(--accent-amber); color: #111416; font-size: 0.7rem; letter-spacing: -1px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .cmp-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+    .cmp-range::-webkit-slider-thumb { -webkit-appearance: none; width: 48px; height: 100vh; }
+    .cmp-range::-moz-range-thumb { width: 48px; height: 100vh; border: 0; }
+    .cmp-tag { position: absolute; top: 10px; padding: 4px 9px; border-radius: 4px; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.8rem; font-weight: 700; pointer-events: none; }
+    .cmp-tag-l { left: 10px; } .cmp-tag-r { right: 10px; }
+    .cmp-frame:focus-within { outline: 2px solid var(--accent-amber); outline-offset: 2px; }
+    .ndvi-legend { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-secondary); margin: 6px 0 0; }
+    .ndvi-legend .bar { flex: 1; max-width: 260px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #a50026, #f46d43, #fee08b, #a6d96a, #1a9850); }
+    .sim-note { font-size: 0.8rem; color: #8b98a5; font-style: italic; margin-top: 6px; }
     /* SYSTEM GLOBAL INTAKE MODAL STYLES */
     #missionModal {
       display: none;

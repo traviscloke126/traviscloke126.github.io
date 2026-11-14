@@ -1,11 +1,13 @@
 ---
 layout: default
 title: Mission Brief
+description: "Reno County's ag mapping specialist. Veteran-owned drone service in Hutchinson, KS: multispectral crop maps, spray-ready zone files, structure inspections, and aerial media."
 ---
 
 <div class="hero-section">
     <img src="{{ '/assets/images/logo-wings.png' | relative_url }}" alt="Apex Vector LLC: shield on silver aviator wings with the motto Ad Astra, Ad Agros" class="site-logo site-logo-wings" width="895" height="279">
     <div class="hero-motto">To the stars, to the fields</div>
+    <div class="hero-eyebrow">Reno County's Ag Mapping Specialist</div>
     <h1 class="hero-headline">Military Aviation Discipline.<br>Aerial Data You Can Trust.</h1>
     <div class="hero-subheadline">Apex Vector is a veteran-owned drone service based in Reno County. I fly crop scouting, field mapping, structure inspections, and aerial media across central Kansas, with the same checklists and maintenance standards I worked under on Army CH-47 Chinooks.</div>
     <div class="cta-group">
@@ -24,7 +26,7 @@ title: Mission Brief
     <div class="pillar-card">
         <span class="pillar-meta">For farmers, ranchers & landowners</span>
         <h3>Agricultural Intelligence</h3>
-        <p><strong>Find problems before they cost you yield.</strong> Multispectral imaging shows crop stress, stand problems, and drainage issues across the whole field, so you and your agronomist can scout where it matters instead of walking every acre. Maps come as a download, or on a USB drive ready for your cab (sales tax may apply to physical copies).</p>
+        <p><strong>Find problems before they cost you yield.</strong> Multispectral imaging shows crop stress, stand problems, and drainage issues across the whole field, so you and your agronomist can scout where it matters instead of walking every acre. Zone maps are spray-ready, in the file format your agronomist or spray operator already uses, and come as a download, or on a USB drive ready for your cab (sales tax may apply to physical copies).</p>
         <div class="pillar-standard"><strong>The Apex Standard:</strong> I respect property lines, neighbors' privacy, and livestock on every flight.</div>
     </div>
     <div class="pillar-card">

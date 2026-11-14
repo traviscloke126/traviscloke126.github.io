@@ -27,6 +27,7 @@ description: "Reno County's ag mapping specialist. Veteran-owned drone service i
         <span class="pillar-meta">For farmers, ranchers & landowners</span>
         <h3>Agricultural Intelligence</h3>
         <p><strong>Find problems before they cost you yield.</strong> <a href="#" class="open-faq" data-faq="multispectral">Multispectral imaging</a> shows crop stress, stand problems, and drainage issues across the whole field, so you and your agronomist can scout where it matters instead of walking every acre. <a href="#" class="open-faq" data-faq="zone map">Zone maps</a> are <a href="#" class="open-faq" data-faq="spray-ready">spray-ready</a>, in the file format your agronomist or spray operator already uses, and come as a download, or on a USB drive ready for your cab (sales tax may apply to physical copies).</p>
+        <p style="margin-top: 0.5rem;"><a href="{{ '/faq.html#crop-example' | relative_url }}" style="color: var(--accent-amber); font-weight: 700; text-decoration: none;">&#9654; See an example field: normal photo vs. crop-health map</a></p>
         <div class="pillar-standard"><strong>The Apex Standard:</strong> I respect property lines, neighbors' privacy, and livestock on every flight.</div>
     </div>
     <div class="pillar-card">

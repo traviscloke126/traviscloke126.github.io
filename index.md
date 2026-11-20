@@ -18,6 +18,7 @@ description: "Reno County's ag mapping specialist. Veteran-owned drone service i
         <a href="{{ '/operations.html' | relative_url }}" class="btn-secondary">See What I Fly</a>
         {% endif %}
     </div>
+    <div class="season-note" style="margin-top:0.9rem; font-size:0.9rem; color:#FFB300;">Now booking for the 2027 season. Send a request now to get on the schedule.</div>
 </div>
 
 ## Mission Profiles

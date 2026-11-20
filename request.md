@@ -6,6 +6,8 @@ title: Request a Quote
 # Request a Quote
 ## Tell me about your job
 
+<div style="background:#1a1d29; border-left:4px solid #FFB300; padding:14px 18px; border-radius:4px; margin-bottom:1.5rem; color:#E0E4E6;"><strong style="color:#FFB300;">Now booking for the 2027 season.</strong> Flights start in spring 2027. Send your request now to get on the schedule, and I'll confirm dates as the season gets closer.</div>
+
 Serving Hutchinson, Reno County, and the surrounding counties. Have these four things handy, then use the button below to send me an email with everything already laid out.
 
 <div class="intake-grid" style="margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem;">

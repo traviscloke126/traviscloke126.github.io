@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Request a Quote
+description: "Request a drone service quote from Apex Vector LLC in Hutchinson, KS. Now booking crop-health mapping, site mapping, inspections, and aerial media for the 2027 season."
 ---
 
 # Request a Quote

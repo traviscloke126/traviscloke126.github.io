@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Mission Brief
+seo_title: "Drone Crop Mapping in Hutchinson, KS"
 description: "Reno County's ag mapping specialist. Veteran-owned drone service in Hutchinson, KS: multispectral crop maps, spray-ready zone files, structure inspections, and aerial media."
 ---
 

@@ -126,6 +126,9 @@
     .founder-then figcaption { font-size: 0.75rem; color: #627280; margin-top: 4px; }
     .founder-bio h3 { margin-top: 0; margin-bottom: 5px; }
     .v2d-badge { display: inline-block; margin: 4px 0 12px; }
+    .ao-banner { display: block; width: 100%; max-width: 320px; height: auto; margin: 20px auto 0; }
+    .ao-badge { display: inline-block; margin: 4px 0 12px 12px; vertical-align: top; }
+    .ao-badge img { height: 110px; width: auto; display: block; }
     .v2d-badge img { width: 96px; height: 96px; border-radius: 10px; display: block; }
     .faq-item { background-color: var(--card-bg); border: 1px solid var(--accent-border); border-radius: 6px; margin: 10px 0; padding: 0 18px; }
     .faq-item summary { cursor: pointer; font-weight: 600; color: var(--text-primary); padding: 14px 0; font-size: 1.05rem; }
@@ -398,6 +401,7 @@
       <div class="badge">CH-47 Aviation Background</div>
       <div class="badge">Local to Reno County</div>
     </div>
+    <img src="{{ '/assets/images/american-operator-banner.png' | relative_url }}" alt="Locally Owned and Operated, certified by American Operator" class="ao-banner" width="320" height="54">
     <div class="footer-motto"><em>Ad Astra, Ad Agros</em> &mdash; to the stars, to the fields. A nod to the Kansas state motto, <em>Ad Astra per Aspera</em>.</div>
     <br>
     &copy; {{ site.time | date: '%Y' }} Apex Vector LLC. All Rights Reserved. <span class="built-with">&bull; Site built with help from <a href="https://claude.ai" target="_blank" rel="noopener" style="color: #9EB1C2;">Claude</a></span><br>

@@ -210,7 +210,7 @@ a{color:inherit}
       kp: 'https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json',
       overpass: 'https://overpass-api.de/api/interpreter',
       // public mirrors tried in order when the main server is busy or slow
-      overpassMirrors: ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://maps.mail.ru/osm/tools/overpass/api/interpreter'],
+      overpassMirrors: ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://maps.mail.ru/osm/tools/overpass/api/interpreter', 'https://overpass.openstreetmap.fr/api/interpreter'],
       // latest airport observation from the NWS (aviationweather.gov blocks calls from web pages)
       metar: (id) => 'https://api.weather.gov/stations/' + encodeURIComponent(id) + '/observations/latest'
     };
@@ -428,8 +428,8 @@ a{color:inherit}
           const c = elCenter(e); if (c) structures.push({ d: distMi(p, c), label: t.man_made.replace('_', ' ') + ' ' + fmtDist(distMi(p, c)) + ' ' + bearing(p, c) });
         }
       }
-      out.sources.push('OpenStreetMap (Overpass)');
-    } else out.warnings.push('Power line and structure lookup (OpenStreetMap) failed or timed out. Walk the site for lines.');
+      out.sources.push('OpenStreetMap (Overpass' + (data.overpassLog && data.overpassLog.length ? ': ' + data.overpassLog.join('; ') : '') + ')');
+    } else out.warnings.push('Power line and structure lookup (OpenStreetMap) failed or timed out. Walk the site for lines.' + (data.overpassLog && data.overpassLog.length ? ' Servers tried: ' + data.overpassLog.join('; ') + '.' : ''));
 
     // overhead utilities: only flag present; never auto-mark clear
     lines.sort((a, b) => a.d - b.d);
@@ -603,13 +603,27 @@ a{color:inherit}
       get('kp', u.kp),
       (async () => {
         const body = 'data=' + encodeURIComponent(overpassQuery(p));
-        for (const m of u.overpassMirrors) {
-          await get('overpass', m, { method: 'POST', body: body, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 30000);
-          const d = data.overpass;
-          if (!(d instanceof Error) && d && !d.remark) break;
-          if (!(d instanceof Error) && d && d.remark && (d.elements || []).length) break;
-          if (!(d instanceof Error)) data.overpass = new Error('overpass: ' + String(d && d.remark || 'empty'));
-        }
+        const log = [];
+        // one server: true when it gave usable data; otherwise logs why and moves on at once
+        const tryOne = async (m) => {
+          const t0 = Date.now(), host = m.split('/')[2];
+          await get('overpass', m, { method: 'POST', body: body, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 22000);
+          const d = data.overpass, secs = ((Date.now() - t0) / 1000).toFixed(1) + ' s';
+          if (!(d instanceof Error) && d && Array.isArray(d.elements) && (!d.remark || d.elements.length)) { log.push(host + ' ok ' + secs); return true; }
+          let why;
+          if (d instanceof Error) {
+            const hm = /HTTP (\d+)/.exec(d.message || '');
+            why = d.name === 'AbortError' ? 'timed out' : hm ? 'HTTP ' + hm[1] : 'blocked or unreachable';
+          } else why = 'no data' + (d && d.remark ? ' (' + String(d.remark).slice(0, 60) + ')' : '');
+          log.push(host + ' ' + why + ' ' + secs);
+          data.overpass = new Error('overpass: ' + why);
+          return false;
+        };
+        let done = false;
+        for (const m of u.overpassMirrors) { if (await tryOne(m)) { done = true; break; } }
+        // every server said no: one more try on the main server after a short pause
+        if (!done) { await new Promise((r) => setTimeout(r, 4000)); await tryOne(u.overpassMirrors[0]); }
+        data.overpassLog = log;
       })()
     ]);
     if (!opts.flightDate) {

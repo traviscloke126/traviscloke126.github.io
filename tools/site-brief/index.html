@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1c2640">
+<link rel="manifest" href="/tools/site-brief/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/tools/site-brief/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Site Brief">
 <title>Apex Site Brief</title>
 <style>
 :root{--bg:#f4f6f9;--card:#fff;--ink:#16202e;--muted:#5b6779;--line:#d8dee8;--navy:#1c2640;--gold:#e8a317;--ok:#1d7a46;--warn:#a5520a;--bad:#b42318}
@@ -779,5 +784,6 @@ for (const [id, key] of [['fSS', 'ss'], ['fFRA', 'fra']]) {
 }
 $('loc').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('go').click(); });
 </script>
+<script>if('serviceWorker' in navigator && location.protocol==='https:'){navigator.serviceWorker.register('/tools/site-brief/sw.js',{scope:'/tools/site-brief/'}).catch(function(){});}</script>
 </body>
 </html>

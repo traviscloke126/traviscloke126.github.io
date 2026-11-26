@@ -204,7 +204,8 @@ a{color:inherit}
       stadiums: arcPointQuery('Stadiums', p, { distanceMi: 3, geom: true }),
       kp: 'https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json',
       overpass: 'https://overpass-api.de/api/interpreter',
-      metar: (id) => 'https://aviationweather.gov/api/data/metar?ids=' + encodeURIComponent(id) + '&format=json'
+      // latest airport observation from the NWS (aviationweather.gov blocks calls from web pages)
+      metar: (id) => 'https://api.weather.gov/stations/' + encodeURIComponent(id) + '/observations/latest'
     };
   }
   function overpassQuery(p) {
@@ -482,17 +483,24 @@ a{color:inherit}
         wx = { t: t, w: w, gu: gu, vis: vis, tf: tf, sky: sky && sky.value, pop: pop && pop.value, wd: wd && wd.value, src: 'NWS forecast for ' + fmtLocal(t, tz, true) };
       } else out.warnings.push('No NWS forecast for that time (more than 7 days out?).');
     }
-    if (ok(data.metar) && data.metar.length && !opts.flightDate) {
-      const m = data.metar[0];
-      const cig = (m.clouds || []).filter((c) => /BKN|OVC|OVX/.test(c.cover)).map((c) => c.base).sort((a, b) => a - b)[0];
-      wx = wx || { t: now };
-      if (m.wspd != null) wx.w = +m.wspd;
-      if (m.wgst != null) wx.gu = +m.wgst;
-      if (m.visib != null) wx.vis = parseFloat(String(m.visib)) || wx.vis;
-      if (m.temp != null) wx.tf = m.temp * 9 / 5 + 32;
-      wx.cig = cig == null ? 'none' : cig;
-      wx.src = 'METAR ' + m.icaoId + ' ' + (m.rawOb || '');
-      out.sources.push('aviationweather.gov METAR');
+    // live airport observation (NWS station, from the METAR): only for "right now" briefs
+    const ob = ok(data.metar) && data.metar.properties;
+    if (ob && !opts.flightDate) {
+      const obMs = Date.parse(ob.timestamp || '');
+      if (isFinite(obMs) && now - obMs <= 3 * 3600e3) {
+        const q = (x) => (x && x.value != null ? { value: x.value, uom: x.unitCode } : null);
+        const sid = ob.stationId || String(ob.station || '').split('/').pop() || 'station';
+        const w = toKn(q(ob.windSpeed)), gu = toKn(q(ob.windGust)), vis = toSM(q(ob.visibility)), tf = toF(q(ob.temperature));
+        wx = wx || { t: now };
+        if (w != null) { wx.w = w; wx.gu = gu; if (ob.windDirection && ob.windDirection.value != null) wx.wd = ob.windDirection.value; }
+        if (vis != null) wx.vis = vis >= 9.9 ? 10 : vis; // 10SM is reported as 16090 m
+        if (tf != null) wx.tf = tf;
+        const cigs = (ob.cloudLayers || []).filter((l) => /BKN|OVC|VV/.test(l.amount || '') && l.base && l.base.value != null)
+          .map((l) => Math.round(l.base.value * 3.28084 / 100) * 100).sort((a, b) => a - b);
+        wx.cig = cigs.length ? cigs[0] : 'none';
+        wx.src = 'NWS observation ' + sid + ' at ' + fmtLocal(obMs, tz) + (ob.rawMessage ? ': ' + ob.rawMessage : '');
+        out.sources.push('NWS airport observation (' + sid + ')');
+      } else out.warnings.push('The latest airport observation is more than 3 hours old, so the forecast is used for current weather.');
     }
     if (wx) {
       if (wx.w != null) out.fra.FRA_Wind = String(Math.round(wx.w));
@@ -595,6 +603,17 @@ a{color:inherit}
         const d = distMi(p, { lat: f.geometry.y, lon: f.geometry.x }); if (d < best) { best = d; id = a.ICAO_ID; }
       }
       await get('metar', u.metar(opts.metarId || id));
+      // no usable reading from that airport: try the NWS's own nearest station for the pin
+      const pr = data.nwsPoints && data.nwsPoints.properties;
+      const fresh = (x) => x && !(x instanceof Error) && x.properties && Date.now() - Date.parse(x.properties.timestamp || '') <= 3 * 3600e3 && x.properties.windSpeed && x.properties.windSpeed.value != null;
+      if (!fresh(data.metar) && pr && pr.observationStations) {
+        try {
+          const r = await fetch(pr.observationStations, { headers: { Accept: 'application/geo+json, application/json' } });
+          const js = r.ok ? await r.json() : null;
+          const sid = js && js.features && js.features[0] && js.features[0].properties && js.features[0].properties.stationIdentifier;
+          if (sid && sid !== (opts.metarId || id)) await get('metar', u.metar(sid));
+        } catch (e) { /* keep the first result */ }
+      }
     }
     return data;
   }
@@ -687,7 +706,7 @@ const tpl = { ss: null, fra: null, ssName: 'built-in Rev 2.0', fraName: 'built-i
 const $ = (id) => document.getElementById(id);
 let last = null, lastName = '';
 
-const LABELS = { nwsPoints: 'NWS point', nwsCounty: 'County', grid: 'Forecast', airspace: 'Airspace', laanc: 'LAANC grid', dof: 'Obstacles', airports: 'Airports', sua: 'SUA', nda: 'Defense areas', prohibited: 'Prohibited', nsufr: 'Security areas', stadiums: 'Stadiums', kp: 'Kp', overpass: 'Power lines (OSM)', metar: 'METAR' };
+const LABELS = { nwsPoints: 'NWS point', nwsCounty: 'County', grid: 'Forecast', airspace: 'Airspace', laanc: 'LAANC grid', dof: 'Obstacles', airports: 'Airports', sua: 'SUA', nda: 'Defense areas', prohibited: 'Prohibited', nsufr: 'Security areas', stadiums: 'Stadiums', kp: 'Kp', overpass: 'Power lines (OSM)', metar: 'Airport obs' };
 function setStatus(map) {
   $('status').innerHTML = Object.entries(map).map(([k, v]) => '<span class="src ' + v + '">' + (LABELS[k] || k) + '</span>').join('');
 }

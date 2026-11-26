@@ -210,7 +210,7 @@ a{color:inherit}
       kp: 'https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json',
       overpass: 'https://overpass-api.de/api/interpreter',
       // public mirrors tried in order when the main server is busy or slow
-      overpassMirrors: ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://maps.mail.ru/osm/tools/overpass/api/interpreter', 'https://overpass.openstreetmap.fr/api/interpreter'],
+      overpassMirrors: ['https://overpass-api.de/api/interpreter', 'https://maps.mail.ru/osm/tools/overpass/api/interpreter', 'https://overpass.private.coffee/api/interpreter'],
       // latest airport observation from the NWS (aviationweather.gov blocks calls from web pages)
       metar: (id) => 'https://api.weather.gov/stations/' + encodeURIComponent(id) + '/observations/latest'
     };
@@ -428,7 +428,8 @@ a{color:inherit}
           const c = elCenter(e); if (c) structures.push({ d: distMi(p, c), label: t.man_made.replace('_', ' ') + ' ' + fmtDist(distMi(p, c)) + ' ' + bearing(p, c) });
         }
       }
-      out.sources.push('OpenStreetMap (Overpass' + (data.overpassLog && data.overpassLog.length ? ': ' + data.overpassLog.join('; ') : '') + ')');
+      const via = (data.overpassLog || []).filter((l) => / ok /.test(l)).map((l) => l.split(' ')[0])[0];
+      out.sources.push('OpenStreetMap (Overpass' + (via ? ' via ' + via : '') + ')');
     } else out.warnings.push('Power line and structure lookup (OpenStreetMap) failed or timed out. Walk the site for lines.' + (data.overpassLog && data.overpassLog.length ? ' Servers tried: ' + data.overpassLog.join('; ') + '.' : ''));
 
     // overhead utilities: only flag present; never auto-mark clear
@@ -602,28 +603,51 @@ a{color:inherit}
       get('sua', u.sua), get('nda', u.nda), get('prohibited', u.prohibited), get('nsufr', u.nsufr), get('stadiums', u.stadiums),
       get('kp', u.kp),
       (async () => {
+        // Public Overpass servers are often busy. Start the main one; if it fails, or has not
+        // answered within a few seconds, start the next as well. The first usable answer wins
+        // and the rest are cancelled. If all fail, try the main server once more after a pause.
         const body = 'data=' + encodeURIComponent(overpassQuery(p));
-        const log = [];
-        // one server: true when it gave usable data; otherwise logs why and moves on at once
+        const servers = u.overpassMirrors, log = [], ctls = [];
+        let won = null;
         const tryOne = async (m) => {
-          const t0 = Date.now(), host = m.split('/')[2];
-          await get('overpass', m, { method: 'POST', body: body, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 22000);
-          const d = data.overpass, secs = ((Date.now() - t0) / 1000).toFixed(1) + ' s';
-          if (!(d instanceof Error) && d && Array.isArray(d.elements) && (!d.remark || d.elements.length)) { log.push(host + ' ok ' + secs); return true; }
+          const t0 = Date.now(), host = m.split('/')[2], ctl = new AbortController(); ctls.push(ctl);
+          let timedOut = false; const tm = setTimeout(() => { timedOut = true; ctl.abort(); }, 25000);
+          const secs = () => ((Date.now() - t0) / 1000).toFixed(1) + ' s';
           let why;
-          if (d instanceof Error) {
-            const hm = /HTTP (\d+)/.exec(d.message || '');
-            why = d.name === 'AbortError' ? 'timed out' : hm ? 'HTTP ' + hm[1] : 'blocked or unreachable';
-          } else why = 'no data' + (d && d.remark ? ' (' + String(d.remark).slice(0, 60) + ')' : '');
-          log.push(host + ' ' + why + ' ' + secs);
-          data.overpass = new Error('overpass: ' + why);
-          return false;
+          try {
+            const r = await fetch(m, { method: 'POST', body: body, signal: ctl.signal, headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' } });
+            if (!r.ok) why = 'HTTP ' + r.status;
+            else {
+              const d = await r.json();
+              if (d && Array.isArray(d.elements) && (!d.remark || d.elements.length)) { clearTimeout(tm); log.push(host + ' ok ' + secs()); return d; }
+              why = 'no data' + (d && d.remark ? ' (' + String(d.remark).slice(0, 60) + ')' : '');
+            }
+          } catch (e) { why = timedOut ? 'timed out' : won ? null : e && e.name === 'AbortError' ? null : 'blocked or unreachable'; }
+          clearTimeout(tm);
+          if (why) log.push(host + ' ' + why + ' ' + secs());
+          return null;
         };
-        let done = false;
-        for (const m of u.overpassMirrors) { if (await tryOne(m)) { done = true; break; } }
-        // every server said no: one more try on the main server after a short pause
-        if (!done) { await new Promise((r) => setTimeout(r, 4000)); await tryOne(u.overpassMirrors[0]); }
+        won = await new Promise((resolve) => {
+          let next = 0, running = 0, finished = false, timer = null;
+          const launch = () => {
+            if (finished || next >= servers.length) return;
+            const m = servers[next++]; running++;
+            clearTimeout(timer); timer = setTimeout(launch, 6000);
+            tryOne(m).then((d) => {
+              running--;
+              if (finished) return;
+              if (d) { finished = true; clearTimeout(timer); resolve(d); return; }
+              if (next < servers.length) launch();
+              else if (!running) { finished = true; clearTimeout(timer); resolve(null); }
+            });
+          };
+          launch();
+        });
+        ctls.forEach((c) => c.abort());
+        if (!won) { await new Promise((r) => setTimeout(r, 3000)); won = await tryOne(servers[0]); }
+        data.overpass = won || new Error('overpass: no server answered');
         data.overpassLog = log;
+        if (onProgress) onProgress('overpass', !!won);
       })()
     ]);
     if (!opts.flightDate) {

@@ -392,8 +392,11 @@ a{color:inherit}
       }
     }
     strips.sort((a, b) => a.d - b.d);
-    if (ok(data.airports) || strips.length) out.text.SS_NearbyAirportsStripsAg = strips.length ? strips.slice(0, 3).map((s) => s.short).join('; ') : 'None charted in 10 mi; ask about ag strips';
-    out.brief.push(['Airports (10 mi)', strips.length ? strips.map((s) => s.label).join('; ') : 'None charted']);
+    const aptOk = ok(data.airports);
+    if (!aptOk) out.warnings.push('FAA airport lookup failed. Check airports by hand.');
+    if (strips.length) out.text.SS_NearbyAirportsStripsAg = strips.slice(0, 3).map((s) => s.short).join('; ') + (aptOk ? '' : '; FAA lookup failed, check by hand');
+    else out.text.SS_NearbyAirportsStripsAg = aptOk ? 'None charted in 10 mi; ask about ag strips' : 'FAA airport lookup failed; check by hand';
+    out.brief.push(['Airports (10 mi)', strips.length ? strips.map((s) => s.label).join('; ') + (aptOk ? '' : '. FAA lookup failed, list may be incomplete.') : (aptOk ? 'None charted' : 'Lookup failed. Check by hand.')]);
     const nearestStrip = strips.length ? strips[0].d : 99;
 
     // --- obstacles ---
@@ -404,7 +407,8 @@ a{color:inherit}
         obs.push({ d: distMi(p, g), agl: +a.AGL, label: (a.Type_Code || 'obstacle').trim().toLowerCase() + ' ' + a.AGL + ' ft AGL', src: 'FAA DOF', at: g });
       }
       out.sources.push('FAA Digital Obstacle File');
-    } else out.warnings.push('FAA obstacle lookup failed.');
+    } else out.warnings.push('FAA obstacle lookup failed. Check obstacles by hand.');
+    const dofOk = ok(data.dof);
     const lines = [], structures = [], interference = [];
     if (osm) {
       for (const e of osm) {
@@ -453,7 +457,8 @@ a{color:inherit}
     } else if (obs.length) {
       out.text.SS_VerticalObstacles_Notes = 'None < 1 mi; ' + obs[0].agl + ' ft ' + obs[0].label.split(' ')[0] + ' ' + fmtDist(obs[0].d) + ' ' + bearing(p, obs[0].at);
     }
-    out.brief.push(['Obstacles (3 mi)', obs.length ? obs.slice(0, 6).map((o) => o.label + ' ' + fmtDist(o.d) + ' ' + bearing(p, o.at) + ' (' + o.src + ')').join('; ') : 'None charted']);
+    if (!dofOk) out.text.SS_VerticalObstacles_Notes = 'FAA obstacle lookup failed; check by hand' + (out.text.SS_VerticalObstacles_Notes ? '. ' + out.text.SS_VerticalObstacles_Notes : '');
+    out.brief.push(['Obstacles (3 mi)', obs.length ? obs.slice(0, 6).map((o) => o.label + ' ' + fmtDist(o.d) + ' ' + bearing(p, o.at) + ' (' + o.src + ')').join('; ') + (dofOk ? '' : '. FAA lookup failed, list may be incomplete.') : (dofOk ? 'None charted' : 'Lookup failed. Check by hand.')]);
 
     structures.sort((a, b) => a.d - b.d);
     if (structures.some((s) => s.d <= 0.25)) out.check.SS_Structures_Present = true;
@@ -589,7 +594,9 @@ a{color:inherit}
         const r = await fetch(url, Object.assign({ signal: ctl.signal, headers: { Accept: 'application/geo+json, application/json' } }, init || {}));
         clearTimeout(tm);
         if (!r.ok) throw new Error(key + ' HTTP ' + r.status);
-        data[key] = await r.json();
+        const j = await r.json();
+        if (j && j.error) throw new Error(key + ' ' + (j.error.message || 'service error'));
+        data[key] = j;
       } catch (e) { data[key] = e instanceof Error ? e : new Error(String(e)); }
       if (onProgress) onProgress(key, !(data[key] instanceof Error));
     };

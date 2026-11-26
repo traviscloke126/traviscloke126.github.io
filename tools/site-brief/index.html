@@ -204,20 +204,23 @@ a{color:inherit}
       stadiums: arcPointQuery('Stadiums', p, { distanceMi: 3, geom: true }),
       kp: 'https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json',
       overpass: 'https://overpass-api.de/api/interpreter',
+      // public mirrors tried in order when the main server is busy or slow
+      overpassMirrors: ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://maps.mail.ru/osm/tools/overpass/api/interpreter'],
       // latest airport observation from the NWS (aviationweather.gov blocks calls from web pages)
       metar: (id) => 'https://api.weather.gov/stations/' + encodeURIComponent(id) + '/observations/latest'
     };
   }
   function overpassQuery(p) {
     const ll = p.lat.toFixed(5) + ',' + p.lon.toFixed(5);
-    return '[out:json][timeout:25];(' +
+    return '[out:json][timeout:20];(' +
       'way(around:1200,' + ll + ')[power~"^(line|minor_line|cable)$"];' +
       'node(around:1200,' + ll + ')[power~"^(tower|pole|substation)$"];' +
       'nwr(around:1200,' + ll + ')[power=substation];' +
       'nwr(around:1600,' + ll + ')[man_made~"^(tower|mast|silo|water_tower|storage_tank|windmill)$"];' +
       'nwr(around:1600,' + ll + ')[power=generator]["generator:source"=wind];' +
-      'nwr(around:8000,' + ll + ')[aeroway~"^(aerodrome|airstrip|runway|helipad)$"];' +
-      ');out tags geom 200;';
+      ');out tags geom 400;' +
+      'nwr(around:8000,' + ll + ')[aeroway~"^(aerodrome|airstrip)$"];' +
+      'out tags center 50;';
   }
 
   // ---------- NWS gridpoint helpers ----------
@@ -574,9 +577,9 @@ a{color:inherit}
   // ---------- fetching (browser) ----------
   async function fetchAll(p, opts, onProgress) {
     const u = urls(p), data = {};
-    const get = async (key, url, init) => {
+    const get = async (key, url, init, ms) => {
       try {
-        const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 20000);
+        const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), ms || 20000);
         const r = await fetch(url, Object.assign({ signal: ctl.signal, headers: { Accept: 'application/geo+json, application/json' } }, init || {}));
         clearTimeout(tm);
         if (!r.ok) throw new Error(key + ' HTTP ' + r.status);
@@ -593,7 +596,16 @@ a{color:inherit}
       get('airspace', u.airspace), get('laanc', u.laanc), get('dof', u.dof), get('airports', u.airports),
       get('sua', u.sua), get('nda', u.nda), get('prohibited', u.prohibited), get('nsufr', u.nsufr), get('stadiums', u.stadiums),
       get('kp', u.kp),
-      get('overpass', u.overpass, { method: 'POST', body: 'data=' + encodeURIComponent(overpassQuery(p)), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      (async () => {
+        const body = 'data=' + encodeURIComponent(overpassQuery(p));
+        for (const m of u.overpassMirrors) {
+          await get('overpass', m, { method: 'POST', body: body, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 30000);
+          const d = data.overpass;
+          if (!(d instanceof Error) && d && !d.remark) break;
+          if (!(d instanceof Error) && d && d.remark && (d.elements || []).length) break;
+          if (!(d instanceof Error)) data.overpass = new Error('overpass: ' + String(d && d.remark || 'empty'));
+        }
+      })()
     ]);
     if (!opts.flightDate) {
       let id = 'KHUT', best = 1e9;

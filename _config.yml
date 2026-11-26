@@ -14,3 +14,10 @@ phone: "(620) 513-6257"
 url: "https://apexvectoruas.com"
 plugins:
   - jekyll-sitemap
+
+# Private tools: served as-is, kept out of the sitemap (and noindex in each page)
+defaults:
+  - scope:
+      path: "tools"
+    values:
+      sitemap: false

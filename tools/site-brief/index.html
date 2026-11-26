@@ -605,9 +605,9 @@ a{color:inherit}
       (async () => {
         // Public Overpass servers are often busy. Start the main one; if it fails, or has not
         // answered within a few seconds, start the next as well. The first usable answer wins
-        // and the rest are cancelled. If all fail, try the main server once more after a pause.
+        // and the rest are cancelled. If all fail, the quick failures get one more try after a pause.
         const body = 'data=' + encodeURIComponent(overpassQuery(p));
-        const servers = u.overpassMirrors, log = [], ctls = [];
+        const servers = u.overpassMirrors, log = [], ctls = [], quickFails = [];
         let won = null;
         const tryOne = async (m) => {
           const t0 = Date.now(), host = m.split('/')[2], ctl = new AbortController(); ctls.push(ctl);
@@ -625,6 +625,7 @@ a{color:inherit}
           } catch (e) { why = timedOut ? 'timed out' : won ? null : e && e.name === 'AbortError' ? null : 'blocked or unreachable'; }
           clearTimeout(tm);
           if (why) log.push(host + ' ' + why + ' ' + secs());
+          if (why && why !== 'timed out' && quickFails.indexOf(m) < 0) quickFails.push(m);
           return null;
         };
         won = await new Promise((resolve) => {
@@ -644,7 +645,11 @@ a{color:inherit}
           launch();
         });
         ctls.forEach((c) => c.abort());
-        if (!won) { await new Promise((r) => setTimeout(r, 3000)); won = await tryOne(servers[0]); }
+        // nothing usable: servers that turned us away quickly (busy, 504, 429) get one more try after a pause
+        if (!won) {
+          await new Promise((r) => setTimeout(r, 3000));
+          for (const m of quickFails.slice()) { won = await tryOne(m); if (won) break; }
+        }
         data.overpass = won || new Error('overpass: no server answered');
         data.overpassLog = log;
         if (onProgress) onProgress('overpass', !!won);
